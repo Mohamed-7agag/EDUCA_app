@@ -2,11 +2,11 @@ import 'package:field_training_app/Core/utils/app_router.dart';
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
+import 'package:field_training_app/Features/auth/presentation/widgets/custom_logo.dart';
 import 'package:field_training_app/Features/auth/presentation/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../view_model/password_visibility/password_visibility_cubit.dart';
 
@@ -17,23 +17,8 @@ class LoginViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Expanded(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    "assets/images/logo.png",
-                    width: 75.w,
-                  ),
-                  SizedBox(width: 10.w),
-                  Text("EDUCA", style: GoogleFonts.lilitaOne(fontSize: 38.sp))
-                ],
-              ),
-            ],
-          ),
+        const Expanded(
+          child: CustomLogo(),
         ),
         Expanded(
           flex: 2,
@@ -100,7 +85,12 @@ class LoginViewBody extends StatelessWidget {
                   SizedBox(height: 50.h),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: CustomButton(text: "تسجيل", onpressed: () {}),
+                    child: CustomButton(
+                        text: "تسجيل",
+                        onpressed: () {
+                          Navigator.pushNamed(
+                              context, AppRouter.classOptionsViewRoute);
+                        }),
                   ),
                   SizedBox(height: 25.h),
                   Row(
@@ -120,7 +110,6 @@ class LoginViewBody extends StatelessWidget {
                         ),
                       ),
                       const Text(" ليس لديك حساب ؟"),
-                      
                     ],
                   ),
                 ],

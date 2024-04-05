@@ -2,11 +2,11 @@ import 'package:field_training_app/Core/utils/app_router.dart';
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
+import 'package:field_training_app/Features/auth/presentation/widgets/custom_logo.dart';
 import 'package:field_training_app/Features/auth/presentation/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../view_model/password_visibility/password_visibility_cubit.dart';
 import '../view_model/register_option_cubit.dart';
 
@@ -17,34 +17,20 @@ class RegisterViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Expanded(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    "assets/images/logo.png",
-                    width: 75.w,
-                  ),
-                  SizedBox(width: 10.w),
-                  Text("EDUCA", style: GoogleFonts.lilitaOne(fontSize: 38.sp))
-                ],
-              ),
-            ],
-          ),
+        const Expanded(
+          child: CustomLogo(),
         ),
         Expanded(
           flex: 2,
           child: Container(
             width: double.infinity,
             padding: const EdgeInsets.only(left: 20, right: 20, top: 25),
-            decoration: const BoxDecoration(
-              color: Color.fromARGB(255, 255, 255, 255),
+            decoration: BoxDecoration(
+              color: const Color.fromARGB(255, 255, 255, 255),
               borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(35), topRight: Radius.circular(35)),
-              boxShadow: [
+                  topLeft:  Radius.circular(35.r),
+                  topRight: Radius.circular(35.r)),
+              boxShadow: const [
                 BoxShadow(
                   color: Color.fromARGB(9, 158, 158, 158),
                   blurRadius: 2,
