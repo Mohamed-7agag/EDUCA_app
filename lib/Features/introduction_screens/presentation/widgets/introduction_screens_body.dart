@@ -13,8 +13,8 @@ class IntroScreensBody extends StatelessWidget {
       animationDuration: 450,
       showDoneButton: true,
       done: Text(
-        "Done",
-        style: Styles.textStyle16,
+        "لنبدا",
+        style: Styles.textStyle16.copyWith(fontWeight: FontWeight.bold),
       ),
       doneStyle: const ButtonStyle(
           foregroundColor: MaterialStatePropertyAll(Colors.white),
@@ -28,13 +28,14 @@ class IntroScreensBody extends StatelessWidget {
           foregroundColor: MaterialStatePropertyAll(Colors.white),
           backgroundColor: MaterialStatePropertyAll(kPrimaryColor)),
       next: Text(
-        "Next",
-        style: Styles.textStyle16,
+        "التالي",
+        style: Styles.textStyle16.copyWith(fontWeight: FontWeight.bold),
       ),
       showSkipButton: true,
       skip: Text(
-        "Skip",
-        style: Styles.textStyle16.copyWith(color: kPrimaryColor),
+        "تخطي",
+        style: Styles.textStyle16
+            .copyWith(color: kPrimaryColor, fontWeight: FontWeight.bold),
       ),
       onSkip: () {
         Navigator.pushNamedAndRemoveUntil(
@@ -44,8 +45,8 @@ class IntroScreensBody extends StatelessWidget {
         PageViewModel(
           decoration: const PageDecoration(
               imageFlex: 2, imageAlignment: Alignment.topCenter),
-          title: "Online Learning",
-          body: "Instead of having to buy an entire share.",
+          title: "مرحبًا بك في تطبيق البحث عن معلمين!",
+          body: "استكشاف خياراتنا المتنوعة للعثور على المعلم المناسب لك",
           image: Image.asset(
             "assets/images/on1.png",
             width: double.infinity,
@@ -55,8 +56,8 @@ class IntroScreensBody extends StatelessWidget {
         PageViewModel(
           decoration: const PageDecoration(
               imageFlex: 2, imageAlignment: Alignment.topCenter),
-          title: "Learn From Anytime",
-          body: "Instead of having to buy an entire share.",
+          title: "خطوات بسيطة للبدء في البحث عن معلم",
+          body: "اختيار المعلم المناسب وحجز الدروس بسهولة",
           image: Image.asset(
             "assets/images/on2.png",
             width: double.infinity,
@@ -66,8 +67,8 @@ class IntroScreensBody extends StatelessWidget {
         PageViewModel(
           decoration: const PageDecoration(
               imageFlex: 2, imageAlignment: Alignment.topCenter),
-          title: "Learn From Anytime",
-          body: "Instead of having to buy an entire share.",
+          title: "استفد إلى أقصى حد ممكن من تجربة التعلم الخاصة بك",
+          body: "تقييم المعلمين وتقديم ملاحظات لتحسين التجربة التعليمية",
           image: Image.asset(
             "assets/images/on33.png",
             width: double.infinity,

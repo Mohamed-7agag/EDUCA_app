@@ -16,10 +16,13 @@ class CustomTextField extends StatelessWidget {
       cursorErrorColor: Colors.red,
       obscureText: obscureText ?? false,
       keyboardType: keyboardType,
+      textAlign: TextAlign.right,
       decoration: InputDecoration(
         hintText: hintText,
+        hintTextDirection: TextDirection.rtl,
+        
         hintStyle: Styles.textStyle14,
-        suffixIcon: suffixIcon,
+        prefixIcon: suffixIcon,
         enabledBorder: const UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.grey),
         ),

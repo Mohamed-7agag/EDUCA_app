@@ -57,23 +57,23 @@ class RegisterViewBody extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    "Register",
-                    style: Styles.textStyle24
-                        .copyWith(fontWeight: FontWeight.normal),
+                    "أنشاء حساب",
+                    style: Styles.textStyle24,
+                    textAlign: TextAlign.right,
                   ),
                   SizedBox(height: 30.h),
                   Form(
                     child: Column(
                       children: [
                         const CustomTextField(
-                          hintText: "Email",
+                          hintText: "البريد الالكتروني",
                           keyboardType: TextInputType.emailAddress,
                         ),
                         SizedBox(height: 28.h),
                         BlocBuilder<PasswordVisibilityCubit, bool>(
                           builder: (context, state) {
                             return CustomTextField(
-                              hintText: "Password",
+                              hintText: "كلمة السر",
                               obscureText: state,
                               keyboardType: TextInputType.visiblePassword,
                               suffixIcon: IconButton(
@@ -91,49 +91,61 @@ class RegisterViewBody extends StatelessWidget {
                         ),
                         SizedBox(height: 28.h),
                         const CustomTextField(
-                          hintText: "Phone",
+                          hintText: "رقم الجوال",
                           keyboardType: TextInputType.phone,
                         ),
                       ],
                     ),
                   ),
                   SizedBox(height: 30.h),
-                  const Text("Register As ?"),
+                  Text(
+                    "التسجيل ك",
+                    style: Styles.textStyle16,
+                    textAlign: TextAlign.right,
+                  ),
                   BlocBuilder<RegisterOptionCubit, String>(
                     builder: (context, state) {
                       return Row(
                         children: [
                           Expanded(
+                            flex: 3,
                             child: RadioListTile(
-                              value: "student",
+                              value: "معلم",
                               visualDensity: VisualDensity.compact,
                               selectedTileColor: kPrimaryColor,
                               activeColor: kPrimaryColor,
-                              selected: state == "student" ? true : false,
+                              controlAffinity: ListTileControlAffinity.trailing,
+                              selected: state == "معلم" ? true : false,
                               contentPadding: const EdgeInsets.all(0),
-                              title: Text("Student", style: Styles.textStyle14),
-                              groupValue: state,
-                              onChanged: (value) {
-                                context
-                                    .read<RegisterOptionCubit>()
-                                    .changeRegisterOption(0);
-                              },
-                            ),
-                          ),
-                          Expanded(
-                            child: RadioListTile(
-                              value: "teacher",
-                              visualDensity: VisualDensity.compact,
-                              selectedTileColor: kPrimaryColor,
-                              activeColor: kPrimaryColor,
-                              selected: state == "teacher" ? true : false,
-                              contentPadding: const EdgeInsets.all(0),
-                              title: Text("Teacher", style: Styles.textStyle14),
+                              title: Text("معلم",
+                                  style: Styles.textStyle16,
+                                  textAlign: TextAlign.right),
                               groupValue: state,
                               onChanged: (value) {
                                 context
                                     .read<RegisterOptionCubit>()
                                     .changeRegisterOption(1);
+                              },
+                            ),
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: RadioListTile(
+                              value: "طالب",
+                              visualDensity: VisualDensity.compact,
+                              selectedTileColor: kPrimaryColor,
+                              controlAffinity: ListTileControlAffinity.trailing,
+                              activeColor: kPrimaryColor,
+                              selected: state == "طالب" ? true : false,
+                              contentPadding: const EdgeInsets.all(0),
+                              title: Text("طالب",
+                                  style: Styles.textStyle16,
+                                  textAlign: TextAlign.right),
+                              groupValue: state,
+                              onChanged: (value) {
+                                context
+                                    .read<RegisterOptionCubit>()
+                                    .changeRegisterOption(0);
                               },
                             ),
                           ),
@@ -144,26 +156,26 @@ class RegisterViewBody extends StatelessWidget {
                   SizedBox(height: 20.h),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: CustomButton(text: "Register", onpressed: () {}),
+                    child: CustomButton(text: "أنشاء", onpressed: () {}),
                   ),
                   SizedBox(height: 25.h),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text("Have an account? "),
                       InkWell(
                         onTap: () {
                           Navigator.pushNamed(
                               context, AppRouter.loginViewRoute);
                         },
                         child: Text(
-                          "Login",
+                          "تسجيل",
                           style: Styles.textStyle16.copyWith(
                               fontSize: 15.sp,
                               color: kPrimaryColor,
                               fontWeight: FontWeight.w600),
                         ),
                       ),
+                      const Text(" لديك بالفعل حساب ؟"),
                     ],
                   ),
                 ],

@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
           textDirection: TextDirection.rtl,
           child: MaterialApp(
             theme: ThemeData.light().copyWith(
-                textTheme: GoogleFonts.interTextTheme(
+                textTheme: GoogleFonts.tajawalTextTheme(
                   ThemeData.light().textTheme,
                 )),
             builder: (context, child) {
