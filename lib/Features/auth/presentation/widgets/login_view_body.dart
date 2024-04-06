@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:field_training_app/Core/utils/app_router.dart';
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
@@ -7,11 +9,14 @@ import 'package:field_training_app/Features/auth/presentation/widgets/custom_tex
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../view_model/password_visibility/password_visibility_cubit.dart';
 
 class LoginViewBody extends StatelessWidget {
-  const LoginViewBody({super.key});
+  LoginViewBody({super.key});
+
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -48,9 +53,11 @@ class LoginViewBody extends StatelessWidget {
                   ),
                   SizedBox(height: 30.h),
                   Form(
+                    key: formKey,
                     child: Column(
                       children: [
-                        const CustomTextField(
+                        CustomTextField(
+                          controller: emailController,
                           hintText: "البريد الالكتروني",
                           keyboardType: TextInputType.emailAddress,
                         ),
@@ -58,6 +65,7 @@ class LoginViewBody extends StatelessWidget {
                         BlocBuilder<PasswordVisibilityCubit, bool>(
                           builder: (context, state) {
                             return CustomTextField(
+                              controller: passwordController,
                               hintText: "كلمة السر",
                               obscureText: state,
                               keyboardType: TextInputType.visiblePassword,
@@ -88,8 +96,11 @@ class LoginViewBody extends StatelessWidget {
                     child: CustomButton(
                         text: "تسجيل",
                         onpressed: () {
-                          Navigator.pushNamed(
-                              context, AppRouter.classOptionsViewRoute);
+                          if (formKey.currentState!.validate()) {
+                            FocusScope.of(context).unfocus();
+                            Navigator.pushNamed(
+                                context, AppRouter.classOptionsViewRoute);
+                          }
                         }),
                   ),
                   SizedBox(height: 25.h),
@@ -112,6 +123,7 @@ class LoginViewBody extends StatelessWidget {
                       const Text(" ليس لديك حساب ؟"),
                     ],
                   ),
+                  SizedBox(height: 20.h),
                 ],
               ),
             ),

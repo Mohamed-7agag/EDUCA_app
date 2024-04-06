@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:field_training_app/Core/utils/app_router.dart';
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
@@ -11,7 +13,13 @@ import '../view_model/password_visibility/password_visibility_cubit.dart';
 import '../view_model/register_option_cubit.dart';
 
 class RegisterViewBody extends StatelessWidget {
-  const RegisterViewBody({super.key});
+  RegisterViewBody({super.key});
+
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -21,14 +29,14 @@ class RegisterViewBody extends StatelessWidget {
           child: CustomLogo(),
         ),
         Expanded(
-          flex: 2,
+          flex: 3,
           child: Container(
             width: double.infinity,
             padding: const EdgeInsets.only(left: 20, right: 20, top: 25),
             decoration: BoxDecoration(
               color: const Color.fromARGB(255, 255, 255, 255),
               borderRadius: BorderRadius.only(
-                  topLeft:  Radius.circular(35.r),
+                  topLeft: Radius.circular(35.r),
                   topRight: Radius.circular(35.r)),
               boxShadow: const [
                 BoxShadow(
@@ -49,9 +57,17 @@ class RegisterViewBody extends StatelessWidget {
                   ),
                   SizedBox(height: 30.h),
                   Form(
+                    key: formKey,
                     child: Column(
                       children: [
-                        const CustomTextField(
+                        CustomTextField(
+                          controller: nameController,
+                          hintText: "أسم المستخدم",
+                          keyboardType: TextInputType.emailAddress,
+                        ),
+                        SizedBox(height: 28.h),
+                        CustomTextField(
+                          controller: emailController,
                           hintText: "البريد الالكتروني",
                           keyboardType: TextInputType.emailAddress,
                         ),
@@ -59,6 +75,7 @@ class RegisterViewBody extends StatelessWidget {
                         BlocBuilder<PasswordVisibilityCubit, bool>(
                           builder: (context, state) {
                             return CustomTextField(
+                              controller: passwordController,
                               hintText: "كلمة السر",
                               obscureText: state,
                               keyboardType: TextInputType.visiblePassword,
@@ -76,7 +93,8 @@ class RegisterViewBody extends StatelessWidget {
                           },
                         ),
                         SizedBox(height: 28.h),
-                        const CustomTextField(
+                        CustomTextField(
+                          controller: phoneController,
                           hintText: "رقم الجوال",
                           keyboardType: TextInputType.phone,
                         ),
@@ -142,7 +160,14 @@ class RegisterViewBody extends StatelessWidget {
                   SizedBox(height: 20.h),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: CustomButton(text: "أنشاء", onpressed: () {}),
+                    child: CustomButton(
+                        text: "أنشاء",
+                        onpressed: () {
+                          if (formKey.currentState!.validate()) {
+                            Navigator.pushNamed(
+                                context, AppRouter.loginViewRoute);
+                          }
+                        }),
                   ),
                   SizedBox(height: 25.h),
                   Row(
@@ -164,6 +189,7 @@ class RegisterViewBody extends StatelessWidget {
                       const Text(" لديك بالفعل حساب ؟"),
                     ],
                   ),
+                  SizedBox(height: 20.h),
                 ],
               ),
             ),

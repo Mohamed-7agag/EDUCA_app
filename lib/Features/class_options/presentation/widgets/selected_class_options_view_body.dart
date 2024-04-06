@@ -1,15 +1,20 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:field_training_app/Core/utils/app_router.dart';
 import 'package:field_training_app/Features/class_options/data/class_option_data.dart';
 import 'package:field_training_app/Features/class_options/presentation/widgets/custom_class_options_item.dart';
 import 'package:field_training_app/Features/class_options/presentation/widgets/custom_class_options_shape.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../Core/widgets/custom_button.dart';
+import '../view_model/class_options_cubit.dart';
 
 class SelectedClassOptionsViewBody extends StatelessWidget {
-  const SelectedClassOptionsViewBody({super.key, required this.idx});
+  SelectedClassOptionsViewBody({super.key, required this.idx});
   final int idx;
-
+  int selindex = -1;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -36,21 +41,31 @@ class SelectedClassOptionsViewBody extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 20.h),
-              CustomButton(
-                  text: "بدا التعلم",
-                  onpressed: () {
-                    AwesomeDialog(
-                      context: context,
-                      dialogType: DialogType.error,
-                      animType: AnimType.rightSlide,
-                      title: 'حدث خطأ',
-                      desc: 'أختر الصف الدراسي',
-                      btnOkText: "حسنا",
-                      btnCancelText: "اغلاق",
-                      btnOkOnPress: () {},
-                      btnCancelOnPress: () {},
-                    ).show();
-                  })
+              BlocListener<ClassOptionsCubit, int>(
+                listener: (context, state) {
+                  selindex = state;
+                },
+                child: CustomButton(
+                    text: "بدا التعلم",
+                    onpressed: () {
+                      if (selindex != -1) {
+                        Navigator.pushNamed(
+                            context, AppRouter.customBottomBarViewRoute);
+                      } else {
+                        AwesomeDialog(
+                          context: context,
+                          dialogType: DialogType.error,
+                          animType: AnimType.rightSlide,
+                          title: 'حدث خطأ',
+                          desc: 'أختر الصف الدراسي',
+                          btnOkText: "حسنا",
+                          btnCancelText: "اغلاق",
+                          btnOkOnPress: () {},
+                          btnCancelOnPress: () {},
+                        ).show();
+                      }
+                    }),
+              )
             ],
           ),
         ),

@@ -1,5 +1,6 @@
 import 'package:field_training_app/Features/auth/presentation/views/login_view.dart';
 import 'package:field_training_app/Features/auth/presentation/views/register_view.dart';
+import 'package:field_training_app/Features/bottom_bar/presentation/views/custom_bottom_bar.dart';
 import 'package:field_training_app/Features/class_options/presentation/views/class_options_view.dart';
 import 'package:field_training_app/Features/class_options/presentation/views/selected_class_options_view.dart';
 import 'package:field_training_app/Features/introduction_screens/presentation/views/introduction_screens.dart';
@@ -8,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../Features/auth/presentation/view_model/password_visibility/password_visibility_cubit.dart';
 import '../../Features/auth/presentation/view_model/register_option_cubit.dart';
+import '../../Features/bottom_bar/presentation/view_model/bottom_bar_cubit.dart';
 import '../../Features/class_options/presentation/view_model/class_options_cubit.dart';
 
 class AppRouter {
@@ -18,6 +20,8 @@ class AppRouter {
   static const String classOptionsViewRoute = "/classOptionsView";
   static const String selectedClassOptionsViewRoute =
       "/selectedClassOptionsView";
+  static const String customBottomBarViewRoute = "/customBottomBarView";
+
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case splashViewRoute:
@@ -62,6 +66,13 @@ class AppRouter {
           builder: (context) => BlocProvider(
             create: (context) => ClassOptionsCubit(),
             child: SelectedClassOptionsView(index: args),
+          ),
+        );
+      case customBottomBarViewRoute:
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => BottomBarCubit(),
+            child: const CustomBottomBar(),
           ),
         );
       default:

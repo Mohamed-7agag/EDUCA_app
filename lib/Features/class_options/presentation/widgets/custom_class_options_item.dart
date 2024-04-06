@@ -16,6 +16,7 @@ class CustomClassOptionsItem extends StatelessWidget {
     return BlocBuilder<ClassOptionsCubit, int>(
       builder: (context, state) {
         return InkWell(
+          splashColor: kSplashColor,
           onTap: () {
             context.read<ClassOptionsCubit>().changeClassOption(index);
           },
