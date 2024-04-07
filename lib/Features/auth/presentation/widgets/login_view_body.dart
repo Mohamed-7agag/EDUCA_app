@@ -76,8 +76,8 @@ class LoginViewBody extends StatelessWidget {
                                       .changeState();
                                 },
                                 icon: state == true
-                                    ? const Icon(Icons.visibility_rounded)
-                                    : const Icon(Icons.visibility_off_rounded),
+                                    ? const Icon(Icons.visibility_rounded,color: kPrimaryColor)
+                                    : const Icon(Icons.visibility_off_rounded,color: kPrimaryColor),
                               ),
                             );
                           },
@@ -85,10 +85,10 @@ class LoginViewBody extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(height: 16.h),
+                  SizedBox(height: 20.h),
                   Text(
                     "نسيت كلمة السر ؟",
-                    style: Styles.textStyle14,
+                    style: Styles.textStyle14.copyWith(color: kPrimaryColor),
                   ),
                   SizedBox(height: 50.h),
                   Padding(

@@ -1,5 +1,4 @@
 import 'package:field_training_app/Core/utils/app_router.dart';
-import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/Features/profile/presentation/widgets/profile_item.dart';
 import 'package:flutter/material.dart';

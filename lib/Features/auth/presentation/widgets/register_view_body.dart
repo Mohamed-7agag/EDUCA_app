@@ -86,8 +86,8 @@ class RegisterViewBody extends StatelessWidget {
                                       .changeState();
                                 },
                                 icon: state == true
-                                    ? const Icon(Icons.visibility_rounded)
-                                    : const Icon(Icons.visibility_off_rounded),
+                                    ? const Icon(Icons.visibility_rounded,color: kPrimaryColor)
+                                    : const Icon(Icons.visibility_off_rounded,color: kPrimaryColor),
                               ),
                             );
                           },
@@ -157,7 +157,7 @@ class RegisterViewBody extends StatelessWidget {
                       );
                     },
                   ),
-                  SizedBox(height: 20.h),
+                  SizedBox(height: 25.h),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: CustomButton(
