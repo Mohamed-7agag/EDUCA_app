@@ -1,4 +1,5 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
+import 'package:field_training_app/Features/profile/presentation/views/profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -51,15 +52,7 @@ class CustomBottomBar extends StatelessWidget {
               child: IndexedStack(
             index: state,
             children: [
-              Container(
-                color: Colors.red,
-                child: const Center(
-                  child: Text(
-                    'profile',
-                    style: TextStyle(fontSize: 24, color: Colors.white),
-                  ),
-                ),
-              ),
+              const ProfileView(),
               Container(
                 color: Colors.blue,
                 child: const Center(
