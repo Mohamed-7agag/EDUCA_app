@@ -2,12 +2,14 @@ class Student {
   final String name;
   final String email;
   final String phone;
+  final String password;
   final String studentOrTeacher;
   final String studentClass;
 
   Student(
       {required this.name,
       required this.email,
+      required this.password,
       required this.phone,
       required this.studentOrTeacher,
       required this.studentClass});
@@ -17,6 +19,7 @@ Student copyWith({
     String? name,
     String? email,
     String? phone,
+    String? password,
     String? studentOrTeacher,
     String? studentClass,
   }) {
@@ -24,6 +27,7 @@ Student copyWith({
       name: name ?? this.name,
       email: email ?? this.email,
       phone: phone ?? this.phone,
+      password: password ?? this.password,
       studentOrTeacher: studentOrTeacher ?? this.studentOrTeacher,
       studentClass: studentClass ?? this.studentClass,
     );
@@ -35,6 +39,7 @@ Student copyWith({
       'name': name,
       'email': email,
       'phone': phone,
+      'password': password,
       'studentOrTeacher': studentOrTeacher,
       'studentClass': studentClass,
     };
@@ -45,6 +50,7 @@ Student copyWith({
       name: json['name'] ?? '',
       email: json['email'] ?? '',
       phone: json['phone'] ?? '',
+      password: json['password'] ?? '',
       studentOrTeacher: json['studentOrTeacher'] ?? '',
       studentClass: json['studentClass'] ?? '',
     );

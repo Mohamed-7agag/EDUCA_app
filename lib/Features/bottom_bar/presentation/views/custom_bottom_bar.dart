@@ -1,4 +1,6 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
+import 'package:field_training_app/Features/auth/data/models/student_model.dart';
+import 'package:field_training_app/Features/auth/presentation/view_model/student_cubit.dart';
 import 'package:field_training_app/Features/profile/presentation/views/profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -62,14 +64,50 @@ class CustomBottomBar extends StatelessWidget {
                   ),
                 ),
               ),
-              Container(
-                color: Colors.green,
-                child: const Center(
-                  child: Text(
-                    'main',
-                    style: TextStyle(fontSize: 24, color: Colors.white),
-                  ),
-                ),
+              BlocBuilder<StudentCubit, Student>(
+                builder: (context, student) {
+                  return Container(
+                    color: Colors.green,
+                    width: double.infinity,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          student.name,
+                          style: const TextStyle(
+                              fontSize: 24, color: Colors.white),
+                        ),
+                        const SizedBox(height: 15),
+                        Text(
+                          student.email,
+                          style: const TextStyle(
+                              fontSize: 24, color: Colors.white),
+                        ),
+                        const SizedBox(height: 15),
+                        Text(
+                          student.phone,
+                          style: const TextStyle(
+                              fontSize: 24, color: Colors.white),
+                        ),
+                        const SizedBox(height: 15),
+                        Text(
+                          student.studentOrTeacher,
+                          style: const TextStyle(
+                              fontSize: 24, color: Colors.white),
+                        ),
+                        const SizedBox(height: 15),
+                        Text(
+                          student.studentClass,
+                          style: const TextStyle(
+                              fontSize: 24, color: Colors.white),
+                        ),
+                        const SizedBox(height: 15),
+                        
+                      ],
+                    ),
+                  );
+                },
               ),
             ],
           )),

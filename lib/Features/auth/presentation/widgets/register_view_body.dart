@@ -1,9 +1,12 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:field_training_app/Core/utils/app_regex.dart';
 import 'package:field_training_app/Core/utils/app_router.dart';
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
+import 'package:field_training_app/Features/auth/presentation/view_model/student_cubit.dart';
 import 'package:field_training_app/Features/auth/presentation/widgets/custom_logo.dart';
 import 'package:field_training_app/Features/auth/presentation/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
@@ -86,8 +89,10 @@ class RegisterViewBody extends StatelessWidget {
                                       .changeState();
                                 },
                                 icon: state == true
-                                    ? const Icon(Icons.visibility_rounded,color: kPrimaryColor)
-                                    : const Icon(Icons.visibility_off_rounded,color: kPrimaryColor),
+                                    ? const Icon(Icons.visibility_rounded,
+                                        color: kPrimaryColor)
+                                    : const Icon(Icons.visibility_off_rounded,
+                                        color: kPrimaryColor),
                               ),
                             );
                           },
@@ -108,66 +113,100 @@ class RegisterViewBody extends StatelessWidget {
                     textAlign: TextAlign.right,
                   ),
                   BlocBuilder<RegisterOptionCubit, String>(
-                    builder: (context, state) {
-                      return Row(
+                    builder: (context, optionState) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          Expanded(
-                            flex: 3,
-                            child: RadioListTile(
-                              value: "معلم",
-                              visualDensity: VisualDensity.compact,
-                              selectedTileColor: kPrimaryColor,
-                              activeColor: kPrimaryColor,
-                              controlAffinity: ListTileControlAffinity.trailing,
-                              selected: state == "معلم" ? true : false,
-                              contentPadding: const EdgeInsets.all(0),
-                              title: Text("معلم",
-                                  style: Styles.textStyle16,
-                                  textAlign: TextAlign.right),
-                              groupValue: state,
-                              onChanged: (value) {
-                                context
-                                    .read<RegisterOptionCubit>()
-                                    .changeRegisterOption(1);
-                              },
-                            ),
+                          Row(
+                            children: [
+                              Expanded(
+                                flex: 3,
+                                child: RadioListTile(
+                                  value: "معلم",
+                                  visualDensity: VisualDensity.compact,
+                                  selectedTileColor: kPrimaryColor,
+                                  activeColor: kPrimaryColor,
+                                  controlAffinity:
+                                      ListTileControlAffinity.trailing,
+                                  selected:
+                                      optionState == "معلم" ? true : false,
+                                  contentPadding: const EdgeInsets.all(0),
+                                  title: Text("معلم",
+                                      style: Styles.textStyle16,
+                                      textAlign: TextAlign.right),
+                                  groupValue: optionState,
+                                  onChanged: (value) {
+                                    context
+                                        .read<RegisterOptionCubit>()
+                                        .changeRegisterOption(1);
+                                  },
+                                ),
+                              ),
+                              Expanded(
+                                flex: 2,
+                                child: RadioListTile(
+                                  value: "طالب",
+                                  visualDensity: VisualDensity.compact,
+                                  selectedTileColor: kPrimaryColor,
+                                  controlAffinity:
+                                      ListTileControlAffinity.trailing,
+                                  activeColor: kPrimaryColor,
+                                  selected:
+                                      optionState == "طالب" ? true : false,
+                                  contentPadding: const EdgeInsets.all(0),
+                                  title: Text("طالب",
+                                      style: Styles.textStyle16,
+                                      textAlign: TextAlign.right),
+                                  groupValue: optionState,
+                                  onChanged: (value) {
+                                    context
+                                        .read<RegisterOptionCubit>()
+                                        .changeRegisterOption(0);
+                                  },
+                                ),
+                              ),
+                            ],
                           ),
-                          Expanded(
-                            flex: 2,
-                            child: RadioListTile(
-                              value: "طالب",
-                              visualDensity: VisualDensity.compact,
-                              selectedTileColor: kPrimaryColor,
-                              controlAffinity: ListTileControlAffinity.trailing,
-                              activeColor: kPrimaryColor,
-                              selected: state == "طالب" ? true : false,
-                              contentPadding: const EdgeInsets.all(0),
-                              title: Text("طالب",
-                                  style: Styles.textStyle16,
-                                  textAlign: TextAlign.right),
-                              groupValue: state,
-                              onChanged: (value) {
-                                context
-                                    .read<RegisterOptionCubit>()
-                                    .changeRegisterOption(0);
-                              },
-                            ),
+                          SizedBox(height: 25.h),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: CustomButton(
+                                text: "أنشاء",
+                                onpressed: () {
+                                  if (formKey.currentState!.validate()) {
+                                    if (!isRegisterValid(
+                                        emailController.text,
+                                        passwordController.text,
+                                        phoneController.text)) {
+                                      AwesomeDialog(
+                                        context: context,
+                                        dialogType: DialogType.error,
+                                        animType: AnimType.rightSlide,
+                                        title: 'حدث خطأ',
+                                        desc: 'تأكد من البيانات المدخلة',
+                                        btnOkText: "حسنا",
+                                        btnCancelText: "اغلاق",
+                                        btnOkOnPress: () {},
+                                        btnCancelOnPress: () {},
+                                      ).show();
+                                    } else {
+                                      context
+                                          .read<StudentCubit>()
+                                          .updateStudentData(
+                                              name: nameController.text,
+                                              email: emailController.text,
+                                              phone: phoneController.text,
+                                              password: passwordController.text,
+                                              studentOrTeacher: optionState);
+                                      Navigator.pushNamed(
+                                          context, AppRouter.loginViewRoute);
+                                    }
+                                  }
+                                }),
                           ),
                         ],
                       );
                     },
-                  ),
-                  SizedBox(height: 25.h),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: CustomButton(
-                        text: "أنشاء",
-                        onpressed: () {
-                          if (formKey.currentState!.validate()) {
-                            Navigator.pushNamed(
-                                context, AppRouter.loginViewRoute);
-                          }
-                        }),
                   ),
                   SizedBox(height: 25.h),
                   Row(
@@ -198,4 +237,10 @@ class RegisterViewBody extends StatelessWidget {
       ],
     );
   }
+}
+
+bool isRegisterValid(String email, String password, String phone) {
+  return AppRegex.isEmailValid(email) &&
+      AppRegex.hasMinLength(password) &&
+      AppRegex.isPhoneNumberValid(phone);
 }

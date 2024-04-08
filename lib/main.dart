@@ -1,10 +1,15 @@
 import 'package:field_training_app/Core/utils/app_router.dart';
+import 'package:field_training_app/Features/auth/presentation/view_model/student_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(BlocProvider(
+    create: (context) => StudentCubit(),
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -22,8 +27,8 @@ class MyApp extends StatelessWidget {
           child: MaterialApp(
             theme: ThemeData.light().copyWith(
                 textTheme: GoogleFonts.tajawalTextTheme(
-                  ThemeData.light().textTheme,
-                )),
+              ThemeData.light().textTheme,
+            )),
             builder: (context, child) {
               return MediaQuery(
                 data: MediaQuery.of(context)

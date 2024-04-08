@@ -1,4 +1,5 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
+import 'package:field_training_app/Features/auth/presentation/view_model/student_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,6 +20,9 @@ class CustomClassOptionsItem extends StatelessWidget {
           splashColor: kSplashColor,
           onTap: () {
             context.read<ClassOptionsCubit>().changeClassOption(index);
+            context
+                .read<StudentCubit>()
+                .updateStudentClass(studentClass: list[index]);
           },
           child: Container(
             alignment: Alignment.center,
@@ -33,7 +37,8 @@ class CustomClassOptionsItem extends StatelessWidget {
             ),
             child: Text(
               list[index],
-              style: Styles.textStyle20.copyWith(color: state == index ? kPrimaryColor : Colors.black),
+              style: Styles.textStyle20.copyWith(
+                  color: state == index ? kPrimaryColor : Colors.black),
             ),
           ),
         );

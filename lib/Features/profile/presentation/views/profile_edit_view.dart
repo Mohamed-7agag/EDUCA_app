@@ -1,10 +1,15 @@
+// ignore_for_file: must_be_immutable
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProfileEditView extends StatelessWidget {
-  const ProfileEditView({super.key});
+  ProfileEditView({super.key});
+
+  //final String text;
+
+  TextEditingController controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +22,10 @@ class ProfileEditView extends StatelessWidget {
             children: [
               SizedBox(height: 40.h),
               TextFormField(
+                controller: controller,
                 cursorColor: kPrimaryColor,
                 cursorErrorColor: Colors.red,
-                initialValue: "Christina Angela",
+                initialValue:"ادخل الاسم",
                 textAlign: TextAlign.right,
                 decoration: InputDecoration(
                   focusedBorder: OutlineInputBorder(
@@ -38,6 +44,7 @@ class ProfileEditView extends StatelessWidget {
                     text: "تعديل",
                     onpressed: () {
                       //! do something here
+
                       Navigator.pop(context);
                     }),
               )

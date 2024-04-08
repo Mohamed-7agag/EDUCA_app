@@ -3,12 +3,14 @@ import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
-  const CustomTextField(
-      {super.key,
-      required this.hintText,
-      this.suffixIcon,
-      required this.keyboardType,
-      this.obscureText, required this.controller});
+  const CustomTextField({
+    super.key,
+    required this.hintText,
+    this.suffixIcon,
+    required this.keyboardType,
+    this.obscureText,
+    required this.controller,
+  });
   final String hintText;
   final bool? obscureText;
   final TextInputType keyboardType;
