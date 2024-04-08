@@ -14,6 +14,7 @@ import '../view_model/password_visibility/password_visibility_cubit.dart';
 class LoginViewBody extends StatelessWidget {
   LoginViewBody({super.key});
 
+//! move these to login cubit when create it
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
