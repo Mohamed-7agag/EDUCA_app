@@ -1,14 +1,17 @@
 // ignore_for_file: must_be_immutable
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
+import 'package:field_training_app/Features/auth/presentation/view_model/student_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProfileEditView extends StatelessWidget {
-  ProfileEditView({super.key});
+  ProfileEditView({super.key, required this.value, required this.parameter});
 
-  //final String text;
-
+  String value;
+  final String parameter;
   TextEditingController controller = TextEditingController();
 
   @override
@@ -22,10 +25,13 @@ class ProfileEditView extends StatelessWidget {
             children: [
               SizedBox(height: 40.h),
               TextFormField(
-                controller: controller,
+                //controller: controller,
+                onChanged: (val) {
+                  value = val;
+                },
                 cursorColor: kPrimaryColor,
                 cursorErrorColor: Colors.red,
-                initialValue:"ادخل الاسم",
+                initialValue: value,
                 textAlign: TextAlign.right,
                 decoration: InputDecoration(
                   focusedBorder: OutlineInputBorder(
@@ -43,9 +49,27 @@ class ProfileEditView extends StatelessWidget {
                 child: CustomButton(
                     text: "تعديل",
                     onpressed: () {
-                      //! do something here
-
+                      //!TODO : check appRegex is valid
+                      if(value.isEmpty){
+                         AwesomeDialog(
+                          context: context,
+                          dialogType: DialogType.error,
+                          animType: AnimType.rightSlide,
+                          title: 'حدث خطأ',
+                          desc: 'الحقل فارغ',
+                          btnOkText: "حسنا",
+                          btnCancelText: "اغلاق",
+                          btnOkOnPress: () {},
+                          btnCancelOnPress: () {},
+                        ).show();
+                      }
+                      else{
+                        context
+                          .read<StudentCubit>()
+                          .updateData(parameter, value);
                       Navigator.pop(context);
+                      }
+                      
                     }),
               )
             ],

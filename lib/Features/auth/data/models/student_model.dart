@@ -1,21 +1,20 @@
 class Student {
-  final String name;
-  final String email;
-  final String phone;
-  final String password;
-  final String studentOrTeacher;
-  final String studentClass;
+  final String? name;
+  final String? email;
+  final String? phone;
+  final String? password;
+  final String? studentOrTeacher;
+  final String? studentClass;
 
   Student(
-      {required this.name,
-      required this.email,
-      required this.password,
-      required this.phone,
-      required this.studentOrTeacher,
-      required this.studentClass});
+      {this.name,
+      this.email,
+      this.password,
+      this.phone,
+      this.studentOrTeacher,
+      this.studentClass});
 
-
-Student copyWith({
+  Student copyWith({
     String? name,
     String? email,
     String? phone,
@@ -32,7 +31,6 @@ Student copyWith({
       studentClass: studentClass ?? this.studentClass,
     );
   }
-
 
   Map<String, dynamic> toJson() {
     return {

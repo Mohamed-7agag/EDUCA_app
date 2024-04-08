@@ -67,46 +67,14 @@ class CustomBottomBar extends StatelessWidget {
               BlocBuilder<StudentCubit, Student>(
                 builder: (context, student) {
                   return Container(
-                    color: Colors.green,
-                    width: double.infinity,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          student.name,
-                          style: const TextStyle(
-                              fontSize: 24, color: Colors.white),
+                      color: Colors.green,
+                      width: double.infinity,
+                      child: const Center(
+                        child: Text(
+                          'home',
+                          style: TextStyle(fontSize: 24, color: Colors.white),
                         ),
-                        const SizedBox(height: 15),
-                        Text(
-                          student.email,
-                          style: const TextStyle(
-                              fontSize: 24, color: Colors.white),
-                        ),
-                        const SizedBox(height: 15),
-                        Text(
-                          student.phone,
-                          style: const TextStyle(
-                              fontSize: 24, color: Colors.white),
-                        ),
-                        const SizedBox(height: 15),
-                        Text(
-                          student.studentOrTeacher,
-                          style: const TextStyle(
-                              fontSize: 24, color: Colors.white),
-                        ),
-                        const SizedBox(height: 15),
-                        Text(
-                          student.studentClass,
-                          style: const TextStyle(
-                              fontSize: 24, color: Colors.white),
-                        ),
-                        const SizedBox(height: 15),
-                        
-                      ],
-                    ),
-                  );
+                      ));
                 },
               ),
             ],

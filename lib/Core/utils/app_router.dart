@@ -54,7 +54,6 @@ class AppRouter {
               BlocProvider(
                 create: (context) => RegisterOptionCubit(),
               ),
-              
             ],
             child: const RegisterView(),
           ),
@@ -93,8 +92,12 @@ class AppRouter {
           builder: (context) => const ProfileView(),
         );
       case profileEditViewRoute:
+        var args = settings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(
-          builder: (context) => ProfileEditView(),
+          builder: (context) => ProfileEditView(
+            parameter: args["parameter"],
+            value: args["value"],
+          ),
         );
       default:
         return MaterialPageRoute(

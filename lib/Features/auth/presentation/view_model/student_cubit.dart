@@ -9,10 +9,11 @@ class StudentCubit extends Cubit<Student> {
           phone: '',
           studentOrTeacher: '',
           studentClass: '',
+          
           password: '',
         ));
 
-  void updateStudentData({
+  void setStudentData({
     required String name,
     required String email,
     required String phone,
@@ -28,7 +29,7 @@ class StudentCubit extends Cubit<Student> {
     ));
   }
 
-  void updateStudentClass({required String studentClass}) {
+  void setStudentClass({required String studentClass}) {
     emit(state.copyWith(studentClass: studentClass));
   }
 
@@ -41,4 +42,21 @@ class StudentCubit extends Cubit<Student> {
         studentClass: '',
         password: ''));
   }
+
+  void updateData(String parameter, String value) {
+    if (parameter == 'name') {
+      emit(state.copyWith(name: value));
+    } else if (parameter == 'email') {
+      emit(state.copyWith(email: value));
+    } else if (parameter == 'phone') {
+      emit(state.copyWith(phone: value));
+    } else if (parameter == 'password') {
+      emit(state.copyWith(password: value));
+    } else if (parameter == 'studentOrTeacher') {
+      emit(state.copyWith(studentOrTeacher: value));
+    } else if (parameter == 'studentClass') {
+      emit(state.copyWith(studentClass: value));
+    }
+  }
 }
+

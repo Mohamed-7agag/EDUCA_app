@@ -22,7 +22,7 @@ class CustomClassOptionsItem extends StatelessWidget {
             context.read<ClassOptionsCubit>().changeClassOption(index);
             context
                 .read<StudentCubit>()
-                .updateStudentClass(studentClass: list[index]);
+                .setStudentClass(studentClass: list[index]);
           },
           child: Container(
             alignment: Alignment.center,

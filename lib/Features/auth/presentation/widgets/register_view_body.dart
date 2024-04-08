@@ -192,7 +192,7 @@ class RegisterViewBody extends StatelessWidget {
                                     } else {
                                       context
                                           .read<StudentCubit>()
-                                          .updateStudentData(
+                                          .setStudentData(
                                               name: nameController.text,
                                               email: emailController.text,
                                               phone: phoneController.text,

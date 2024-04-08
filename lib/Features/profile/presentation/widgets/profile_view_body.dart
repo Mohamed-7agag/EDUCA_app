@@ -65,50 +65,77 @@ class ProfileViewBody extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 25.h),
-                Text(student.name,
+                Text(student.name ?? '',
                     style: Styles.textStyle24
                         .copyWith(fontWeight: FontWeight.w600),
                     textAlign: TextAlign.center),
                 SizedBox(height: 5.h),
-                Text(student.email,
+                Text(student.email ?? '',
                     style: Styles.textStyle16, textAlign: TextAlign.center),
                 SizedBox(height: 60.h),
                 ProfileItem(
                   title: "الأسم",
-                  value: student.name,
+                  value: student.name ?? '',
                   iconData: Icons.person,
                   onpressed: () {
-                    Navigator.pushNamed(
-                        context, AppRouter.profileEditViewRoute);
+                    Navigator.pushNamed(context, AppRouter.profileEditViewRoute,
+                        arguments: {
+                          "parameter": "name",
+                          "value": student.name ?? '',
+                        });
                   },
                 ),
                 SizedBox(height: 32.h),
                 ProfileItem(
                   title: "البريد الالكتروني",
-                  value: student.email,
+                  value: student.email ?? '',
                   iconData: Icons.email,
-                  onpressed: () {},
+                  onpressed: () {
+                    Navigator.pushNamed(context, AppRouter.profileEditViewRoute,
+                        arguments: {
+                          "parameter": "email",
+                          "value": student.email ?? '',
+                        });
+                  },
                 ),
                 SizedBox(height: 32.h),
                 ProfileItem(
                   title: "كلمة المرور",
-                  value: student.password,
+                  value: student.password ?? '',
                   iconData: Icons.lock,
-                  onpressed: () {},
+                  onpressed: () {
+                    Navigator.pushNamed(context, AppRouter.profileEditViewRoute,
+                        arguments: {
+                          "parameter": "password",
+                          "value": student.password ?? '',
+                        });
+                  },
                 ),
                 SizedBox(height: 32.h),
                 ProfileItem(
                   title: "رقم الجوال",
-                  value: student.phone,
+                  value: student.phone ?? '',
                   iconData: Icons.phone_android_sharp,
-                  onpressed: () {},
+                  onpressed: () {
+                    Navigator.pushNamed(context, AppRouter.profileEditViewRoute,
+                        arguments: {
+                          "parameter": "phone",
+                          "value": student.phone ?? '',
+                        });
+                  },
                 ),
                 SizedBox(height: 32.h),
                 ProfileItem(
                   title: "الصف الدراسي",
-                  value: student.studentClass,
+                  value: student.studentClass ?? '',
                   iconData: Icons.class_,
-                  onpressed: () {},
+                  onpressed: () {
+                    Navigator.pushNamed(context, AppRouter.profileEditViewRoute,
+                        arguments: {
+                          "parameter": "studentClass",
+                          "value": student.studentClass ?? '',
+                        });
+                  },
                 ),
                 SizedBox(height: 50.h),
                 CustomButton(
