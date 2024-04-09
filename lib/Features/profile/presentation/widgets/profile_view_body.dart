@@ -1,5 +1,4 @@
 // ignore_for_file: unnecessary_null_comparison, use_build_context_synchronously
-import 'dart:io';
 import 'package:field_training_app/Core/utils/app_router.dart';
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
@@ -26,28 +25,37 @@ class ProfileViewBody extends StatelessWidget {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                SizedBox(height: 30.h),
+                SizedBox(height: 25.h),
                 Stack(
                   clipBehavior: Clip.none,
                   alignment: Alignment.center,
                   children: [
-                    CircleAvatar(
-                      radius: 56.r,
-                      backgroundColor: Colors.grey[300],
-                      backgroundImage: student.image == null
-                          ? null
-                          : FileImage(student.image!),
-                      child: student.image == null
-                          ? Icon(
-                              Icons.person,
-                              size: 50,
-                              color: Colors.grey[700],
-                            )
-                          : null,
+                    Container(
+                      padding: const EdgeInsets.all(2.5),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(200),
+                        border: student.image == null
+                            ? null
+                            : Border.all(color: kPrimaryColor, width: 2),
+                      ),
+                      child: CircleAvatar(
+                        radius: 58.r,
+                        backgroundColor: Colors.grey[300],
+                        backgroundImage: student.image == null
+                            ? null
+                            : FileImage(student.image!),
+                        child: student.image == null
+                            ? Icon(
+                                Icons.person,
+                                size: 50,
+                                color: Colors.grey[700],
+                              )
+                            : null,
+                      ),
                     ),
                     Positioned(
                       right: 112.w,
-                      top: 75.h,
+                      top: 85.h,
                       child: IconButton(
                         onPressed: () async {
                           bottomSheet(context);
@@ -118,7 +126,7 @@ class ProfileViewBody extends StatelessWidget {
                 ProfileItem(
                   title: "رقم الجوال",
                   value: student.phone ?? '',
-                  iconData: Icons.phone_android_sharp,
+                  iconData: Icons.phone_android_rounded,
                   onpressed: () {
                     Navigator.pushNamed(context, AppRouter.profileEditViewRoute,
                         arguments: {
@@ -131,7 +139,7 @@ class ProfileViewBody extends StatelessWidget {
                 ProfileItem(
                   title: "الصف الدراسي",
                   value: student.studentClass ?? '',
-                  iconData: Icons.class_,
+                  iconData: Icons.school,
                   onpressed: () {
                     Navigator.pushNamed(
                       context,
@@ -148,7 +156,7 @@ class ProfileViewBody extends StatelessWidget {
                       Navigator.pushNamedAndRemoveUntil(
                           context, AppRouter.loginViewRoute, (route) => false);
                     }),
-                SizedBox(height: 20.h),
+                SizedBox(height: 15.h),
               ],
             );
           },

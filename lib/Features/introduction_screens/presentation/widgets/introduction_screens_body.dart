@@ -2,6 +2,7 @@ import 'package:field_training_app/Core/utils/app_router.dart';
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
 class IntroScreensBody extends StatelessWidget {
@@ -11,6 +12,7 @@ class IntroScreensBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return IntroductionScreen(
       animationDuration: 450,
+      controlsPadding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 25.h),
       showDoneButton: true,
       done: Text(
         "لنبدا",
@@ -45,7 +47,7 @@ class IntroScreensBody extends StatelessWidget {
         PageViewModel(
           decoration: const PageDecoration(
               imageFlex: 2, imageAlignment: Alignment.topCenter),
-          title: "مرحبًا بك في تطبيق البحث عن معلمين!",
+          title: "EDUCA مرحبا بك ف تطبيق",
           body: "استكشاف خياراتنا المتنوعة للعثور على المعلم المناسب لك",
           image: Image.asset(
             "assets/images/on1.png",
