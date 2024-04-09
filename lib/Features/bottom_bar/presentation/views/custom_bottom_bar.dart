@@ -43,7 +43,7 @@ class CustomBottomBar extends StatelessWidget {
                     text: "كورساتي",
                   ),
                   GButton(
-                    icon: Icons.home_filled,
+                    icon: Icons.home_outlined,
                     text: "الرئيسية",
                   ),
                 ],

@@ -27,7 +27,7 @@ class ProfileViewBody extends StatelessWidget {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                SizedBox(height: 35.h),
+                SizedBox(height: 30.h),
                 Stack(
                   clipBehavior: Clip.none,
                   alignment: Alignment.center,
@@ -35,15 +35,22 @@ class ProfileViewBody extends StatelessWidget {
                     BlocBuilder<ProfileImageCubit, File?>(
                       builder: (context, imageState) {
                         return CircleAvatar(
-                          radius: 55.r,
+                          radius: 56.r,
                           backgroundColor: Colors.grey[300],
                           backgroundImage:
                               imageState == null ? null : FileImage(imageState),
+                          child: imageState == null
+                              ? Icon(
+                                  Icons.person,
+                                  size: 50,
+                                  color: Colors.grey[700],
+                                )
+                              : null,
                         );
                       },
                     ),
                     Positioned(
-                      right: 115.w,
+                      right: 112.w,
                       top: 75.h,
                       child: IconButton(
                         onPressed: () async {
@@ -130,11 +137,11 @@ class ProfileViewBody extends StatelessWidget {
                   value: student.studentClass ?? '',
                   iconData: Icons.class_,
                   onpressed: () {
-                    Navigator.pushNamed(context, AppRouter.profileEditViewRoute,
-                        arguments: {
-                          "parameter": "studentClass",
-                          "value": student.studentClass ?? '',
-                        });
+                    Navigator.pushNamed(
+                      context,
+                      AppRouter.profileSelectClassEditViewRoute,
+                      arguments: student.studentClass ?? '',
+                    );
                   },
                 ),
                 SizedBox(height: 50.h),

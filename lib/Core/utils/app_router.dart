@@ -13,6 +13,7 @@ import '../../Features/auth/presentation/view_model/register_option_cubit.dart';
 import '../../Features/bottom_bar/presentation/view_model/bottom_bar_cubit.dart';
 import '../../Features/class_options/presentation/view_model/class_options_cubit.dart';
 import '../../Features/profile/presentation/view_model/change_profile_image_cubit.dart';
+import '../../Features/profile/presentation/views/profile_select_class_edit_view.dart';
 import '../../Features/profile/presentation/views/profile_view.dart';
 
 class AppRouter {
@@ -26,6 +27,8 @@ class AppRouter {
   static const String customBottomBarViewRoute = "/customBottomBarView";
   static const String profileViewRoute = "/profileView";
   static const String profileEditViewRoute = "/profileEditView";
+  static const String profileSelectClassEditViewRoute =
+      "/profileSelectClassEditView";
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -98,6 +101,11 @@ class AppRouter {
             parameter: args["parameter"],
             value: args["value"],
           ),
+        );
+      case profileSelectClassEditViewRoute:
+        var args = settings.arguments as String;
+        return MaterialPageRoute(
+          builder: (context) => ProfileSelectClassEditView(value: args),
         );
       default:
         return MaterialPageRoute(

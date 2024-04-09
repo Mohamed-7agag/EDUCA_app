@@ -7,25 +7,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../Core/utils/styles.dart';
+
 class ProfileEditView extends StatelessWidget {
   ProfileEditView({super.key, required this.value, required this.parameter});
 
   String value;
   final String parameter;
-  TextEditingController controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              SizedBox(height: 40.h),
+              Text(
+                "تعديل بيانات الطالب",
+                style: Styles.textStyle24.copyWith(
+                    fontWeight: FontWeight.bold, color: kPrimaryColor),
+                textAlign: TextAlign.right,
+              ),
+              SizedBox(height: 50.h),
               TextFormField(
-                //controller: controller,
                 onChanged: (val) {
                   value = val;
                 },
@@ -49,27 +55,24 @@ class ProfileEditView extends StatelessWidget {
                 child: CustomButton(
                     text: "تعديل",
                     onpressed: () {
-                      //!TODO : check appRegex is valid
-                      if(value.isEmpty){
-                         AwesomeDialog(
+                      if (value.isEmpty) {
+                        AwesomeDialog(
                           context: context,
                           dialogType: DialogType.error,
                           animType: AnimType.rightSlide,
                           title: 'حدث خطأ',
-                          desc: 'الحقل فارغ',
+                          desc: 'غير مسموح بجعل الحقل فارغ',
                           btnOkText: "حسنا",
                           btnCancelText: "اغلاق",
                           btnOkOnPress: () {},
                           btnCancelOnPress: () {},
                         ).show();
-                      }
-                      else{
+                      } else {
                         context
-                          .read<StudentCubit>()
-                          .updateData(parameter, value);
-                      Navigator.pop(context);
+                            .read<StudentCubit>()
+                            .updateData(parameter, value);
+                        Navigator.pop(context);
                       }
-                      
                     }),
               )
             ],
