@@ -12,7 +12,6 @@ import '../../Features/auth/presentation/view_model/password_visibility/password
 import '../../Features/auth/presentation/view_model/register_option_cubit.dart';
 import '../../Features/bottom_bar/presentation/view_model/bottom_bar_cubit.dart';
 import '../../Features/class_options/presentation/view_model/class_options_cubit.dart';
-import '../../Features/profile/presentation/view_model/change_profile_image_cubit.dart';
 import '../../Features/profile/presentation/views/profile_select_class_edit_view.dart';
 import '../../Features/profile/presentation/views/profile_view.dart';
 
@@ -82,9 +81,6 @@ class AppRouter {
             providers: [
               BlocProvider(
                 create: (context) => BottomBarCubit(),
-              ),
-              BlocProvider(
-                create: (context) => ProfileImageCubit(),
               ),
             ],
             child: const CustomBottomBar(),

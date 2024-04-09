@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:field_training_app/Core/utils/app_regex.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/models/student_model.dart';
@@ -8,6 +10,7 @@ class StudentCubit extends Cubit<Student> {
           name: '',
           email: '',
           phone: '',
+          image: null,
           studentOrTeacher: '',
           studentClass: '',
           password: '',
@@ -31,6 +34,9 @@ class StudentCubit extends Cubit<Student> {
 
   void setStudentClass({required String studentClass}) {
     emit(state.copyWith(studentClass: studentClass));
+  }
+  void setStudentImage({required File image}) {
+    emit(state.copyWith(image: image));
   }
 
   void logout() {

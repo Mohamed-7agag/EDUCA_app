@@ -11,7 +11,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../Core/utils/styles.dart';
-import '../view_model/change_profile_image_cubit.dart';
 import 'bottom_sheet.dart';
 
 class ProfileViewBody extends StatelessWidget {
@@ -32,22 +31,19 @@ class ProfileViewBody extends StatelessWidget {
                   clipBehavior: Clip.none,
                   alignment: Alignment.center,
                   children: [
-                    BlocBuilder<ProfileImageCubit, File?>(
-                      builder: (context, imageState) {
-                        return CircleAvatar(
-                          radius: 56.r,
-                          backgroundColor: Colors.grey[300],
-                          backgroundImage:
-                              imageState == null ? null : FileImage(imageState),
-                          child: imageState == null
-                              ? Icon(
-                                  Icons.person,
-                                  size: 50,
-                                  color: Colors.grey[700],
-                                )
-                              : null,
-                        );
-                      },
+                    CircleAvatar(
+                      radius: 56.r,
+                      backgroundColor: Colors.grey[300],
+                      backgroundImage: student.image == null
+                          ? null
+                          : FileImage(student.image!),
+                      child: student.image == null
+                          ? Icon(
+                              Icons.person,
+                              size: 50,
+                              color: Colors.grey[700],
+                            )
+                          : null,
                     ),
                     Positioned(
                       right: 112.w,

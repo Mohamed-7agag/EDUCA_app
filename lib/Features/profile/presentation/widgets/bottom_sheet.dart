@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:io';
+import 'package:field_training_app/Features/auth/presentation/view_model/student_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,7 +9,6 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../../../Core/utils/constatnt.dart';
 import '../../../../Core/utils/styles.dart';
-import '../view_model/change_profile_image_cubit.dart';
 
 void bottomSheet(BuildContext context) {
   showModalBottomSheet<void>(
@@ -29,9 +29,10 @@ void bottomSheet(BuildContext context) {
                     final pickedFile =
                         await picker.pickImage(source: ImageSource.camera);
                     if (pickedFile != null) {
+                      
                       context
-                          .read<ProfileImageCubit>()
-                          .changeImage(File(pickedFile.path));
+                          .read<StudentCubit>()
+                          .setStudentImage(image: File(pickedFile.path));
                     }
                     Navigator.of(context).pop();
                   },
@@ -59,9 +60,10 @@ void bottomSheet(BuildContext context) {
                     final pickedFile =
                         await picker.pickImage(source: ImageSource.gallery);
                     if (pickedFile != null) {
+                     
                       context
-                          .read<ProfileImageCubit>()
-                          .changeImage(File(pickedFile.path));
+                          .read<StudentCubit>()
+                          .setStudentImage(image: File(pickedFile.path));
                     }
                     Navigator.of(context).pop();
                   },
