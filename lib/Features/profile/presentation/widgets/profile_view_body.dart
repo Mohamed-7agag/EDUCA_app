@@ -25,7 +25,7 @@ class ProfileViewBody extends StatelessWidget {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                SizedBox(height: 25.h),
+                SizedBox(height: 16.h),
                 Stack(
                   clipBehavior: Clip.none,
                   alignment: Alignment.center,
@@ -39,7 +39,7 @@ class ProfileViewBody extends StatelessWidget {
                             : Border.all(color: kPrimaryColor, width: 2),
                       ),
                       child: CircleAvatar(
-                        radius: 58.r,
+                        radius: 55.r,
                         backgroundColor: Colors.grey[300],
                         backgroundImage: student.image == null
                             ? null
@@ -82,7 +82,7 @@ class ProfileViewBody extends StatelessWidget {
                     textAlign: TextAlign.center),
                 Text(student.email ?? '',
                     style: Styles.textStyle16, textAlign: TextAlign.center),
-                SizedBox(height: 60.h),
+                SizedBox(height: 50.h),
                 ProfileItem(
                   title: "الأسم",
                   value: student.name ?? '',
@@ -95,7 +95,7 @@ class ProfileViewBody extends StatelessWidget {
                         });
                   },
                 ),
-                SizedBox(height: 32.h),
+                SizedBox(height: 28.h),
                 ProfileItem(
                   title: "البريد الالكتروني",
                   value: student.email ?? '',
@@ -108,7 +108,7 @@ class ProfileViewBody extends StatelessWidget {
                         });
                   },
                 ),
-                SizedBox(height: 32.h),
+                SizedBox(height: 28.h),
                 ProfileItem(
                   title: "كلمة المرور",
                   value: student.password ?? '',
@@ -121,7 +121,7 @@ class ProfileViewBody extends StatelessWidget {
                         });
                   },
                 ),
-                SizedBox(height: 32.h),
+                SizedBox(height: 28.h),
                 ProfileItem(
                   title: "رقم الجوال",
                   value: student.phone ?? '',
@@ -134,7 +134,7 @@ class ProfileViewBody extends StatelessWidget {
                         });
                   },
                 ),
-                SizedBox(height: 32.h),
+                SizedBox(height: 28.h),
                 ProfileItem(
                   title: "الصف الدراسي",
                   value: student.studentClass ?? '',
@@ -147,7 +147,7 @@ class ProfileViewBody extends StatelessWidget {
                     );
                   },
                 ),
-                SizedBox(height: 50.h),
+                SizedBox(height: 40.h),
                 CustomButton(
                     text: "تسجيل الخروج",
                     onpressed: () {

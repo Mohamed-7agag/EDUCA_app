@@ -27,7 +27,7 @@ int selectedIdx = -1;
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               SizedBox(
-                height: 510.h,
+                height: 420.h,
                 child: ListView.builder(
                   itemCount: classOptionsData.keys.toList().length,
                   itemBuilder: (BuildContext context, int index) {

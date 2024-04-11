@@ -32,7 +32,7 @@ class RegisterViewBody extends StatelessWidget {
           child: CustomLogo(),
         ),
         Expanded(
-          flex: 3,
+          flex: 4,
           child: Container(
             width: double.infinity,
             padding: const EdgeInsets.only(left: 20, right: 20, top: 25),
@@ -172,7 +172,7 @@ class RegisterViewBody extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            SizedBox(height: 25.h),
+                            SizedBox(height: 35.h),
                             Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 20),

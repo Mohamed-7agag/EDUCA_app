@@ -27,7 +27,7 @@ class CustomClassOptionsItem extends StatelessWidget {
           child: Container(
             alignment: Alignment.center,
             width: double.infinity,
-            height: 72.h,
+            height: 65.h,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(6.r),
               border: Border.all(

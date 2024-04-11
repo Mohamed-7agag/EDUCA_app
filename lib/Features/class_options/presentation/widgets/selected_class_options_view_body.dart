@@ -20,14 +20,14 @@ class SelectedClassOptionsViewBody extends StatelessWidget {
     return Column(
       children: [
         const CustomClassOptionsShape(text: "أختر الصف الدراسي"),
-        SizedBox(height: 38.h),
+        SizedBox(height: 20.h),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               SizedBox(
-                height: 510.h,
+                height: 450.h,
                 child: ListView.builder(
                   itemCount: classOptionsData[classOptionsNames[idx]].length,
                   itemBuilder: (BuildContext context, int index) {
