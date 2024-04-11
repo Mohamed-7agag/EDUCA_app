@@ -1,5 +1,4 @@
 // ignore_for_file: unnecessary_null_comparison, use_build_context_synchronously
-import 'package:field_training_app/Core/utils/app_router.dart';
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/Features/auth/data/models/student_model.dart';
@@ -9,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../Core/utils/routes.dart';
 import '../../../../Core/utils/styles.dart';
 import 'bottom_sheet.dart';
 
@@ -80,7 +80,6 @@ class ProfileViewBody extends StatelessWidget {
                     style: Styles.textStyle24
                         .copyWith(fontWeight: FontWeight.w600),
                     textAlign: TextAlign.center),
-                SizedBox(height: 5.h),
                 Text(student.email ?? '',
                     style: Styles.textStyle16, textAlign: TextAlign.center),
                 SizedBox(height: 60.h),
@@ -89,7 +88,7 @@ class ProfileViewBody extends StatelessWidget {
                   value: student.name ?? '',
                   iconData: Icons.person,
                   onpressed: () {
-                    Navigator.pushNamed(context, AppRouter.profileEditViewRoute,
+                    Navigator.pushNamed(context, Routes.profileEditViewRoute,
                         arguments: {
                           "parameter": "name",
                           "value": student.name ?? '',
@@ -102,7 +101,7 @@ class ProfileViewBody extends StatelessWidget {
                   value: student.email ?? '',
                   iconData: Icons.email,
                   onpressed: () {
-                    Navigator.pushNamed(context, AppRouter.profileEditViewRoute,
+                    Navigator.pushNamed(context, Routes.profileEditViewRoute,
                         arguments: {
                           "parameter": "email",
                           "value": student.email ?? '',
@@ -115,7 +114,7 @@ class ProfileViewBody extends StatelessWidget {
                   value: student.password ?? '',
                   iconData: Icons.lock,
                   onpressed: () {
-                    Navigator.pushNamed(context, AppRouter.profileEditViewRoute,
+                    Navigator.pushNamed(context, Routes.profileEditViewRoute,
                         arguments: {
                           "parameter": "password",
                           "value": student.password ?? '',
@@ -128,7 +127,7 @@ class ProfileViewBody extends StatelessWidget {
                   value: student.phone ?? '',
                   iconData: Icons.phone_android_rounded,
                   onpressed: () {
-                    Navigator.pushNamed(context, AppRouter.profileEditViewRoute,
+                    Navigator.pushNamed(context, Routes.profileEditViewRoute,
                         arguments: {
                           "parameter": "phone",
                           "value": student.phone ?? '',
@@ -143,7 +142,7 @@ class ProfileViewBody extends StatelessWidget {
                   onpressed: () {
                     Navigator.pushNamed(
                       context,
-                      AppRouter.profileSelectClassEditViewRoute,
+                      Routes.profileSelectClassEditViewRoute,
                       arguments: student.studentClass ?? '',
                     );
                   },
@@ -154,7 +153,7 @@ class ProfileViewBody extends StatelessWidget {
                     onpressed: () {
                       BlocProvider.of<StudentCubit>(context).logout();
                       Navigator.pushNamedAndRemoveUntil(
-                          context, AppRouter.loginViewRoute, (route) => false);
+                          context, Routes.loginViewRoute, (route) => false);
                     }),
                 SizedBox(height: 15.h),
               ],

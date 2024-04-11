@@ -1,7 +1,6 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:field_training_app/Core/utils/app_router.dart';
 import 'package:field_training_app/Features/class_options/data/class_option_data.dart';
 import 'package:field_training_app/Features/class_options/presentation/view_model/class_options_cubit.dart';
 import 'package:field_training_app/Features/class_options/presentation/widgets/custom_class_options_item.dart';
@@ -9,6 +8,7 @@ import 'package:field_training_app/Features/class_options/presentation/widgets/c
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../Core/utils/routes.dart';
 import '../../../../Core/widgets/custom_button.dart';
 
 class ClassOptionsViewBody extends StatelessWidget {
@@ -51,7 +51,7 @@ int selectedIdx = -1;
                     onpressed: () {
                       if (selectedIdx != -1) {
                         Navigator.pushNamed(
-                            context, AppRouter.selectedClassOptionsViewRoute,
+                            context, Routes.selectedClassOptionsViewRoute,
                             arguments: selectedIdx);
                       } else {
                         AwesomeDialog(

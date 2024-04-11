@@ -1,3 +1,4 @@
+import 'package:field_training_app/Core/utils/routes.dart';
 import 'package:field_training_app/Features/auth/presentation/views/login_view.dart';
 import 'package:field_training_app/Features/auth/presentation/views/register_view.dart';
 import 'package:field_training_app/Features/bottom_bar/presentation/views/custom_bottom_bar.dart';
@@ -8,66 +9,38 @@ import 'package:field_training_app/Features/profile/presentation/views/profile_e
 import 'package:field_training_app/Features/splash/presentation/views/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../Features/auth/presentation/view_model/password_visibility/password_visibility_cubit.dart';
-import '../../Features/auth/presentation/view_model/register_option_cubit.dart';
 import '../../Features/bottom_bar/presentation/view_model/bottom_bar_cubit.dart';
 import '../../Features/class_options/presentation/view_model/class_options_cubit.dart';
 import '../../Features/profile/presentation/views/profile_select_class_edit_view.dart';
 import '../../Features/profile/presentation/views/profile_view.dart';
 
 class AppRouter {
-  static const String splashViewRoute = "/";
-  static const String introScreensViewRoute = "/introScreensView";
-  static const String loginViewRoute = "/loginView";
-  static const String registerViewRoute = "/registerView";
-  static const String classOptionsViewRoute = "/classOptionsView";
-  static const String selectedClassOptionsViewRoute =
-      "/selectedClassOptionsView";
-  static const String customBottomBarViewRoute = "/customBottomBarView";
-  static const String profileViewRoute = "/profileView";
-  static const String profileEditViewRoute = "/profileEditView";
-  static const String profileSelectClassEditViewRoute =
-      "/profileSelectClassEditView";
-
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case splashViewRoute:
+      case Routes.splashViewRoute:
         return MaterialPageRoute(
           builder: (context) => const SplashView(),
         );
-      case introScreensViewRoute:
+      case Routes.introScreensViewRoute:
         return MaterialPageRoute(
           builder: (context) => const IntroScreens(),
         );
-      case loginViewRoute:
+      case Routes.loginViewRoute:
         return MaterialPageRoute(
-          builder: (context) => BlocProvider(
-            create: (context) => PasswordVisibilityCubit(),
-            child: const LoginView(),
-          ),
+          builder: (context) => const LoginView(),
         );
-      case registerViewRoute:
+      case Routes.registerViewRoute:
         return MaterialPageRoute(
-          builder: (context) => MultiBlocProvider(
-            providers: [
-              BlocProvider(
-                create: (context) => PasswordVisibilityCubit(),
-              ),
-              BlocProvider(
-                create: (context) => RegisterOptionCubit(),
-              ),
-            ],
-            child: const RegisterView(),
-          ),
+          builder: (context) => const RegisterView(),
         );
-      case classOptionsViewRoute:
+      case Routes.classOptionsViewRoute:
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
             create: (context) => ClassOptionsCubit(),
             child: const ClassOptionsView(),
           ),
         );
-      case selectedClassOptionsViewRoute:
+      case Routes.selectedClassOptionsViewRoute:
         var args = settings.arguments as int;
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
@@ -75,7 +48,7 @@ class AppRouter {
             child: SelectedClassOptionsView(index: args),
           ),
         );
-      case customBottomBarViewRoute:
+      case Routes.customBottomBarViewRoute:
         return MaterialPageRoute(
           builder: (context) => MultiBlocProvider(
             providers: [
@@ -86,11 +59,11 @@ class AppRouter {
             child: const CustomBottomBar(),
           ),
         );
-      case profileViewRoute:
+      case Routes.profileViewRoute:
         return MaterialPageRoute(
           builder: (context) => const ProfileView(),
         );
-      case profileEditViewRoute:
+      case Routes.profileEditViewRoute:
         var args = settings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(
           builder: (context) => ProfileEditView(
@@ -98,7 +71,7 @@ class AppRouter {
             value: args["value"],
           ),
         );
-      case profileSelectClassEditViewRoute:
+      case Routes.profileSelectClassEditViewRoute:
         var args = settings.arguments as String;
         return MaterialPageRoute(
           builder: (context) => ProfileSelectClassEditView(value: args),

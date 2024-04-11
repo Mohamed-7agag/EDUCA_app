@@ -2,7 +2,6 @@
 
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:field_training_app/Core/utils/app_regex.dart';
-import 'package:field_training_app/Core/utils/app_router.dart';
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
@@ -12,6 +11,7 @@ import 'package:field_training_app/Features/auth/presentation/widgets/custom_tex
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../Core/utils/routes.dart';
 import '../view_model/password_visibility/password_visibility_cubit.dart';
 import '../view_model/register_option_cubit.dart';
 
@@ -75,27 +75,30 @@ class RegisterViewBody extends StatelessWidget {
                           keyboardType: TextInputType.emailAddress,
                         ),
                         SizedBox(height: 28.h),
-                        BlocBuilder<PasswordVisibilityCubit, bool>(
-                          builder: (context, state) {
-                            return CustomTextField(
-                              controller: passwordController,
-                              hintText: "كلمة السر",
-                              obscureText: state,
-                              keyboardType: TextInputType.visiblePassword,
-                              suffixIcon: IconButton(
-                                onPressed: () {
-                                  context
-                                      .read<PasswordVisibilityCubit>()
-                                      .changeState();
-                                },
-                                icon: state == true
-                                    ? const Icon(Icons.visibility_rounded,
-                                        color: kPrimaryColor)
-                                    : const Icon(Icons.visibility_off_rounded,
-                                        color: kPrimaryColor),
-                              ),
-                            );
-                          },
+                        BlocProvider(
+                          create: (context) => PasswordVisibilityCubit(),
+                          child: BlocBuilder<PasswordVisibilityCubit, bool>(
+                            builder: (context, state) {
+                              return CustomTextField(
+                                controller: passwordController,
+                                hintText: "كلمة السر",
+                                obscureText: state,
+                                keyboardType: TextInputType.visiblePassword,
+                                suffixIcon: IconButton(
+                                  onPressed: () {
+                                    context
+                                        .read<PasswordVisibilityCubit>()
+                                        .changeState();
+                                  },
+                                  icon: state == true
+                                      ? const Icon(Icons.visibility_rounded,
+                                          color: kPrimaryColor)
+                                      : const Icon(Icons.visibility_off_rounded,
+                                          color: kPrimaryColor),
+                                ),
+                              );
+                            },
+                          ),
                         ),
                         SizedBox(height: 28.h),
                         CustomTextField(
@@ -112,101 +115,106 @@ class RegisterViewBody extends StatelessWidget {
                     style: Styles.textStyle16,
                     textAlign: TextAlign.right,
                   ),
-                  BlocBuilder<RegisterOptionCubit, String>(
-                    builder: (context, optionState) {
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Row(
-                            children: [
-                              Expanded(
-                                flex: 3,
-                                child: RadioListTile(
-                                  value: "معلم",
-                                  visualDensity: VisualDensity.compact,
-                                  selectedTileColor: kPrimaryColor,
-                                  activeColor: kPrimaryColor,
-                                  controlAffinity:
-                                      ListTileControlAffinity.trailing,
-                                  selected:
-                                      optionState == "معلم" ? true : false,
-                                  contentPadding: const EdgeInsets.all(0),
-                                  title: Text("معلم",
-                                      style: Styles.textStyle16,
-                                      textAlign: TextAlign.right),
-                                  groupValue: optionState,
-                                  onChanged: (value) {
-                                    context
-                                        .read<RegisterOptionCubit>()
-                                        .changeRegisterOption(1);
-                                  },
-                                ),
-                              ),
-                              Expanded(
-                                flex: 2,
-                                child: RadioListTile(
-                                  value: "طالب",
-                                  visualDensity: VisualDensity.compact,
-                                  selectedTileColor: kPrimaryColor,
-                                  controlAffinity:
-                                      ListTileControlAffinity.trailing,
-                                  activeColor: kPrimaryColor,
-                                  selected:
-                                      optionState == "طالب" ? true : false,
-                                  contentPadding: const EdgeInsets.all(0),
-                                  title: Text("طالب",
-                                      style: Styles.textStyle16,
-                                      textAlign: TextAlign.right),
-                                  groupValue: optionState,
-                                  onChanged: (value) {
-                                    context
-                                        .read<RegisterOptionCubit>()
-                                        .changeRegisterOption(0);
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 25.h),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
-                            child: CustomButton(
-                                text: "أنشاء",
-                                onpressed: () {
-                                  if (formKey.currentState!.validate()) {
-                                    if (!isRegisterValid(
-                                        emailController.text,
-                                        passwordController.text,
-                                        phoneController.text)) {
-                                      AwesomeDialog(
-                                        context: context,
-                                        dialogType: DialogType.error,
-                                        animType: AnimType.rightSlide,
-                                        title: 'حدث خطأ',
-                                        desc: 'تأكد من البيانات المدخلة',
-                                        btnOkText: "حسنا",
-                                        btnCancelText: "اغلاق",
-                                        btnOkOnPress: () {},
-                                        btnCancelOnPress: () {},
-                                      ).show();
-                                    } else {
+                  BlocProvider(
+                    create: (context) => RegisterOptionCubit(),
+                    child: BlocBuilder<RegisterOptionCubit, String>(
+                      builder: (context, optionState) {
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Row(
+                              children: [
+                                Expanded(
+                                  flex: 3,
+                                  child: RadioListTile(
+                                    value: "معلم",
+                                    visualDensity: VisualDensity.compact,
+                                    selectedTileColor: kPrimaryColor,
+                                    activeColor: kPrimaryColor,
+                                    controlAffinity:
+                                        ListTileControlAffinity.trailing,
+                                    selected:
+                                        optionState == "معلم" ? true : false,
+                                    contentPadding: const EdgeInsets.all(0),
+                                    title: Text("معلم",
+                                        style: Styles.textStyle16,
+                                        textAlign: TextAlign.right),
+                                    groupValue: optionState,
+                                    onChanged: (value) {
                                       context
-                                          .read<StudentCubit>()
-                                          .setStudentData(
-                                              name: nameController.text,
-                                              email: emailController.text,
-                                              phone: phoneController.text,
-                                              password: passwordController.text,
-                                              studentOrTeacher: optionState);
-                                      Navigator.pushNamed(
-                                          context, AppRouter.loginViewRoute);
+                                          .read<RegisterOptionCubit>()
+                                          .changeRegisterOption(1);
+                                    },
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 2,
+                                  child: RadioListTile(
+                                    value: "طالب",
+                                    visualDensity: VisualDensity.compact,
+                                    selectedTileColor: kPrimaryColor,
+                                    controlAffinity:
+                                        ListTileControlAffinity.trailing,
+                                    activeColor: kPrimaryColor,
+                                    selected:
+                                        optionState == "طالب" ? true : false,
+                                    contentPadding: const EdgeInsets.all(0),
+                                    title: Text("طالب",
+                                        style: Styles.textStyle16,
+                                        textAlign: TextAlign.right),
+                                    groupValue: optionState,
+                                    onChanged: (value) {
+                                      context
+                                          .read<RegisterOptionCubit>()
+                                          .changeRegisterOption(0);
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 25.h),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20),
+                              child: CustomButton(
+                                  text: "أنشاء",
+                                  onpressed: () {
+                                    if (formKey.currentState!.validate()) {
+                                      if (!isRegisterValid(
+                                          emailController.text,
+                                          passwordController.text,
+                                          phoneController.text)) {
+                                        AwesomeDialog(
+                                          context: context,
+                                          dialogType: DialogType.error,
+                                          animType: AnimType.rightSlide,
+                                          title: 'حدث خطأ',
+                                          desc: 'تأكد من البيانات المدخلة',
+                                          btnOkText: "حسنا",
+                                          btnCancelText: "اغلاق",
+                                          btnOkOnPress: () {},
+                                          btnCancelOnPress: () {},
+                                        ).show();
+                                      } else {
+                                        context
+                                            .read<StudentCubit>()
+                                            .setStudentData(
+                                                name: nameController.text,
+                                                email: emailController.text,
+                                                phone: phoneController.text,
+                                                password:
+                                                    passwordController.text,
+                                                studentOrTeacher: optionState);
+                                        Navigator.pushNamed(
+                                            context, Routes.loginViewRoute);
+                                      }
                                     }
-                                  }
-                                }),
-                          ),
-                        ],
-                      );
-                    },
+                                  }),
+                            ),
+                          ],
+                        );
+                      },
+                    ),
                   ),
                   SizedBox(height: 25.h),
                   Row(
@@ -215,7 +223,7 @@ class RegisterViewBody extends StatelessWidget {
                       InkWell(
                         onTap: () {
                           Navigator.pushNamed(
-                              context, AppRouter.loginViewRoute);
+                              context, Routes.loginViewRoute);
                         },
                         child: Text(
                           "تسجيل",

@@ -1,9 +1,10 @@
-import 'package:field_training_app/Core/utils/app_router.dart';
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+
+import '../../../../Core/utils/routes.dart';
 
 class IntroScreensBody extends StatelessWidget {
   const IntroScreensBody({super.key});
@@ -23,7 +24,7 @@ class IntroScreensBody extends StatelessWidget {
           backgroundColor: MaterialStatePropertyAll(kPrimaryColor)),
       onDone: () {
         Navigator.pushNamedAndRemoveUntil(
-            context, AppRouter.loginViewRoute, (route) => false);
+            context, Routes.loginViewRoute, (route) => false);
       },
       showNextButton: true,
       nextStyle: const ButtonStyle(
@@ -41,7 +42,7 @@ class IntroScreensBody extends StatelessWidget {
       ),
       onSkip: () {
         Navigator.pushNamedAndRemoveUntil(
-            context, AppRouter.loginViewRoute, (route) => false);
+            context, Routes.loginViewRoute, (route) => false);
       },
       pages: [
         PageViewModel(

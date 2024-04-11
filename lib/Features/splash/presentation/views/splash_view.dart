@@ -1,5 +1,6 @@
-import 'package:field_training_app/Core/utils/app_router.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../Core/utils/routes.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -13,7 +14,7 @@ class _SplashViewState extends State<SplashView> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(milliseconds: 1600), () {
-      Navigator.pushReplacementNamed(context, AppRouter.introScreensViewRoute);
+      Navigator.pushReplacementNamed(context, Routes.introScreensViewRoute);
     });
   }
 

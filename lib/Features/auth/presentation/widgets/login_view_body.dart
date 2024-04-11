@@ -1,6 +1,5 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:field_training_app/Core/utils/app_router.dart';
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
@@ -9,6 +8,7 @@ import 'package:field_training_app/Features/auth/presentation/widgets/custom_tex
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../Core/utils/routes.dart';
 import '../view_model/password_visibility/password_visibility_cubit.dart';
 
 class LoginViewBody extends StatelessWidget {
@@ -63,25 +63,30 @@ class LoginViewBody extends StatelessWidget {
                           keyboardType: TextInputType.emailAddress,
                         ),
                         SizedBox(height: 28.h),
-                        BlocBuilder<PasswordVisibilityCubit, bool>(
-                          builder: (context, state) {
-                            return CustomTextField(
-                              controller: passwordController,
-                              hintText: "كلمة السر",
-                              obscureText: state,
-                              keyboardType: TextInputType.visiblePassword,
-                              suffixIcon: IconButton(
-                                onPressed: () {
-                                  context
-                                      .read<PasswordVisibilityCubit>()
-                                      .changeState();
-                                },
-                                icon: state == true
-                                    ? const Icon(Icons.visibility_rounded,color: kPrimaryColor)
-                                    : const Icon(Icons.visibility_off_rounded,color: kPrimaryColor),
-                              ),
-                            );
-                          },
+                        BlocProvider(
+                          create: (context) => PasswordVisibilityCubit(),
+                          child: BlocBuilder<PasswordVisibilityCubit, bool>(
+                            builder: (context, state) {
+                              return CustomTextField(
+                                controller: passwordController,
+                                hintText: "كلمة السر",
+                                obscureText: state,
+                                keyboardType: TextInputType.visiblePassword,
+                                suffixIcon: IconButton(
+                                  onPressed: () {
+                                    context
+                                        .read<PasswordVisibilityCubit>()
+                                        .changeState();
+                                  },
+                                  icon: state == true
+                                      ? const Icon(Icons.visibility_rounded,
+                                          color: kPrimaryColor)
+                                      : const Icon(Icons.visibility_off_rounded,
+                                          color: kPrimaryColor),
+                                ),
+                              );
+                            },
+                          ),
                         ),
                       ],
                     ),
@@ -100,7 +105,7 @@ class LoginViewBody extends StatelessWidget {
                           if (formKey.currentState!.validate()) {
                             FocusScope.of(context).unfocus();
                             Navigator.pushNamed(
-                                context, AppRouter.classOptionsViewRoute);
+                                context, Routes.classOptionsViewRoute);
                           }
                         }),
                   ),
@@ -111,7 +116,7 @@ class LoginViewBody extends StatelessWidget {
                       InkWell(
                         onTap: () {
                           Navigator.pushNamed(
-                              context, AppRouter.registerViewRoute);
+                              context, Routes.registerViewRoute);
                         },
                         child: Text(
                           "أنشاء",
