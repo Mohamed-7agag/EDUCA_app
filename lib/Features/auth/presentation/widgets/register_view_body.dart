@@ -1,11 +1,8 @@
 // ignore_for_file: must_be_immutable
-
-import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:field_training_app/Core/utils/app_regex.dart';
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
-import 'package:field_training_app/Features/auth/presentation/view_model/student_cubit.dart';
+import 'package:field_training_app/Features/auth/helper/register_validation.dart';
 import 'package:field_training_app/Features/auth/presentation/widgets/custom_logo.dart';
 import 'package:field_training_app/Features/auth/presentation/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
@@ -180,34 +177,13 @@ class RegisterViewBody extends StatelessWidget {
                                   text: "أنشاء",
                                   onpressed: () {
                                     if (formKey.currentState!.validate()) {
-                                      if (!isRegisterValid(
-                                          emailController.text,
-                                          passwordController.text,
-                                          phoneController.text)) {
-                                        AwesomeDialog(
-                                          context: context,
-                                          dialogType: DialogType.error,
-                                          animType: AnimType.rightSlide,
-                                          title: 'حدث خطأ',
-                                          desc: 'تأكد من البيانات المدخلة',
-                                          btnOkText: "حسنا",
-                                          btnCancelText: "اغلاق",
-                                          btnOkOnPress: () {},
-                                          btnCancelOnPress: () {},
-                                        ).show();
-                                      } else {
-                                        context
-                                            .read<StudentCubit>()
-                                            .setStudentData(
-                                                name: nameController.text,
-                                                email: emailController.text,
-                                                phone: phoneController.text,
-                                                password:
-                                                    passwordController.text,
-                                                studentOrTeacher: optionState);
-                                        Navigator.pushNamed(
-                                            context, Routes.loginViewRoute);
-                                      }
+                                      registerValidation(
+                                          context,
+                                          optionState,
+                                          nameController,
+                                          emailController,
+                                          phoneController,
+                                          passwordController);
                                     }
                                   }),
                             ),
@@ -222,8 +198,7 @@ class RegisterViewBody extends StatelessWidget {
                     children: [
                       InkWell(
                         onTap: () {
-                          Navigator.pushNamed(
-                              context, Routes.loginViewRoute);
+                          Navigator.pushNamed(context, Routes.loginViewRoute);
                         },
                         child: Text(
                           "تسجيل",
@@ -245,10 +220,4 @@ class RegisterViewBody extends StatelessWidget {
       ],
     );
   }
-}
-
-bool isRegisterValid(String email, String password, String phone) {
-  return AppRegex.isEmailValid(email) &&
-      AppRegex.hasMinLength(password) &&
-      AppRegex.isPhoneNumberValid(phone);
 }

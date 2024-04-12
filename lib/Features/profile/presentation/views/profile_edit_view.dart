@@ -10,11 +10,25 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../Core/utils/styles.dart';
 
-class ProfileEditView extends StatelessWidget {
-  ProfileEditView({super.key, required this.value, required this.parameter});
+class ProfileEditView extends StatefulWidget {
+  const ProfileEditView(
+      {super.key, required this.value, required this.parameter});
 
-  String value;
+  final String value;
   final String parameter;
+
+  @override
+  State<ProfileEditView> createState() => _ProfileEditViewState();
+}
+
+class _ProfileEditViewState extends State<ProfileEditView> {
+  TextEditingController controller = TextEditingController();
+
+  @override
+  void initState() {
+    controller.text = widget.value;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,12 +47,9 @@ class ProfileEditView extends StatelessWidget {
               ),
               SizedBox(height: 50.h),
               TextFormField(
-                onChanged: (val) {
-                  value = val;
-                },
+                controller: controller,
                 cursorColor: kPrimaryColor,
                 cursorErrorColor: Colors.red,
-                initialValue: value,
                 textAlign: TextAlign.right,
                 decoration: InputDecoration(
                   focusedBorder: OutlineInputBorder(
@@ -56,7 +67,7 @@ class ProfileEditView extends StatelessWidget {
                 child: CustomButton(
                     text: "تعديل",
                     onpressed: () {
-                      if (value.isEmpty) {
+                      if (controller.text == "" || controller.text.isEmpty) {
                         CherryToast.error(
                           title: const Text("حدث خطأ"),
                           layout: ToastLayout.rtl,
@@ -69,7 +80,7 @@ class ProfileEditView extends StatelessWidget {
                       } else {
                         context
                             .read<StudentCubit>()
-                            .updateData(parameter, value);
+                            .updateData(widget.parameter, controller.text);
                         Navigator.pop(context);
                       }
                     }),
