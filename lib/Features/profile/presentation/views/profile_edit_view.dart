@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
-import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:cherry_toast/cherry_toast.dart';
+import 'package:cherry_toast/resources/arrays.dart';
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/Features/auth/presentation/view_model/student_cubit.dart';
@@ -56,17 +57,15 @@ class ProfileEditView extends StatelessWidget {
                     text: "تعديل",
                     onpressed: () {
                       if (value.isEmpty) {
-                        AwesomeDialog(
-                          context: context,
-                          dialogType: DialogType.error,
-                          animType: AnimType.rightSlide,
-                          title: 'حدث خطأ',
-                          desc: 'غير مسموح بجعل الحقل فارغ',
-                          btnOkText: "حسنا",
-                          btnCancelText: "اغلاق",
-                          btnOkOnPress: () {},
-                          btnCancelOnPress: () {},
-                        ).show();
+                        CherryToast.error(
+                          title: const Text("حدث خطأ"),
+                          layout: ToastLayout.rtl,
+                          description: const Text("قم بتعبئة هذا الحقل"),
+                          animationType: AnimationType.fromTop,
+                          animationDuration: const Duration(milliseconds: 1000),
+                          autoDismiss: true,
+                          width: MediaQuery.of(context).size.width - 80.w,
+                        ).show(context);
                       } else {
                         context
                             .read<StudentCubit>()

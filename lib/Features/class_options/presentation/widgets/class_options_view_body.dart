@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:cherry_toast/cherry_toast.dart';
+import 'package:cherry_toast/resources/arrays.dart';
 import 'package:field_training_app/Features/class_options/data/class_option_data.dart';
 import 'package:field_training_app/Features/class_options/presentation/view_model/class_options_cubit.dart';
 import 'package:field_training_app/Features/class_options/presentation/widgets/custom_class_options_item.dart';
@@ -10,61 +11,60 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../Core/utils/routes.dart';
 import '../../../../Core/widgets/custom_button.dart';
+import '../../../auth/presentation/view_model/student_cubit.dart';
 
 class ClassOptionsViewBody extends StatelessWidget {
-   ClassOptionsViewBody({super.key});
-int selectedIdx = -1;
+  ClassOptionsViewBody({super.key});
+  int selectedIdx = -1;
   @override
   Widget build(BuildContext context) {
-    
     return Column(
       children: [
-        const CustomClassOptionsShape(text: "أختر المرحلة الدراسية"),
-        SizedBox(height: 45.h),
+        const CustomClassOptionsShape(text: "أختر الصف الدراسي"),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30),
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               SizedBox(
-                height: 420.h,
+                height: 590.h,
                 child: ListView.builder(
-                  itemCount: classOptionsData.keys.toList().length,
+                  itemCount: classOptionsValues.length,
                   itemBuilder: (BuildContext context, int index) {
                     return Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 14),
+                      padding: const EdgeInsets.only(top: 20),
                       child: CustomClassOptionsItem(
-                        list: classOptionsData.keys.toList(),
+                        text: classOptionsValues[index],
                         index: index,
                       ),
                     );
                   },
                 ),
               ),
-              SizedBox(height: 20.h),
+              SizedBox(height: 16.h),
               BlocListener<ClassOptionsCubit, int>(
                 listener: (context, state) {
                   selectedIdx = state;
                 },
                 child: CustomButton(
-                    text: "التالي",
+                    text: "لنبدا التعلم",
                     onpressed: () {
                       if (selectedIdx != -1) {
+                        context.read<StudentCubit>().setStudentClass(
+                            studentClass: classOptionsValues[selectedIdx]);
+
                         Navigator.pushNamed(
-                            context, Routes.selectedClassOptionsViewRoute,
-                            arguments: selectedIdx);
+                            context, Routes.customBottomBarViewRoute);
                       } else {
-                        AwesomeDialog(
-                          context: context,
-                          dialogType: DialogType.error,
-                          animType: AnimType.rightSlide,
-                          title: 'حدث خطأ',
-                          desc: 'أختر المرحلة الدراسية',
-                          btnOkText: "حسنا",
-                          btnCancelText: "اغلاق",
-                          btnOkOnPress: () {},
-                          btnCancelOnPress: () {},
-                        ).show();
+                        CherryToast.error(
+                          title: const Text("حدث خطأ"),
+                          layout: ToastLayout.rtl,
+                          description: const Text("أختر الصف الدراسي"),
+                          animationType: AnimationType.fromTop,
+                          animationDuration: const Duration(milliseconds: 1000),
+                          autoDismiss: true,
+                          width: MediaQuery.of(context).size.width - 80.w,
+                        ).show(context);
                       }
                     }),
               )

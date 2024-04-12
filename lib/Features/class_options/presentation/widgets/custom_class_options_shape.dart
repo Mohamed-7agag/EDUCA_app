@@ -10,22 +10,19 @@ class CustomClassOptionsShape extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       alignment: Alignment.center,
       width: double.infinity,
-      height: 200.h,
+      height: 90.h,
       decoration: BoxDecoration(
           color: kPrimaryColor,
           borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(200.r),
-            bottomRight: Radius.circular(200.r),
+            bottomLeft: Radius.circular(60.r),
+            bottomRight: Radius.circular(0.r),
           )),
       child: Text(
         text,
-        style: Styles.textStyle30.copyWith(
-          color: Colors.white,
-          fontWeight: FontWeight.w600,
-        ),
+        style: Styles.textStyle28.copyWith(color: Colors.white)
       ),
     );
   }

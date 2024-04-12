@@ -7,8 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import '../view_model/bottom_bar_cubit.dart';
 
-class CustomBottomBar extends StatelessWidget {
-  const CustomBottomBar({super.key});
+class CustomBottomBarView extends StatelessWidget {
+  const CustomBottomBarView({super.key});
 
   @override
   Widget build(BuildContext context) {

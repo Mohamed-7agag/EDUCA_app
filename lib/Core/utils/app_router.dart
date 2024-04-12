@@ -3,7 +3,6 @@ import 'package:field_training_app/Features/auth/presentation/views/login_view.d
 import 'package:field_training_app/Features/auth/presentation/views/register_view.dart';
 import 'package:field_training_app/Features/bottom_bar/presentation/views/custom_bottom_bar.dart';
 import 'package:field_training_app/Features/class_options/presentation/views/class_options_view.dart';
-import 'package:field_training_app/Features/class_options/presentation/views/selected_class_options_view.dart';
 import 'package:field_training_app/Features/introduction_screens/presentation/views/introduction_screens.dart';
 import 'package:field_training_app/Features/profile/presentation/views/profile_edit_view.dart';
 import 'package:field_training_app/Features/splash/presentation/views/splash_view.dart';
@@ -40,14 +39,6 @@ class AppRouter {
             child: const ClassOptionsView(),
           ),
         );
-      case Routes.selectedClassOptionsViewRoute:
-        var args = settings.arguments as int;
-        return MaterialPageRoute(
-          builder: (context) => BlocProvider(
-            create: (context) => ClassOptionsCubit(),
-            child: SelectedClassOptionsView(index: args),
-          ),
-        );
       case Routes.customBottomBarViewRoute:
         return MaterialPageRoute(
           builder: (context) => MultiBlocProvider(
@@ -56,7 +47,7 @@ class AppRouter {
                 create: (context) => BottomBarCubit(),
               ),
             ],
-            child: const CustomBottomBar(),
+            child: const CustomBottomBarView(),
           ),
         );
       case Routes.profileViewRoute:

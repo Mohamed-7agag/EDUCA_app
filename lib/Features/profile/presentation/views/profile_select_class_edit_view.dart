@@ -59,75 +59,63 @@ class _ProfileSelectClassEditViewState
                 items: [
                   DropdownMenuItem(
                     alignment: Alignment.centerRight,
-                    value: classOptionsData["المرحلة الأبتدائية"].elementAt(0),
-                    child: Text(
-                        classOptionsData["المرحلة الأبتدائية"].elementAt(0)),
+                    value: classOptionsValues[0],
+                    child: Text(classOptionsValues[0]),
                   ),
                   DropdownMenuItem(
                     alignment: Alignment.centerRight,
-                    value: classOptionsData["المرحلة الأبتدائية"].elementAt(1),
-                    child: Text(
-                        classOptionsData["المرحلة الأبتدائية"].elementAt(1)),
+                    value: classOptionsValues[1],
+                    child: Text(classOptionsValues[1]),
                   ),
                   DropdownMenuItem(
                     alignment: Alignment.centerRight,
-                    value: classOptionsData["المرحلة الأبتدائية"].elementAt(2),
-                    child: Text(
-                        classOptionsData["المرحلة الأبتدائية"].elementAt(2)),
+                    value: classOptionsValues[2],
+                    child: Text(classOptionsValues[2]),
                   ),
                   DropdownMenuItem(
                     alignment: Alignment.centerRight,
-                    value: classOptionsData["المرحلة الأبتدائية"].elementAt(3),
-                    child: Text(
-                        classOptionsData["المرحلة الأبتدائية"].elementAt(3)),
+                    value: classOptionsValues[3],
+                    child: Text(classOptionsValues[3]),
                   ),
                   DropdownMenuItem(
                     alignment: Alignment.centerRight,
-                    value: classOptionsData["المرحلة الأبتدائية"].elementAt(4),
-                    child: Text(
-                        classOptionsData["المرحلة الأبتدائية"].elementAt(4)),
+                    value: classOptionsValues[4],
+                    child: Text(classOptionsValues[4]),
                   ),
                   DropdownMenuItem(
                     alignment: Alignment.centerRight,
-                    value: classOptionsData["المرحلة الأبتدائية"].elementAt(5),
-                    child: Text(
-                        classOptionsData["المرحلة الأبتدائية"].elementAt(5)),
+                    value: classOptionsValues[5],
+                    child: Text(classOptionsValues[5]),
                   ),
                   DropdownMenuItem(
                     alignment: Alignment.centerRight,
-                    value: classOptionsData["المرحلة الأعدادية"].elementAt(0),
-                    child: Text(
-                        classOptionsData["المرحلة الأعدادية"].elementAt(0)),
+                    value: classOptionsValues[6],
+                    child: Text(classOptionsValues[6]),
                   ),
                   DropdownMenuItem(
                     alignment: Alignment.centerRight,
-                    value: classOptionsData["المرحلة الأعدادية"].elementAt(1),
-                    child: Text(
-                        classOptionsData["المرحلة الأعدادية"].elementAt(1)),
+                    value: classOptionsValues[7],
+                    child: Text(classOptionsValues[7]),
                   ),
                   DropdownMenuItem(
                     alignment: Alignment.centerRight,
-                    value: classOptionsData["المرحلة الأعدادية"].elementAt(2),
-                    child: Text(
-                        classOptionsData["المرحلة الأعدادية"].elementAt(2)),
+                    value: classOptionsValues[8],
+                    child: Text(classOptionsValues[8]),
                   ),
                   DropdownMenuItem(
                     alignment: Alignment.centerRight,
-                    value: classOptionsData["المرحلة الثانوية"].elementAt(0),
-                    child:
-                        Text(classOptionsData["المرحلة الثانوية"].elementAt(0)),
+                    value: classOptionsValues[9],
+                    child: Text(classOptionsValues[9]),
                   ),
                   DropdownMenuItem(
                     alignment: Alignment.centerRight,
-                    value: classOptionsData["المرحلة الثانوية"].elementAt(1),
-                    child:
-                        Text(classOptionsData["المرحلة الثانوية"].elementAt(1)),
+                    value: classOptionsValues[10],
+                    child: Text(classOptionsValues[10]),
                   ),
                   DropdownMenuItem(
                     alignment: Alignment.centerRight,
-                    value: classOptionsData["المرحلة الثانوية"].elementAt(2),
-                    child:
-                        Text(classOptionsData["المرحلة الثانوية"].elementAt(2)),
+                    value: classOptionsValues[11],
+                    child: Text(classOptionsValues[11]),
                   ),
                 ],
               ),
