@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../Features/bottom_bar/presentation/view_model/bottom_bar_cubit.dart';
 import '../../Features/class_options/presentation/view_model/class_options_cubit.dart';
+import '../../Features/notification/presentation/views/notification_view.dart';
 import '../../Features/profile/presentation/views/profile_select_class_edit_view.dart';
 import '../../Features/profile/presentation/views/profile_view.dart';
 
@@ -66,6 +67,10 @@ class AppRouter {
         var args = settings.arguments as String;
         return MaterialPageRoute(
           builder: (context) => ProfileSelectClassEditView(value: args),
+        );
+      case Routes.notificationViewRoute:
+        return MaterialPageRoute(
+          builder: (context) => const NotificationView(),
         );
       default:
         return MaterialPageRoute(

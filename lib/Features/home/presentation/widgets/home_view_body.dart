@@ -31,28 +31,26 @@ class HomeViewBody extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          InkWell(
-                            onTap: () {
-                              Navigator.pushNamed(context, Routes.profileViewRoute);
-                            },
-                            child: CircleAvatar(
-                              radius: 22.r,
-                              backgroundColor: kSplashColor,
-                              backgroundImage: student.image == null
-                                  ? null
-                                  : FileImage(student.image!),
-                              child: student.image == null
-                                  ? const Icon(
-                                      Icons.person,
-                                      size: 25,
-                                      color: kPrimaryColor,
-                                    )
-                                  : null,
-                            ),
+                          CircleAvatar(
+                            radius: 22.r,
+                            backgroundColor: kSplashColor,
+                            backgroundImage: student.image == null
+                                ? null
+                                : FileImage(student.image!),
+                            child: student.image == null
+                                ? const Icon(
+                                    Icons.person,
+                                    size: 25,
+                                    color: kPrimaryColor,
+                                  )
+                                : null,
                           ),
                           SizedBox(width: 8.w),
                           IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                  context, Routes.notificationViewRoute);
+                            },
                             icon: const Icon(
                               Icons.notifications_outlined,
                               color: kPrimaryColor,
@@ -63,16 +61,17 @@ class HomeViewBody extends StatelessWidget {
                           ),
                         ],
                       ),
-                      student.name!.length <= 10 ?
-                      Text(
-                        "مرحبا, ${student.name}",
-                        textDirection: TextDirection.rtl,
-                        style: Styles.textStyle24,
-                      ) : Text(
-                        "مرحبا, ${student.name!.substring(0,10)}..",
-                        textDirection: TextDirection.rtl,
-                        style: Styles.textStyle24,
-                      ),
+                      student.name!.length <= 10
+                          ? Text(
+                              "مرحبا, ${student.name}",
+                              textDirection: TextDirection.rtl,
+                              style: Styles.textStyle24,
+                            )
+                          : Text(
+                              "مرحبا, ${student.name!.substring(0, 10)}..",
+                              textDirection: TextDirection.rtl,
+                              style: Styles.textStyle24,
+                            ),
                     ],
                   );
                 },

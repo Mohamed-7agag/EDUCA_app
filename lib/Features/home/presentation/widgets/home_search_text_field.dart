@@ -16,24 +16,25 @@ class HomeSearchTextFormField extends StatelessWidget {
       decoration: InputDecoration(
         hintText: "ابحث هنا",
         hintTextDirection: TextDirection.rtl,
-        hintStyle: Styles.textStyle14.copyWith(color: Colors.grey),
+        hintStyle: Styles.textStyle14.copyWith(color: kPrimaryColor),
         filled: true,
         contentPadding:
             const EdgeInsets.symmetric(vertical: 17, horizontal: 16),
-        fillColor: Colors.grey.shade100,
+        fillColor: kSplashColor,
         suffixIcon: IconButton(
             onPressed: () {},
-            icon: Icon(
+            icon: const Icon(
               Icons.search,
-              color: Colors.grey[600],
+              color: kPrimaryColor,
               size: 26,
             )),
         enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(color: Colors.grey.shade200)),
+            borderRadius: BorderRadius.circular(8),
+            borderSide:
+                const BorderSide(color: Color.fromRGBO(9, 96, 245, 0.128))),
         focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(color: Colors.grey.shade200)),
+            borderRadius: BorderRadius.circular(8),
+            borderSide: const BorderSide(color: kPrimaryColor)),
       ),
     );
   }
