@@ -1,6 +1,5 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
-import 'package:field_training_app/Features/auth/data/models/student_model.dart';
-import 'package:field_training_app/Features/auth/presentation/view_model/student_cubit.dart';
+import 'package:field_training_app/Features/home/presentation/views/home_view.dart';
 import 'package:field_training_app/Features/profile/presentation/views/profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -64,19 +63,7 @@ class CustomBottomBarView extends StatelessWidget {
                   ),
                 ),
               ),
-              BlocBuilder<StudentCubit, Student>(
-                builder: (context, student) {
-                  return Container(
-                      color: Colors.green,
-                      width: double.infinity,
-                      child: const Center(
-                        child: Text(
-                          'home',
-                          style: TextStyle(fontSize: 24, color: Colors.white),
-                        ),
-                      ));
-                },
-              ),
+              const HomeView()
             ],
           )),
         );
