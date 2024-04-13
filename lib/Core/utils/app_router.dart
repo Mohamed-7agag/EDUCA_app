@@ -6,6 +6,7 @@ import 'package:field_training_app/Features/class_options/presentation/views/cla
 import 'package:field_training_app/Features/introduction_screens/presentation/views/introduction_screens.dart';
 import 'package:field_training_app/Features/profile/presentation/views/profile_edit_view.dart';
 import 'package:field_training_app/Features/splash/presentation/views/splash_view.dart';
+import 'package:field_training_app/Features/teacher/presentation/views/create_class.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../Features/bottom_bar/presentation/view_model/bottom_bar_cubit.dart';
@@ -19,7 +20,7 @@ class AppRouter {
     switch (settings.name) {
       case Routes.splashViewRoute:
         return MaterialPageRoute(
-          builder: (context) => const SplashView(),
+          builder: (context) => const CreateClassView(),
         );
       case Routes.introScreensViewRoute:
         return MaterialPageRoute(
@@ -71,6 +72,10 @@ class AppRouter {
       case Routes.notificationViewRoute:
         return MaterialPageRoute(
           builder: (context) => const NotificationView(),
+        );
+        case Routes.createClassRoute:
+        return MaterialPageRoute(
+          builder: (context) => const CreateClassView(),
         );
       default:
         return MaterialPageRoute(
