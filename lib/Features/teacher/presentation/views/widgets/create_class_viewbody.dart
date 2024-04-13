@@ -115,7 +115,17 @@ class CustomDetailsForCreateClass extends StatelessWidget {
                   ),
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    DropdownButton<String>(
+                      items: <String>['A', 'B', 'C', 'D'].map((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                      onChanged: (_) {},
+                    );
+                  },
                   iconSize: 35,
                   icon: const Icon(Icons.expand_more),
                 )

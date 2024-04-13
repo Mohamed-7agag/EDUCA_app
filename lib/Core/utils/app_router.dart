@@ -20,7 +20,7 @@ class AppRouter {
     switch (settings.name) {
       case Routes.splashViewRoute:
         return MaterialPageRoute(
-          builder: (context) => const SplashView(),
+          builder: (context) => const CreateClassView(),
         );
       case Routes.introScreensViewRoute:
         return MaterialPageRoute(
@@ -73,7 +73,7 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (context) => const NotificationView(),
         );
-      case Routes.createClassRoute:
+        case Routes.createClassRoute:
         return MaterialPageRoute(
           builder: (context) => const CreateClassView(),
         );
