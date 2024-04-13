@@ -1,7 +1,7 @@
 // ignore_for_file: unnecessary_null_comparison, use_build_context_synchronously
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
-import 'package:field_training_app/student_features/auth/data/models/student_model.dart';
+import 'package:field_training_app/Core/models/student_model.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/student_cubit.dart';
 import 'package:field_training_app/student_features/profile/presentation/widgets/profile_item.dart';
 import 'package:flutter/material.dart';
