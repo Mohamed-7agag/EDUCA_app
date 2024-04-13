@@ -32,7 +32,7 @@ class HomeViewBody extends StatelessWidget {
                       Row(
                         children: [
                           CircleAvatar(
-                            radius: 22.r,
+                            radius: 21.5.r,
                             backgroundColor: kSplashColor,
                             backgroundImage: student.image == null
                                 ? null
@@ -101,7 +101,7 @@ class HomeViewBody extends StatelessWidget {
             ),
             SizedBox(height: 15.h),
             SizedBox(
-              height: 200.h,
+              height: 230.h,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 reverse: true,
@@ -125,7 +125,7 @@ class HomeViewBody extends StatelessWidget {
             ),
             SizedBox(height: 15.h),
             SizedBox(
-              height: 200.h,
+              height: 230.h,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 reverse: true,
