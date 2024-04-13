@@ -32,7 +32,7 @@ class CourseItem extends StatelessWidget {
               child: Image.asset("assets/images/math.png"),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+              padding: EdgeInsets.only(left: 10.w,right: 10, top: 10.h,bottom: 5.h),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -47,19 +47,19 @@ class CourseItem extends StatelessWidget {
                           radius: 11.r, backgroundColor: kPrimaryColor),
                     ],
                   ),
-                  SizedBox(height: 5.h),
+                  SizedBox(height: 8.h),
                   Text(
                     "مادة الرياضيات",
                     style: Styles.textStyle14,
                     textAlign: TextAlign.right,
                   ),
-                  SizedBox(height: 5.h),
+                  SizedBox(height: 4.h),
                   Text(
                     "للصف الاول الاعدادي / ترم أول",
                     style: Styles.textStyle14,
                     textAlign: TextAlign.right,
                   ),
-                  SizedBox(height: 5.h),
+                  SizedBox(height: 4.h),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [

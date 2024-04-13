@@ -32,7 +32,7 @@ class HomeViewBody extends StatelessWidget {
                       Row(
                         children: [
                           CircleAvatar(
-                            radius: 22.r,
+                            radius: 21.5.r,
                             backgroundColor: kSplashColor,
                             backgroundImage: student.image == null
                                 ? null

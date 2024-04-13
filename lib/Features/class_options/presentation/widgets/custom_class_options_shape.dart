@@ -17,8 +17,7 @@ class CustomClassOptionsShape extends StatelessWidget {
       decoration: BoxDecoration(
           color: kPrimaryColor,
           borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(60.r),
-            bottomRight: Radius.circular(0.r),
+            bottomLeft: Radius.circular(90.r),
           )),
       child: Text(
         text,
