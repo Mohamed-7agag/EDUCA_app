@@ -101,7 +101,7 @@ class HomeViewBody extends StatelessWidget {
             ),
             SizedBox(height: 15.h),
             SizedBox(
-              height: 200.h,
+              height: 230.h,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 reverse: true,
@@ -125,7 +125,7 @@ class HomeViewBody extends StatelessWidget {
             ),
             SizedBox(height: 15.h),
             SizedBox(
-              height: 200.h,
+              height: 230.h,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 reverse: true,
