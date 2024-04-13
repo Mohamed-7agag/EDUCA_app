@@ -36,10 +36,21 @@ class CourseItem extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text("حسين علي",
+                          style: Styles.textStyle14
+                              .copyWith(fontWeight: FontWeight.bold,fontSize: 12.sp)),
+                      SizedBox(width: 6.w),
+                      CircleAvatar(
+                          radius: 11.r, backgroundColor: kPrimaryColor),
+                    ],
+                  ),
+                  SizedBox(height: 5.h),
                   Text(
                     "مادة الرياضيات",
-                    style: Styles.textStyle14
-                        .copyWith(fontWeight: FontWeight.w600),
+                    style: Styles.textStyle14,
                     textAlign: TextAlign.right,
                   ),
                   SizedBox(height: 5.h),
