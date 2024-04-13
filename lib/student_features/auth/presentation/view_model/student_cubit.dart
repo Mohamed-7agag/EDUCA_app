@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:field_training_app/Core/utils/app_regex.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../data/models/student_model.dart';
+import '../../../../Core/models/student_model.dart';
 
 class StudentCubit extends Cubit<Student> {
   StudentCubit()
