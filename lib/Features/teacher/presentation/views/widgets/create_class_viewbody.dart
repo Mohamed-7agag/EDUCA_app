@@ -4,7 +4,8 @@ import 'package:flutter/widgets.dart';
 
 import '../../../../../Core/utils/constatnt.dart';
 import '../../../../../Core/widgets/custom_button.dart';
-import 'logo_page_createclass.dart';
+import '../../../../../teacher_features/teacher/presentation/widgets/logo_page_createclass.dart';
+
 
 class CreateClassViewBody extends StatelessWidget {
   const CreateClassViewBody({super.key});
