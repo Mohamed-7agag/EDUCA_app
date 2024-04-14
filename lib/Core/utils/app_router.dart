@@ -14,6 +14,7 @@ import '../../student_features/class_options/presentation/view_model/class_optio
 import '../../student_features/notification/presentation/views/notification_view.dart';
 import '../../student_features/profile/presentation/views/profile_select_class_edit_view.dart';
 import '../../student_features/profile/presentation/views/profile_view.dart';
+import '../../teacher_features/bottom_bar_teacher/presentation/views/custom_bottom_bar.dart';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -50,6 +51,17 @@ class AppRouter {
               ),
             ],
             child: const CustomBottomBarView(),
+          ),
+        );
+        case Routes.customBottomBarForTeacherViewRoute:
+        return MaterialPageRoute(
+          builder: (context) => MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => BottomBarCubit(),
+              ),
+            ],
+            child: const CustomBottomBarForTeacherView(),
           ),
         );
       case Routes.profileViewRoute:
