@@ -3,8 +3,8 @@ import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CourseItem extends StatelessWidget {
-  const CourseItem({super.key});
+class MyCoursesItem extends StatelessWidget {
+  const MyCoursesItem({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,11 +16,10 @@ class CourseItem extends StatelessWidget {
         width: 230.w,
         decoration: BoxDecoration(
           border: Border(
-            left: BorderSide(color: Colors.grey.shade200),
-            right: BorderSide(color: Colors.grey.shade200),
-            bottom: BorderSide(color: Colors.grey.shade200),
-          ),
-          borderRadius: BorderRadius.circular(8.r),
+              left: BorderSide(color: Colors.grey.shade200),
+              right: BorderSide(color: Colors.grey.shade200),
+              bottom: BorderSide(color: Colors.grey.shade200)),
+          borderRadius: BorderRadius.circular(10.r),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -29,28 +28,30 @@ class CourseItem extends StatelessWidget {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(8.r),
-                    topRight: Radius.circular(8.r),
+                    topLeft: Radius.circular(10.r),
+                    topRight: Radius.circular(10.r),
                   ),
                   child: Image.asset("assets/images/math.png"),
                 ),
                 Positioned(
-                  top: 6.h,
-                  left: 6.w,
-                  child: InkWell(
-                    onTap: () {},
-                    borderRadius: BorderRadius.circular(5.r),
-                    splashColor: kSplashColor,
-                    child: Container(
-                      padding: const EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.rectangle,
-                        color: Colors.white,
-                        borderRadius:
-                            BorderRadiusDirectional.all(Radius.circular(5.r)),
+                  top: 5.h,
+                  left: 5.w,
+                  child: IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.delete,
+                      color: kPrimaryColor,
+                      size: 21.sp,
+                    ),
+                    style: ButtonStyle(
+                      backgroundColor:
+                          const MaterialStatePropertyAll(Colors.white),
+                      shape: MaterialStatePropertyAll(
+                        RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadiusDirectional.all(Radius.circular(5.r)),
+                        ),
                       ),
-                      child: Icon(Icons.favorite,
-                          color: kPrimaryColor, size: 20.sp),
                     ),
                   ),
                 ),
@@ -58,7 +59,7 @@ class CourseItem extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.only(
-                  left: 10.w, right: 10, top: 10.h, bottom: 5.h),
+                  left: 10.w, right: 10, top: 12.h, bottom: 5.h),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -70,7 +71,7 @@ class CourseItem extends StatelessWidget {
                               fontWeight: FontWeight.bold, fontSize: 12.sp)),
                       SizedBox(width: 6.w),
                       CircleAvatar(
-                          radius: 11.r, backgroundColor: kPrimaryColor),
+                          radius: 12.r, backgroundColor: kPrimaryColor),
                     ],
                   ),
                   SizedBox(height: 10.h),
@@ -79,32 +80,13 @@ class CourseItem extends StatelessWidget {
                     style: Styles.textStyle14,
                     textAlign: TextAlign.right,
                   ),
-                  SizedBox(height: 4.h),
+                  SizedBox(height: 6.h),
                   Text(
                     "للصف الاول الاعدادي / ترم أول",
                     style: Styles.textStyle14,
                     textAlign: TextAlign.right,
                   ),
-                  SizedBox(height: 4.h),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        "25 جنيه",
-                        style:
-                            Styles.textStyle14.copyWith(color: kPrimaryColor),
-                        textAlign: TextAlign.right,
-                        textDirection: TextDirection.rtl,
-                      ),
-                      SizedBox(width: 5.w),
-                      Text(
-                        "سعر الحصة : ",
-                        style: Styles.textStyle14,
-                        textAlign: TextAlign.right,
-                        textDirection: TextDirection.rtl,
-                      ),
-                    ],
-                  ),
+                  SizedBox(height: 6.h),
                 ],
               ),
             ),

@@ -6,9 +6,7 @@ import 'package:field_training_app/student_features/auth/presentation/view_model
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'course_item.dart';
-import 'home_search_text_field.dart';
 
 class HomeTeacherViewBody extends StatelessWidget {
   const HomeTeacherViewBody({super.key});

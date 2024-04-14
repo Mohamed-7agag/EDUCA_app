@@ -1,11 +1,7 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
-import 'package:field_training_app/student_features/home/presentation/views/home_view.dart';
-import 'package:field_training_app/student_features/profile/presentation/views/profile_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import '../../../home_teacher/presentation/views/home_view.dart';
-import '../view_model/bottom_bar_cubit.dart';
 
 class CustomBottomBarForTeacherView extends StatefulWidget {
   const CustomBottomBarForTeacherView({super.key});
@@ -17,9 +13,9 @@ class CustomBottomBarForTeacherView extends StatefulWidget {
 
 class _CustomBottomBarForTeacherViewState
     extends State<CustomBottomBarForTeacherView> {
-  @override
   int index = 0;
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: Container(

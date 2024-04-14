@@ -1,5 +1,6 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/student_features/home/presentation/views/home_view.dart';
+import 'package:field_training_app/student_features/my_courses/presentation/views/my_courses_view.dart';
 import 'package:field_training_app/student_features/profile/presentation/views/profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -52,19 +53,7 @@ class CustomBottomBarView extends StatelessWidget {
           body: SafeArea(
               child: IndexedStack(
             index: state,
-            children: [
-              const ProfileView(),
-              Container(
-                color: Colors.blue,
-                child: const Center(
-                  child: Text(
-                    'courses',
-                    style: TextStyle(fontSize: 24, color: Colors.white),
-                  ),
-                ),
-              ),
-              const HomeView()
-            ],
+            children: const [ProfileView(), MyCoursesView(), HomeView()],
           )),
         );
       },
