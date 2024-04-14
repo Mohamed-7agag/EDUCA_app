@@ -1,5 +1,3 @@
-import 'package:field_training_app/Core/utils/constatnt.dart';
-import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/student_features/class_options/presentation/widgets/custom_class_options_shape.dart';
 import 'package:field_training_app/teacher_features/teacher/presentation/widgets/custom_detail_create_class.dart';

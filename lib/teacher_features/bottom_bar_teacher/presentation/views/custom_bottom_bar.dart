@@ -14,9 +14,9 @@ class CustomBottomBarForTeacherView extends StatefulWidget {
 
 class _CustomBottomBarForTeacherViewState
     extends State<CustomBottomBarForTeacherView> {
-  @override
   int index = 0;
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: Container(
