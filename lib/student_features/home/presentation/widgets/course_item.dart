@@ -1,6 +1,8 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
+import 'package:field_training_app/student_features/my_courses/presentation/view_model/favourite_courses_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CourseItem extends StatelessWidget {
@@ -37,21 +39,35 @@ class CourseItem extends StatelessWidget {
                 Positioned(
                   top: 6.h,
                   left: 6.w,
-                  child: InkWell(
-                    onTap: () {},
-                    borderRadius: BorderRadius.circular(5.r),
-                    splashColor: kSplashColor,
-                    child: Container(
-                      padding: const EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.rectangle,
-                        color: Colors.white,
-                        borderRadius:
-                            BorderRadiusDirectional.all(Radius.circular(5.r)),
-                      ),
-                      child: Icon(Icons.favorite,
-                          color: kPrimaryColor, size: 20.sp),
-                    ),
+                  child: BlocBuilder<FavouriteCoursesCubit, bool>(
+                    builder: (context, state) {
+                      return InkWell(
+                        onTap: () {
+                          // todo add this course object to favourite
+                          BlocProvider.of<FavouriteCoursesCubit>(context)
+                              .changeState();
+                        },
+                        borderRadius: BorderRadius.circular(5.r),
+                        splashColor: kSplashColor,
+                        child: Container(
+                          padding: const EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.rectangle,
+                            color: Colors.white,
+                            borderRadius: BorderRadiusDirectional.all(
+                              Radius.circular(5.r),
+                            ),
+                          ),
+                          child: Icon(
+                            state == false
+                                ? Icons.favorite_border
+                                : Icons.favorite,
+                            color: kPrimaryColor,
+                            size: 20.sp,
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 ),
               ],

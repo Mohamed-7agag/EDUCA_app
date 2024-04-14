@@ -4,6 +4,7 @@ import 'package:field_training_app/student_features/auth/presentation/views/regi
 import 'package:field_training_app/student_features/bottom_bar/presentation/views/custom_bottom_bar.dart';
 import 'package:field_training_app/student_features/class_options/presentation/views/class_options_view.dart';
 import 'package:field_training_app/student_features/introduction_screens/presentation/views/introduction_screens.dart';
+import 'package:field_training_app/student_features/my_courses/presentation/view_model/favourite_courses_cubit.dart';
 import 'package:field_training_app/student_features/profile/presentation/views/profile_edit_view.dart';
 import 'package:field_training_app/student_features/splash/presentation/views/splash_view.dart';
 
@@ -22,7 +23,7 @@ class AppRouter {
     switch (settings.name) {
       case Routes.splashViewRoute:
         return MaterialPageRoute(
-          builder: (context) => const CreateClassView(),
+          builder: (context) => const SplashView(),
         );
       case Routes.introScreensViewRoute:
         return MaterialPageRoute(
@@ -50,11 +51,14 @@ class AppRouter {
               BlocProvider(
                 create: (context) => BottomBarCubit(),
               ),
+              BlocProvider(
+                create: (context) => FavouriteCoursesCubit(),
+              ),
             ],
             child: const CustomBottomBarView(),
           ),
         );
-        case Routes.customBottomBarForTeacherViewRoute:
+      case Routes.customBottomBarForTeacherViewRoute:
         return MaterialPageRoute(
           builder: (context) => MultiBlocProvider(
             providers: [
