@@ -87,11 +87,11 @@ class CourseListViewItem extends StatelessWidget {
                           child: CustomButton(
                             text: "View",
                             onpressed: () {},
-                            fontWeight: FontWeight.normal,
+                            textStyle: Styles.textStyle16
+                                .copyWith(color: const Color(0xff333333)),
                             backroundcolor: kBackgroundColor,
-                            textcolor: const Color(0xff333333),
-                            rectangleBorder: RoundedRectangleBorder(
-                              side: BorderSide(color: Colors.grey),
+                            rectangleBorder: const RoundedRectangleBorder(
+                              side:  BorderSide(color: Colors.grey),
                               borderRadius: BorderRadius.only(
                                 bottomLeft: Radius.circular(12),
                                 topLeft: Radius.circular(12),
@@ -103,10 +103,10 @@ class CourseListViewItem extends StatelessWidget {
                           child: CustomButton(
                               text: "Discuss",
                               onpressed: () {},
-                              fontWeight: FontWeight.normal,
+                              textStyle: Styles.textStyle16
+                                  .copyWith(color: const Color(0xff333333)),
                               backroundcolor: kBackgroundColor,
-                              textcolor: const Color(0xff333333),
-                              rectangleBorder: RoundedRectangleBorder(
+                              rectangleBorder: const RoundedRectangleBorder(
                                 side: BorderSide(color: Colors.grey),
                                 borderRadius: BorderRadius.only(
                                   bottomRight: Radius.circular(12),
