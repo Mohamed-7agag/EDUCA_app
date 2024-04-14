@@ -5,7 +5,7 @@ import 'package:field_training_app/student_features/bottom_bar/presentation/view
 import 'package:field_training_app/student_features/class_options/presentation/views/class_options_view.dart';
 import 'package:field_training_app/student_features/introduction_screens/presentation/views/introduction_screens.dart';
 import 'package:field_training_app/student_features/profile/presentation/views/profile_edit_view.dart';
-import 'package:field_training_app/student_features/splash/presentation/views/splash_view.dart';
+
 import 'package:field_training_app/teacher_features/teacher/presentation/views/create_class.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
