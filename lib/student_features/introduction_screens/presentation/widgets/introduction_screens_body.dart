@@ -1,5 +1,6 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
+import 'package:field_training_app/cache/cache_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:introduction_screen/introduction_screen.dart';
@@ -23,6 +24,7 @@ class IntroScreensBody extends StatelessWidget {
           foregroundColor: MaterialStatePropertyAll(Colors.white),
           backgroundColor: MaterialStatePropertyAll(kPrimaryColor)),
       onDone: () {
+        CacheHelper.saveData(key: introScreenKey, value: true);
         Navigator.pushNamedAndRemoveUntil(
             context, Routes.loginViewRoute, (route) => false);
       },
@@ -41,6 +43,7 @@ class IntroScreensBody extends StatelessWidget {
             .copyWith(color: kPrimaryColor, fontWeight: FontWeight.bold),
       ),
       onSkip: () {
+        CacheHelper.saveData(key: introScreenKey, value: true);
         Navigator.pushNamedAndRemoveUntil(
             context, Routes.loginViewRoute, (route) => false);
       },

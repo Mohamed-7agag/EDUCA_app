@@ -1,3 +1,5 @@
+import 'package:field_training_app/Core/utils/constatnt.dart';
+import 'package:field_training_app/cache/cache_helper.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../Core/utils/routes.dart';
@@ -14,7 +16,12 @@ class _SplashViewState extends State<SplashView> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(milliseconds: 1600), () {
-      Navigator.pushReplacementNamed(context, Routes.introScreensViewRoute);
+      Navigator.pushReplacementNamed(
+        context,
+        CacheHelper.getData(key: introScreenKey) == true
+            ? Routes.loginViewRoute
+            : Routes.introScreensViewRoute,
+      );
     });
   }
 
