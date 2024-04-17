@@ -9,6 +9,7 @@ import 'package:field_training_app/student_features/profile/presentation/views/p
 import 'package:field_training_app/student_features/splash/presentation/views/splash_view.dart';
 
 import 'package:field_training_app/teacher_features/teacher/presentation/views/create_class.dart';
+import 'package:field_training_app/teacher_features/teacher/presentation/views_model/cubit/drop_down_list_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../student_features/bottom_bar/presentation/view_model/bottom_bar_cubit.dart';
@@ -21,10 +22,10 @@ import '../../teacher_features/bottom_bar_teacher/presentation/views/custom_bott
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case Routes.splashViewRoute:
-        return MaterialPageRoute(
-          builder: (context) => const SplashView(),
-        );
+      // case Routes.splashViewRoute:
+      //   return MaterialPageRoute(
+      //     builder: (context) => const SplashView(),
+      //   );
       case Routes.introScreensViewRoute:
         return MaterialPageRoute(
           builder: (context) => const IntroScreens(),
@@ -90,9 +91,12 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (context) => const NotificationView(),
         );
-      case Routes.createClassViewRoute:
+      case Routes.splashViewRoute:
         return MaterialPageRoute(
-          builder: (context) => const CreateClassView(),
+          builder: (context) => BlocProvider(
+            create: (context) => DropDownListCubit(),
+            child: const CreateClassView(),
+          ),
         );
       default:
         return MaterialPageRoute(
