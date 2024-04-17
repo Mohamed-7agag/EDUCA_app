@@ -62,7 +62,7 @@ class RegisterViewBody extends StatelessWidget {
                       children: [
                         CustomTextField(
                           controller: nameController,
-                          hintText: "أسم المستخدم",
+                          hintText: "الأسم (باللغة العربية)",
                           keyboardType: TextInputType.emailAddress,
                         ),
                         SizedBox(height: 28.h),
