@@ -3,8 +3,8 @@ import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class HomeSearchTextFormField extends StatelessWidget {
-  const HomeSearchTextFormField({super.key});
+class SearchTextFormField extends StatelessWidget {
+  const SearchTextFormField({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class HomeSearchTextFormField extends StatelessWidget {
         contentPadding:
             const EdgeInsets.symmetric(vertical: 17, horizontal: 16),
         fillColor: kSplashColor,
-        suffixIcon: IconButton(
+        prefixIcon: IconButton(
             onPressed: () {},
             icon: const Icon(
               Icons.search,

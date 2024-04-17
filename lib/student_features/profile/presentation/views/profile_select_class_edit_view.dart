@@ -56,68 +56,15 @@ class _ProfileSelectClassEditViewState
                   });
                 },
                 isExpanded: true,
-                items: [
-                  DropdownMenuItem(
-                    alignment: Alignment.centerRight,
-                    value: classOptionsValues[0],
-                    child: Text(classOptionsValues[0]),
-                  ),
-                  DropdownMenuItem(
-                    alignment: Alignment.centerRight,
-                    value: classOptionsValues[1],
-                    child: Text(classOptionsValues[1]),
-                  ),
-                  DropdownMenuItem(
-                    alignment: Alignment.centerRight,
-                    value: classOptionsValues[2],
-                    child: Text(classOptionsValues[2]),
-                  ),
-                  DropdownMenuItem(
-                    alignment: Alignment.centerRight,
-                    value: classOptionsValues[3],
-                    child: Text(classOptionsValues[3]),
-                  ),
-                  DropdownMenuItem(
-                    alignment: Alignment.centerRight,
-                    value: classOptionsValues[4],
-                    child: Text(classOptionsValues[4]),
-                  ),
-                  DropdownMenuItem(
-                    alignment: Alignment.centerRight,
-                    value: classOptionsValues[5],
-                    child: Text(classOptionsValues[5]),
-                  ),
-                  DropdownMenuItem(
-                    alignment: Alignment.centerRight,
-                    value: classOptionsValues[6],
-                    child: Text(classOptionsValues[6]),
-                  ),
-                  DropdownMenuItem(
-                    alignment: Alignment.centerRight,
-                    value: classOptionsValues[7],
-                    child: Text(classOptionsValues[7]),
-                  ),
-                  DropdownMenuItem(
-                    alignment: Alignment.centerRight,
-                    value: classOptionsValues[8],
-                    child: Text(classOptionsValues[8]),
-                  ),
-                  DropdownMenuItem(
-                    alignment: Alignment.centerRight,
-                    value: classOptionsValues[9],
-                    child: Text(classOptionsValues[9]),
-                  ),
-                  DropdownMenuItem(
-                    alignment: Alignment.centerRight,
-                    value: classOptionsValues[10],
-                    child: Text(classOptionsValues[10]),
-                  ),
-                  DropdownMenuItem(
-                    alignment: Alignment.centerRight,
-                    value: classOptionsValues[11],
-                    child: Text(classOptionsValues[11]),
-                  ),
-                ],
+                items: classOptionsValues.map<DropdownMenuItem<String>>(
+                  (String value) {
+                    return DropdownMenuItem<String>(
+                      alignment: Alignment.centerRight,
+                      value: value,
+                      child: Text(value),
+                    );
+                  },
+                ).toList(),
               ),
               SizedBox(height: 40.h),
               Padding(

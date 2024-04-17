@@ -39,3 +39,5 @@ List<String> subject = [
   'الرياضيات الإحصائية',
   'التفكير النقدي'
 ];
+
+const String introScreenKey = "introScreen";

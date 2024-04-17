@@ -6,6 +6,7 @@ import 'package:field_training_app/student_features/class_options/presentation/v
 import 'package:field_training_app/student_features/introduction_screens/presentation/views/introduction_screens.dart';
 import 'package:field_training_app/student_features/my_courses/presentation/view_model/favourite_courses_cubit.dart';
 import 'package:field_training_app/student_features/profile/presentation/views/profile_edit_view.dart';
+import 'package:field_training_app/student_features/search/presentation/views/search_view.dart';
 import 'package:field_training_app/student_features/splash/presentation/views/splash_view.dart';
 
 import 'package:field_training_app/teacher_features/teacher/presentation/views/create_class.dart';
@@ -97,6 +98,10 @@ class AppRouter {
             create: (context) => DropDownListCubit(),
             child: const CreateClassView(),
           ),
+        );
+      case Routes.searchViewRoute:
+        return MaterialPageRoute(
+          builder: (context) => const SearchView(),
         );
       default:
         return MaterialPageRoute(
