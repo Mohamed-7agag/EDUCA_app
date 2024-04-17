@@ -76,7 +76,7 @@ class IntroScreensBody extends StatelessWidget {
           title: "استفد إلى أقصى حد ممكن من تجربة التعلم الخاصة بك",
           body: "تقييم المعلمين وتقديم ملاحظات لتحسين التجربة التعليمية",
           image: Image.asset(
-            "assets/images/on33.png",
+            "assets/images/on3.png",
             width: double.infinity,
             fit: BoxFit.fill,
           ),

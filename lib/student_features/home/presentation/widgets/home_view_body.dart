@@ -27,20 +27,6 @@ class HomeViewBody extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        // CircleAvatar(
-                        //   radius: 21.5.r,
-                        //   backgroundColor: kSplashColor,
-                        //   backgroundImage: student.image == null
-                        //       ? null
-                        //       : FileImage(student.image!),
-                        //   child: student.image == null
-                        //       ? const Icon(
-                        //           Icons.person,
-                        //           size: 25,
-                        //           color: kPrimaryColor,
-                        //         )
-                        //       : null,
-                        // ),
                         IconButton(
                           onPressed: () {
                             Navigator.pushNamed(
@@ -95,16 +81,12 @@ class HomeViewBody extends StatelessWidget {
             ),
           ),
           SizedBox(height: 25.h),
-          // const Padding(
-          //   padding: EdgeInsets.only(left: 20),
-          //   child: HomeSearchTextFormField(),
-          // ),
           Padding(
             padding: const EdgeInsets.only(left: 20),
             child: Container(
               padding: EdgeInsets.only(right: 20.w,left: 25),
               width: double.infinity,
-              height:95.h,
+              height:90.h,
               decoration: BoxDecoration(
                 color: kPrimaryColor,
                 borderRadius: BorderRadius.only(

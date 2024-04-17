@@ -15,36 +15,14 @@ void registerValidation(
     TextEditingController emailController,
     TextEditingController phoneController,
     TextEditingController passwordController) {
-  if (!AppRegex.isEmailValid(emailController.text)) {
-    CherryToast.error(
-      title: const Text("حدث خطأ"),
-      layout: ToastLayout.rtl,
-      description: const Text('البريد الالكتروني غير صحيح'),
-      animationType: AnimationType.fromTop,
-      animationDuration: const Duration(milliseconds: 1000),
-      autoDismiss: true,
-      width: MediaQuery.of(context).size.width - 80.w,
-    ).show(context);
+  if (!AppRegex.isArabic(nameController.text)) {
+    toast(context, 'يجب ان يكون الأسم باللغة العربية');
+  } else if (!AppRegex.isEmailValid(emailController.text)) {
+    toast(context, 'البريد الالكتروني غير صحيح');
   } else if (!AppRegex.isPhoneNumberValid(phoneController.text)) {
-    CherryToast.error(
-      title: const Text("حدث خطأ"),
-      layout: ToastLayout.rtl,
-      description: const Text('رقم الجوال غير صحيح'),
-      animationType: AnimationType.fromTop,
-      animationDuration: const Duration(milliseconds: 1000),
-      autoDismiss: true,
-      width: MediaQuery.of(context).size.width - 80.w,
-    ).show(context);
+    toast(context, 'رقم الجوال غير صحيح');
   } else if (!AppRegex.hasMinLength(passwordController.text)) {
-    CherryToast.error(
-      title: const Text("حدث خطأ"),
-      layout: ToastLayout.rtl,
-      description: const Text('كلمة المرور قصيرة جداً'),
-      animationType: AnimationType.fromTop,
-      animationDuration: const Duration(milliseconds: 1000),
-      autoDismiss: true,
-      width: MediaQuery.of(context).size.width - 80.w,
-    ).show(context);
+    toast(context, 'كلمة المرور قصيرة جداً');
   } else {
     context.read<StudentCubit>().setStudentData(
         name: nameController.text,
@@ -66,4 +44,16 @@ void registerValidation(
 
     Navigator.pushNamed(context, Routes.loginViewRoute);
   }
+}
+
+void toast(BuildContext context, String message) {
+  CherryToast.error(
+    title: const Text("حدث خطأ"),
+    layout: ToastLayout.rtl,
+    description: Text(message),
+    animationType: AnimationType.fromTop,
+    animationDuration: const Duration(milliseconds: 1000),
+    autoDismiss: true,
+    width: MediaQuery.of(context).size.width - 80.w,
+  ).show(context);
 }
