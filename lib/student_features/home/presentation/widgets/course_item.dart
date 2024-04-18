@@ -1,4 +1,5 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
+import 'package:field_training_app/Core/utils/routes.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/student_features/my_courses/presentation/view_model/favourite_courses_cubit.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,9 @@ class CourseItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushNamed(context, Routes.courseDetailsViewRoute);
+      },
       splashColor: kSplashColor,
       borderRadius: BorderRadius.circular(8.r),
       child: Container(

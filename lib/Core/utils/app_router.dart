@@ -5,6 +5,7 @@ import 'package:field_training_app/student_features/bottom_bar/presentation/view
 import 'package:field_training_app/student_features/class_options/presentation/views/class_options_view.dart';
 import 'package:field_training_app/student_features/introduction_screens/presentation/views/introduction_screens.dart';
 import 'package:field_training_app/student_features/my_courses/presentation/view_model/favourite_courses_cubit.dart';
+import 'package:field_training_app/student_features/my_courses/presentation/views/course_details_view.dart';
 import 'package:field_training_app/student_features/profile/presentation/views/profile_edit_view.dart';
 import 'package:field_training_app/student_features/search/presentation/views/search_view.dart';
 import 'package:flutter/material.dart';
@@ -92,6 +93,10 @@ class AppRouter {
       case Routes.searchViewRoute:
         return MaterialPageRoute(
           builder: (context) => const SearchView(),
+        );
+      case Routes.courseDetailsViewRoute:
+        return MaterialPageRoute(
+          builder: (context) => const CourseDetailsView(),
         );
       default:
         return MaterialPageRoute(
