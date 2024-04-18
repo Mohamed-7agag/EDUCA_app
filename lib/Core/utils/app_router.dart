@@ -7,7 +7,6 @@ import 'package:field_training_app/student_features/introduction_screens/present
 import 'package:field_training_app/student_features/my_courses/presentation/view_model/favourite_courses_cubit.dart';
 import 'package:field_training_app/student_features/profile/presentation/views/profile_edit_view.dart';
 import 'package:field_training_app/student_features/search/presentation/views/search_view.dart';
-import 'package:field_training_app/student_features/splash/presentation/views/splash_view.dart';
 
 import 'package:field_training_app/teacher_features/teacher/presentation/views/create_class.dart';
 import 'package:field_training_app/teacher_features/teacher/presentation/views_model/cubit/drop_down_list_cubit.dart';

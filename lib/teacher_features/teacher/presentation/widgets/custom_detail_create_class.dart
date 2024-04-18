@@ -3,7 +3,6 @@ import 'package:field_training_app/teacher_features/teacher/presentation/views_m
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../Core/utils/styles.dart';
 
 class CustomDetailsForCreateClass extends StatefulWidget {
@@ -11,15 +10,16 @@ class CustomDetailsForCreateClass extends StatefulWidget {
     super.key,
     required this.name,
     required this.hint,
-    required this.Indx,
-    required this.popupMenuButton, required this.selectedItem,
+    required this.indx,
+    required this.selectedItem, required this.onSelected, required this.listItemBuilder,
   });
 
   final String name;
   final String hint;
-  final int Indx;
+  final int indx;
   final String selectedItem;
-  final PopupMenuButton popupMenuButton;
+  final void Function(String) onSelected;
+  final List<String> listItemBuilder;
 
   @override
   State<CustomDetailsForCreateClass> createState() =>
@@ -49,7 +49,22 @@ class _CustomDetailsForCreateClassState
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  widget.popupMenuButton,
+                  PopupMenuButton(
+                      color: Colors.white,
+                      icon: const Icon(
+                        Icons.expand_more,
+                        color: kPrimaryColor,
+                        size: 32,
+                      ),
+                      onSelected: widget.onSelected,
+                      itemBuilder: (BuildContext bc) {
+                        return widget.listItemBuilder.map((String item) {
+                          return PopupMenuItem<String>(
+                            value: item,
+                            child: Text(item),
+                          );
+                        }).toList();
+                      }),
                   //
                   SizedBox(width: 5.w),
                   Padding(
