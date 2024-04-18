@@ -7,9 +7,6 @@ import 'package:field_training_app/student_features/introduction_screens/present
 import 'package:field_training_app/student_features/my_courses/presentation/view_model/favourite_courses_cubit.dart';
 import 'package:field_training_app/student_features/profile/presentation/views/profile_edit_view.dart';
 import 'package:field_training_app/student_features/search/presentation/views/search_view.dart';
-
-import 'package:field_training_app/teacher_features/teacher/presentation/views/create_class.dart';
-import 'package:field_training_app/teacher_features/teacher/presentation/views_model/cubit/drop_down_list_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../student_features/bottom_bar/presentation/view_model/bottom_bar_cubit.dart';
@@ -17,15 +14,16 @@ import '../../student_features/class_options/presentation/view_model/class_optio
 import '../../student_features/notification/presentation/views/notification_view.dart';
 import '../../student_features/profile/presentation/views/profile_select_class_edit_view.dart';
 import '../../student_features/profile/presentation/views/profile_view.dart';
+import '../../student_features/splash/presentation/views/splash_view.dart';
 import '../../teacher_features/bottom_bar_teacher/presentation/views/custom_bottom_bar.dart';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      // case Routes.splashViewRoute:
-      //   return MaterialPageRoute(
-      //     builder: (context) => const SplashView(),
-      //   );
+      case Routes.splashViewRoute:
+        return MaterialPageRoute(
+          builder: (context) => const SplashView(),
+        );
       case Routes.introScreensViewRoute:
         return MaterialPageRoute(
           builder: (context) => const IntroScreens(),
@@ -90,13 +88,6 @@ class AppRouter {
       case Routes.notificationViewRoute:
         return MaterialPageRoute(
           builder: (context) => const NotificationView(),
-        );
-      case Routes.splashViewRoute:
-        return MaterialPageRoute(
-          builder: (context) => BlocProvider(
-            create: (context) => DropDownListCubit(),
-            child: const CreateClassView(),
-          ),
         );
       case Routes.searchViewRoute:
         return MaterialPageRoute(

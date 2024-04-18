@@ -15,10 +15,11 @@ class CourseItem extends StatelessWidget {
       child: Container(
         width: 230.w,
         decoration: BoxDecoration(
+          color: Colors.white,
           border: Border(
-              left: BorderSide(color: Colors.grey.shade200),
-              right: BorderSide(color: Colors.grey.shade200),
-              bottom: BorderSide(color: Colors.grey.shade200)),
+              left: BorderSide(color: Colors.grey.shade200,width: 0.6),
+              right: BorderSide(color: Colors.grey.shade200,width: 0.6),
+              bottom: BorderSide(color: Colors.grey.shade200,width: 0.8)),
           borderRadius: BorderRadius.circular(8.r),
         ),
         child: Column(

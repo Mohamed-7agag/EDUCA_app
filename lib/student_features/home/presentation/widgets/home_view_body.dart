@@ -84,9 +84,9 @@ class HomeViewBody extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 20),
             child: Container(
-              padding: EdgeInsets.only(right: 20.w,left: 25),
+              padding: EdgeInsets.only(right: 20.w,left: 8),
               width: double.infinity,
-              height:90.h,
+              height:85.h,
               decoration: BoxDecoration(
                 color: kPrimaryColor,
                 borderRadius: BorderRadius.only(
@@ -97,7 +97,9 @@ class HomeViewBody extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Image.asset("assets/images/banner.png", width: 100.w),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(50),
+                    child: Image.asset("assets/images/icon.png", width: 72.w)),
                   Text(
                     "أبدا الان رحلتك\nالتعلمية مع EDUCA",
                     textDirection: TextDirection.rtl,

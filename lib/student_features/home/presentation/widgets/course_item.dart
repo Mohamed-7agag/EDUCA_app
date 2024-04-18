@@ -17,11 +17,17 @@ class CourseItem extends StatelessWidget {
       child: Container(
         width: 230.w,
         decoration: BoxDecoration(
+          color: Colors.white,
+          boxShadow: const [
+            BoxShadow(
+              color: Color.fromARGB(8, 0, 0, 0),
+              blurRadius: 3.0,
+            ),
+          ],
           border: Border(
-            left: BorderSide(color: Colors.grey.shade200),
-            right: BorderSide(color: Colors.grey.shade200),
-            bottom: BorderSide(color: Colors.grey.shade200),
-          ),
+              left: BorderSide(color: Colors.grey.shade200,width: 0.6),
+              right: BorderSide(color: Colors.grey.shade200,width: 0.6),
+              bottom: BorderSide(color: Colors.grey.shade200,width: 0.8)),
           borderRadius: BorderRadius.circular(8.r),
         ),
         child: Column(
@@ -74,7 +80,7 @@ class CourseItem extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.only(
-                  left: 10.w, right: 10, top: 10.h, bottom: 5.h),
+                  left: 10.w, right: 12.w, top: 10.h, bottom: 5.h),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -99,7 +105,8 @@ class CourseItem extends StatelessWidget {
                   Text(
                     "للصف الاول الاعدادي / ترم أول",
                     style: Styles.textStyle14,
-                    textAlign: TextAlign.right,
+                    textDirection: TextDirection.rtl,
+                    overflow: TextOverflow.ellipsis,
                   ),
                   SizedBox(height: 4.h),
                   Row(
