@@ -1,4 +1,5 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
+import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/student_features/class_options/presentation/widgets/custom_class_options_shape.dart';
 import 'package:field_training_app/teacher_features/teacher/presentation/views_model/cubit/drop_down_list_cubit.dart';
@@ -14,50 +15,24 @@ class CreateClassViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const CustomClassOptionsShape(text: "أنشاء مادة جديدة"),
-        SizedBox(height: 35.h),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              BlocBuilder<DropDownListCubit, String>(builder: (context, state) {
-                return CustomDetailsForCreateClass(
-                  Indx: 0,
-                  name: "الصف الدراسي",
-                  hint: "الأول الأبتدائي",
-                  selectedItem: BlocProvider.of<DropDownListCubit>(context).lev,
-                  popupMenuButton: PopupMenuButton(
-                      icon: const Icon(
-                        Icons.expand_more,
-                        color: kPrimaryColor,
-                        size: 32,
-                      ),
-                      onSelected: (value) {
-                        BlocProvider.of<DropDownListCubit>(context)
-                            .changeIndexDropDownListLevel(value);
-                      },
-                      itemBuilder: (BuildContext bc) {
-                        return Level.map((String item) {
-                          return PopupMenuItem<String>(
-                            value: item,
-                            child: Text(item),
-                          );
-                        }).toList();
-                      }),
-                );
-              }),
-              SizedBox(height: 15.h),
-              BlocBuilder<DropDownListCubit, String>(
-                builder: (context, state) {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          const CustomClassOptionsShape(text: "أنشاء مادة جديدة"),
+          SizedBox(height: 35.h),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                BlocBuilder<DropDownListCubit, String>(
+                    builder: (context, state) {
                   return CustomDetailsForCreateClass(
-                    Indx: 1,
-                    name: "أسم المادة",
-                    hint: "الرياضيات",
+                    Indx: 0,
+                    name: "الصف الدراسي",
+                    hint: "الأول الأبتدائي",
                     selectedItem:
-                        BlocProvider.of<DropDownListCubit>(context).sub,
+                        BlocProvider.of<DropDownListCubit>(context).lev,
                     popupMenuButton: PopupMenuButton(
                         icon: const Icon(
                           Icons.expand_more,
@@ -66,10 +41,10 @@ class CreateClassViewBody extends StatelessWidget {
                         ),
                         onSelected: (value) {
                           BlocProvider.of<DropDownListCubit>(context)
-                              .changeIndexDropDownListsubject(value);
+                              .changeIndexDropDownListLevel(value);
                         },
                         itemBuilder: (BuildContext bc) {
-                          return subject.map((String item) {
+                          return Level.map((String item) {
                             return PopupMenuItem<String>(
                               value: item,
                               child: Text(item),
@@ -77,92 +52,143 @@ class CreateClassViewBody extends StatelessWidget {
                           }).toList();
                         }),
                   );
-                },
-              ),
-              SizedBox(height: 35.h),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: BlocBuilder<DropDownListCubit, String>(
-                      builder: (context, state) {
-                        return CustomDetailsForCreateClass(
-                          Indx: 2,
-                          name: "سعر الحصة",
-                          hint: "25 جنية",
-                          selectedItem:
-                              BlocProvider.of<DropDownListCubit>(context).price,
-                          popupMenuButton: PopupMenuButton(
-                              icon: const Icon(
-                                Icons.expand_more,
-                                color: kPrimaryColor,
-                                size: 32,
-                              ),
-                              onSelected: (value) {
+                }),
+                SizedBox(height: 15.h),
+                BlocBuilder<DropDownListCubit, String>(
+                  builder: (context, state) {
+                    return CustomDetailsForCreateClass(
+                      Indx: 1,
+                      name: "أسم المادة",
+                      hint: "الرياضيات",
+                      selectedItem:
+                          BlocProvider.of<DropDownListCubit>(context).sub,
+                      popupMenuButton: PopupMenuButton(
+                          icon: const Icon(
+                            Icons.expand_more,
+                            color: kPrimaryColor,
+                            size: 32,
+                          ),
+                          onSelected: (value) {
+                            BlocProvider.of<DropDownListCubit>(context)
+                                .changeIndexDropDownListsubject(value);
+                          },
+                          itemBuilder: (BuildContext bc) {
+                            return subject.map((String item) {
+                              return PopupMenuItem<String>(
+                                value: item,
+                                child: Text(item),
+                              );
+                            }).toList();
+                          }),
+                    );
+                  },
+                ),
+                SizedBox(height: 35.h),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: BlocBuilder<DropDownListCubit, String>(
+                        builder: (context, state) {
+                          return CustomDetailsForCreateClass(
+                            Indx: 2,
+                            name: "سعر الحصة",
+                            hint: "25 جنية",
+                            selectedItem:
                                 BlocProvider.of<DropDownListCubit>(context)
-                                    .changeIndexDropDownListprice(value);
-                              },
-                              itemBuilder: (BuildContext bc) {
-                                return ['30', '40', '50', '60', '70', '80']
-                                    .map((String item) {
-                                  return PopupMenuItem<String>(
-                                    value: item,
-                                    child: Text(item),
-                                  );
-                                }).toList();
-                              }),
-                        );
-                      },
+                                    .price,
+                            popupMenuButton: PopupMenuButton(
+                                icon: const Icon(
+                                  Icons.expand_more,
+                                  color: kPrimaryColor,
+                                  size: 32,
+                                ),
+                                onSelected: (value) {
+                                  BlocProvider.of<DropDownListCubit>(context)
+                                      .changeIndexDropDownListprice(value);
+                                },
+                                itemBuilder: (BuildContext bc) {
+                                  return ['30', '40', '50', '60', '70', '80']
+                                      .map((String item) {
+                                    return PopupMenuItem<String>(
+                                      value: item,
+                                      child: Text(item),
+                                    );
+                                  }).toList();
+                                }),
+                          );
+                        },
+                      ),
+                    ),
+                    SizedBox(width: 15.w),
+                    Expanded(
+                      child: BlocBuilder<DropDownListCubit, String>(
+                        builder: (context, state) {
+                          return CustomDetailsForCreateClass(
+                            Indx: 1,
+                            name: "الترم",
+                            hint: "الاول",
+                            selectedItem:
+                                BlocProvider.of<DropDownListCubit>(context)
+                                    .term,
+                            popupMenuButton: PopupMenuButton(
+                                icon: const Icon(
+                                  Icons.expand_more,
+                                  color: kPrimaryColor,
+                                  size: 32,
+                                ),
+                                onSelected: (value) {
+                                  BlocProvider.of<DropDownListCubit>(context)
+                                      .changeIndexDropDownListterm(value);
+                                },
+                                itemBuilder: (BuildContext bc) {
+                                  return ['ألاول', 'الثاني'].map((String item) {
+                                    return PopupMenuItem<String>(
+                                      value: item,
+                                      child: Text(item),
+                                    );
+                                  }).toList();
+                                }),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 35.h),
+                Text(
+                  "وصف الدرس",
+                  textDirection: TextDirection.rtl,
+                  style:
+                      Styles.textStyle14.copyWith(fontWeight: FontWeight.bold),
+                ),
+                TextField(
+                  cursorColor: kPrimaryColor,
+                  textAlign: TextAlign.right,
+                  decoration: InputDecoration(
+                    hintText: "اكتب وصف للدرس",
+                    hintStyle:
+                        Styles.textStyle14.copyWith(color: kPrimaryColor),
+                    enabledBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey),
+                    ),
+                    focusedBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(color: kPrimaryColor),
                     ),
                   ),
-                  SizedBox(width: 15.w),
-                  Expanded(
-                    child: BlocBuilder<DropDownListCubit, String>(
-                      builder: (context, state) {
-                        return CustomDetailsForCreateClass(
-                          Indx: 1,
-                          name: "الترم",
-                          hint: "الاول",
-                          selectedItem:
-                              BlocProvider.of<DropDownListCubit>(context).term,
-                          popupMenuButton: PopupMenuButton(
-                              icon: const Icon(
-                                Icons.expand_more,
-                                color: kPrimaryColor,
-                                size: 32,
-                              ),
-                              onSelected: (value) {
-                                BlocProvider.of<DropDownListCubit>(context)
-                                    .changeIndexDropDownListterm(value);
-                              },
-                              itemBuilder: (BuildContext bc) {
-                                return ['ألاول', 'الثاني'].map((String item) {
-                                  return PopupMenuItem<String>(
-                                    value: item,
-                                    child: Text(item),
-                                  );
-                                }).toList();
-                              }),
-                        );
-                      },
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 35.h),
-              // const CustomDetailsForCreateClass(
-              //     Indx: 4, name: "وصف المادة", hint: "برمجة البرمجيات"),
-              SizedBox(height: 60.h),
-              CustomButton(
-                  text: "أنشاء",
-                  onpressed: () {
-                    Navigator.pushNamed(
-                        context, Routes.customBottomBarForTeacherViewRoute);
-                  }),
-            ],
+                ),
+                SizedBox(height: 60.h),
+                CustomButton(
+                    text: "أنشاء",
+                    onpressed: () {
+                      Navigator.pushNamed(
+                          context, Routes.customBottomBarForTeacherViewRoute);
+                    }),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
