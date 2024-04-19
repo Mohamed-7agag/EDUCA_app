@@ -1,7 +1,6 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:cherry_toast/cherry_toast.dart';
-import 'package:cherry_toast/resources/arrays.dart';
+import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
 import 'package:field_training_app/student_features/class_options/data/class_option_data.dart';
 import 'package:field_training_app/student_features/class_options/presentation/view_model/class_options_cubit.dart';
 import 'package:field_training_app/student_features/class_options/presentation/widgets/custom_class_options_item.dart';
@@ -56,15 +55,8 @@ class ClassOptionsViewBody extends StatelessWidget {
                         Navigator.pushNamed(
                             context, Routes.customBottomBarViewRoute);
                       } else {
-                        CherryToast.error(
-                          title: const Text("حدث خطأ"),
-                          layout: ToastLayout.rtl,
-                          description: const Text("أختر الصف الدراسي"),
-                          animationType: AnimationType.fromTop,
-                          animationDuration: const Duration(milliseconds: 1000),
-                          autoDismiss: true,
-                          width: MediaQuery.of(context).size.width - 80.w,
-                        ).show(context);
+                        errorCherryToast(
+                            context, "حدث خطأ", "أختر الصف الدراسي");
                       }
                     }),
               )

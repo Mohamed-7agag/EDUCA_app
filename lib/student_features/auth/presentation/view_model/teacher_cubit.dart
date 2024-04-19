@@ -1,21 +1,22 @@
 import 'dart:io';
+import 'package:field_training_app/Core/models/teacher_model.dart';
 import 'package:field_training_app/Core/utils/app_regex.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../Core/models/student_model.dart';
 
-class StudentCubit extends Cubit<StudentModel> {
-  StudentCubit()
-      : super(StudentModel(
+class TeacherCubit extends Cubit<TeacherModel> {
+  TeacherCubit()
+      : super(TeacherModel(
           name: '',
           email: '',
           phone: '',
           image: null,
           studentOrTeacher: '',
-          studentClass: '',
+          city: '',
+          address: '',
           password: '',
         ));
 
-  void setStudentData({
+  void setTeacherData({
     required String name,
     required String email,
     required String phone,
@@ -31,21 +32,22 @@ class StudentCubit extends Cubit<StudentModel> {
     ));
   }
 
-  void setStudentClass({required String studentClass}) {
-    emit(state.copyWith(studentClass: studentClass));
+  void setTeacherCityAndAddress({required String city, required String address}) {
+    emit(state.copyWith(city: city, address: address));
   }
-  void setStudentImage({required File image}) {
+  void setTeacherImage({required File image}) {
     emit(state.copyWith(image: image));
   }
 
   void logout() {
-    emit(StudentModel(
+    emit(TeacherModel(
         name: '',
         email: '',
         phone: '',
         image: null,
         studentOrTeacher: '',
-        studentClass: '',
+        city: '',
+        address: '',
         password: ''));
   }
 
@@ -60,8 +62,10 @@ class StudentCubit extends Cubit<StudentModel> {
       emit(state.copyWith(password: value));
     } else if (parameter == 'studentOrTeacher') {
       emit(state.copyWith(studentOrTeacher: value));
-    } else if (parameter == 'studentClass') {
-      emit(state.copyWith(studentClass: value));
+    } else if (parameter == 'city') {
+      emit(state.copyWith(city: value));
+    }else if (parameter == 'address') {
+      emit(state.copyWith(address: value));
     }
   }
 }

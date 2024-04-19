@@ -1,6 +1,7 @@
 import 'package:field_training_app/Core/utils/routes.dart';
 import 'package:field_training_app/student_features/auth/presentation/views/login_view.dart';
 import 'package:field_training_app/student_features/auth/presentation/views/register_view.dart';
+import 'package:field_training_app/student_features/auth/presentation/views/teacher_address_view.dart';
 import 'package:field_training_app/student_features/bottom_bar/presentation/views/custom_bottom_bar.dart';
 import 'package:field_training_app/student_features/class_options/presentation/views/class_options_view.dart';
 import 'package:field_training_app/student_features/introduction_screens/presentation/views/introduction_screens.dart';
@@ -36,6 +37,10 @@ class AppRouter {
       case Routes.registerViewRoute:
         return MaterialPageRoute(
           builder: (context) => const RegisterView(),
+        );
+        case Routes.teacherAddressViewRoute:
+        return MaterialPageRoute(
+          builder: (context) => const TeacherAddressView(),
         );
       case Routes.classOptionsViewRoute:
         return MaterialPageRoute(

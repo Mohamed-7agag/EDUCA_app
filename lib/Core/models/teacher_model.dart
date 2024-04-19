@@ -1,40 +1,44 @@
 import 'dart:io';
 
-class StudentModel {
+class TeacherModel {
   final String? name;
   final String? email;
   final String? phone;
   final String? password;
-  final File? image;
   final String? studentOrTeacher;
-  final String? studentClass;
+  final File? image;
+  final String? city;
+  final String? address;
 
-  StudentModel(
+  TeacherModel(
       {this.name,
       this.email,
       this.password,
       this.phone,
       this.image,
       this.studentOrTeacher,
-      this.studentClass});
+      this.city,
+      this.address});
 
-  StudentModel copyWith({
+  TeacherModel copyWith({
     String? name,
     String? email,
     String? phone,
     String? password,
-    File? image,
     String? studentOrTeacher,
-    String? studentClass,
+    File? image,
+    String? city,
+    String? address,
   }) {
-    return StudentModel(
+    return TeacherModel(
       name: name ?? this.name,
       email: email ?? this.email,
       phone: phone ?? this.phone,
+      studentOrTeacher: studentOrTeacher ?? this.studentOrTeacher,
       image: image ?? this.image,
       password: password ?? this.password,
-      studentOrTeacher: studentOrTeacher ?? this.studentOrTeacher,
-      studentClass: studentClass ?? this.studentClass,
+      city: city ?? this.city,
+      address: address ?? this.address,
     );
   }
 
@@ -43,22 +47,24 @@ class StudentModel {
       'name': name,
       'email': email,
       'phone': phone,
+      'studentOrTeacher': studentOrTeacher,
       'image': image,
       'password': password,
-      'studentOrTeacher': studentOrTeacher,
-      'studentClass': studentClass,
+      'city': city,
+      'address': address,
     };
   }
 
-  factory StudentModel.fromJson(Map<String, dynamic> json) {
-    return StudentModel(
+  factory TeacherModel.fromJson(Map<String, dynamic> json) {
+    return TeacherModel(
       name: json['name'] ?? '',
       email: json['email'] ?? '',
       phone: json['phone'] ?? '',
+      studentOrTeacher: json['studentOrTeacher'] ?? '',
       image: json['image'] ?? '',
       password: json['password'] ?? '',
-      studentOrTeacher: json['studentOrTeacher'] ?? '',
-      studentClass: json['studentClass'] ?? '',
+      city: json['city'] ?? '',
+      address: json['address'] ?? '',
     );
   }
 }

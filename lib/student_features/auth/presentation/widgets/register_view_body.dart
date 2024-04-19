@@ -174,16 +174,17 @@ class RegisterViewBody extends StatelessWidget {
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 20),
                               child: CustomButton(
-                                  text: "أنشاء",
+                                  text: optionState == "طالب" ? "أنشاء" : "التالي",
                                   onpressed: () {
                                     if (formKey.currentState!.validate()) {
                                       registerValidation(
-                                          context,
-                                          optionState,
-                                          nameController,
-                                          emailController,
-                                          phoneController,
-                                          passwordController);
+                                        context,
+                                        optionState,
+                                        nameController,
+                                        emailController,
+                                        phoneController,
+                                        passwordController,
+                                      );
                                     }
                                   }),
                             ),

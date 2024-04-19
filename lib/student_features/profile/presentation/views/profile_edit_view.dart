@@ -1,13 +1,11 @@
 // ignore_for_file: must_be_immutable
-import 'package:cherry_toast/cherry_toast.dart';
-import 'package:cherry_toast/resources/arrays.dart';
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
+import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/student_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../Core/utils/styles.dart';
 
 class ProfileEditView extends StatefulWidget {
@@ -68,15 +66,8 @@ class _ProfileEditViewState extends State<ProfileEditView> {
                     text: "تعديل",
                     onpressed: () {
                       if (controller.text == "" || controller.text.isEmpty) {
-                        CherryToast.error(
-                          title: const Text("حدث خطأ"),
-                          layout: ToastLayout.rtl,
-                          description: const Text("قم بتعبئة هذا الحقل"),
-                          animationType: AnimationType.fromTop,
-                          animationDuration: const Duration(milliseconds: 1000),
-                          autoDismiss: true,
-                          width: MediaQuery.of(context).size.width - 80.w,
-                        ).show(context);
+                        errorCherryToast(
+                            context, "حدث خطأ", "قم بتعبئة هذا الحقل");
                       } else {
                         context
                             .read<StudentCubit>()

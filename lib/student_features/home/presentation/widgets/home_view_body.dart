@@ -20,7 +20,7 @@ class HomeViewBody extends StatelessWidget {
           SizedBox(height: 15.h),
           Padding(
             padding: const EdgeInsets.only(left: 20, right: 20),
-            child: BlocBuilder<StudentCubit, Student>(
+            child: BlocBuilder<StudentCubit, StudentModel>(
               builder: (context, student) {
                 return Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

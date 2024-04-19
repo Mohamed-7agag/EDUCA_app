@@ -2,6 +2,7 @@ import 'package:field_training_app/Core/utils/app_router.dart';
 import 'package:field_training_app/Core/utils/app_services.dart';
 import 'package:field_training_app/cache/cache_helper.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/student_cubit.dart';
+import 'package:field_training_app/student_features/auth/presentation/view_model/teacher_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,8 +21,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => StudentCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => StudentCubit(),
+        ),
+        BlocProvider(
+          create: (context) => TeacherCubit(),
+        ),
+      ],
       child: ScreenUtilInit(
         designSize: const Size(375, 812),
         minTextAdapt: true,

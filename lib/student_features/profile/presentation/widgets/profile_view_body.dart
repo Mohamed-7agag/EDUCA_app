@@ -20,7 +20,7 @@ class ProfileViewBody extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: SingleChildScrollView(
-        child: BlocBuilder<StudentCubit, Student>(
+        child: BlocBuilder<StudentCubit, StudentModel>(
           builder: (context, student) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
