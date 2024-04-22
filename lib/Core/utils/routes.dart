@@ -14,5 +14,4 @@ abstract class Routes {
   static const String createClassViewRoute = "/createclassView";
   static const String searchViewRoute = "/searchView";
   static const String courseDetailsViewRoute = "/courseDetailsView";
-  static const String teacherAddressViewRoute = "/teacherAddressView";
 }

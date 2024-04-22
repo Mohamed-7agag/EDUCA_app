@@ -5,6 +5,7 @@ class StudentModel {
   final String? email;
   final String? phone;
   final String? password;
+  final String? confirmPassword;
   final File? image;
   final String? studentOrTeacher;
   final String? studentClass;
@@ -13,6 +14,7 @@ class StudentModel {
       {this.name,
       this.email,
       this.password,
+      this.confirmPassword,
       this.phone,
       this.image,
       this.studentOrTeacher,
@@ -23,6 +25,7 @@ class StudentModel {
     String? email,
     String? phone,
     String? password,
+    String? confirmPassword,
     File? image,
     String? studentOrTeacher,
     String? studentClass,
@@ -33,6 +36,7 @@ class StudentModel {
       phone: phone ?? this.phone,
       image: image ?? this.image,
       password: password ?? this.password,
+      confirmPassword: confirmPassword ?? this.confirmPassword,
       studentOrTeacher: studentOrTeacher ?? this.studentOrTeacher,
       studentClass: studentClass ?? this.studentClass,
     );
@@ -45,6 +49,7 @@ class StudentModel {
       'phone': phone,
       'image': image,
       'password': password,
+      'confirmPassword': confirmPassword,
       'studentOrTeacher': studentOrTeacher,
       'studentClass': studentClass,
     };

@@ -1,7 +1,6 @@
 import 'package:field_training_app/Core/utils/routes.dart';
 import 'package:field_training_app/student_features/auth/presentation/views/login_view.dart';
 import 'package:field_training_app/student_features/auth/presentation/views/register_view.dart';
-import 'package:field_training_app/student_features/auth/presentation/views/teacher_address_view.dart';
 import 'package:field_training_app/student_features/bottom_bar/presentation/views/custom_bottom_bar.dart';
 import 'package:field_training_app/student_features/class_options/presentation/views/class_options_view.dart';
 import 'package:field_training_app/student_features/introduction_screens/presentation/views/introduction_screens.dart';
@@ -11,6 +10,7 @@ import 'package:field_training_app/student_features/profile/presentation/views/p
 import 'package:field_training_app/student_features/search/presentation/views/search_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../student_features/auth/presentation/view_model/password_visibility/password_visibility_cubit.dart';
 import '../../student_features/bottom_bar/presentation/view_model/bottom_bar_cubit.dart';
 import '../../student_features/class_options/presentation/view_model/class_options_cubit.dart';
 import '../../student_features/notification/presentation/views/notification_view.dart';
@@ -36,12 +36,12 @@ class AppRouter {
         );
       case Routes.registerViewRoute:
         return MaterialPageRoute(
-          builder: (context) => const RegisterView(),
+          builder: (context) => BlocProvider(
+            create: (context) => PasswordVisibilityCubit(),
+            child: const RegisterView(),
+          ),
         );
-        case Routes.teacherAddressViewRoute:
-        return MaterialPageRoute(
-          builder: (context) => const TeacherAddressView(),
-        );
+      
       case Routes.classOptionsViewRoute:
         return MaterialPageRoute(
           builder: (context) => BlocProvider(

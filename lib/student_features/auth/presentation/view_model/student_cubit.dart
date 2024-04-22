@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:field_training_app/Core/utils/app_regex.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../Core/models/student_model.dart';
 
@@ -34,6 +35,7 @@ class StudentCubit extends Cubit<StudentModel> {
   void setStudentClass({required String studentClass}) {
     emit(state.copyWith(studentClass: studentClass));
   }
+
   void setStudentImage({required File image}) {
     emit(state.copyWith(image: image));
   }
@@ -65,6 +67,32 @@ class StudentCubit extends Cubit<StudentModel> {
     }
   }
 }
-//!   create to cubit   studentAuth    teacherAuth
-//!   cubit for auth studentLogin  teacherLogin   studentRegister  teacherRegister     
+//!   create two cubit   studentAuth    teacherAuth
+//!   cubit for auth studentLogin  teacherLogin   studentRegister  teacherRegister
 //!   cubit for auth studentData  teacherData   update   logout
+
+enum AuthState { initial, loading, success, failure }
+
+class AuthCubit extends Cubit<AuthState> {
+  AuthCubit() : super(AuthState.initial);
+
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController cityController = TextEditingController();
+  TextEditingController addressController = TextEditingController();
+
+  void login() {
+    
+  }
+
+  void studentRegister() {
+    
+  }
+
+  void teacherRegister() {
+    
+  }
+}

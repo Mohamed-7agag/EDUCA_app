@@ -40,37 +40,37 @@ class ProfileViewBody extends StatelessWidget {
                       ),
                       child: CircleAvatar(
                         radius: 55.r,
-                        backgroundColor: Colors.grey[300],
+                        backgroundColor: kSplashColor,
                         backgroundImage: student.image == null
                             ? null
                             : FileImage(student.image!),
                         child: student.image == null
-                            ? Icon(
+                            ? const Icon(
                                 Icons.person,
                                 size: 50,
-                                color: Colors.grey[700],
+                                color: kPrimaryColor,
                               )
                             : null,
                       ),
                     ),
                     Positioned(
                       right: 112.w,
-                      top: 85.h,
+                      top: 80.h,
                       child: IconButton(
                         onPressed: () async {
                           bottomSheet(context);
                         },
                         icon: const Icon(
                           Icons.add_a_photo_outlined,
-                          color: kPrimaryColor,
+                          color: Colors.white,
                           size: 22,
                         ),
-                        style: ButtonStyle(
+                        style: const ButtonStyle(
                             backgroundColor: MaterialStatePropertyAll(
-                              Colors.grey[200],
+                              kPrimaryColor,
                             ),
-                            padding: const MaterialStatePropertyAll(
-                                EdgeInsets.all(8))),
+                            padding:
+                                MaterialStatePropertyAll(EdgeInsets.all(8))),
                       ),
                     ),
                   ],
@@ -147,7 +147,7 @@ class ProfileViewBody extends StatelessWidget {
                     );
                   },
                 ),
-                SizedBox(height: 40.h),
+                SizedBox(height: 35.h),
                 CustomButton(
                     text: "تسجيل الخروج",
                     onpressed: () {

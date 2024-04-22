@@ -5,6 +5,7 @@ class TeacherModel {
   final String? email;
   final String? phone;
   final String? password;
+  final String? confirmPassword;
   final String? studentOrTeacher;
   final File? image;
   final String? city;
@@ -14,6 +15,7 @@ class TeacherModel {
       {this.name,
       this.email,
       this.password,
+      this.confirmPassword,
       this.phone,
       this.image,
       this.studentOrTeacher,
@@ -25,6 +27,7 @@ class TeacherModel {
     String? email,
     String? phone,
     String? password,
+    String? confirmPassword,
     String? studentOrTeacher,
     File? image,
     String? city,
@@ -37,6 +40,7 @@ class TeacherModel {
       studentOrTeacher: studentOrTeacher ?? this.studentOrTeacher,
       image: image ?? this.image,
       password: password ?? this.password,
+      confirmPassword: confirmPassword ?? this.confirmPassword,
       city: city ?? this.city,
       address: address ?? this.address,
     );
@@ -50,6 +54,7 @@ class TeacherModel {
       'studentOrTeacher': studentOrTeacher,
       'image': image,
       'password': password,
+      'confirmPassword': confirmPassword,
       'city': city,
       'address': address,
     };
@@ -63,6 +68,7 @@ class TeacherModel {
       studentOrTeacher: json['studentOrTeacher'] ?? '',
       image: json['image'] ?? '',
       password: json['password'] ?? '',
+      confirmPassword: json['confirmPassword'] ?? '',
       city: json['city'] ?? '',
       address: json['address'] ?? '',
     );

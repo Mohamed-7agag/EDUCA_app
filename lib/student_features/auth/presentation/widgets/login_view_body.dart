@@ -37,7 +37,7 @@ class LoginViewBody extends StatelessWidget {
                   topLeft: Radius.circular(35), topRight: Radius.circular(35)),
               boxShadow: [
                 BoxShadow(
-                  color: Color.fromARGB(9, 158, 158, 158),
+                  color: kShadowColor,
                   blurRadius: 2,
                   spreadRadius: 1.5,
                 ),
@@ -49,7 +49,7 @@ class LoginViewBody extends StatelessWidget {
                 children: [
                   Text(
                     "تسجيل الدخول",
-                    style: Styles.textStyle24,
+                    style: Styles.textStyle22,
                     textAlign: TextAlign.right,
                   ),
                   SizedBox(height: 30.h),
