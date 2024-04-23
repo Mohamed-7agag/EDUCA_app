@@ -17,9 +17,9 @@ class CourseItem extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.white,
           border: Border(
-              left: BorderSide(color: Colors.grey.shade200,width: 0.6),
-              right: BorderSide(color: Colors.grey.shade200,width: 0.6),
-              bottom: BorderSide(color: Colors.grey.shade200,width: 0.8)),
+              left: BorderSide(color: Colors.grey.shade200, width: 0.6),
+              right: BorderSide(color: Colors.grey.shade200, width: 0.6),
+              bottom: BorderSide(color: Colors.grey.shade200, width: 0.8)),
           borderRadius: BorderRadius.circular(8.r),
         ),
         child: Column(
@@ -33,7 +33,8 @@ class CourseItem extends StatelessWidget {
               child: Image.asset("assets/images/math.png"),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 10.w,right: 10, top: 10.h,bottom: 5.h),
+              padding: EdgeInsets.only(
+                  left: 10.w, right: 10, top: 10.h, bottom: 5.h),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -41,8 +42,8 @@ class CourseItem extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Text("حسين علي",
-                          style: Styles.textStyle14
-                              .copyWith(fontWeight: FontWeight.bold,fontSize: 12.sp)),
+                          style: Styles.textStyle14.copyWith(
+                              fontWeight: FontWeight.bold, fontSize: 12.sp)),
                       SizedBox(width: 6.w),
                       CircleAvatar(
                           radius: 11.r, backgroundColor: kPrimaryColor),

@@ -56,9 +56,8 @@ class RegisterViewBody extends StatelessWidget {
                       child: CircleAvatar(
                         radius: 50.r,
                         backgroundColor: kSplashColor,
-                        backgroundImage: user.image == null
-                            ? null
-                            : FileImage(user.image!),
+                        backgroundImage:
+                            user.image == null ? null : FileImage(user.image!),
                         child: user.image == null
                             ? Icon(
                                 Icons.person,

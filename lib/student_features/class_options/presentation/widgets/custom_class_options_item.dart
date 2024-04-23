@@ -6,7 +6,8 @@ import '../../../../Core/utils/styles.dart';
 import '../view_model/class_options_cubit.dart';
 
 class CustomClassOptionsItem extends StatelessWidget {
-  const CustomClassOptionsItem({super.key, required this.text, required this.index});
+  const CustomClassOptionsItem(
+      {super.key, required this.text, required this.index});
   final String text;
   final int index;
 

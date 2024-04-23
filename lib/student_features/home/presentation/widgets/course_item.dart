@@ -28,9 +28,9 @@ class CourseItem extends StatelessWidget {
             ),
           ],
           border: Border(
-              left: BorderSide(color: Colors.grey.shade200,width: 0.6),
-              right: BorderSide(color: Colors.grey.shade200,width: 0.6),
-              bottom: BorderSide(color: Colors.grey.shade200,width: 0.8)),
+              left: BorderSide(color: Colors.grey.shade200, width: 0.6),
+              right: BorderSide(color: Colors.grey.shade200, width: 0.6),
+              bottom: BorderSide(color: Colors.grey.shade200, width: 0.8)),
           borderRadius: BorderRadius.circular(8.r),
         ),
         child: Column(

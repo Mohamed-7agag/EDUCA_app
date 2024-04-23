@@ -1,4 +1,3 @@
-
 import 'package:dio/dio.dart';
 
 abstract class Failure {
@@ -9,42 +8,41 @@ abstract class Failure {
 class ServerFailure extends Failure {
   ServerFailure(super.errMessage);
 
-
   factory ServerFailure.fromDioError(DioException dioError) {
     switch (dioError.type) {
       case DioExceptionType.connectionTimeout:
-        return ServerFailure('Connection timeout with ApiServer');
+        return ServerFailure('انتهت مهلة الاتصال بالخادم');
       case DioExceptionType.sendTimeout:
-        return ServerFailure('Send timeout with ApiServer');
+        return ServerFailure('انتهت مهلة الارسال للخادم');
       case DioExceptionType.receiveTimeout:
-        return ServerFailure('Receive timeout with ApiServer');
+        return ServerFailure('انتهت مهلة استقبال الخادم');
       case DioExceptionType.badResponse:
         return ServerFailure.fromResponse(
             dioError.response!.statusCode!, dioError.response!.data);
       case DioExceptionType.cancel:
-        return ServerFailure('Request to ApiServer was canceled');
+        return ServerFailure('تم الغاء الطلب');
       case DioExceptionType.connectionError:
-        return ServerFailure('No internet connection');
+        return ServerFailure('لا يوجد انترنت');
       case DioExceptionType.unknown:
-        return ServerFailure('Unexpected error, please try again');
+        return ServerFailure('حدث خطأ غير معروف');
       case DioExceptionType.badCertificate:
-        return ServerFailure('BadCertificate error');
+        return ServerFailure('خطأ في تحقق من الشهادة');
       default:
-        return ServerFailure('Opps there was an error, please try again');
+        return ServerFailure('حدث خطأ غير معروف');
     }
   }
 
   factory ServerFailure.fromResponse(int statusCode, dynamic response) {
     if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
       //! response['error']['message'] --> depend on Api and can change.
-      //return ServerFailure(response[ApiKey.data]); 
-      return ServerFailure("errrrrrrrror!"); 
+      //return ServerFailure(response[ApiKey.data]);
+      return ServerFailure("errrrrrrrror!");
     } else if (statusCode == 404) {
-      return ServerFailure('Your request not found, please try later!');
+      return ServerFailure('لم يتم العثور علي طلبك');
     } else if (statusCode == 500) {
-      return ServerFailure('Internal server error, please try later!');
+      return ServerFailure('خطأ في الخادم');
     } else {
-      return ServerFailure('Opps there was an error, please try again');
+      return ServerFailure('حدث خطأ غير معروف');
     }
   }
 }

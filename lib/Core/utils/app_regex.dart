@@ -1,10 +1,14 @@
 class AppRegex {
   static bool isArabic(String name) {
-    return RegExp(r'[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]+').hasMatch(name) && !RegExp(r'[a-zA-Z]').hasMatch(name);
+    return RegExp(r'[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]+')
+            .hasMatch(name) &&
+        !RegExp(r'[a-zA-Z]').hasMatch(name);
   }
 
   static bool isEmailValid(String email) {
-    return RegExp(r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$').hasMatch(email) && !RegExp(r'[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]+').hasMatch(email);
+    return RegExp(r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$')
+            .hasMatch(email) &&
+        !RegExp(r'[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]+').hasMatch(email);
   }
 
   static bool isPasswordValid(String password) {

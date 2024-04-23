@@ -8,17 +8,15 @@ class CustomButton extends StatelessWidget {
     super.key,
     required this.text,
     required this.onpressed,
-    
     this.backroundcolor,
-   
-    this.rectangleBorder, this.textStyle,
+    this.rectangleBorder,
+    this.textStyle,
   });
   final String text;
   final VoidCallback onpressed;
-  
+
   final Color? backroundcolor;
   final TextStyle? textStyle;
-  
 
   final RoundedRectangleBorder? rectangleBorder;
 
@@ -38,10 +36,10 @@ class CustomButton extends StatelessWidget {
       ),
       child: Text(
         text,
-        style:textStyle??  Styles.textStyle20.copyWith(
-          fontWeight:  FontWeight.bold,
-    
-        ),
+        style: textStyle ??
+            Styles.textStyle20.copyWith(
+              fontWeight: FontWeight.bold,
+            ),
       ),
     );
   }

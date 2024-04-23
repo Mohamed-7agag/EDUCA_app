@@ -43,17 +43,11 @@ class ApiServices extends ApiRequests {
 
 //! Post Method
   @override
-  Future post(
-    String endPoint, {
-    dynamic data,
-    Map<String, dynamic>? queryParameters,
-    bool isFromData = false,
-  }) async {
+  Future post({required String endPoint, Object? data}) async {
     try {
       final response = await _dio.post(
         endPoint,
-        data: isFromData ? FormData.fromMap(data) : data,
-        queryParameters: queryParameters,
+        data: data,
       );
       return response.data;
     } on DioException catch (e) {

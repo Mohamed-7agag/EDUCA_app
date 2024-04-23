@@ -76,4 +76,3 @@ class UserCubit extends Cubit<UserModel> {
 //!   create two cubit   studentAuth    teacherAuth
 //!   cubit for auth studentLogin  teacherLogin   studentRegister  teacherRegister
 //!   cubit for auth studentData  teacherData   update   logout
-

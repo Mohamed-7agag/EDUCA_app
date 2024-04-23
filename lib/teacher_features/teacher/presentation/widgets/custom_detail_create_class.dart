@@ -11,7 +11,9 @@ class CustomDetailsForCreateClass extends StatefulWidget {
     required this.name,
     required this.hint,
     required this.indx,
-    required this.selectedItem, required this.onSelected, required this.listItemBuilder,
+    required this.selectedItem,
+    required this.onSelected,
+    required this.listItemBuilder,
   });
 
   final String name;

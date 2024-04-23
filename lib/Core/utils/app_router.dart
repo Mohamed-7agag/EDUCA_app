@@ -41,7 +41,7 @@ class AppRouter {
             child: const RegisterView(),
           ),
         );
-      
+
       case Routes.classOptionsViewRoute:
         return MaterialPageRoute(
           builder: (context) => BlocProvider(

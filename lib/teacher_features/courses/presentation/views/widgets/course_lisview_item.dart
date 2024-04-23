@@ -91,7 +91,7 @@ class CourseListViewItem extends StatelessWidget {
                                 .copyWith(color: const Color(0xff333333)),
                             backroundcolor: kBackgroundColor,
                             rectangleBorder: const RoundedRectangleBorder(
-                              side:  BorderSide(color: Colors.grey),
+                              side: BorderSide(color: Colors.grey),
                               borderRadius: BorderRadius.only(
                                 bottomLeft: Radius.circular(12),
                                 topLeft: Radius.circular(12),

@@ -9,13 +9,13 @@ class EndPoint {
 
 class ApiKey {
   static String status = "status";
-  static String errorMessage = "ErrorMessage";
+  static String message = "message";
   static String email = "email";
   static String password = "password";
   static String token = "token";
-  static String message = "message";
   static String id = "id";
-  static String name = "name";
+  static String userName = "username";
   static String phone = "phone";
+  static String address = "address";
   static String profilePic = "profilePic";
 }

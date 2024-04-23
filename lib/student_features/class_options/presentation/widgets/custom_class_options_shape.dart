@@ -19,10 +19,8 @@ class CustomClassOptionsShape extends StatelessWidget {
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(90.r),
           )),
-      child: Text(
-        text,
-        style: Styles.textStyle28.copyWith(color: Colors.white)
-      ),
+      child:
+          Text(text, style: Styles.textStyle28.copyWith(color: Colors.white)),
     );
   }
 }

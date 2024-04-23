@@ -8,10 +8,23 @@ sealed class AuthCubitState extends Equatable {
 }
 
 final class AuthCubitInitial extends AuthCubitState {}
-final class AuthCubitLoginLoading extends AuthCubitState {}
-final class AuthCubitLoginSuccess extends AuthCubitState {}
-final class AuthCubitLoginFailure extends AuthCubitState {}
-final class AuthCubitRegisterLoading extends AuthCubitState {}
-final class AuthCubitRegisterSuccess extends AuthCubitState {}
-final class AuthCubitRegisterFailure extends AuthCubitState {}
 
+final class AuthCubitLoginLoading extends AuthCubitState {}
+
+final class AuthCubitLoginSuccess extends AuthCubitState {}
+
+final class AuthCubitLoginFailure extends AuthCubitState {
+  final String errMessage;
+
+  const AuthCubitLoginFailure({required this.errMessage});
+}
+
+final class AuthCubitRegisterLoading extends AuthCubitState {}
+
+final class AuthCubitRegisterSuccess extends AuthCubitState {}
+
+final class AuthCubitRegisterFailure extends AuthCubitState {
+  final String errMessage;
+
+  const AuthCubitRegisterFailure({required this.errMessage});
+}

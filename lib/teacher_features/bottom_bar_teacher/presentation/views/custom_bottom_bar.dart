@@ -9,7 +9,6 @@ import '../../../home_teacher/presentation/views/home_view.dart';
 class CustomBottomBarForTeacherView extends StatelessWidget {
   const CustomBottomBarForTeacherView({super.key});
 
- 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<BottomBarCubit, int>(
