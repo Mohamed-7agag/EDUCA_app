@@ -2,7 +2,7 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
-import 'package:field_training_app/student_features/auth/presentation/view_model/student_cubit.dart';
+import 'package:field_training_app/student_features/auth/presentation/view_model/user_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -70,7 +70,7 @@ class _ProfileEditViewState extends State<ProfileEditView> {
                             context, "حدث خطأ", "قم بتعبئة هذا الحقل");
                       } else {
                         context
-                            .read<StudentCubit>()
+                            .read<UserCubit>()
                             .updateData(widget.parameter, controller.text);
                         Navigator.pop(context);
                       }

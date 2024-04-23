@@ -10,7 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../Core/utils/routes.dart';
 import '../../../../Core/widgets/custom_button.dart';
-import '../../../auth/presentation/view_model/student_cubit.dart';
+import '../../../auth/presentation/view_model/user_cubit.dart';
 
 class ClassOptionsViewBody extends StatelessWidget {
   ClassOptionsViewBody({super.key});
@@ -49,7 +49,7 @@ class ClassOptionsViewBody extends StatelessWidget {
                     text: "لنبدا التعلم",
                     onpressed: () {
                       if (selectedIdx != -1) {
-                        context.read<StudentCubit>().setStudentClass(
+                        context.read<UserCubit>().setStudentClass(
                             studentClass: classOptionsValues[selectedIdx]);
 
                         Navigator.pushNamed(

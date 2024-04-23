@@ -16,7 +16,7 @@ class LoginViewBody extends StatelessWidget {
 
 //! move these to login cubit when create it
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  TextEditingController emailController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   @override
@@ -58,8 +58,8 @@ class LoginViewBody extends StatelessWidget {
                     child: Column(
                       children: [
                         CustomTextField(
-                          controller: emailController,
-                          hintText: "البريد الالكتروني",
+                          controller: nameController,
+                          hintText: "اسم المستخدم",
                           keyboardType: TextInputType.emailAddress,
                         ),
                         SizedBox(height: 28.h),

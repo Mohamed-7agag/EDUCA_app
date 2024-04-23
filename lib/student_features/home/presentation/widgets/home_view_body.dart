@@ -1,11 +1,11 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/routes.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
-import 'package:field_training_app/Core/models/student_model.dart';
-import 'package:field_training_app/student_features/auth/presentation/view_model/student_cubit.dart';
+import 'package:field_training_app/student_features/auth/presentation/view_model/user_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../Core/models/user_model.dart';
 import 'course_item.dart';
 
 class HomeViewBody extends StatelessWidget {
@@ -20,7 +20,7 @@ class HomeViewBody extends StatelessWidget {
           SizedBox(height: 15.h),
           Padding(
             padding: const EdgeInsets.only(left: 20, right: 20),
-            child: BlocBuilder<StudentCubit, StudentModel>(
+            child: BlocBuilder<UserCubit, UserModel>(
               builder: (context, student) {
                 return Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

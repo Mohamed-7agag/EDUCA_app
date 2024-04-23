@@ -1,13 +1,12 @@
 // ignore_for_file: unnecessary_null_comparison, use_build_context_synchronously
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
-import 'package:field_training_app/Core/models/student_model.dart';
-import 'package:field_training_app/student_features/auth/presentation/view_model/student_cubit.dart';
+import 'package:field_training_app/student_features/auth/presentation/view_model/user_cubit.dart';
 import 'package:field_training_app/student_features/profile/presentation/widgets/profile_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import '../../../../Core/models/user_model.dart';
 import '../../../../Core/utils/routes.dart';
 import '../../../../Core/utils/styles.dart';
 import 'bottom_sheet.dart';
@@ -20,7 +19,7 @@ class ProfileViewBody extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: SingleChildScrollView(
-        child: BlocBuilder<StudentCubit, StudentModel>(
+        child: BlocBuilder<UserCubit, UserModel>(
           builder: (context, student) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -151,7 +150,7 @@ class ProfileViewBody extends StatelessWidget {
                 CustomButton(
                     text: "تسجيل الخروج",
                     onpressed: () {
-                      BlocProvider.of<StudentCubit>(context).logout();
+                      BlocProvider.of<UserCubit>(context).logout();
                       Navigator.pushNamedAndRemoveUntil(
                           context, Routes.loginViewRoute, (route) => false);
                     }),

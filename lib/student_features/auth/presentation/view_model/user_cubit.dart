@@ -1,22 +1,24 @@
 import 'dart:io';
-import 'package:field_training_app/Core/models/teacher_model.dart';
 import 'package:field_training_app/Core/utils/app_regex.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../Core/models/user_model.dart';
 
-class TeacherCubit extends Cubit<TeacherModel> {
-  TeacherCubit()
-      : super(TeacherModel(
-          name: '',
-          email: '',
-          phone: '',
-          image: null,
-          studentOrTeacher: '',
-          city: '',
-          address: '',
-          password: '',
-        ));
+class UserCubit extends Cubit<UserModel> {
+  UserCubit()
+      : super(
+          UserModel(
+            name: '',
+            email: '',
+            phone: '',
+            image: null,
+            address: '',
+            studentOrTeacher: '',
+            studentClass: '',
+            password: '',
+          ),
+        );
 
-  void setTeacherData({
+  void setStudentData({
     required String name,
     required String email,
     required String phone,
@@ -32,23 +34,27 @@ class TeacherCubit extends Cubit<TeacherModel> {
     ));
   }
 
-  void setTeacherCityAndAddress({required String city, required String address}) {
-    emit(state.copyWith(city: city, address: address));
+  void setStudentClass({required String studentClass}) {
+    emit(state.copyWith(studentClass: studentClass));
   }
-  void setTeacherImage({required File image}) {
+
+  void setStudentImage({required File image}) {
     emit(state.copyWith(image: image));
   }
 
   void logout() {
-    emit(TeacherModel(
+    emit(
+      UserModel(
         name: '',
         email: '',
         phone: '',
         image: null,
-        studentOrTeacher: '',
-        city: '',
         address: '',
-        password: ''));
+        studentOrTeacher: '',
+        studentClass: '',
+        password: '',
+      ),
+    );
   }
 
   void updateData(String parameter, String value) {
@@ -62,13 +68,12 @@ class TeacherCubit extends Cubit<TeacherModel> {
       emit(state.copyWith(password: value));
     } else if (parameter == 'studentOrTeacher') {
       emit(state.copyWith(studentOrTeacher: value));
-    } else if (parameter == 'city') {
-      emit(state.copyWith(city: value));
-    }else if (parameter == 'address') {
-      emit(state.copyWith(address: value));
+    } else if (parameter == 'studentClass') {
+      emit(state.copyWith(studentClass: value));
     }
   }
 }
-//!   create to cubit   studentAuth    teacherAuth
-//!   cubit for auth studentLogin  teacherLogin   studentRegister  teacherRegister     
+//!   create two cubit   studentAuth    teacherAuth
+//!   cubit for auth studentLogin  teacherLogin   studentRegister  teacherRegister
 //!   cubit for auth studentData  teacherData   update   logout
+

@@ -1,14 +1,14 @@
 // ignore_for_file: must_be_immutable
-import 'package:field_training_app/Core/models/student_model.dart';
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/student_features/auth/helper/register_validation.dart';
-import 'package:field_training_app/student_features/auth/presentation/view_model/student_cubit.dart';
+import 'package:field_training_app/student_features/auth/presentation/view_model/user_cubit.dart';
 import 'package:field_training_app/student_features/auth/presentation/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../Core/models/user_model.dart';
 import '../../../../Core/utils/routes.dart';
 import '../../../profile/presentation/widgets/bottom_sheet.dart';
 import '../view_model/password_visibility/password_visibility_cubit.dart';
@@ -39,8 +39,8 @@ class RegisterViewBody extends StatelessWidget {
               textAlign: TextAlign.right,
             ),
             SizedBox(height: 25.h),
-            BlocBuilder<StudentCubit, StudentModel>(
-              builder: (context, student) {
+            BlocBuilder<UserCubit, UserModel>(
+              builder: (context, user) {
                 return Stack(
                   clipBehavior: Clip.none,
                   alignment: Alignment.center,
@@ -49,17 +49,17 @@ class RegisterViewBody extends StatelessWidget {
                       padding: const EdgeInsets.all(2.5),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(200),
-                        border: student.image == null
+                        border: user.image == null
                             ? null
                             : Border.all(color: kPrimaryColor, width: 2),
                       ),
                       child: CircleAvatar(
                         radius: 50.r,
                         backgroundColor: kSplashColor,
-                        backgroundImage: student.image == null
+                        backgroundImage: user.image == null
                             ? null
-                            : FileImage(student.image!),
-                        child: student.image == null
+                            : FileImage(user.image!),
+                        child: user.image == null
                             ? Icon(
                                 Icons.person,
                                 size: 45.sp,
@@ -206,7 +206,7 @@ class RegisterViewBody extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: CustomButton(
-                            text: optionState == "طالب" ? "أنشاء" : "التالي",
+                            text: "أنشاء",
                             onpressed: () {
                               if (formKey.currentState!.validate()) {
                                 registerValidation(
@@ -216,7 +216,6 @@ class RegisterViewBody extends StatelessWidget {
                                   emailController,
                                   phoneController,
                                   passwordController,
-                                  addressController,
                                 );
                               }
                             }),

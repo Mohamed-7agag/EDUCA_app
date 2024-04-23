@@ -1,48 +1,44 @@
 import 'dart:io';
 
-class TeacherModel {
+class UserModel {
   final String? name;
   final String? email;
-  final String? phone;
   final String? password;
-  final String? confirmPassword;
-  final String? studentOrTeacher;
-  final File? image;
-  final String? city;
+  final String? phone;
   final String? address;
+  final File? image;
+  final String? studentOrTeacher;
+  final String? studentClass;
 
-  TeacherModel(
+  UserModel(
       {this.name,
       this.email,
       this.password,
-      this.confirmPassword,
       this.phone,
+      this.address,
       this.image,
       this.studentOrTeacher,
-      this.city,
-      this.address});
+      this.studentClass});
 
-  TeacherModel copyWith({
+  UserModel copyWith({
     String? name,
     String? email,
     String? phone,
     String? password,
-    String? confirmPassword,
-    String? studentOrTeacher,
-    File? image,
-    String? city,
     String? address,
+    File? image,
+    String? studentOrTeacher,
+    String? studentClass,
   }) {
-    return TeacherModel(
+    return UserModel(
       name: name ?? this.name,
       email: email ?? this.email,
       phone: phone ?? this.phone,
-      studentOrTeacher: studentOrTeacher ?? this.studentOrTeacher,
       image: image ?? this.image,
       password: password ?? this.password,
-      confirmPassword: confirmPassword ?? this.confirmPassword,
-      city: city ?? this.city,
       address: address ?? this.address,
+      studentOrTeacher: studentOrTeacher ?? this.studentOrTeacher,
+      studentClass: studentClass ?? this.studentClass,
     );
   }
 
@@ -51,26 +47,24 @@ class TeacherModel {
       'name': name,
       'email': email,
       'phone': phone,
-      'studentOrTeacher': studentOrTeacher,
       'image': image,
       'password': password,
-      'confirmPassword': confirmPassword,
-      'city': city,
       'address': address,
+      'studentOrTeacher': studentOrTeacher,
+      'studentClass': studentClass,
     };
   }
 
-  factory TeacherModel.fromJson(Map<String, dynamic> json) {
-    return TeacherModel(
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    return UserModel(
       name: json['name'] ?? '',
       email: json['email'] ?? '',
       phone: json['phone'] ?? '',
-      studentOrTeacher: json['studentOrTeacher'] ?? '',
       image: json['image'] ?? '',
       password: json['password'] ?? '',
-      confirmPassword: json['confirmPassword'] ?? '',
-      city: json['city'] ?? '',
       address: json['address'] ?? '',
+      studentOrTeacher: json['studentOrTeacher'] ?? '',
+      studentClass: json['studentClass'] ?? '',
     );
   }
 }
