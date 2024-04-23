@@ -12,12 +12,14 @@ class AuthRepoImplement implements AuthRepo {
   final ApiServices apiServices;
 
   AuthRepoImplement({required this.apiServices});
+
+  //! Login
   @override
   Future<Either<Failure, LoginModel>> login(
       {required String name, required String password}) async {
     try {
       var data = await apiServices.post(
-        endPoint: 'login',
+        endPoint: EndPoint.signIn,
         data: {ApiKey.userName: name, ApiKey.password: password},
       );
       LoginModel loginModel = LoginModel.fromJson(data);
@@ -32,22 +34,60 @@ class AuthRepoImplement implements AuthRepo {
     }
   }
 
+//! Student Register
   @override
-  Future<Either<Failure, RegisterModel>> studentRegister(
-      {required String name,
-      required String email,
-      required String password,
-      required String phone,
-      required String address}) async {
+  Future<Either<Failure, RegisterModel>> studentRegister({
+    required String name,
+    required String email,
+    required String password,
+    required String phone,
+    required String address,
+    required String image,
+  }) async {
     try {
       var data = await apiServices.post(
-        endPoint: 'studentRegister',
+        endPoint: EndPoint.studentRegister,
         data: {
           ApiKey.userName: name,
           ApiKey.email: email,
           ApiKey.password: password,
           ApiKey.phone: phone,
           ApiKey.address: address,
+          ApiKey.image: image,
+        },
+      );
+      RegisterModel registerModel = RegisterModel.fromJson(data);
+      return right(registerModel);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
+      }
+      return left(
+        ServerFailure(e.toString()),
+      );
+    }
+  }
+
+  //! Teacher Register
+  @override
+  Future<Either<Failure, RegisterModel>> teacherRegister({
+    required String name,
+    required String email,
+    required String password,
+    required String phone,
+    required String address,
+    required String image,
+  }) async {
+    try {
+      var data = await apiServices.post(
+        endPoint: EndPoint.teacherRegister,
+        data: {
+          ApiKey.userName: name,
+          ApiKey.email: email,
+          ApiKey.password: password,
+          ApiKey.phone: phone,
+          ApiKey.address: address,
+          ApiKey.image: image,
         },
       );
       RegisterModel registerModel = RegisterModel.fromJson(data);
