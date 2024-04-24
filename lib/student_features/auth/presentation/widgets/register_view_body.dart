@@ -3,16 +3,20 @@ import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/student_features/auth/helper/register_validation.dart';
+import 'package:field_training_app/student_features/auth/presentation/view_model/class_option_cubit.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/user_cubit.dart';
 import 'package:field_training_app/student_features/auth/presentation/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../../../Core/models/user_model.dart';
 import '../../../../Core/utils/routes.dart';
-import '../../../profile/presentation/widgets/bottom_sheet.dart';
+import '../../../../Core/widgets/custom_user_image.dart';
+import '../../../class_options/data/class_option_data.dart';
 import '../view_model/password_visibility/password_visibility_cubit.dart';
 import '../view_model/register_option_cubit.dart';
+import 'custom_radio_list_tile.dart';
 
 class RegisterViewBody extends StatelessWidget {
   RegisterViewBody({super.key});
@@ -23,6 +27,7 @@ class RegisterViewBody extends StatelessWidget {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController addressController = TextEditingController();
+  String classOptionValue = '';
 
   @override
   Widget build(BuildContext context) {
@@ -41,56 +46,17 @@ class RegisterViewBody extends StatelessWidget {
             SizedBox(height: 25.h),
             BlocBuilder<UserCubit, UserModel>(
               builder: (context, user) {
-                return Stack(
-                  clipBehavior: Clip.none,
-                  alignment: Alignment.center,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(2.5),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(200),
-                        border: user.image == null
-                            ? null
-                            : Border.all(color: kPrimaryColor, width: 2),
-                      ),
-                      child: CircleAvatar(
-                        radius: 50.r,
-                        backgroundColor: kSplashColor,
-                        backgroundImage:
-                            user.image == null ? null : FileImage(user.image!),
-                        child: user.image == null
-                            ? Icon(
-                                Icons.person,
-                                size: 45.sp,
-                                color: kPrimaryColor,
-                              )
-                            : null,
-                      ),
-                    ),
-                    Positioned(
-                      right: 115.w,
-                      top: 70.h,
-                      child: IconButton(
-                        onPressed: () {
-                          bottomSheet(context);
-                        },
-                        icon: const Icon(
-                          Icons.add_a_photo_outlined,
-                          color: Colors.white,
-                          size: 20,
-                        ),
-                        style: const ButtonStyle(
-                          backgroundColor: MaterialStatePropertyAll(
-                            kPrimaryColor,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+                return CustomUserImage(
+                  user: user,
+                  radius: 50.r,
+                  cameraSize: 20,
+                  iconSize: 45,
+                  right: 115.w,
+                  top: 70.h,
                 );
               },
             ),
-            SizedBox(height: 35.h),
+            SizedBox(height: 40.h),
             Form(
               key: formKey,
               child: Column(
@@ -100,13 +66,13 @@ class RegisterViewBody extends StatelessWidget {
                     hintText: "الأسم (باللغة العربية)",
                     keyboardType: TextInputType.emailAddress,
                   ),
-                  SizedBox(height: 25.h),
+                  SizedBox(height: 28.h),
                   CustomTextField(
                     controller: emailController,
                     hintText: "البريد الالكتروني",
                     keyboardType: TextInputType.emailAddress,
                   ),
-                  SizedBox(height: 25.h),
+                  SizedBox(height: 28.h),
                   BlocBuilder<PasswordVisibilityCubit, bool>(
                     builder: (context, state) {
                       return CustomTextField(
@@ -129,99 +95,127 @@ class RegisterViewBody extends StatelessWidget {
                       );
                     },
                   ),
-                  SizedBox(height: 25.h),
+                  SizedBox(height: 28.h),
                   CustomTextField(
                     controller: phoneController,
                     hintText: "رقم الجوال",
                     keyboardType: TextInputType.phone,
                   ),
-                  SizedBox(height: 25.h),
-                  CustomTextField(
-                    controller: addressController,
-                    hintText: "العنوان (اختياري)",
-                    keyboardType: TextInputType.text,
+                  SizedBox(height: 28.h),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      "التسجيل ك",
+                      style: Styles.textStyle16,
+                    ),
                   ),
+                  BlocProvider(
+                    create: (context) => RegisterOptionCubit(),
+                    child: BlocBuilder<RegisterOptionCubit, String>(
+                      builder: (context, optionState) {
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  flex: 4,
+                                  child: CustomRadioListTile(
+                                      optionState: optionState,
+                                      value: "معلم",
+                                      index: 1),
+                                ),
+                                Expanded(
+                                  flex: 3,
+                                  child: CustomRadioListTile(
+                                      optionState: optionState,
+                                      value: "طالب",
+                                      index: 0),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 14.h),
+                            optionState == "طالب"
+                                ? BlocProvider(
+                                    create: (context) => ClassOptionCubit(),
+                                    child:
+                                        BlocBuilder<ClassOptionCubit, String>(
+                                      builder: (context, classOptionState) {
+                                        return DropdownButton(
+                                          borderRadius:
+                                              BorderRadius.circular(6),
+                                          underline: Container(
+                                              height: 1, color: Colors.grey),
+                                          icon: const Icon(
+                                              Icons.arrow_drop_down,
+                                              color: kPrimaryColor,
+                                              size: 30),
+                                          alignment: Alignment.centerRight,
+                                          style: Styles.textStyle16
+                                              .copyWith(color: Colors.black),
+                                          elevation: 1,
+                                          hint: Text(
+                                            classOptionState,
+                                            style: GoogleFonts.tajawal(
+                                                fontSize: 13.sp),
+                                          ),
+                                          onChanged: (val) {
+                                            context
+                                                .read<ClassOptionCubit>()
+                                                .changeState(val.toString());
+                                            classOptionValue = classOptionState;
+                                          },
+                                          isExpanded: true,
+                                          items: classOptionsValues
+                                              .map<DropdownMenuItem<String>>(
+                                            (String value) {
+                                              return DropdownMenuItem<String>(
+                                                alignment:
+                                                    Alignment.centerRight,
+                                                value: value,
+                                                child: Text(value,
+                                                    style:
+                                                        GoogleFonts.tajawal()),
+                                              );
+                                            },
+                                          ).toList(),
+                                        );
+                                      },
+                                    ),
+                                  )
+                                : optionState == "معلم"
+                                    ? CustomTextField(
+                                        controller: addressController,
+                                        hintText: "العنوان",
+                                        keyboardType: TextInputType.text,
+                                      )
+                                    : const SizedBox.shrink(),
+                            SizedBox(height: 35.h),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20),
+                              child: CustomButton(
+                                  text: "أنشاء",
+                                  onpressed: () {
+                                    if (formKey.currentState!.validate()) {
+                                      registerValidation(
+                                        context,
+                                        optionState,
+                                        nameController,
+                                        emailController,
+                                        phoneController,
+                                        passwordController,
+                                      );
+                                    }
+                                  }),
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+                  )
                 ],
-              ),
-            ),
-            SizedBox(height: 25.h),
-            Text(
-              "التسجيل ك",
-              style: Styles.textStyle16,
-              textAlign: TextAlign.right,
-            ),
-            BlocProvider(
-              create: (context) => RegisterOptionCubit(),
-              child: BlocBuilder<RegisterOptionCubit, String>(
-                builder: (context, optionState) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Row(
-                        children: [
-                          Expanded(
-                            flex: 3,
-                            child: RadioListTile(
-                              value: "معلم",
-                              visualDensity: VisualDensity.compact,
-                              activeColor: kPrimaryColor,
-                              controlAffinity: ListTileControlAffinity.trailing,
-                              selected: optionState == "معلم" ? true : false,
-                              contentPadding: const EdgeInsets.all(0),
-                              title: Text("معلم",
-                                  style: Styles.textStyle16,
-                                  textAlign: TextAlign.right),
-                              groupValue: optionState,
-                              onChanged: (value) {
-                                context
-                                    .read<RegisterOptionCubit>()
-                                    .changeRegisterOption(1);
-                              },
-                            ),
-                          ),
-                          Expanded(
-                            flex: 2,
-                            child: RadioListTile(
-                              value: "طالب",
-                              visualDensity: VisualDensity.compact,
-                              controlAffinity: ListTileControlAffinity.trailing,
-                              activeColor: kPrimaryColor,
-                              selected: optionState == "طالب" ? true : false,
-                              contentPadding: const EdgeInsets.all(0),
-                              title: Text("طالب",
-                                  style: Styles.textStyle16,
-                                  textAlign: TextAlign.right),
-                              groupValue: optionState,
-                              onChanged: (value) {
-                                context
-                                    .read<RegisterOptionCubit>()
-                                    .changeRegisterOption(0);
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 28.h),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: CustomButton(
-                            text: "أنشاء",
-                            onpressed: () {
-                              if (formKey.currentState!.validate()) {
-                                registerValidation(
-                                  context,
-                                  optionState,
-                                  nameController,
-                                  emailController,
-                                  phoneController,
-                                  passwordController,
-                                );
-                              }
-                            }),
-                      ),
-                    ],
-                  );
-                },
               ),
             ),
             SizedBox(height: 20.h),

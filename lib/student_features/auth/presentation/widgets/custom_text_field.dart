@@ -23,7 +23,7 @@ class CustomTextField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       validator: (value) {
-        if (value!.isEmpty && hintText != "العنوان (اختياري)") {
+        if (value!.isEmpty) {
           return "هذا الحقل مطلوب";
         }
         return null;

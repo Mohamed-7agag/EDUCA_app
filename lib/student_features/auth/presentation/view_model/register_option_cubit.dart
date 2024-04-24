@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RegisterOptionCubit extends Cubit<String> {
-  RegisterOptionCubit() : super("طالب");
+  RegisterOptionCubit() : super("");
 
   void changeRegisterOption(int option) {
     if (option == 0) {

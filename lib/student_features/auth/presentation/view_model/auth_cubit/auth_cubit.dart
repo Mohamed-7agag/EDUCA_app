@@ -20,6 +20,7 @@ class AuthCubitCubit extends Cubit<AuthCubitState> {
   TextEditingController phoneController = TextEditingController();
   TextEditingController addressController = TextEditingController();
   XFile? image;
+  String classOptionValue = '';
 
   //! Login method
   Future<void> login() async {

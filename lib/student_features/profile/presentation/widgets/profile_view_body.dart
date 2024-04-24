@@ -1,6 +1,6 @@
 // ignore_for_file: unnecessary_null_comparison, use_build_context_synchronously
-import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
+import 'package:field_training_app/Core/widgets/custom_user_image.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/user_cubit.dart';
 import 'package:field_training_app/student_features/profile/presentation/widgets/profile_item.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +9,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../Core/models/user_model.dart';
 import '../../../../Core/utils/routes.dart';
 import '../../../../Core/utils/styles.dart';
-import 'bottom_sheet.dart';
 
 class ProfileViewBody extends StatelessWidget {
   const ProfileViewBody({super.key});
@@ -25,54 +24,13 @@ class ProfileViewBody extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 SizedBox(height: 16.h),
-                Stack(
-                  clipBehavior: Clip.none,
-                  alignment: Alignment.center,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(2.5),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(200),
-                        border: student.image == null
-                            ? null
-                            : Border.all(color: kPrimaryColor, width: 2),
-                      ),
-                      child: CircleAvatar(
-                        radius: 55.r,
-                        backgroundColor: kSplashColor,
-                        backgroundImage: student.image == null
-                            ? null
-                            : FileImage(student.image!),
-                        child: student.image == null
-                            ? const Icon(
-                                Icons.person,
-                                size: 50,
-                                color: kPrimaryColor,
-                              )
-                            : null,
-                      ),
-                    ),
-                    Positioned(
-                      right: 112.w,
-                      top: 80.h,
-                      child: IconButton(
-                        onPressed: () async {
-                          bottomSheet(context);
-                        },
-                        icon: const Icon(
-                          Icons.add_a_photo_outlined,
-                          color: Colors.white,
-                          size: 22,
-                        ),
-                        style: const ButtonStyle(
-                            backgroundColor: MaterialStatePropertyAll(
-                              kPrimaryColor,
-                            ),
-                            padding:
-                                MaterialStatePropertyAll(EdgeInsets.all(8))),
-                      ),
-                    ),
-                  ],
+                CustomUserImage(
+                  user: student,
+                  radius: 55.r,
+                  iconSize: 50,
+                  right: 112.w,
+                  top: 80.h,
+                  cameraSize: 21,
                 ),
                 SizedBox(height: 25.h),
                 Text(student.name ?? '',
