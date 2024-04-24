@@ -105,7 +105,7 @@ class LoginViewBody extends StatelessWidget {
                           if (formKey.currentState!.validate()) {
                             FocusScope.of(context).unfocus();
                             Navigator.pushNamed(
-                                context, Routes.classOptionsViewRoute);
+                                context, Routes.customBottomBarViewRoute);
                           }
                         }),
                   ),

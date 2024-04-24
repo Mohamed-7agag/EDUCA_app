@@ -13,9 +13,9 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../../Core/models/user_model.dart';
 import '../../../../Core/utils/routes.dart';
 import '../../../../Core/widgets/custom_user_image.dart';
-import '../../../class_options/data/class_option_data.dart';
 import '../view_model/password_visibility/password_visibility_cubit.dart';
 import '../view_model/register_option_cubit.dart';
+import 'class_option_values.dart';
 import 'custom_radio_list_tile.dart';
 
 class RegisterViewBody extends StatelessWidget {
@@ -206,6 +206,7 @@ class RegisterViewBody extends StatelessWidget {
                                         emailController,
                                         phoneController,
                                         passwordController,
+                                        classOptionValue,
                                       );
                                     }
                                   }),

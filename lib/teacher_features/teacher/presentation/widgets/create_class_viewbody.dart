@@ -1,8 +1,7 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
-import 'package:field_training_app/student_features/class_options/data/class_option_data.dart';
-import 'package:field_training_app/student_features/class_options/presentation/widgets/custom_class_options_shape.dart';
+
 import 'package:field_training_app/teacher_features/teacher/data/course_data.dart';
 import 'package:field_training_app/teacher_features/teacher/presentation/views_model/cubit/drop_down_list_cubit.dart';
 import 'package:field_training_app/teacher_features/teacher/presentation/widgets/custom_detail_create_class.dart';
@@ -10,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../Core/utils/routes.dart';
+import '../../../../student_features/auth/presentation/widgets/class_option_values.dart';
+import 'custom_class_options_shape.dart';
 
 class CreateClassViewBody extends StatelessWidget {
   const CreateClassViewBody({super.key});

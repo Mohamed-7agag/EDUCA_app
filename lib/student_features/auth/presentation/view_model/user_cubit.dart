@@ -24,6 +24,7 @@ class UserCubit extends Cubit<UserModel> {
     required String phone,
     required String password,
     required String studentOrTeacher,
+    required String studentClass,
   }) {
     emit(state.copyWith(
       name: name,
