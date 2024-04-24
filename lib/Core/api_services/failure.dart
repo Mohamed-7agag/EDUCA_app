@@ -35,7 +35,7 @@ class ServerFailure extends Failure {
   factory ServerFailure.fromResponse(int statusCode, dynamic response) {
     if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
       //! response['error']['message'] --> depend on Api and can change.
-      //return ServerFailure(response[ApiKey.data]);
+      //return ServerFailure(response["title"]);
       return ServerFailure("errrrrrrrror!");
     } else if (statusCode == 404) {
       return ServerFailure('لم يتم العثور علي طلبك');

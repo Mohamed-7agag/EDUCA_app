@@ -1,23 +1,21 @@
-// ignore_for_file: must_be_immutable
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
+import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
+import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
+import 'package:field_training_app/student_features/auth/presentation/view_model/auth_cubit/auth_cubit.dart';
 import 'package:field_training_app/student_features/auth/presentation/widgets/custom_logo.dart';
 import 'package:field_training_app/student_features/auth/presentation/widgets/custom_text_field.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../../../Core/utils/routes.dart';
 import '../view_model/password_visibility/password_visibility_cubit.dart';
 
 class LoginViewBody extends StatelessWidget {
-  LoginViewBody({super.key});
-
-//! move these to login cubit when create it
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  TextEditingController nameController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  const LoginViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +30,7 @@ class LoginViewBody extends StatelessWidget {
             width: double.infinity,
             padding: const EdgeInsets.only(left: 20, right: 20, top: 25),
             decoration: const BoxDecoration(
-              color: Color.fromARGB(255, 255, 255, 255),
+              color: Colors.white,
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(35), topRight: Radius.circular(35)),
               boxShadow: [
@@ -54,11 +52,11 @@ class LoginViewBody extends StatelessWidget {
                   ),
                   SizedBox(height: 30.h),
                   Form(
-                    key: formKey,
+                    key: context.read<AuthCubit>().formKey,
                     child: Column(
                       children: [
                         CustomTextField(
-                          controller: nameController,
+                          controller: context.read<AuthCubit>().nameController,
                           hintText: "اسم المستخدم",
                           keyboardType: TextInputType.emailAddress,
                         ),
@@ -68,7 +66,9 @@ class LoginViewBody extends StatelessWidget {
                           child: BlocBuilder<PasswordVisibilityCubit, bool>(
                             builder: (context, state) {
                               return CustomTextField(
-                                controller: passwordController,
+                                controller: context
+                                    .read<AuthCubit>()
+                                    .passwordController,
                                 hintText: "كلمة السر",
                                 obscureText: state,
                                 keyboardType: TextInputType.visiblePassword,
@@ -99,15 +99,28 @@ class LoginViewBody extends StatelessWidget {
                   SizedBox(height: 50.h),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: CustomButton(
-                        text: "تسجيل",
-                        onpressed: () {
-                          if (formKey.currentState!.validate()) {
-                            FocusScope.of(context).unfocus();
-                            Navigator.pushNamed(
-                                context, Routes.customBottomBarViewRoute);
-                          }
-                        }),
+                    //? use bloc builder here
+                    child: BlocConsumer<AuthCubit, AuthState>(
+                      listener: (context, state) {
+                        if (state is AuthLoginSuccess) {
+                          Navigator.pushReplacementNamed(
+                              context, Routes.customBottomBarViewRoute);
+                        } else if (state is AuthLoginFailure) {
+                          errorCherryToast(
+                              context, "حدث خطا", state.errMessage);
+                        }
+                      },
+                      builder: (context, state) {
+                        return state is AuthLoginLoading
+                            ? const CustomLoadingWidget()
+                            : CustomButton(
+                                text: "تسجيل",
+                                onpressed: () {
+                                  context.read<AuthCubit>().login();
+                                },
+                              );
+                      },
+                    ),
                   ),
                   SizedBox(height: 25.h),
                   Row(

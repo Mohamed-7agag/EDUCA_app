@@ -1,8 +1,8 @@
 class EndPoint {
-  static String baseUrl = "https://food-api-omega.vercel.app/api/v1/";
-  static String signIn = "user/signin";
-  static String studentRegister = "user/signup";
-  static String teacherRegister = "user/signup";
+  static String baseUrl = "http://eduplatform.runasp.net/api/";
+  static String signIn = "account/login";
+  static String studentRegister = "studentaccount/register";
+  static String teacherRegister = "teacheraccount/register";
   static String getUserDataEndPoint(id) {
     return "user/get-user/$id";
   }

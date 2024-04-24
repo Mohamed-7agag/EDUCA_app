@@ -12,7 +12,7 @@ void registerValidation(
   TextEditingController emailController,
   TextEditingController phoneController,
   TextEditingController passwordController,
-  String studentClass 
+  String studentLevel 
 ) {
   if (!AppRegex.isArabic(nameController.text)) {
     errorCherryToast(context, "حدث خطأ", 'يجب ان يكون الأسم باللغة العربية');
@@ -29,7 +29,7 @@ void registerValidation(
           email: emailController.text,
           phone: phoneController.text,
           password: passwordController.text,
-          studentClass: studentClass,
+          studentClass: studentLevel,
           studentOrTeacher: optionState);
     } else {
       // context.read<TeacherCubit>().setTeacherData(

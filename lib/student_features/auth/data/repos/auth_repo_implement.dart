@@ -22,15 +22,14 @@ class AuthRepoImplement implements AuthRepo {
         endPoint: EndPoint.signIn,
         data: {ApiKey.userName: name, ApiKey.password: password},
       );
+
       LoginModel loginModel = LoginModel.fromJson(data);
       return right(loginModel);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));
       }
-      return left(
-        ServerFailure(e.toString()),
-      );
+      return left(ServerFailure(e.toString()));
     }
   }
 
@@ -41,7 +40,7 @@ class AuthRepoImplement implements AuthRepo {
     required String email,
     required String password,
     required String phone,
-    required String address,
+    required String studentLevel,
     required String image,
   }) async {
     try {
@@ -52,7 +51,7 @@ class AuthRepoImplement implements AuthRepo {
           ApiKey.email: email,
           ApiKey.password: password,
           ApiKey.phone: phone,
-          ApiKey.address: address,
+          ApiKey.address: studentLevel,
           ApiKey.image: image,
         },
       );
@@ -62,9 +61,7 @@ class AuthRepoImplement implements AuthRepo {
       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));
       }
-      return left(
-        ServerFailure(e.toString()),
-      );
+      return left(ServerFailure(e.toString()));
     }
   }
 
@@ -96,9 +93,7 @@ class AuthRepoImplement implements AuthRepo {
       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));
       }
-      return left(
-        ServerFailure(e.toString()),
-      );
+      return left(ServerFailure(e.toString()));
     }
   }
 }

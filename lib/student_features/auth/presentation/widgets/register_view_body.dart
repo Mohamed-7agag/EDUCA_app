@@ -27,7 +27,7 @@ class RegisterViewBody extends StatelessWidget {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController addressController = TextEditingController();
-  String classOptionValue = '';
+  String studentLevel = '';
 
   @override
   Widget build(BuildContext context) {
@@ -164,7 +164,7 @@ class RegisterViewBody extends StatelessWidget {
                                             context
                                                 .read<ClassOptionCubit>()
                                                 .changeState(val.toString());
-                                            classOptionValue = classOptionState;
+                                            studentLevel = classOptionState;
                                           },
                                           isExpanded: true,
                                           items: classOptionsValues
@@ -195,9 +195,11 @@ class RegisterViewBody extends StatelessWidget {
                             Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 20),
+                              //? use bloc builder here
                               child: CustomButton(
                                   text: "أنشاء",
                                   onpressed: () {
+                                    //* we need to save option state in shared preferences to use it in login view (student or teacher)
                                     if (formKey.currentState!.validate()) {
                                       registerValidation(
                                         context,
@@ -206,7 +208,7 @@ class RegisterViewBody extends StatelessWidget {
                                         emailController,
                                         phoneController,
                                         passwordController,
-                                        classOptionValue,
+                                        studentLevel,
                                       );
                                     }
                                   }),

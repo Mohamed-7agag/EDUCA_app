@@ -6,7 +6,10 @@ abstract class ApiRequests {
     Map<String, dynamic>? queryParameters,
   });
   //? Post Method
-  Future<dynamic> post({required String endPoint, Object? data});
+  Future<dynamic> post({
+    required String endPoint,
+    Object? data,
+  });
 
   //? Patch Method
   Future<dynamic> patch(
