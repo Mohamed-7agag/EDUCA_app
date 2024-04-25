@@ -1,7 +1,6 @@
 import 'package:field_training_app/Core/utils/app_services.dart';
 import 'package:field_training_app/student_features/auth/data/repos/auth_repo_implement.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/auth_cubit/auth_cubit.dart';
-import 'package:field_training_app/teacher_features/teacher/presentation/views/terms.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
