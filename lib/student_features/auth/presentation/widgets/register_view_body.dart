@@ -223,7 +223,6 @@ class RegisterViewBody extends StatelessWidget {
                                     //   errorCherryToast(context, "حدث خطأ",
                                     //       "يرجى تحديد نوع المستخدم");
                                     // }
-                                    //* we need to save option state in shared preferences to use it in login view (student or teacher)
                                     if (formKey.currentState!.validate() &&
                                         optionState != "") {
                                       registerValidation(
