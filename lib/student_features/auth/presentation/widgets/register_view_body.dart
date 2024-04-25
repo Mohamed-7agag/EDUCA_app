@@ -2,7 +2,10 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
+import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
+import 'package:field_training_app/cache/cache_helper.dart';
 import 'package:field_training_app/student_features/auth/helper/register_validation.dart';
+import 'package:field_training_app/student_features/auth/presentation/view_model/auth_cubit/auth_cubit.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/class_option_cubit.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/user_cubit.dart';
 import 'package:field_training_app/student_features/auth/presentation/widgets/custom_text_field.dart';
@@ -73,27 +76,30 @@ class RegisterViewBody extends StatelessWidget {
                     keyboardType: TextInputType.emailAddress,
                   ),
                   SizedBox(height: 28.h),
-                  BlocBuilder<PasswordVisibilityCubit, bool>(
-                    builder: (context, state) {
-                      return CustomTextField(
-                        controller: passwordController,
-                        hintText: "كلمة السر",
-                        obscureText: state,
-                        keyboardType: TextInputType.visiblePassword,
-                        suffixIcon: IconButton(
-                          onPressed: () {
-                            context
-                                .read<PasswordVisibilityCubit>()
-                                .changeState();
-                          },
-                          icon: state == true
-                              ? const Icon(Icons.visibility_rounded,
-                                  color: kPrimaryColor)
-                              : const Icon(Icons.visibility_off_rounded,
-                                  color: kPrimaryColor),
-                        ),
-                      );
-                    },
+                  BlocProvider(
+                    create: (context) => PasswordVisibilityCubit(),
+                    child: BlocBuilder<PasswordVisibilityCubit, bool>(
+                      builder: (context, state) {
+                        return CustomTextField(
+                          controller: passwordController,
+                          hintText: "كلمة السر",
+                          obscureText: state,
+                          keyboardType: TextInputType.visiblePassword,
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              context
+                                  .read<PasswordVisibilityCubit>()
+                                  .changeState();
+                            },
+                            icon: state == true
+                                ? const Icon(Icons.visibility_rounded,
+                                    color: kPrimaryColor)
+                                : const Icon(Icons.visibility_off_rounded,
+                                    color: kPrimaryColor),
+                          ),
+                        );
+                      },
+                    ),
                   ),
                   SizedBox(height: 28.h),
                   CustomTextField(
@@ -199,8 +205,27 @@ class RegisterViewBody extends StatelessWidget {
                               child: CustomButton(
                                   text: "أنشاء",
                                   onpressed: () {
+                                    // if (optionState == "طالب") {
+                                    //   CacheHelper.saveData(
+                                    //       key: optionStateKey,
+                                    //       value: optionState);
+                                    //   context
+                                    //       .read<AuthCubit>()
+                                    //       .studentRegister();
+                                    // } else if (optionState == "معلم") {
+                                    //   CacheHelper.saveData(
+                                    //       key: optionStateKey,
+                                    //       value: optionState);
+                                    //   context
+                                    //       .read<AuthCubit>()
+                                    //       .teacherRegister();
+                                    // } else {
+                                    //   errorCherryToast(context, "حدث خطأ",
+                                    //       "يرجى تحديد نوع المستخدم");
+                                    // }
                                     //* we need to save option state in shared preferences to use it in login view (student or teacher)
-                                    if (formKey.currentState!.validate()) {
+                                    if (formKey.currentState!.validate() &&
+                                        optionState != "") {
                                       registerValidation(
                                         context,
                                         optionState,
