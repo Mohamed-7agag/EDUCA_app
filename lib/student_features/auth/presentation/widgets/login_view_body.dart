@@ -99,10 +99,10 @@ class LoginViewBody extends StatelessWidget {
                   SizedBox(height: 50.h),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
-                    //? use bloc builder here
                     child: BlocConsumer<AuthCubit, AuthState>(
                       listener: (context, state) {
                         if (state is AuthLoginSuccess) {
+                          //! check if user is student or teacher then naviagte
                           Navigator.pushReplacementNamed(
                               context, Routes.customBottomBarViewRoute);
                         } else if (state is AuthLoginFailure) {

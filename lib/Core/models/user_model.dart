@@ -8,7 +8,7 @@ class UserModel {
   final String? address;
   final File? image;
   final String? studentOrTeacher;
-  final String? studentClass;
+  final String? studentLevel;
 
   UserModel(
       {this.name,
@@ -18,7 +18,7 @@ class UserModel {
       this.address,
       this.image,
       this.studentOrTeacher,
-      this.studentClass});
+      this.studentLevel});
 
   UserModel copyWith({
     String? name,
@@ -28,7 +28,7 @@ class UserModel {
     String? address,
     File? image,
     String? studentOrTeacher,
-    String? studentClass,
+    String? studentLevel,
   }) {
     return UserModel(
       name: name ?? this.name,
@@ -38,7 +38,7 @@ class UserModel {
       password: password ?? this.password,
       address: address ?? this.address,
       studentOrTeacher: studentOrTeacher ?? this.studentOrTeacher,
-      studentClass: studentClass ?? this.studentClass,
+      studentLevel: studentLevel ?? this.studentLevel,
     );
   }
 
@@ -51,7 +51,7 @@ class UserModel {
       'password': password,
       'address': address,
       'studentOrTeacher': studentOrTeacher,
-      'studentClass': studentClass,
+      'studentLevel': studentLevel,
     };
   }
 
@@ -64,7 +64,7 @@ class UserModel {
       password: json['password'] ?? '',
       address: json['address'] ?? '',
       studentOrTeacher: json['studentOrTeacher'] ?? '',
-      studentClass: json['studentClass'] ?? '',
+      studentLevel: json['studentLevel'] ?? '',
     );
   }
 }

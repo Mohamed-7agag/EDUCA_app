@@ -13,7 +13,7 @@ class UserCubit extends Cubit<UserModel> {
             image: null,
             address: '',
             studentOrTeacher: '',
-            studentClass: '',
+            studentLevel: '',
             password: '',
           ),
         );
@@ -36,7 +36,7 @@ class UserCubit extends Cubit<UserModel> {
   }
 
   void setStudentClass({required String studentClass}) {
-    emit(state.copyWith(studentClass: studentClass));
+    emit(state.copyWith(studentLevel: studentClass));
   }
 
   void setStudentImage({required File image}) {
@@ -52,7 +52,7 @@ class UserCubit extends Cubit<UserModel> {
         image: null,
         address: '',
         studentOrTeacher: '',
-        studentClass: '',
+        studentLevel: '',
         password: '',
       ),
     );
@@ -70,7 +70,7 @@ class UserCubit extends Cubit<UserModel> {
     } else if (parameter == 'studentOrTeacher') {
       emit(state.copyWith(studentOrTeacher: value));
     } else if (parameter == 'studentClass') {
-      emit(state.copyWith(studentClass: value));
+      emit(state.copyWith(studentLevel: value));
     }
   }
 }

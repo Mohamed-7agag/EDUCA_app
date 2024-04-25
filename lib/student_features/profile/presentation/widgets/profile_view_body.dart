@@ -94,13 +94,13 @@ class ProfileViewBody extends StatelessWidget {
                 SizedBox(height: 28.h),
                 ProfileItem(
                   title: "الصف الدراسي",
-                  value: student.studentClass ?? '',
+                  value: student.studentLevel ?? '',
                   iconData: Icons.school,
                   onpressed: () {
                     Navigator.pushNamed(
                       context,
                       Routes.profileSelectClassEditViewRoute,
-                      arguments: student.studentClass ?? '',
+                      arguments: student.studentLevel ?? '',
                     );
                   },
                 ),

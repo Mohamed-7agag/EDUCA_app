@@ -144,9 +144,9 @@ class RegisterViewBody extends StatelessWidget {
                             SizedBox(height: 14.h),
                             optionState == "طالب"
                                 ? BlocProvider(
-                                    create: (context) => ClassOptionCubit(),
+                                    create: (context) => StudentLevelCubit(),
                                     child:
-                                        BlocBuilder<ClassOptionCubit, String>(
+                                        BlocBuilder<StudentLevelCubit, String>(
                                       builder: (context, classOptionState) {
                                         return DropdownButton(
                                           borderRadius:
@@ -168,7 +168,7 @@ class RegisterViewBody extends StatelessWidget {
                                           ),
                                           onChanged: (val) {
                                             context
-                                                .read<ClassOptionCubit>()
+                                                .read<StudentLevelCubit>()
                                                 .changeState(val.toString());
                                             studentLevel = classOptionState;
                                           },
