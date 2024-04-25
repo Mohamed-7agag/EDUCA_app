@@ -17,8 +17,7 @@ class Terms extends StatelessWidget {
         data: const ScrollbarThemeData(
             thumbColor: MaterialStatePropertyAll(kPrimaryColor)),
         child: SingleChildScrollView(
-          controller:
-              _scrollController, 
+          controller: _scrollController,
           child: Column(
             children: [
               const Center(

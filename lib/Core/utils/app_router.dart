@@ -27,7 +27,7 @@ class AppRouter {
     switch (settings.name) {
       case Routes.splashViewRoute:
         return MaterialPageRoute(
-          builder: (context) =>  Terms(),
+          builder: (context) => const SplashView(),
         );
       case Routes.introScreensViewRoute:
         return MaterialPageRoute(
