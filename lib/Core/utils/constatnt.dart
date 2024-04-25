@@ -6,4 +6,9 @@ const Color kBackgroundColor = Color(0xFFFAFAFA);
 const Color kShadowColor = Color(0x089E9E9E);
 
 const String introScreenKey = "introScreen";
+<<<<<<< HEAD
 const String optionStateKey = "optionState";
+=======
+
+
+>>>>>>> 031f47567838b2d8b871d410629a3a03d1f975d2
