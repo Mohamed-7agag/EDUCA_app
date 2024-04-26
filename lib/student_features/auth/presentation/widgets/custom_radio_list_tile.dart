@@ -1,20 +1,17 @@
-import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:field_training_app/Core/utils/constatnt.dart';
 
 import '../../../../Core/utils/styles.dart';
 import '../view_model/register_option_cubit.dart';
 
 class CustomRadioListTile extends StatelessWidget {
   const CustomRadioListTile(
-      {super.key,
-      required this.optionState,
-      required this.index,
-      required this.value});
+      {super.key, required this.optionState, required this.value});
 
   final String optionState;
   final String value;
-  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +25,7 @@ class CustomRadioListTile extends StatelessWidget {
       title: Text(value, style: Styles.textStyle16, textAlign: TextAlign.right),
       groupValue: optionState,
       onChanged: (value) {
-        context.read<RegisterOptionCubit>().changeRegisterOption(index);
+        context.read<RegisterOptionCubit>().changeRegisterOption(value!);
       },
     );
   }

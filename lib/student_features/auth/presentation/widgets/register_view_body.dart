@@ -4,9 +4,8 @@ import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
 import 'package:field_training_app/cache/cache_helper.dart';
-import 'package:field_training_app/student_features/auth/helper/register_validation.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/auth_cubit/auth_cubit.dart';
-import 'package:field_training_app/student_features/auth/presentation/view_model/class_option_cubit.dart';
+import 'package:field_training_app/student_features/auth/presentation/view_model/student_level_cubit.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/user_cubit.dart';
 import 'package:field_training_app/student_features/auth/presentation/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +15,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../../Core/models/user_model.dart';
 import '../../../../Core/utils/routes.dart';
 import '../../../../Core/widgets/custom_user_image.dart';
-import '../view_model/password_visibility/password_visibility_cubit.dart';
+import '../view_model/password_visibility_cubit.dart';
 import '../view_model/register_option_cubit.dart';
 import 'class_option_values.dart';
 import 'custom_radio_list_tile.dart';
@@ -61,17 +60,17 @@ class RegisterViewBody extends StatelessWidget {
             ),
             SizedBox(height: 40.h),
             Form(
-              key: formKey,
+              key: context.read<AuthCubit>().formKey,
               child: Column(
                 children: [
                   CustomTextField(
-                    controller: nameController,
+                    controller: context.read<AuthCubit>().nameController,
                     hintText: "الأسم (باللغة العربية)",
                     keyboardType: TextInputType.emailAddress,
                   ),
                   SizedBox(height: 28.h),
                   CustomTextField(
-                    controller: emailController,
+                    controller: context.read<AuthCubit>().emailController,
                     hintText: "البريد الالكتروني",
                     keyboardType: TextInputType.emailAddress,
                   ),
@@ -81,7 +80,8 @@ class RegisterViewBody extends StatelessWidget {
                     child: BlocBuilder<PasswordVisibilityCubit, bool>(
                       builder: (context, state) {
                         return CustomTextField(
-                          controller: passwordController,
+                          controller:
+                              context.read<AuthCubit>().passwordController,
                           hintText: "كلمة السر",
                           obscureText: state,
                           keyboardType: TextInputType.visiblePassword,
@@ -103,7 +103,7 @@ class RegisterViewBody extends StatelessWidget {
                   ),
                   SizedBox(height: 28.h),
                   CustomTextField(
-                    controller: phoneController,
+                    controller: context.read<AuthCubit>().phoneController,
                     hintText: "رقم الجوال",
                     keyboardType: TextInputType.phone,
                   ),
@@ -128,16 +128,16 @@ class RegisterViewBody extends StatelessWidget {
                                 Expanded(
                                   flex: 4,
                                   child: CustomRadioListTile(
-                                      optionState: optionState,
-                                      value: "معلم",
-                                      index: 1),
+                                    optionState: optionState,
+                                    value: "معلم",
+                                  ),
                                 ),
                                 Expanded(
                                   flex: 3,
                                   child: CustomRadioListTile(
-                                      optionState: optionState,
-                                      value: "طالب",
-                                      index: 0),
+                                    optionState: optionState,
+                                    value: "طالب",
+                                  ),
                                 ),
                               ],
                             ),
@@ -147,7 +147,7 @@ class RegisterViewBody extends StatelessWidget {
                                     create: (context) => StudentLevelCubit(),
                                     child:
                                         BlocBuilder<StudentLevelCubit, String>(
-                                      builder: (context, classOptionState) {
+                                      builder: (context, studentLevelState) {
                                         return DropdownButton(
                                           borderRadius:
                                               BorderRadius.circular(6),
@@ -162,7 +162,7 @@ class RegisterViewBody extends StatelessWidget {
                                               .copyWith(color: Colors.black),
                                           elevation: 1,
                                           hint: Text(
-                                            classOptionState,
+                                            studentLevelState,
                                             style: GoogleFonts.tajawal(
                                                 fontSize: 13.sp),
                                           ),
@@ -170,7 +170,10 @@ class RegisterViewBody extends StatelessWidget {
                                             context
                                                 .read<StudentLevelCubit>()
                                                 .changeState(val.toString());
-                                            studentLevel = classOptionState;
+                                            context
+                                                    .read<AuthCubit>()
+                                                    .studentLevel =
+                                                studentLevelState;
                                           },
                                           isExpanded: true,
                                           items: classOptionsValues
@@ -192,7 +195,9 @@ class RegisterViewBody extends StatelessWidget {
                                   )
                                 : optionState == "معلم"
                                     ? CustomTextField(
-                                        controller: addressController,
+                                        controller: context
+                                            .read<AuthCubit>()
+                                            .addressController,
                                         hintText: "العنوان",
                                         keyboardType: TextInputType.text,
                                       )
@@ -203,39 +208,41 @@ class RegisterViewBody extends StatelessWidget {
                                   const EdgeInsets.symmetric(horizontal: 20),
                               //? use bloc builder here
                               child: CustomButton(
-                                  text: "أنشاء",
-                                  onpressed: () {
-                                    // if (optionState == "طالب") {
-                                    //   CacheHelper.saveData(
-                                    //       key: optionStateKey,
-                                    //       value: optionState);
-                                    //   context
-                                    //       .read<AuthCubit>()
-                                    //       .studentRegister();
-                                    // } else if (optionState == "معلم") {
-                                    //   CacheHelper.saveData(
-                                    //       key: optionStateKey,
-                                    //       value: optionState);
-                                    //   context
-                                    //       .read<AuthCubit>()
-                                    //       .teacherRegister();
-                                    // } else {
-                                    //   errorCherryToast(context, "حدث خطأ",
-                                    //       "يرجى تحديد نوع المستخدم");
-                                    // }
-                                    if (formKey.currentState!.validate() &&
-                                        optionState != "") {
-                                      registerValidation(
-                                        context,
-                                        optionState,
-                                        nameController,
-                                        emailController,
-                                        phoneController,
-                                        passwordController,
-                                        studentLevel,
-                                      );
-                                    }
-                                  }),
+                                text: "أنشاء",
+                                onpressed: () {
+                                  if (optionState == "طالب") {
+                                    CacheHelper.saveData(
+                                      key: optionStateKey,
+                                      value: optionState,
+                                    );
+                                    context.read<AuthCubit>().studentRegister();
+                                  } else if (optionState == "معلم") {
+                                    CacheHelper.saveData(
+                                      key: optionStateKey,
+                                      value: optionState,
+                                    );
+                                    context.read<AuthCubit>().teacherRegister();
+                                  } else {
+                                    errorCherryToast(
+                                      context,
+                                      "حدث خطأ",
+                                      "يرجى تحديد نوع المستخدم"
+                                    );
+                                  }
+                                  // if (formKey.currentState!.validate() &&
+                                  //     optionState != "") {
+                                  //   registerValidation(
+                                  //     context,
+                                  //     optionState,
+                                  //     nameController,
+                                  //     emailController,
+                                  //     phoneController,
+                                  //     passwordController,
+                                  //     studentLevel,
+                                  //   );
+                                  // }
+                                },
+                              ),
                             ),
                           ],
                         );

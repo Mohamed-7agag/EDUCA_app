@@ -1,12 +1,13 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/routes.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
+import 'package:field_training_app/cache/cache_helper.dart';
 import 'package:field_training_app/teacher_features/teacher/data/course_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class Terms extends StatelessWidget {
-  Terms({super.key});
+class TermsView extends StatelessWidget {
+  TermsView({super.key});
   final _scrollController = ScrollController();
 
   @override
@@ -72,6 +73,7 @@ class Terms extends StatelessWidget {
                     style: TextStyle(color: Colors.white, fontSize: 20.sp),
                   ),
                   onPressed: () {
+                    CacheHelper.saveData(key: termsKey, value: true);
                     Navigator.pushReplacementNamed(
                         context, Routes.customBottomBarForTeacherViewRoute);
                   },

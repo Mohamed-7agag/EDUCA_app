@@ -7,5 +7,6 @@ const Color kShadowColor = Color(0x089E9E9E);
 
 const String introScreenKey = "introScreen";
 const String optionStateKey = "optionState";
+const String termsKey = "terms";
 
 

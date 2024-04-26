@@ -1,3 +1,4 @@
+import 'package:field_training_app/cache/cache_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,7 +13,7 @@ import 'package:field_training_app/student_features/auth/presentation/widgets/cu
 import 'package:field_training_app/student_features/auth/presentation/widgets/custom_text_field.dart';
 
 import '../../../../Core/utils/routes.dart';
-import '../view_model/password_visibility/password_visibility_cubit.dart';
+import '../view_model/password_visibility_cubit.dart';
 
 class LoginViewBody extends StatelessWidget {
   const LoginViewBody({super.key});
@@ -102,9 +103,14 @@ class LoginViewBody extends StatelessWidget {
                     child: BlocConsumer<AuthCubit, AuthState>(
                       listener: (context, state) {
                         if (state is AuthLoginSuccess) {
-                          //! check if user is student or teacher then naviagte
-                          Navigator.pushReplacementNamed(
-                              context, Routes.customBottomBarViewRoute);
+                          if (CacheHelper.getData(key: optionStateKey) ==
+                              "طالب") {
+                            Navigator.pushReplacementNamed(
+                                context, Routes.customBottomBarViewRoute);
+                          } else {
+                            Navigator.pushReplacementNamed(context,
+                                Routes.customBottomBarForTeacherViewRoute);
+                          }
                         } else if (state is AuthLoginFailure) {
                           errorCherryToast(
                               context, "حدث خطا", state.errMessage);
