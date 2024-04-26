@@ -3,6 +3,7 @@ import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
+import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
 import 'package:field_training_app/cache/cache_helper.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/auth_cubit/auth_cubit.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/student_level_cubit.dart';
@@ -207,40 +208,53 @@ class RegisterViewBody extends StatelessWidget {
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 20),
                               //? use bloc builder here
-                              child: CustomButton(
-                                text: "أنشاء",
-                                onpressed: () {
-                                  if (optionState == "طالب") {
+                              child: BlocConsumer<AuthCubit, AuthState>(
+                                listener: (context, state) {
+                                  if (state is AuthRegisterSuccess) {
                                     CacheHelper.saveData(
                                       key: optionStateKey,
                                       value: optionState,
                                     );
-                                    context.read<AuthCubit>().studentRegister();
-                                  } else if (optionState == "معلم") {
-                                    CacheHelper.saveData(
-                                      key: optionStateKey,
-                                      value: optionState,
+
+                                    successCherryToast(
+                                      context,
+                                      "عملية ناجحة",
+                                      "تم تسجيل حسابك بنجاح",
                                     );
-                                    context.read<AuthCubit>().teacherRegister();
-                                  } else {
+
+                                    Navigator.pushNamed(
+                                        context, Routes.loginViewRoute);
+                                  } else if (state is AuthRegisterFailure) {
                                     errorCherryToast(
                                       context,
                                       "حدث خطأ",
-                                      "يرجى تحديد نوع المستخدم"
+                                      state.errMessage,
                                     );
                                   }
-                                  // if (formKey.currentState!.validate() &&
-                                  //     optionState != "") {
-                                  //   registerValidation(
-                                  //     context,
-                                  //     optionState,
-                                  //     nameController,
-                                  //     emailController,
-                                  //     phoneController,
-                                  //     passwordController,
-                                  //     studentLevel,
-                                  //   );
-                                  // }
+                                },
+                                builder: (context, state) {
+                                  return state is AuthRegisterLoading
+                                      ? const CustomLoadingWidget()
+                                      : CustomButton(
+                                          text: "أنشاء",
+                                          onpressed: () {
+                                            if (optionState == "طالب") {
+                                              context
+                                                  .read<AuthCubit>()
+                                                  .studentRegister();
+                                            } else if (optionState == "معلم") {
+                                              context
+                                                  .read<AuthCubit>()
+                                                  .teacherRegister();
+                                            } else {
+                                              errorCherryToast(
+                                                context,
+                                                "حدث خطأ",
+                                                "يرجي ملئ جميع البيانات",
+                                              );
+                                            }
+                                          },
+                                        );
                                 },
                               ),
                             ),
@@ -262,13 +276,13 @@ class RegisterViewBody extends StatelessWidget {
                   },
                   child: Text(
                     "تسجيل",
-                    style: Styles.textStyle16.copyWith(
-                        fontSize: 15.sp,
-                        color: kPrimaryColor,
-                        fontWeight: FontWeight.w600),
+                    style: Styles.textStyle14.copyWith(
+                      color: kPrimaryColor,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
-                const Text(" لديك بالفعل حساب ؟"),
+                Text(" لديك بالفعل حساب ؟", style: Styles.textStyle12),
               ],
             ),
             SizedBox(height: 10.h),

@@ -139,13 +139,13 @@ class LoginViewBody extends StatelessWidget {
                         },
                         child: Text(
                           "أنشاء",
-                          style: Styles.textStyle16.copyWith(
-                              fontSize: 15.sp,
-                              color: kPrimaryColor,
-                              fontWeight: FontWeight.w600),
+                          style: Styles.textStyle14.copyWith(
+                            color: kPrimaryColor,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ),
-                      const Text(" ليس لديك حساب ؟"),
+                      Text(" ليس لديك حساب ؟", style: Styles.textStyle12),
                     ],
                   ),
                   SizedBox(height: 20.h),

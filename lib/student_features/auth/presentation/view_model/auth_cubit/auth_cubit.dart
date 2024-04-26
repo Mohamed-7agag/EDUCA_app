@@ -55,7 +55,7 @@ class AuthCubit extends Cubit<AuthState> {
       );
       result.fold((failure) {
         emit(AuthRegisterFailure(errMessage: failure.errMessage));
-      }, (loginModel) {
+      }, (registerModel) {
         emit(AuthRegisterSuccess());
       });
     }
@@ -75,7 +75,7 @@ class AuthCubit extends Cubit<AuthState> {
       );
       result.fold((failure) {
         emit(AuthRegisterFailure(errMessage: failure.errMessage));
-      }, (loginModel) {
+      }, (registerModel) {
         emit(AuthRegisterSuccess());
       });
     }
