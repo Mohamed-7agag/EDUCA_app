@@ -39,6 +39,7 @@ class RegisterViewBody extends StatelessWidget {
               textAlign: TextAlign.right,
             ),
             SizedBox(height: 25.h),
+            //! need to edit this to get user image and pass it to cubit and get it from there
             BlocBuilder<UserCubit, UserModel>(
               builder: (context, user) {
                 return CustomUserImage(
