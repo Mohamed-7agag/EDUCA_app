@@ -33,7 +33,7 @@ class MyCoursesItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SizedBox(
-              height: 120.h,
+              height: 110.h,
               child: Stack(
                 fit: StackFit.expand,
                 children: [
@@ -48,8 +48,8 @@ class MyCoursesItem extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    top: 5.h,
-                    left: 5.w,
+                    top: 4.h,
+                    left: 4.w,
                     child: IconButton(
                       onPressed: () {
                         AwesomeDialog(
@@ -75,7 +75,7 @@ class MyCoursesItem extends StatelessWidget {
                         shape: MaterialStatePropertyAll(
                           RoundedRectangleBorder(
                             borderRadius: BorderRadiusDirectional.all(
-                                Radius.circular(5.r)),
+                                Radius.circular(4.r)),
                           ),
                         ),
                       ),
@@ -94,18 +94,29 @@ class MyCoursesItem extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Text("حسين علي",
-                          style: Styles.textStyle14.copyWith(
-                              fontWeight: FontWeight.bold, fontSize: 12.sp)),
+                          style: Styles.textStyle14
+                              .copyWith(fontWeight: FontWeight.bold)),
                       SizedBox(width: 6.w),
                       CircleAvatar(
-                          radius: 12.r, backgroundColor: kPrimaryColor),
+                          radius: 13.r, backgroundColor: kPrimaryColor),
                     ],
                   ),
                   SizedBox(height: 10.h),
-                  Text(
-                    "مادة الرياضيات",
-                    style: Styles.textStyle14,
-                    textAlign: TextAlign.right,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        "الرياضيات",
+                        style: Styles.textStyle14,
+                        textAlign: TextAlign.right,
+                      ),
+                      SizedBox(width: 5.w),
+                      Icon(
+                        Icons.import_contacts_rounded,
+                        color: kPrimaryColor,
+                        size: 18.sp,
+                      ),
+                    ],
                   ),
                   SizedBox(height: 6.h),
                   Text(

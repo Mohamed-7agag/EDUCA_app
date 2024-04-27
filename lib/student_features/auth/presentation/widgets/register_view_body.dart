@@ -22,15 +22,7 @@ import 'class_option_values.dart';
 import 'custom_radio_list_tile.dart';
 
 class RegisterViewBody extends StatelessWidget {
-  RegisterViewBody({super.key});
-
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  TextEditingController phoneController = TextEditingController();
-  TextEditingController nameController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController addressController = TextEditingController();
-  String studentLevel = '';
+  const RegisterViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {

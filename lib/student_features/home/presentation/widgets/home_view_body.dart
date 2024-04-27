@@ -123,7 +123,7 @@ class HomeViewBody extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(right: 20),
             child: SizedBox(
-              height: 230.h,
+              height: 235.h,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 reverse: true,
@@ -150,7 +150,7 @@ class HomeViewBody extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(right: 20),
             child: SizedBox(
-              height: 230.h,
+              height: 235.h,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 reverse: true,

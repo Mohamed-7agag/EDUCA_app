@@ -104,12 +104,12 @@ class LoginViewBody extends StatelessWidget {
                       listener: (context, state) {
                         if (state is AuthLoginSuccess) {
                           if (CacheHelper.getData(key: optionStateKey) ==
-                              "طالب") {
+                              "معلم") {
                             Navigator.pushReplacementNamed(
-                                context, Routes.customBottomBarViewRoute);
+                                context, Routes.customBottomBarForTeacherViewRoute);
                           } else {
                             Navigator.pushReplacementNamed(context,
-                                Routes.customBottomBarForTeacherViewRoute);
+                                Routes.customBottomBarViewRoute);
                           }
                         } else if (state is AuthLoginFailure) {
                           errorCherryToast(

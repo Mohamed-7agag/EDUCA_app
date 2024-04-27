@@ -23,7 +23,7 @@ class ProfileViewBody extends StatelessWidget {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                SizedBox(height: 16.h),
+                SizedBox(height: 20.h),
                 CustomUserImage(
                   user: student,
                   radius: 55.r,
@@ -37,6 +37,7 @@ class ProfileViewBody extends StatelessWidget {
                     style: Styles.textStyle24
                         .copyWith(fontWeight: FontWeight.w600),
                     textAlign: TextAlign.center),
+                SizedBox(height: 2.h),
                 Text(student.email ?? '',
                     style: Styles.textStyle16, textAlign: TextAlign.center),
                 SizedBox(height: 50.h),
@@ -104,7 +105,7 @@ class ProfileViewBody extends StatelessWidget {
                     );
                   },
                 ),
-                SizedBox(height: 35.h),
+                SizedBox(height: 30.h),
                 CustomButton(
                     text: "تسجيل الخروج",
                     onpressed: () {
