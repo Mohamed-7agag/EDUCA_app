@@ -25,7 +25,6 @@ class ProfileViewBody extends StatelessWidget {
               children: [
                 SizedBox(height: 20.h),
                 CustomUserImage(
-                  user: student,
                   radius: 55.r,
                   iconSize: 50,
                   right: 112.w,

@@ -7,13 +7,11 @@ import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
 import 'package:field_training_app/cache/cache_helper.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/auth_cubit/auth_cubit.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/student_level_cubit.dart';
-import 'package:field_training_app/student_features/auth/presentation/view_model/user_cubit.dart';
 import 'package:field_training_app/student_features/auth/presentation/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../../Core/models/user_model.dart';
 import '../../../../Core/utils/routes.dart';
 import '../../../../Core/widgets/custom_user_image.dart';
 import '../view_model/password_visibility_cubit.dart';
@@ -40,17 +38,12 @@ class RegisterViewBody extends StatelessWidget {
             ),
             SizedBox(height: 25.h),
             //! need to edit this to get user image and pass it to cubit and get it from there
-            BlocBuilder<UserCubit, UserModel>(
-              builder: (context, user) {
-                return CustomUserImage(
-                  user: user,
-                  radius: 50.r,
-                  cameraSize: 20,
-                  iconSize: 45,
-                  right: 115.w,
-                  top: 70.h,
-                );
-              },
+            CustomUserImage(
+              radius: 50.r,
+              cameraSize: 20,
+              iconSize: 45,
+              right: 115.w,
+              top: 70.h,
             ),
             SizedBox(height: 40.h),
             Form(

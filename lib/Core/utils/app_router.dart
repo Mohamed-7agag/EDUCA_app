@@ -15,6 +15,7 @@ import 'package:field_training_app/student_features/my_courses/presentation/view
 import 'package:field_training_app/student_features/profile/presentation/views/profile_edit_view.dart';
 import 'package:field_training_app/student_features/search/presentation/views/search_view.dart';
 
+import '../../student_features/auth/presentation/view_model/change_profile_image.dart';
 import '../../student_features/bottom_bar/presentation/view_model/bottom_bar_cubit.dart';
 import '../../student_features/notification/presentation/views/notification_view.dart';
 import '../../student_features/profile/presentation/views/profile_select_class_edit_view.dart';
@@ -42,8 +43,15 @@ class AppRouter {
         );
       case Routes.registerViewRoute:
         return MaterialPageRoute(
-          builder: (context) => BlocProvider(
-            create: (context) => AuthCubit(getIt.get<AuthRepoImplement>()),
+          builder: (context) => MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => AuthCubit(getIt.get<AuthRepoImplement>()),
+              ),
+              BlocProvider(
+                create: (context) => ChangeProfileImageCubit(),
+              ),
+            ],
             child: const RegisterView(),
           ),
         );
