@@ -6,7 +6,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:field_training_app/Core/api_services/end_points.dart';
 import 'package:field_training_app/cache/cache_helper.dart';
 import 'package:field_training_app/student_features/auth/data/repos/auth_repo.dart';
-import 'package:field_training_app/student_features/auth/helper/upload_image_to_api.dart';
 
 part 'auth_state.dart';
 
@@ -51,11 +50,12 @@ class AuthCubit extends Cubit<AuthState> {
         password: passwordController.text.trim(),
         phone: phoneController.text.trim(),
         studentLevel: studentLevel,
-        image: await uploadImageToApi(image!),
+        //image: image != null ? await uploadImageToApi(image!) : "",
+        image: image != null ?image!.path : "",
       );
       result.fold((failure) {
         emit(AuthRegisterFailure(errMessage: failure.errMessage));
-      }, (loginModel) {
+      }, (registerModel) {
         emit(AuthRegisterSuccess());
       });
     }
@@ -71,13 +71,14 @@ class AuthCubit extends Cubit<AuthState> {
         password: passwordController.text.trim(),
         phone: phoneController.text.trim(),
         address: addressController.text.trim(),
-        image: await uploadImageToApi(image!),
+        image: image != null ? image!.path : "",
       );
       result.fold((failure) {
         emit(AuthRegisterFailure(errMessage: failure.errMessage));
-      }, (loginModel) {
+      }, (registerModel) {
         emit(AuthRegisterSuccess());
       });
     }
   }
+
 }

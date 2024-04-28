@@ -26,13 +26,13 @@ class CourseDetailsViewBody extends StatelessWidget {
             Positioned(
               bottom: -25.h,
               child: Container(
-                height: 70.h,
+                height: 60.h,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(50.r),
-                      topRight: Radius.circular(50.r),
+                      topLeft: Radius.circular(40.r),
+                      topRight: Radius.circular(40.r),
                     )),
               ),
             ),
@@ -133,10 +133,26 @@ class CourseDetailsViewBody extends StatelessWidget {
                 "هي مادة للصف الثالث الثانوي و تحتوي علي 6 فصول و كل فصل يحتوي علي 3 دروس",
                 style: Styles.textStyle14,
                 textDirection: TextDirection.rtl,
-                maxLines: 4,
+                maxLines: 3,
                 overflow: TextOverflow.ellipsis,
               ),
               SizedBox(height: 25.h),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "3",
+                    style: Styles.textStyle16.copyWith(color: kPrimaryColor),
+                    textDirection: TextDirection.rtl,
+                  ),
+                  Text(
+                    "عدد الاختبارات لهذه المادة :  ",
+                    style: Styles.textStyle12.copyWith(color: Colors.grey),
+                    textDirection: TextDirection.rtl,
+                  ),
+                ],
+              ),
+              SizedBox(height: 20.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

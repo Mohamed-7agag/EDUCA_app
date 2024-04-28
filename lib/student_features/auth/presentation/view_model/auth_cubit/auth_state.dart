@@ -28,3 +28,9 @@ final class AuthRegisterFailure extends AuthState {
 
   const AuthRegisterFailure({required this.errMessage});
 }
+
+final class AuthRegisterImageSuccess extends AuthState {
+  final XFile image;
+
+  const AuthRegisterImageSuccess({required this.image});
+}

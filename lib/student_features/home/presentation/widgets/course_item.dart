@@ -95,23 +95,34 @@ class CourseItem extends StatelessWidget {
                               fontWeight: FontWeight.bold, fontSize: 12.sp)),
                       SizedBox(width: 6.w),
                       CircleAvatar(
-                          radius: 11.r, backgroundColor: kPrimaryColor),
+                          radius: 12.r, backgroundColor: kPrimaryColor),
                     ],
                   ),
                   SizedBox(height: 10.h),
-                  Text(
-                    "مادة الرياضيات",
-                    style: Styles.textStyle14,
-                    textAlign: TextAlign.right,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        "الرياضيات",
+                        style: Styles.textStyle14,
+                        textAlign: TextAlign.right,
+                      ),
+                      SizedBox(width: 5.w),
+                      Icon(
+                        Icons.import_contacts_rounded,
+                        color: kPrimaryColor,
+                        size: 18.sp,
+                      ),
+                    ],
                   ),
-                  SizedBox(height: 4.h),
+                  SizedBox(height: 8.h),
                   Text(
                     "للصف الاول الاعدادي / ترم أول",
-                    style: Styles.textStyle14,
+                    style: Styles.textStyle12,
                     textDirection: TextDirection.rtl,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  SizedBox(height: 4.h),
+                  SizedBox(height: 6.h),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -125,7 +136,7 @@ class CourseItem extends StatelessWidget {
                       SizedBox(width: 5.w),
                       Text(
                         "سعر الحصة : ",
-                        style: Styles.textStyle14,
+                        style: Styles.textStyle12,
                         textAlign: TextAlign.right,
                         textDirection: TextDirection.rtl,
                       ),
