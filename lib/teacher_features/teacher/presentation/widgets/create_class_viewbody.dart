@@ -38,6 +38,10 @@ class CreateClassViewBody extends StatelessWidget {
                       onSelected: (value) {
                         BlocProvider.of<DropDownListCubit>(context)
                             .changeIndexDropDownListLevel(value);
+                        BlocProvider.of<DropDownListCubit>(context)
+                            .changeIndexDropDownListsubject(subfo[
+                                BlocProvider.of<DropDownListCubit>(context)
+                                    .lev]![0]);
                       },
                       listItemBuilder: classOptionsValues,
                     ),
@@ -52,7 +56,10 @@ class CreateClassViewBody extends StatelessWidget {
                         BlocProvider.of<DropDownListCubit>(context)
                             .changeIndexDropDownListsubject(value);
                       },
-                      listItemBuilder: courses,
+                      listItemBuilder: subfo[
+                              BlocProvider.of<DropDownListCubit>(context)
+                                  .lev] ??
+                          subfo["الصف الاول الابتدائي"]!,
                     ),
                     SizedBox(height: 35.h),
                     Row(

@@ -6,13 +6,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class Terms extends StatelessWidget {
   final _scrollController = ScrollController();
 
-  Terms({Key? key}) : super(key: key);
+  Terms({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: const Text('الشروط والتعليمات')),
+        title: const Center(child: Text('الشروط والتعليمات')),
       ),
       body: ScrollbarTheme(
         data: const ScrollbarThemeData(

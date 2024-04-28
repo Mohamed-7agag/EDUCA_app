@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DropDownListCubit extends Cubit<String> {
   DropDownListCubit() : super("اختر");
-  String lev = "اختر الصف الدراسي";
-  String sub = "اخنر المادة الدراسية";
+  String lev = " الصف الاول الدراسي";
+  String sub = "اللغة العربية";
   String price = "اختر السعر";
   String term = "اختر الترم";
   TextEditingController descriptionController = TextEditingController();

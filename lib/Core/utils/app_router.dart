@@ -1,6 +1,8 @@
 import 'package:field_training_app/Core/utils/app_services.dart';
 import 'package:field_training_app/student_features/auth/data/repos/auth_repo_implement.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/auth_cubit/auth_cubit.dart';
+import 'package:field_training_app/teacher_features/teacher/presentation/views/create_class.dart';
+import 'package:field_training_app/teacher_features/teacher/presentation/views_model/cubit/drop_down_list_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,6 +16,7 @@ import 'package:field_training_app/student_features/my_courses/presentation/view
 import 'package:field_training_app/student_features/profile/presentation/views/profile_edit_view.dart';
 import 'package:field_training_app/student_features/search/presentation/views/search_view.dart';
 
+
 import '../../student_features/bottom_bar/presentation/view_model/bottom_bar_cubit.dart';
 import '../../student_features/notification/presentation/views/notification_view.dart';
 import '../../student_features/profile/presentation/views/profile_select_class_edit_view.dart';
@@ -21,12 +24,20 @@ import '../../student_features/profile/presentation/views/profile_view.dart';
 import '../../student_features/splash/presentation/views/splash_view.dart';
 import '../../teacher_features/bottom_bar_teacher/presentation/views/custom_bottom_bar.dart';
 
+
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case Routes.splashViewRoute:
+      // case Routes.splashViewRoute:
+      //   return MaterialPageRoute(
+      //     builder: (context) => const SplashView(),
+      //   );
+       case Routes.splashViewRoute:
         return MaterialPageRoute(
-          builder: (context) => const SplashView(),
+          builder: (context) => BlocProvider(
+            create: (context) => DropDownListCubit(),
+            child: const CreateClassView(),
+          ),
         );
       case Routes.introScreensViewRoute:
         return MaterialPageRoute(
