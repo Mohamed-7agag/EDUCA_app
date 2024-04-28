@@ -30,7 +30,7 @@ void bottomSheet(BuildContext context) {
                         await picker.pickImage(source: ImageSource.camera);
                     if (pickedFile != null) {
                       context.read<AuthCubit>().image = pickedFile;
-                      context.read<ChangeProfileImageCubit>().changeState(pickedFile);
+                      context.read<ChangeProfileImageCubit>().changeImage(pickedFile);
                     }
                     Navigator.of(context).pop();
                   },
@@ -59,7 +59,7 @@ void bottomSheet(BuildContext context) {
                         await picker.pickImage(source: ImageSource.gallery);
                     if (pickedFile != null) {
                       context.read<AuthCubit>().image = pickedFile;
-                      context.read<ChangeProfileImageCubit>().changeState(pickedFile);
+                      context.read<ChangeProfileImageCubit>().changeImage(pickedFile);
                     }
                     Navigator.of(context).pop();
                   },

@@ -4,7 +4,7 @@ import 'package:image_picker/image_picker.dart';
 class ChangeProfileImageCubit extends Cubit<XFile?> {
   ChangeProfileImageCubit() : super(null);
 
-  void changeState(XFile? image) {
+  void changeImage(XFile? image) {
     emit(image!);
   }
 }
