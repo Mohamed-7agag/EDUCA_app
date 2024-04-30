@@ -9,7 +9,10 @@ class CourseListViewBuider extends StatelessWidget {
     return ListView.builder(
       itemCount: 10,
       itemBuilder: (context, index) {
-        return const CourseListViewItem();
+        return const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: CourseListViewItem(),
+        );
       },
     );
   }
