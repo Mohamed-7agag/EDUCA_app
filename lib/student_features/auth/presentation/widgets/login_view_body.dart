@@ -92,12 +92,7 @@ class LoginViewBody extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(height: 20.h),
-                  Text(
-                    "نسيت كلمة السر ؟",
-                    style: Styles.textStyle14.copyWith(color: kPrimaryColor),
-                  ),
-                  SizedBox(height: 50.h),
+                  SizedBox(height: 100.h),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: BlocConsumer<AuthCubit, AuthState>(
@@ -105,11 +100,11 @@ class LoginViewBody extends StatelessWidget {
                         if (state is AuthLoginSuccess) {
                           if (CacheHelper.getData(key: optionStateKey) ==
                               "معلم") {
-                            Navigator.pushReplacementNamed(
-                                context, Routes.customBottomBarForTeacherViewRoute);
-                          } else {
                             Navigator.pushReplacementNamed(context,
-                                Routes.customBottomBarViewRoute);
+                                Routes.customBottomBarForTeacherViewRoute);
+                          } else {
+                            Navigator.pushReplacementNamed(
+                                context, Routes.customBottomBarViewRoute);
                           }
                         } else if (state is AuthLoginFailure) {
                           errorCherryToast(

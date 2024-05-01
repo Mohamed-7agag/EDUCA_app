@@ -1,50 +1,50 @@
-import 'package:field_training_app/Core/utils/routes.dart';
 import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
+import 'package:field_training_app/student_features/auth/presentation/view_model/auth_cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../Core/utils/app_regex.dart';
-import '../presentation/view_model/user_cubit.dart';
 
-void registerValidation(
-  BuildContext context,
-  String optionState,
-  TextEditingController nameController,
-  TextEditingController emailController,
-  TextEditingController phoneController,
-  TextEditingController passwordController,
-  String studentLevel 
-) {
-  if (!AppRegex.isArabic(nameController.text)) {
-    errorCherryToast(context, "حدث خطأ", 'يجب ان يكون الأسم باللغة العربية');
-  } else if (!AppRegex.isEmailValid(emailController.text)) {
-    errorCherryToast(context, "حدث خطأ", 'البريد الالكتروني غير صحيح');
-  } else if (!AppRegex.isPhoneNumberValid(phoneController.text)) {
-    errorCherryToast(context, "حدث خطأ", 'رقم الجوال غير صحيح');
-  } else if (!AppRegex.hasMinLength(passwordController.text)) {
-    errorCherryToast(context, "حدث خطأ", 'كلمة المرور قصيرة جداً');
-  } else {
-    if (optionState == 'طالب') {
-      context.read<UserCubit>().setStudentData(
-          name: nameController.text,
-          email: emailController.text,
-          phone: phoneController.text,
-          password: passwordController.text,
-          studentClass: studentLevel,
-          studentOrTeacher: optionState);
+void registerValidation(BuildContext context, String optionState) {
+  if (context.read<AuthCubit>().formKey.currentState!.validate()) {
+    // if (!AppRegex.isArabic(context.read<AuthCubit>().nameController.text)) {
+    //   errorCherryToast(context, "حدث خطأ", 'يجب ان يكون الأسم باللغة العربية');
+    // } else
+    if (!AppRegex.isEmailValid(
+        context.read<AuthCubit>().emailController.text)) {
+      errorCherryToast(context, "حدث خطأ", 'البريد الالكتروني غير صحيح');
+    } else if (!AppRegex.hasMinLength(
+        context.read<AuthCubit>().passwordController.text)) {
+      errorCherryToast(context, "حدث خطأ", 'كلمة المرور قصيرة جداً');
+    } else if (!AppRegex.hasLowerCase(
+        context.read<AuthCubit>().passwordController.text)) {
+      errorCherryToast(
+          context, "حدث خطأ", 'يجب ان يحتوي كلمة المرور علي (a-z)');
+    } else if (!AppRegex.hasUpperCase(
+        context.read<AuthCubit>().passwordController.text)) {
+      errorCherryToast(
+          context, "حدث خطأ", 'يجب ان يحتوي كلمة المرور علي (A-Z)');
+    } else if (!AppRegex.hasNumber(
+        context.read<AuthCubit>().passwordController.text)) {
+      errorCherryToast(context, "حدث خطأ", 'يجب ان يحتوي كلمة المرور علي رقم');
+    } else if (!AppRegex.hasSpecialCharacter(
+        context.read<AuthCubit>().passwordController.text)) {
+      errorCherryToast(context, "حدث خطأ", 'يجب ان يحتوي كلمة المرور علي رمز');
+    } else if (!AppRegex.isPhoneNumberValid(
+        context.read<AuthCubit>().phoneController.text)) {
+      errorCherryToast(context, "حدث خطأ", 'رقم الجوال غير صحيح');
     } else {
-      // context.read<TeacherCubit>().setTeacherData(
-      //       name: nameController.text,
-      //       email: emailController.text,
-      //       phone: phoneController.text,
-      //       password: passwordController.text,
-      //       studentOrTeacher: optionState,
-      //     );
+      if (optionState == 'طالب') {
+        if (context.read<AuthCubit>().studentLevel != "أختر الصف الدراسي" &&
+            context.read<AuthCubit>().studentLevel != "") {
+          context.read<AuthCubit>().studentRegister();
+        } else {
+          errorCherryToast(context, "حدث خطأ", 'يرجي تحديد صف دراسي');
+        }
+      } else if (optionState == "معلم") {
+        context.read<AuthCubit>().teacherRegister();
+      } else {
+        errorCherryToast(context, "حدث خطأ", 'يرجي تحديد نوع المستخدم');
+      }
     }
-    successCherryToast(
-      context,
-      "تم التسجيل بنجاح",
-      'قم بتاكيد البريد الالكتروني لتفعيل حسابك',
-    );
-    Navigator.pushNamed(context, Routes.loginViewRoute);
   }
 }

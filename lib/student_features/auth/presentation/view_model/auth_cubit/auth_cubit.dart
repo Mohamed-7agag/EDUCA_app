@@ -15,6 +15,8 @@ class AuthCubit extends Cubit<AuthState> {
   final AuthRepo authRepo;
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  TextEditingController firstNameController = TextEditingController();
+  TextEditingController lastNameController = TextEditingController();
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -35,6 +37,7 @@ class AuthCubit extends Cubit<AuthState> {
         emit(AuthLoginFailure(errMessage: failure.errMessage));
       }, (loginModel) {
         CacheHelper.saveData(key: ApiKey.token, value: loginModel.token);
+        CacheHelper.saveData(key: ApiKey.id, value: loginModel.id);
         emit(AuthLoginSuccess());
       });
     }
@@ -42,43 +45,42 @@ class AuthCubit extends Cubit<AuthState> {
 
   //! Student Register method
   Future<void> studentRegister() async {
-    if (formKey.currentState!.validate()) {
-      emit(AuthRegisterLoading());
-      var result = await authRepo.studentRegister(
-        name: nameController.text.trim(),
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
-        phone: phoneController.text.trim(),
-        studentLevel: studentLevel,
-        //image: image != null ? await uploadImageToApi(image!) : "",
-        image: image != null ?image!.path : "",
-      );
-      result.fold((failure) {
-        emit(AuthRegisterFailure(errMessage: failure.errMessage));
-      }, (registerModel) {
-        emit(AuthRegisterSuccess());
-      });
-    }
+    emit(AuthRegisterLoading());
+    var result = await authRepo.studentRegister(
+      firstName: firstNameController.text.trim(),
+      lastName: lastNameController.text.trim(),
+      name: nameController.text.trim(),
+      email: emailController.text.trim(),
+      password: passwordController.text.trim(),
+      phone: phoneController.text.trim(),
+      studentLevel: studentLevel,
+      //image: image != null ? await uploadImageToApi(image!) : "",
+      image: "",
+    );
+    result.fold((failure) {
+      emit(AuthRegisterFailure(errMessage: failure.errMessage));
+    }, (registerModel) {
+      emit(AuthRegisterSuccess());
+    });
   }
 
   //! Teacher Register method
   Future<void> teacherRegister() async {
-    if (formKey.currentState!.validate()) {
-      emit(AuthRegisterLoading());
-      var result = await authRepo.teacherRegister(
-        name: nameController.text.trim(),
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
-        phone: phoneController.text.trim(),
-        address: addressController.text.trim(),
-        image: image != null ? image!.path : "",
-      );
-      result.fold((failure) {
-        emit(AuthRegisterFailure(errMessage: failure.errMessage));
-      }, (registerModel) {
-        emit(AuthRegisterSuccess());
-      });
-    }
+    emit(AuthRegisterLoading());
+    var result = await authRepo.teacherRegister(
+      firstName: firstNameController.text.trim(),
+      lastName: lastNameController.text.trim(),
+      name: nameController.text.trim(),
+      email: emailController.text.trim(),
+      password: passwordController.text.trim(),
+      phone: phoneController.text.trim(),
+      address: addressController.text.trim(),
+      image: "",
+    );
+    result.fold((failure) {
+      emit(AuthRegisterFailure(errMessage: failure.errMessage));
+    }, (registerModel) {
+      emit(AuthRegisterSuccess());
+    });
   }
-
 }

@@ -7,7 +7,7 @@ void successCherryToast(
     BuildContext context, String title, String description) {
   CherryToast.success(
     title: Text(title),
-    description: Text(description),
+    description: Text(description, textDirection: TextDirection.rtl),
     animationType: AnimationType.fromTop,
     animationDuration: const Duration(milliseconds: 1000),
     autoDismiss: true,
@@ -19,7 +19,7 @@ void successCherryToast(
 void errorCherryToast(BuildContext context, String title, String description) {
   CherryToast.error(
     title: Text(title),
-    description: Text(description),
+    description: Text(description, textDirection: TextDirection.rtl),
     animationType: AnimationType.fromTop,
     animationDuration: const Duration(milliseconds: 1000),
     autoDismiss: true,
@@ -32,7 +32,7 @@ void warningCherryToast(
     BuildContext context, String title, String description) {
   CherryToast.warning(
     title: Text(title),
-    description: Text(description),
+    description: Text(description, textDirection: TextDirection.rtl),
     animationType: AnimationType.fromTop,
     animationDuration: const Duration(milliseconds: 1000),
     autoDismiss: true,
@@ -44,7 +44,7 @@ void warningCherryToast(
 void infoCherryToast(BuildContext context, String title, String description) {
   CherryToast.info(
     title: Text(title),
-    description: Text(description),
+    description: Text(description, textDirection: TextDirection.rtl),
     animationType: AnimationType.fromTop,
     animationDuration: const Duration(milliseconds: 1000),
     autoDismiss: true,

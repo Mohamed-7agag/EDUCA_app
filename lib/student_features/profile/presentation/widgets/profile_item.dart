@@ -9,24 +9,28 @@ class ProfileItem extends StatelessWidget {
       required this.title,
       required this.value,
       required this.onpressed,
-      required this.iconData});
+      required this.iconData,
+      this.isEdit = true});
   final String title;
   final String value;
   final VoidCallback onpressed;
   final IconData iconData;
+  final bool isEdit;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        TextButton(
-          onPressed: onpressed,
-          child: Text(
-            "تعديل",
-            style: Styles.textStyle14.copyWith(color: kPrimaryColor),
-          ),
-        ),
+        isEdit == false
+            ? const Text("")
+            : TextButton(
+                onPressed: onpressed,
+                child: Text(
+                  "تعديل",
+                  style: Styles.textStyle14.copyWith(color: kPrimaryColor),
+                ),
+              ),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

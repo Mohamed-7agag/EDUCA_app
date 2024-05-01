@@ -21,7 +21,7 @@ class _SplashViewState extends State<SplashView> {
       Navigator.pushReplacementNamed(
         context,
         CacheHelper.getData(key: introScreenKey) == true
-            ? CacheHelper.getData(key: ApiKey.token) != null
+            ? CacheHelper.getData(key: ApiKey.id) != null
                 ? CacheHelper.getData(key: optionStateKey) == "طالب"
                     ? Routes.customBottomBarViewRoute
                     : CacheHelper.getData(key: termsKey) == true

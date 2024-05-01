@@ -7,22 +7,13 @@ class EnrolledStudentsViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: 10,
+      itemCount: 15,
       itemBuilder: (context, index) {
         return const Padding(
-          padding: EdgeInsets.all(8.0),
+          padding: EdgeInsets.symmetric(vertical: 5),
           child: EnrolledStudentListViewItem(),
         );
       },
     );
   }
 }
-
-// class EnrolledStudentListViewItem extends StatelessWidget {
-//   const EnrolledStudentListViewItem({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Card();
-//   }
-// }

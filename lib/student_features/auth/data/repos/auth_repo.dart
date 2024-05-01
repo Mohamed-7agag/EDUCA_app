@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:field_training_app/student_features/auth/data/models/register_model.dart';
 import '../../../../Core/api_services/failure.dart';
 import '../models/login_model.dart';
 
@@ -9,7 +8,9 @@ abstract class AuthRepo {
     required String password,
   });
 
-  Future<Either<Failure, RegisterModel>> studentRegister({
+  Future<Either<Failure, String>> studentRegister({
+    required String firstName,
+    required String lastName,
     required String name,
     required String email,
     required String password,
@@ -17,7 +18,9 @@ abstract class AuthRepo {
     required String studentLevel,
     required String image,
   });
-  Future<Either<Failure, RegisterModel>> teacherRegister({
+  Future<Either<Failure, String>> teacherRegister({
+    required String firstName,
+    required String lastName,
     required String name,
     required String email,
     required String password,

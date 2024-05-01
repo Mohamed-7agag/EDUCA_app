@@ -42,8 +42,7 @@ class _CustomDetailsForCreateClassState
         Container(
           height: 55.h,
           decoration: BoxDecoration(
-              color: kSplashColor,
-              borderRadius: BorderRadius.circular(4.r)),
+              color: kSplashColor, borderRadius: BorderRadius.circular(4.r)),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
