@@ -1,11 +1,8 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/routes.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
-import 'package:field_training_app/student_features/auth/presentation/view_model/user_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../Core/models/user_model.dart';
 import 'course_item.dart';
 
 class HomeViewBody extends StatelessWidget {
@@ -20,56 +17,56 @@ class HomeViewBody extends StatelessWidget {
           SizedBox(height: 15.h),
           Padding(
             padding: const EdgeInsets.only(left: 20, right: 20),
-            child: BlocBuilder<UserCubit, UserModel>(
-              builder: (context, student) {
-                return Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
                   children: [
-                    Row(
-                      children: [
-                        IconButton(
-                          onPressed: () {
-                            Navigator.pushNamed(
-                                context, Routes.notificationViewRoute);
-                          },
-                          icon: const Icon(
-                            Icons.notifications_outlined,
-                            color: kPrimaryColor,
-                            size: 28,
-                          ),
-                          style: IconButton.styleFrom(
-                              backgroundColor: kSplashColor),
-                        ),
-                        SizedBox(width: 8.w),
-                        IconButton(
-                          onPressed: () {
-                            Navigator.pushNamed(
-                                context, Routes.searchViewRoute);
-                          },
-                          icon: const Icon(
-                            Icons.search_rounded,
-                            color: kPrimaryColor,
-                            size: 28,
-                          ),
-                          style: IconButton.styleFrom(
-                              backgroundColor: kSplashColor),
-                        ),
-                      ],
+                    IconButton(
+                      onPressed: () {
+                        Navigator.pushNamed(
+                            context, Routes.notificationViewRoute);
+                      },
+                      icon: const Icon(
+                        Icons.notifications_outlined,
+                        color: kPrimaryColor,
+                        size: 28,
+                      ),
+                      style:
+                          IconButton.styleFrom(backgroundColor: kSplashColor),
                     ),
-                    student.name!.length <= 10
-                        ? Text(
-                            "مرحبا, ${student.name}",
-                            textDirection: TextDirection.rtl,
-                            style: Styles.textStyle24,
-                          )
-                        : Text(
-                            "مرحبا, ${student.name!.substring(0, 10)}..",
-                            textDirection: TextDirection.rtl,
-                            style: Styles.textStyle24,
-                          ),
+                    SizedBox(width: 8.w),
+                    IconButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, Routes.searchViewRoute);
+                      },
+                      icon: const Icon(
+                        Icons.search_rounded,
+                        color: kPrimaryColor,
+                        size: 28,
+                      ),
+                      style:
+                          IconButton.styleFrom(backgroundColor: kSplashColor),
+                    ),
                   ],
-                );
-              },
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 8),
+                      child:
+                          Image.asset("assets/images/welcome2.png", width: 31.w),
+                    ),
+                    SizedBox(width: 10.h),
+                    Text(
+                      "مرحبا بك",
+                      textDirection: TextDirection.rtl,
+                      style: Styles.textStyle22,
+                    ),
+                  ],
+                )
+              ],
             ),
           ),
           Padding(

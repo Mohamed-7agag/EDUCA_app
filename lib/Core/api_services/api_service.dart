@@ -24,17 +24,9 @@ class ApiServices extends ApiRequests {
 
 //! Get Method
   @override
-  Future get(
-    String endPoint, {
-    Object? data,
-    Map<String, dynamic>? queryParameters,
-  }) async {
+  Future get({required String endPoint}) async {
     try {
-      final response = await _dio.get(
-        endPoint,
-        data: data,
-        queryParameters: queryParameters,
-      );
+      final response = await _dio.get(endPoint);
       return response.data;
     } on DioException catch (e) {
       ServerFailure.fromDioError(e);

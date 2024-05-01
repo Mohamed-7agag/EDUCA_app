@@ -1,10 +1,6 @@
 abstract class ApiRequests {
   //? Get Method
-  Future<dynamic> get(
-    String endPoint, {
-    Object? data,
-    Map<String, dynamic>? queryParameters,
-  });
+  Future<dynamic> get({required String endPoint});
   //? Post Method
   Future<dynamic> post({
     required String endPoint,
