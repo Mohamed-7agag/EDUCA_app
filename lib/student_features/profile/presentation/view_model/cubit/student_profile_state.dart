@@ -1,4 +1,4 @@
-part of 'student_profile_cubit_cubit.dart';
+part of 'student_profile_cubit.dart';
 
 sealed class StudentProfileState extends Equatable {
   const StudentProfileState();

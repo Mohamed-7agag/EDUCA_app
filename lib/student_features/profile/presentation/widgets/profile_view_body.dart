@@ -1,9 +1,10 @@
 // ignore_for_file: unnecessary_null_comparison, use_build_context_synchronously
 import 'package:field_training_app/Core/widgets/custom_button.dart';
+import 'package:field_training_app/Core/widgets/custom_failure_widget.dart';
 import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
 import 'package:field_training_app/Core/widgets/custom_user_image.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/user_cubit.dart';
-import 'package:field_training_app/student_features/profile/presentation/view_model/cubit/student_profile_cubit_cubit.dart';
+import 'package:field_training_app/student_features/profile/presentation/view_model/cubit/student_profile_cubit.dart';
 import 'package:field_training_app/student_features/profile/presentation/widgets/profile_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,20 +19,20 @@ class ProfileViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: SingleChildScrollView(
-        child: BlocBuilder<StudentProfileCubit, StudentProfileState>(
-          builder: (context, state) {
-            if (state is StudentProfileSuccess) {
-              return Column(
+      child: BlocBuilder<StudentProfileCubit, StudentProfileState>(
+        builder: (context, state) {
+          if (state is StudentProfileSuccess) {
+            return SingleChildScrollView(
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   SizedBox(height: 20.h),
                   CustomUserImage(
-                    radius: 55.r,
-                    iconSize: 50,
+                    radius: 52.r,
+                    iconSize: 45,
                     right: 112.w,
-                    top: 80.h,
-                    cameraSize: 21,
+                    top: 70.h,
+                    cameraSize: 20,
                   ),
                   SizedBox(height: 25.h),
                   Text(state.studentModel.firstName ?? '',
@@ -69,16 +70,11 @@ class ProfileViewBody extends StatelessWidget {
                   ),
                   SizedBox(height: 28.h),
                   ProfileItem(
+                    isEdit: false,
                     title: "البريد الالكتروني",
                     value: state.studentModel.email ?? '',
                     iconData: Icons.email,
-                    onpressed: () {
-                      Navigator.pushNamed(context, Routes.profileEditViewRoute,
-                          arguments: {
-                            "parameter": "email",
-                            "value": state.studentModel.email ?? '',
-                          });
-                    },
+                    onpressed: () {},
                   ),
                   SizedBox(height: 28.h),
                   ProfileItem(
@@ -116,14 +112,14 @@ class ProfileViewBody extends StatelessWidget {
                       }),
                   SizedBox(height: 15.h),
                 ],
-              );
-            } else if (state is StudentProfileFailure) {
-              return Center(child: Text(state.errMessage));
-            }
+              ),
+            );
+          } else if (state is StudentProfileFailure) {
+            return CustomFailureWidget(errMessage: state.errMessage);
+          }
 
-            return const CustomLoadingWidget();
-          },
-        ),
+          return const CustomLoadingWidget();
+        },
       ),
     );
   }

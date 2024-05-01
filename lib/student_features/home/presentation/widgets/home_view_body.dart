@@ -55,8 +55,8 @@ class HomeViewBody extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(bottom: 8),
-                      child:
-                          Image.asset("assets/images/welcome2.png", width: 31.w),
+                      child: Image.asset("assets/images/welcome2.png",
+                          width: 31.w),
                     ),
                     SizedBox(width: 10.h),
                     Text(
