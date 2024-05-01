@@ -9,6 +9,6 @@ class EnrolledStudentsView extends StatelessWidget {
     return   const Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(child: EnrolledStudentsViewBody()),
-    );;
+    );
   }
 }
