@@ -4,6 +4,7 @@ import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
 import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
 import 'package:field_training_app/cache/cache_helper.dart';
+import 'package:field_training_app/student_features/auth/helper/register_validation.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/auth_cubit/auth_cubit.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/student_level_cubit.dart';
 import 'package:field_training_app/student_features/auth/presentation/widgets/custom_text_field.dart';
@@ -35,7 +36,7 @@ class RegisterViewBody extends StatelessWidget {
               style: Styles.textStyle22,
               textAlign: TextAlign.right,
             ),
-            SizedBox(height: 25.h),
+            SizedBox(height: 22.h),
             CustomUserImage(
               radius: 50.r,
               cameraSize: 20,
@@ -48,18 +49,40 @@ class RegisterViewBody extends StatelessWidget {
               key: context.read<AuthCubit>().formKey,
               child: Column(
                 children: [
+                  Row(
+                    children: [
+                      Expanded(
+                        child: CustomTextField(
+                          controller:
+                              context.read<AuthCubit>().lastNameController,
+                          hintText: "الأسم الاخير",
+                          keyboardType: TextInputType.emailAddress,
+                        ),
+                      ),
+                      SizedBox(width: 20.w),
+                      Expanded(
+                        child: CustomTextField(
+                          controller:
+                              context.read<AuthCubit>().firstNameController,
+                          hintText: "الأسم الأول",
+                          keyboardType: TextInputType.emailAddress,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 27.h),
                   CustomTextField(
                     controller: context.read<AuthCubit>().nameController,
-                    hintText: "الأسم (باللغة العربية)",
+                    hintText: "اسم المستخدم",
                     keyboardType: TextInputType.emailAddress,
                   ),
-                  SizedBox(height: 28.h),
+                  SizedBox(height: 26.h),
                   CustomTextField(
                     controller: context.read<AuthCubit>().emailController,
                     hintText: "البريد الالكتروني",
                     keyboardType: TextInputType.emailAddress,
                   ),
-                  SizedBox(height: 28.h),
+                  SizedBox(height: 27.h),
                   BlocProvider(
                     create: (context) => PasswordVisibilityCubit(),
                     child: BlocBuilder<PasswordVisibilityCubit, bool>(
@@ -86,13 +109,13 @@ class RegisterViewBody extends StatelessWidget {
                       },
                     ),
                   ),
-                  SizedBox(height: 28.h),
+                  SizedBox(height: 27.h),
                   CustomTextField(
                     controller: context.read<AuthCubit>().phoneController,
                     hintText: "رقم الجوال",
                     keyboardType: TextInputType.phone,
                   ),
-                  SizedBox(height: 28.h),
+                  SizedBox(height: 25.h),
                   Align(
                     alignment: Alignment.centerRight,
                     child: Text(
@@ -126,7 +149,7 @@ class RegisterViewBody extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            SizedBox(height: 14.h),
+                            SizedBox(height: 12.h),
                             optionState == "طالب"
                                 ? BlocProvider(
                                     create: (context) => StudentLevelCubit(),
@@ -187,11 +210,12 @@ class RegisterViewBody extends StatelessWidget {
                                         keyboardType: TextInputType.text,
                                       )
                                     : const SizedBox.shrink(),
-                            SizedBox(height: 35.h),
+                            optionState == ""
+                                ? SizedBox(height: 10.h)
+                                : SizedBox(height: 35.h),
                             Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 20),
-                              //? use bloc builder here
                               child: BlocConsumer<AuthCubit, AuthState>(
                                 listener: (context, state) {
                                   if (state is AuthRegisterSuccess) {
@@ -222,21 +246,10 @@ class RegisterViewBody extends StatelessWidget {
                                       : CustomButton(
                                           text: "أنشاء",
                                           onpressed: () {
-                                            if (optionState == "طالب") {
-                                              context
-                                                  .read<AuthCubit>()
-                                                  .studentRegister();
-                                            } else if (optionState == "معلم") {
-                                              context
-                                                  .read<AuthCubit>()
-                                                  .teacherRegister();
-                                            } else {
-                                              errorCherryToast(
-                                                context,
-                                                "حدث خطأ",
-                                                "يرجي ملئ جميع البيانات",
-                                              );
-                                            }
+                                            registerValidation(
+                                              context,
+                                              optionState,
+                                            );
                                           },
                                         );
                                 },

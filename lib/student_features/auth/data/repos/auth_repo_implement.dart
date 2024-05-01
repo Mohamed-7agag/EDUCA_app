@@ -2,7 +2,6 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:field_training_app/Core/api_services/api_service.dart';
 import 'package:field_training_app/Core/api_services/end_points.dart';
-import 'package:field_training_app/student_features/auth/data/models/register_model.dart';
 import 'package:field_training_app/student_features/auth/data/repos/auth_repo.dart';
 
 import '../../../../Core/api_services/failure.dart';
@@ -19,7 +18,7 @@ class AuthRepoImplement implements AuthRepo {
       {required String name, required String password}) async {
     try {
       var data = await apiServices.post(
-        endPoint: EndPoint.signIn,
+        endPoint: EndPoint.login,
         data: {ApiKey.userName: name, ApiKey.password: password},
       );
 
@@ -29,13 +28,15 @@ class AuthRepoImplement implements AuthRepo {
       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));
       }
-      return left(ServerFailure(e.toString()));
+      return left(ServerFailure("هذا الحساب غير موجود"));
     }
   }
 
 //! Student Register
   @override
-  Future<Either<Failure, RegisterModel>> studentRegister({
+  Future<Either<Failure, String>> studentRegister({
+    required String firstName,
+    required String lastName,
     required String name,
     required String email,
     required String password,
@@ -44,30 +45,36 @@ class AuthRepoImplement implements AuthRepo {
     required String image,
   }) async {
     try {
-      var data = await apiServices.post(
+      var response = await apiServices.post(
         endPoint: EndPoint.studentRegister,
         data: {
+          ApiKey.firstName: firstName,
+          ApiKey.lastName: lastName,
           ApiKey.userName: name,
           ApiKey.email: email,
           ApiKey.password: password,
-          ApiKey.phone: phone,
-          ApiKey.address: studentLevel,
+          ApiKey.phone: "+2$phone",
+          ApiKey.studentLevel: studentLevel,
           ApiKey.image: image,
         },
       );
-      RegisterModel registerModel = RegisterModel.fromJson(data);
-      return right(registerModel);
+      return response == null
+          ? left(ServerFailure("أسم المستخدم هذا مستخدم مسبقا"))
+          : right(response.toString());
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));
       }
-      return left(ServerFailure(e.toString()));
+
+      return left(ServerFailure("أسم المستخدم هذا مستخدم مسبقا"));
     }
   }
 
   //! Teacher Register
   @override
-  Future<Either<Failure, RegisterModel>> teacherRegister({
+  Future<Either<Failure, String>> teacherRegister({
+    required String firstName,
+    required String lastName,
     required String name,
     required String email,
     required String password,
@@ -76,24 +83,28 @@ class AuthRepoImplement implements AuthRepo {
     required String image,
   }) async {
     try {
-      var data = await apiServices.post(
+      var response = await apiServices.post(
         endPoint: EndPoint.teacherRegister,
         data: {
+          ApiKey.firstName: firstName,
+          ApiKey.lastName: lastName,
           ApiKey.userName: name,
           ApiKey.email: email,
           ApiKey.password: password,
-          ApiKey.phone: phone,
+          ApiKey.phone: "+2$phone",
           ApiKey.address: address,
           ApiKey.image: image,
         },
       );
-      RegisterModel registerModel = RegisterModel.fromJson(data);
-      return right(registerModel);
+      return response == null
+          ? left(ServerFailure("أسم المستخدم هذا مستخدم مسبقا"))
+          : right(response.toString());
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));
       }
-      return left(ServerFailure(e.toString()));
+
+      return left(ServerFailure("أسم المستخدم هذا مستخدم مسبقا"));
     }
   }
 }

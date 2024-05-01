@@ -130,8 +130,8 @@ class CourseDetailsTeacherViewBody extends StatelessWidget {
                 children: [
                   Container(
                     width: 65.w,
-                    padding:
-                        const EdgeInsets.only(left: 6, right: 10, top: 6, bottom: 6),
+                    padding: const EdgeInsets.only(
+                        left: 6, right: 10, top: 6, bottom: 6),
                     decoration: const BoxDecoration(
                         color: kSplashDarkerColor,
                         borderRadius:
@@ -148,7 +148,6 @@ class CourseDetailsTeacherViewBody extends StatelessWidget {
                             color: kPrimaryColor,
                           ),
                         ),
-                        
                         Padding(
                           padding: const EdgeInsets.only(top: 5),
                           child: Text("6", style: Styles.textStyle16),

@@ -75,6 +75,9 @@ class AppRouter {
                 create: (context) => BottomBarCubit(),
               ),
               BlocProvider(
+                create: (context) => ChangeProfileImageCubit(),
+              ),
+              BlocProvider(
                 create: (context) => FavouriteCoursesCubit(),
               ),
             ],
