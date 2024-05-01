@@ -7,12 +7,10 @@ abstract class ApiRequests {
     Object? data,
   });
 
-  //? Patch Method
-  Future<dynamic> patch(
-    String endPoint, {
+  //? Put Method
+  Future<dynamic> put({
+    required String endPoint,
     Object? data,
-    Map<String, dynamic>? queryParameters,
-    bool isFromData = false,
   });
 
   //? Delete Method

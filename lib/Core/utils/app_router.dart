@@ -109,9 +109,13 @@ class AppRouter {
       case Routes.profileEditViewRoute:
         var args = settings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(
-          builder: (context) => ProfileEditView(
-            parameter: args["parameter"],
-            value: args["value"],
+          builder: (context) => BlocProvider(
+            create: (context) =>
+                StudentProfileCubit(getIt.get<StudentProfileRepoImplement>()),
+            child: ProfileEditView(
+              parameter: args["parameter"],
+              value: args["value"],
+            ),
           ),
         );
       case Routes.profileSelectClassEditViewRoute:

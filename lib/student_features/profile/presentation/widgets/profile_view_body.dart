@@ -35,7 +35,8 @@ class ProfileViewBody extends StatelessWidget {
                     cameraSize: 20,
                   ),
                   SizedBox(height: 25.h),
-                  Text(state.studentModel.firstName ?? '',
+                  Text(
+                      "${state.studentModel.firstName} ${state.studentModel.lastName}",
                       style: Styles.textStyle24
                           .copyWith(fontWeight: FontWeight.w600),
                       textAlign: TextAlign.center),
@@ -50,7 +51,7 @@ class ProfileViewBody extends StatelessWidget {
                     onpressed: () {
                       Navigator.pushNamed(context, Routes.profileEditViewRoute,
                           arguments: {
-                            "parameter": "name",
+                            "parameter": "firstName",
                             "value": state.studentModel.firstName ?? '',
                           });
                     },
@@ -63,7 +64,7 @@ class ProfileViewBody extends StatelessWidget {
                     onpressed: () {
                       Navigator.pushNamed(context, Routes.profileEditViewRoute,
                           arguments: {
-                            "parameter": "name",
+                            "parameter": "lastName",
                             "value": state.studentModel.lastName ?? '',
                           });
                     },
@@ -79,13 +80,15 @@ class ProfileViewBody extends StatelessWidget {
                   SizedBox(height: 28.h),
                   ProfileItem(
                     title: "رقم الجوال",
-                    value: state.studentModel.phone ?? '',
+                    value: state.studentModel.phone!
+                        .substring(2, state.studentModel.phone!.length),
                     iconData: Icons.phone_android_rounded,
                     onpressed: () {
                       Navigator.pushNamed(context, Routes.profileEditViewRoute,
                           arguments: {
                             "parameter": "phone",
-                            "value": state.studentModel.phone ?? '',
+                            "value": state.studentModel.phone!
+                                .substring(2, state.studentModel.phone!.length),
                           });
                     },
                   ),

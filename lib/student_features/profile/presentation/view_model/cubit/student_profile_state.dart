@@ -20,3 +20,12 @@ final class StudentProfileFailure extends StudentProfileState {
   final String errMessage;
   const StudentProfileFailure({required this.errMessage});
 }
+
+final class StudentProfileUpdateLoading extends StudentProfileState {}
+
+final class StudentProfileUpdateSuccess extends StudentProfileState {}
+
+final class StudentProfileUpdateFailure extends StudentProfileState {
+  final String errMessage;
+  const StudentProfileUpdateFailure({required this.errMessage});
+}

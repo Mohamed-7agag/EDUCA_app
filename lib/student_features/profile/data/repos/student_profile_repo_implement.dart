@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:field_training_app/Core/api_services/api_service.dart';
 import 'package:field_training_app/Core/api_services/failure.dart';
 
+import '../../../../Core/api_services/end_points.dart';
 import '../models/student_model.dart';
 import 'student_profile_repo.dart';
 
@@ -22,6 +23,39 @@ class StudentProfileRepoImplement implements StudentProfileRepo {
         return left(ServerFailure.fromDioError(e));
       }
       return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> updateStudentData({
+    required String endPoint,
+    String? firstName,
+    String? lastName,
+    String? password,
+    String? phone,
+    String? studentLevel,
+    String? image,
+  }) async {
+    try {
+      var response = await apiServices.put(
+        endPoint: endPoint,
+        data: {
+          ApiKey.firstName: firstName ?? "",
+          ApiKey.lastName: lastName ?? "",
+          ApiKey.password: password ?? "",
+          ApiKey.phone: phone != null ? "+2$phone" : "",
+          ApiKey.studentLevel: studentLevel ?? "",
+          ApiKey.image: image ?? "",
+        },
+      );
+      return response != ""
+          ? left(ServerFailure("حدث خطأ في تحديث البيانات"))
+          : right("تم تحديث البيانات بنجاح");
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
+      }
+      return left(ServerFailure("حدث خطأ في تحديث البيانات"));
     }
   }
 }

@@ -14,13 +14,37 @@ class StudentProfileCubit extends Cubit<StudentProfileState> {
 
   Future<void> getStudentData() async {
     emit(StudentProfileLoading());
-
     var result = await studentProfileRepo.getStudentData(
         endPoint: EndPoint.getStudentById(CacheHelper.getData(key: ApiKey.id)));
     result.fold((failure) {
       emit(StudentProfileFailure(errMessage: failure.errMessage));
     }, (studentModel) {
       emit(StudentProfileSuccess(studentModel: studentModel));
+    });
+  }
+
+  Future<void> updateStudentData({
+    String? firstName,
+    String? lastName,
+    String? password,
+    String? phone,
+    String? studentLevel,
+    String? image,
+  }) async {
+    emit(StudentProfileUpdateLoading());
+    var result = await studentProfileRepo.updateStudentData(
+      endPoint: EndPoint.getStudentById(CacheHelper.getData(key: ApiKey.id)),
+      firstName: firstName,
+      lastName: lastName,
+      password: password,
+      phone: phone,
+      studentLevel: studentLevel,
+      image: image,
+    );
+    result.fold((failure) {
+      emit(StudentProfileUpdateFailure(errMessage: failure.errMessage));
+    }, (success) {
+      emit(StudentProfileUpdateSuccess());
     });
   }
 }

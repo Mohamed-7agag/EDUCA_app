@@ -47,19 +47,15 @@ class ApiServices extends ApiRequests {
     }
   }
 
-//! Patch Method
+//! put Method
   @override
-  Future patch(
-    String endPoint, {
-    dynamic data,
-    Map<String, dynamic>? queryParameters,
-    bool isFromData = false,
-  }) async {
+  Future put(
+    {required String endPoint, Object? data}) async {
     try {
-      final response = await _dio.patch(
+      final response = await _dio.put(
         endPoint,
-        data: isFromData ? FormData.fromMap(data) : data,
-        queryParameters: queryParameters,
+        data: data,
+        
       );
       return response.data;
     } on DioException catch (e) {
