@@ -125,11 +125,11 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (context) => TermsView(),
         );
-      case Routes.courseDetailsTeacherView:
+      case Routes.courseDetailsTeacherViewRoute:
         return MaterialPageRoute(
           builder: (context) => const CourseDetailsTeacherView(),
         );
-      case Routes.enrolledStudentsView:
+      case Routes.enrolledStudentsViewRoute:
         return MaterialPageRoute(
           builder: (context) => const EnrolledStudentsView(),
         );

@@ -1,10 +1,10 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
-import 'package:field_training_app/teacher_features/courses/presentation/views/enrolled_students_view.dart';
-import 'package:field_training_app/teacher_features/courses/presentation/views/widgets/enrolled_students_view_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../../Core/utils/routes.dart';
 
 class CourseDetailsTeacherViewBody extends StatelessWidget {
   const CourseDetailsTeacherViewBody({super.key});
@@ -128,24 +128,33 @@ class CourseDetailsTeacherViewBody extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(
-                    children: [
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          "اضافة",
-                          style:
-                              Styles.textStyle16.copyWith(color: kPrimaryColor),
-                          textDirection: TextDirection.rtl,
+                  Container(
+                    width: 65.w,
+                    padding:
+                        const EdgeInsets.only(left: 6, right: 10, top: 6, bottom: 6),
+                    decoration: const BoxDecoration(
+                        color: kSplashDarkerColor,
+                        borderRadius:
+                            BorderRadiusDirectional.all(Radius.circular(5))),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        InkWell(
+                          onTap: () {},
+                          splashColor: kSplashColor,
+                          borderRadius: BorderRadius.circular(6),
+                          child: const Icon(
+                            Icons.add,
+                            color: kPrimaryColor,
+                          ),
                         ),
-                      ),
-                      SizedBox(width: 10.w),
-                      Text(
-                        "3",
-                        style: Styles.textStyle16,
-                        textDirection: TextDirection.rtl,
-                      ),
-                    ],
+                        
+                        Padding(
+                          padding: const EdgeInsets.only(top: 5),
+                          child: Text("6", style: Styles.textStyle16),
+                        ),
+                      ],
+                    ),
                   ),
                   Text(
                     "عدد الاختبارات لهذه المادة :  ",
@@ -154,40 +163,33 @@ class CourseDetailsTeacherViewBody extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 20.h),
+              SizedBox(height: 25.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(
+                          context, Routes.enrolledStudentsViewRoute);
+                    },
+                    child: Text(
+                      "عرض",
+                      style: Styles.textStyle14.copyWith(color: kPrimaryColor),
+                      textDirection: TextDirection.rtl,
+                    ),
+                  ),
                   Row(
                     children: [
-                      TextButton(
-                        onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  const EnrolledStudentsView(),
-                            ),
-                          );
-                        },
-                        child: Text(
-                          "عرض",
-                          style:
-                              Styles.textStyle16.copyWith(color: kPrimaryColor),
-                          textDirection: TextDirection.rtl,
-                        ),
-                      ),
-                      SizedBox(width: 10.w),
                       Text(
                         "22",
                         style: Styles.textStyle16,
+                      ),
+                      Text(
+                        "عدد الطلاب المسجلين المادة :   ",
+                        style: Styles.textStyle12.copyWith(color: Colors.grey),
                         textDirection: TextDirection.rtl,
                       ),
                     ],
-                  ),
-                  Text(
-                    "عدد الطلاب المسجلين المادة :  ",
-                    style: Styles.textStyle12.copyWith(color: Colors.grey),
-                    textDirection: TextDirection.rtl,
                   ),
                 ],
               ),

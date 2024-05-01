@@ -1,16 +1,11 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
-import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'custom_image_course.dart';
-
 class CourseListViewItem extends StatelessWidget {
-  const CourseListViewItem({
-    super.key,
-  });
+  const CourseListViewItem({super.key});
 
   @override
   Widget build(BuildContext context) {
