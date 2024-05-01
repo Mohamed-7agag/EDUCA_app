@@ -1,4 +1,3 @@
-// ignore_for_file: unnecessary_null_comparison, use_build_context_synchronously
 import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/Core/widgets/custom_failure_widget.dart';
 import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';

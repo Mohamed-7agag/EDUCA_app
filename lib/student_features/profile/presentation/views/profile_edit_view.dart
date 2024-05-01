@@ -72,7 +72,6 @@ class _ProfileEditViewState extends State<ProfileEditView> {
 
                       context.read<StudentProfileCubit>().getStudentData();
                       Navigator.pushNamed(context, Routes.customBottomBarViewRoute,arguments: 2);
-                      //Navigator.pop(context);
                     } else if (state is StudentProfileUpdateFailure) {
                       errorCherryToast(context, "حدث خطأ", state.errMessage);
                     }

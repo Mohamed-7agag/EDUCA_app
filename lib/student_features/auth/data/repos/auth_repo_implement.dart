@@ -65,7 +65,6 @@ class AuthRepoImplement implements AuthRepo {
       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));
       }
-
       return left(ServerFailure("أسم المستخدم هذا مستخدم مسبقا"));
     }
   }
@@ -103,7 +102,6 @@ class AuthRepoImplement implements AuthRepo {
       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));
       }
-
       return left(ServerFailure("أسم المستخدم هذا مستخدم مسبقا"));
     }
   }
