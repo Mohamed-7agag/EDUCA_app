@@ -1,8 +1,14 @@
 class AppRegex {
-  static bool isArabic(String name) {
-    return RegExp(r'[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]+')
-            .hasMatch(name) &&
-        !RegExp(r'[a-zA-Z]').hasMatch(name);
+  //! return false if there is any arabic letter in the string
+  static bool containsEnglish(String input) {
+    RegExp englishRegex = RegExp(r'^[^a-zA-Z]+$');
+    return !englishRegex.hasMatch(input);
+  }
+
+//! return false if there is any english letter in the string
+  static bool hasNoArabic(String name) {
+    RegExp arabicRegex = RegExp(r'[\u0600-\u06FF]');
+    return !arabicRegex.hasMatch(name);
   }
 
   static bool isEmailValid(String email) {

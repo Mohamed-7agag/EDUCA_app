@@ -6,10 +6,17 @@ import '../../../Core/utils/app_regex.dart';
 
 void registerValidation(BuildContext context, String optionState) {
   if (context.read<AuthCubit>().formKey.currentState!.validate()) {
-    // if (!AppRegex.isArabic(context.read<AuthCubit>().nameController.text)) {
-    //   errorCherryToast(context, "حدث خطأ", 'يجب ان يكون الأسم باللغة العربية');
-    // } else
-    if (!AppRegex.isEmailValid(
+    if (AppRegex.containsEnglish(
+            context.read<AuthCubit>().firstNameController.text) ||
+        AppRegex.containsEnglish(
+            context.read<AuthCubit>().lastNameController.text)) {
+      errorCherryToast(context, "حدث خطأ",
+          'يجب ان يكون الأسم الأول و الأخير باللغة العربية');
+    } else if (!AppRegex.hasNoArabic(
+        context.read<AuthCubit>().nameController.text)) {
+      errorCherryToast(
+          context, "حدث خطأ", 'يجب ان يكون الأسم المسخدم باللغة الأنجليزية');
+    } else if (!AppRegex.isEmailValid(
         context.read<AuthCubit>().emailController.text)) {
       errorCherryToast(context, "حدث خطأ", 'البريد الالكتروني غير صحيح');
     } else if (!AppRegex.hasMinLength(
