@@ -1,8 +1,8 @@
 class AppRegex {
   //! return false if there is any arabic letter in the string
-  static bool containsEnglish(String input) {
+  static bool containsEnglish(String name) {
     RegExp englishRegex = RegExp(r'^[^a-zA-Z]+$');
-    return !englishRegex.hasMatch(input);
+    return !englishRegex.hasMatch(name);
   }
 
 //! return false if there is any english letter in the string

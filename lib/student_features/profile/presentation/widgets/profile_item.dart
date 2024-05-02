@@ -24,12 +24,9 @@ class ProfileItem extends StatelessWidget {
       children: [
         isEdit == false
             ? const Text("")
-            : TextButton(
+            : IconButton(
                 onPressed: onpressed,
-                child: Text(
-                  "تعديل",
-                  style: Styles.textStyle14.copyWith(color: kPrimaryColor),
-                ),
+                icon: const Icon(Icons.edit, color: kPrimaryColor),
               ),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,

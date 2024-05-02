@@ -4,6 +4,7 @@ import 'package:field_training_app/Core/utils/routes.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
 import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
+import 'package:field_training_app/cache/cache_helper.dart';
 import 'package:field_training_app/student_features/profile/presentation/view_model/cubit/student_profile_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -99,10 +100,18 @@ class _ProfileEditViewState extends State<ProfileEditView> {
                                       phone: widget.parameter == "phone"
                                           ? controller.text.trim()
                                           : null,
-                                      password: null,
+                                      password: widget.parameter == "password"
+                                          ? controller.text.trim()
+                                          : null,
                                       studentLevel: null,
                                       image: null,
                                     );
+
+                                widget.parameter == "password"
+                                    ? CacheHelper.saveData(
+                                        key: passwordKey,
+                                        value: controller.text.trim())
+                                    : null;
                               }
                             });
                   },
