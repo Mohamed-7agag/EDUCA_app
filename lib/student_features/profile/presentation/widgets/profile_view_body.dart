@@ -125,11 +125,11 @@ class ProfileViewBody extends StatelessWidget {
                     value: state.studentModel.levelOraddress ?? '',
                     iconData: Icons.school,
                     onpressed: () {
-                      Navigator.pushNamed(
-                        context,
-                        Routes.profileSelectClassEditViewRoute,
-                        arguments: state.studentModel.levelOraddress ?? '',
-                      );
+                      // Navigator.pushNamed(
+                      //   context,
+                      //   Routes.profileSelectClassEditViewRoute,
+                      //   arguments: state.studentModel.levelOraddress ?? '',
+                      // );
                     },
                   ),
                   SizedBox(height: 30.h),

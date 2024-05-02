@@ -61,6 +61,7 @@ class StudentProfileRepoImplement implements StudentProfileRepo {
   }
 
   //
+  @override
   Future<Either<Failure, StudentModel>> getTeacherData(
       {required String endPoint}) async {
     try {
