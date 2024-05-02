@@ -1,7 +1,8 @@
+
 import 'package:field_training_app/Core/utils/app_services.dart';
 import 'package:field_training_app/student_features/auth/data/repos/auth_repo_implement.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/auth_cubit/auth_cubit.dart';
-import 'package:field_training_app/student_features/profile/data/repos/student_profile_repo_implement.dart';
+import 'package:field_training_app/student_features/profile/data/repos/student_repo/student_profile_repo_implement.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views/course_details_teacher_view.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views/enrolled_students_view.dart';
 import 'package:field_training_app/teacher_features/teacher/presentation/views/create_class.dart';
@@ -98,6 +99,15 @@ class AppRouter {
               BlocProvider(
                 create: (context) => BottomBarCubit(),
               ),
+                BlocProvider(
+                create: (context) => ChangeProfileImageCubit(),
+              ),
+               BlocProvider(
+                create: (context) => StudentProfileCubit(
+                    getIt.get<StudentProfileRepoImplement>())
+                  ..getStudentData(),
+              ),
+             
             ],
             child: const CustomBottomBarForTeacherView(),
           ),
@@ -139,7 +149,7 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (context) => TermsView(),
         );
-        case Routes.courseDetailsTeacherViewRoute:
+      case Routes.courseDetailsTeacherViewRoute:
         return MaterialPageRoute(
           builder: (context) => const CourseDetailsTeacherView(),
         );

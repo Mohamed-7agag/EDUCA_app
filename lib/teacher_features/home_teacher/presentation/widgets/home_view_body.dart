@@ -1,6 +1,7 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/routes.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
+import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/user_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -45,10 +46,7 @@ class HomeTeacherViewBody extends StatelessWidget {
                           ),
                           SizedBox(width: 8.w),
                           IconButton(
-                            onPressed: () {
-                              Navigator.pushNamed(
-                                  context, Routes.notificationViewRoute);
-                            },
+                            onPressed: () {},
                             icon: const Icon(
                               Icons.notifications_outlined,
                               color: kPrimaryColor,
@@ -84,11 +82,6 @@ class HomeTeacherViewBody extends StatelessWidget {
               ),
             ),
             SizedBox(height: 20.h),
-            // const Padding(
-            //   padding: EdgeInsets.only(left: 20),
-            //   child: HomeSearchTextFormField(),
-            // ),
-            //SizedBox(height: 30.h),
             Padding(
               padding: const EdgeInsets.only(left: 20),
               child: Text(
@@ -112,31 +105,16 @@ class HomeTeacherViewBody extends StatelessWidget {
                 },
               ),
             ),
-            SizedBox(height: 30.h),
-            // Padding(
-            //   padding: const EdgeInsets.only(left: 20),
-            //   child: Text(
-            //     "كورسات موصي بها",
-            //     textDirection: TextDirection.rtl,
-            //     style: Styles.textStyle16,
-            //   ),
-            // ),
-            // SizedBox(height: 15.h),
-            // SizedBox(
-            //   height: 230.h,
-            //   child: ListView.builder(
-            //     scrollDirection: Axis.horizontal,
-            //     reverse: true,
-            //     itemCount: 5,
-            //     itemBuilder: (context, index) {
-            //       return const Padding(
-            //         padding: EdgeInsets.only(left: 10),
-            //         child: CourseItem(),
-            //       );
-            //     },
-            //   ),
-            // ),
-            SizedBox(height: 20.h),
+            SizedBox(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+                child: CustomButton(
+                    text: "اضافة المادة",
+                    onpressed: () {
+                      Navigator.pushNamed(context, Routes.createClassViewRoute);
+                    }),
+              ),
+            )
           ],
         ),
       ),

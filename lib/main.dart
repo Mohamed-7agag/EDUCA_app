@@ -1,7 +1,9 @@
 import 'package:field_training_app/Core/utils/app_router.dart';
 import 'package:field_training_app/Core/utils/app_services.dart';
 import 'package:field_training_app/cache/cache_helper.dart';
+import 'package:field_training_app/student_features/auth/presentation/view_model/user_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'Core/utils/routes.dart';
@@ -18,31 +20,34 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(375, 812),
-      minTextAdapt: true,
-      splitScreenMode: true,
-      builder: (context, child) {
-        return Directionality(
-          textDirection: TextDirection.rtl,
-          child: MaterialApp(
-            theme: ThemeData.light().copyWith(
-                textTheme: GoogleFonts.tajawalTextTheme(
-              ThemeData.light().textTheme,
-            )),
-            builder: (context, child) {
-              return MediaQuery(
-                data: MediaQuery.of(context)
-                    .copyWith(textScaler: const TextScaler.linear(1.0)),
-                child: child!,
-              );
-            },
-            onGenerateRoute: AppRouter.generateRoute,
-            initialRoute: Routes.splashViewRoute,
-            debugShowCheckedModeBanner: false,
-          ),
-        );
-      },
+    return BlocProvider(
+      create: (context) => UserCubit(),
+      child: ScreenUtilInit(
+        designSize: const Size(375, 812),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (context, child) {
+          return Directionality(
+            textDirection: TextDirection.rtl,
+            child: MaterialApp(
+              theme: ThemeData.light().copyWith(
+                  textTheme: GoogleFonts.tajawalTextTheme(
+                ThemeData.light().textTheme,
+              )),
+              builder: (context, child) {
+                return MediaQuery(
+                  data: MediaQuery.of(context)
+                      .copyWith(textScaler: const TextScaler.linear(1.0)),
+                  child: child!,
+                );
+              },
+              onGenerateRoute: AppRouter.generateRoute,
+              initialRoute: Routes.splashViewRoute,
+              debugShowCheckedModeBanner: false,
+            ),
+          );
+        },
+      ),
     );
   }
 }
