@@ -2,7 +2,6 @@ import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/Core/widgets/custom_failure_widget.dart';
 import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
 import 'package:field_training_app/Core/widgets/custom_user_image.dart';
-import 'package:field_training_app/student_features/auth/presentation/view_model/user_cubit.dart';
 import 'package:field_training_app/student_features/profile/presentation/view_model/cubit/student_profile_cubit.dart';
 import 'package:field_training_app/student_features/profile/presentation/widgets/profile_item.dart';
 import 'package:flutter/material.dart';
@@ -108,7 +107,7 @@ class ProfileViewBody extends StatelessWidget {
                   CustomButton(
                       text: "تسجيل الخروج",
                       onpressed: () {
-                        BlocProvider.of<UserCubit>(context).logout();
+                        
                         Navigator.pushNamedAndRemoveUntil(
                             context, Routes.loginViewRoute, (route) => false);
                       }),

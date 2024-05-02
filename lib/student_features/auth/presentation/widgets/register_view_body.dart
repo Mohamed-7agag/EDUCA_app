@@ -179,9 +179,8 @@ class RegisterViewBody extends StatelessWidget {
                                                 .read<StudentLevelCubit>()
                                                 .changeState(val.toString());
                                             context
-                                                    .read<AuthCubit>()
-                                                    .studentLevel =
-                                                studentLevelState;
+                                                .read<AuthCubit>()
+                                                .studentLevel = val.toString();
                                           },
                                           isExpanded: true,
                                           items: classOptionsValues
