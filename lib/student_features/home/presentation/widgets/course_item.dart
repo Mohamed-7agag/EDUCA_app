@@ -82,65 +82,76 @@ class CourseItem extends StatelessWidget {
               ],
             ),
             Padding(
-              padding: EdgeInsets.only(
-                  left: 10.w, right: 12.w, top: 10.h, bottom: 5.h),
+              padding: EdgeInsets.only(left: 10.w, top: 10.h, bottom: 4.h),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text("حسين علي",
-                          style: Styles.textStyle14.copyWith(
-                              fontWeight: FontWeight.bold, fontSize: 12.sp)),
-                      SizedBox(width: 6.w),
-                      CircleAvatar(
-                          radius: 12.r, backgroundColor: kPrimaryColor),
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text("حسين علي",
+                            style: Styles.textStyle14.copyWith(
+                                fontWeight: FontWeight.bold, fontSize: 12.sp)),
+                        SizedBox(width: 6.w),
+                        CircleAvatar(
+                            radius: 12.r, backgroundColor: kPrimaryColor),
+                      ],
+                    ),
                   ),
                   SizedBox(height: 10.h),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        "الرياضيات",
-                        style: Styles.textStyle14,
-                        textAlign: TextAlign.right,
-                      ),
-                      SizedBox(width: 5.w),
-                      Icon(
-                        Icons.import_contacts_rounded,
-                        color: kPrimaryColor,
-                        size: 18.sp,
-                      ),
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.only(right: 11),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          "الرياضيات",
+                          style: Styles.textStyle14,
+                          textAlign: TextAlign.right,
+                        ),
+                        SizedBox(width: 5.w),
+                        Icon(
+                          Icons.import_contacts_rounded,
+                          color: kPrimaryColor,
+                          size: 18.sp,
+                        ),
+                      ],
+                    ),
                   ),
                   SizedBox(height: 8.h),
-                  Text(
-                    "للصف الاول الاعدادي / ترم أول",
-                    style: Styles.textStyle12,
-                    textDirection: TextDirection.rtl,
-                    overflow: TextOverflow.ellipsis,
+                  Padding(
+                    padding: const EdgeInsets.only(right: 11),
+                    child: Text(
+                      "للصف الاول الاعدادي / ترم أول",
+                      style: Styles.textStyle12,
+                      textDirection: TextDirection.rtl,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
                   SizedBox(height: 6.h),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        "25 جنيه",
-                        style:
-                            Styles.textStyle14.copyWith(color: kPrimaryColor),
-                        textAlign: TextAlign.right,
-                        textDirection: TextDirection.rtl,
-                      ),
-                      SizedBox(width: 5.w),
-                      Text(
-                        "سعر الحصة : ",
-                        style: Styles.textStyle12,
-                        textAlign: TextAlign.right,
-                        textDirection: TextDirection.rtl,
-                      ),
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.only(right: 11),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          "25 جنيه",
+                          style:
+                              Styles.textStyle14.copyWith(color: kPrimaryColor),
+                          textAlign: TextAlign.right,
+                          textDirection: TextDirection.rtl,
+                        ),
+                        SizedBox(width: 5.w),
+                        Text(
+                          "سعر الحصة : ",
+                          style: Styles.textStyle12,
+                          textAlign: TextAlign.right,
+                          textDirection: TextDirection.rtl,
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),

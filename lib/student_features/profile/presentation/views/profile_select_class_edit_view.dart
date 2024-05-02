@@ -2,11 +2,14 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
-import 'package:field_training_app/student_features/auth/presentation/view_model/user_cubit.dart';
+import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
+import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
+import 'package:field_training_app/student_features/profile/presentation/view_model/cubit/student_profile_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../Core/utils/routes.dart';
 import '../../../auth/presentation/widgets/class_option_values.dart';
 
 class ProfileSelectClassEditView extends StatefulWidget {
@@ -69,14 +72,32 @@ class _ProfileSelectClassEditViewState
               SizedBox(height: 40.h),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: CustomButton(
-                    text: "تعديل",
-                    onpressed: () {
-                      context
-                          .read<UserCubit>()
-                          .updateData('studentClass', widget.value);
-                      Navigator.pop(context);
-                    }),
+                child: BlocConsumer<StudentProfileCubit, StudentProfileState>(
+                  listener: (context, state) {
+                    if (state is StudentProfileUpdateSuccess) {
+                      successCherryToast(
+                          context, "عملية ناجحة", "تم تعديل بياناتك");
+
+                      context.read<StudentProfileCubit>().getStudentData();
+                      Navigator.pushNamed(
+                          context, Routes.customBottomBarViewRoute);
+                    } else if (state is StudentProfileUpdateFailure) {
+                      errorCherryToast(context, "حدث خطأ", state.errMessage);
+                    }
+                  },
+                  builder: (context, state) {
+                    return state is StudentProfileUpdateLoading
+                        ? const CustomLoadingWidget()
+                        : CustomButton(
+                            text: "تعديل",
+                            onpressed: () {
+                              context
+                                  .read<StudentProfileCubit>()
+                                  .updateStudentData(
+                                      studentLeveloraddress: widget.value);
+                            });
+                  },
+                ),
               )
             ],
           ),

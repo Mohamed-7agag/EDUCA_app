@@ -131,7 +131,11 @@ class AppRouter {
       case Routes.profileSelectClassEditViewRoute:
         var args = settings.arguments as String;
         return MaterialPageRoute(
-          builder: (context) => ProfileSelectClassEditView(value: args),
+          builder: (context) => BlocProvider(
+            create: (context) => StudentProfileCubit(
+                    getIt.get<StudentProfileRepoImplement>()),
+            child: ProfileSelectClassEditView(value: args),
+          ),
         );
       case Routes.notificationViewRoute:
         return MaterialPageRoute(

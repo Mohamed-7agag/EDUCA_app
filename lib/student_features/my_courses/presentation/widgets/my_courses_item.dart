@@ -85,44 +85,52 @@ class MyCoursesItem extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(
-                  left: 10.w, right: 14.w, top: 12.h, bottom: 5.h),
+              padding: EdgeInsets.only(left: 10.w, top: 12.h, bottom: 5.h),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text("حسين علي",
-                          style: Styles.textStyle14
-                              .copyWith(fontWeight: FontWeight.bold)),
-                      SizedBox(width: 6.w),
-                      CircleAvatar(
-                          radius: 13.r, backgroundColor: kPrimaryColor),
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text("حسين علي",
+                            style: Styles.textStyle14
+                                .copyWith(fontWeight: FontWeight.bold)),
+                        SizedBox(width: 6.w),
+                        CircleAvatar(
+                            radius: 13.r, backgroundColor: kPrimaryColor),
+                      ],
+                    ),
                   ),
                   SizedBox(height: 10.h),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        "الرياضيات",
-                        style: Styles.textStyle14,
-                        textAlign: TextAlign.right,
-                      ),
-                      SizedBox(width: 5.w),
-                      Icon(
-                        Icons.import_contacts_rounded,
-                        color: kPrimaryColor,
-                        size: 18.sp,
-                      ),
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.only(right: 14),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          "الرياضيات",
+                          style: Styles.textStyle14,
+                          textAlign: TextAlign.right,
+                        ),
+                        SizedBox(width: 5.w),
+                        Icon(
+                          Icons.import_contacts_rounded,
+                          color: kPrimaryColor,
+                          size: 18.sp,
+                        ),
+                      ],
+                    ),
                   ),
                   SizedBox(height: 6.h),
-                  Text(
-                    "للصف الاول الاعدادي / ترم أول",
-                    style: Styles.textStyle14,
-                    textAlign: TextAlign.right,
+                  Padding(
+                    padding: const EdgeInsets.only(right: 14),
+                    child: Text(
+                      "للصف الاول الاعدادي / ترم أول",
+                      style: Styles.textStyle14,
+                      textAlign: TextAlign.right,
+                    ),
                   ),
                   SizedBox(height: 6.h),
                 ],

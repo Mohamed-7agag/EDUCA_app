@@ -1,9 +1,12 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/Core/widgets/custom_failure_widget.dart';
 import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
 import 'package:field_training_app/Core/widgets/custom_user_image.dart';
-import 'package:field_training_app/student_features/auth/presentation/view_model/user_cubit.dart';
+import 'package:field_training_app/cache/cache_helper.dart';
 import 'package:field_training_app/student_features/profile/presentation/view_model/cubit/student_profile_cubit.dart';
+import 'package:field_training_app/student_features/profile/presentation/widgets/custom_profile_edit_name.dart';
 import 'package:field_training_app/student_features/profile/presentation/widgets/profile_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,7 +32,7 @@ class ProfileViewBody extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  SizedBox(height: 20.h),
+                  SizedBox(height: 22.h),
                   CustomUserImage(
                     radius: 52.r,
                     iconSize: 45,
@@ -46,33 +49,41 @@ class ProfileViewBody extends StatelessWidget {
                   SizedBox(height: 2.h),
                   Text(state.studentModel.email ?? '',
                       style: Styles.textStyle16, textAlign: TextAlign.center),
-                  SizedBox(height: 50.h),
-                  ProfileItem(
-                    title: "الأسم الاول",
-                    value: state.studentModel.firstName ?? '',
-                    iconData: Icons.person,
-                    onpressed: () {
-                      Navigator.pushNamed(context, Routes.profileEditViewRoute,
-                          arguments: {
-                            "parameter": "firstName",
-                            "value": state.studentModel.firstName ?? '',
-                          });
-                    },
+                  SizedBox(height: 30.h),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: CustomProfileEditName(
+                          title: "الأسم الأخير",
+                          name: state.studentModel.lastName ?? '',
+                          onPressed: () {
+                            Navigator.pushNamed(
+                                context, Routes.profileEditViewRoute,
+                                arguments: {
+                                  "parameter": "lastName",
+                                  "value": state.studentModel.lastName!
+                                });
+                          },
+                        ),
+                      ),
+                      SizedBox(width: 8.w),
+                      Expanded(
+                        child: CustomProfileEditName(
+                          title: "الأسم الاول",
+                          name: state.studentModel.firstName ?? '',
+                          onPressed: () {
+                            Navigator.pushNamed(
+                                context, Routes.profileEditViewRoute,
+                                arguments: {
+                                  "parameter": "firstName",
+                                  "value": state.studentModel.firstName!
+                                });
+                          },
+                        ),
+                      ),
+                    ],
                   ),
-                  SizedBox(height: 28.h),
-                  ProfileItem(
-                    title: "الأسم الأخير",
-                    value: state.studentModel.lastName ?? '',
-                    iconData: Icons.person,
-                    onpressed: () {
-                      Navigator.pushNamed(context, Routes.profileEditViewRoute,
-                          arguments: {
-                            "parameter": "lastName",
-                            "value": state.studentModel.lastName ?? '',
-                          });
-                    },
-                  ),
-                  SizedBox(height: 28.h),
+                  SizedBox(height: 27.h),
                   ProfileItem(
                     isEdit: false,
                     title: "البريد الالكتروني",
@@ -80,7 +91,20 @@ class ProfileViewBody extends StatelessWidget {
                     iconData: Icons.email,
                     onpressed: () {},
                   ),
-                  SizedBox(height: 28.h),
+                  SizedBox(height: 27.h),
+                  ProfileItem(
+                    title: "كلمة المرور",
+                    value: '********',
+                    iconData: Icons.lock,
+                    onpressed: () {
+                      Navigator.pushNamed(context, Routes.profileEditViewRoute,
+                          arguments: {
+                            "parameter": "password",
+                            "value": CacheHelper.getData(key: passwordKey),
+                          });
+                    },
+                  ),
+                  SizedBox(height: 27.h),
                   ProfileItem(
                     title: "رقم الجوال",
                     value: state.studentModel.phone!
@@ -95,7 +119,7 @@ class ProfileViewBody extends StatelessWidget {
                           });
                     },
                   ),
-                  SizedBox(height: 28.h),
+                  SizedBox(height: 27.h),
                   ProfileItem(
                     title: "الصف الدراسي",
                     value: state.studentModel.levelOraddress ?? '',
@@ -112,11 +136,22 @@ class ProfileViewBody extends StatelessWidget {
                   CustomButton(
                       text: "تسجيل الخروج",
                       onpressed: () {
-                        BlocProvider.of<UserCubit>(context).logout();
-                        Navigator.pushNamedAndRemoveUntil(
-                            context, Routes.loginViewRoute, (route) => false);
+                        AwesomeDialog(
+                          context: context,
+                          dialogType: DialogType.infoReverse,
+                          animType: AnimType.topSlide,
+                          title: 'تنبيه',
+                          desc: 'هل تريد تسجيل الخروج؟',
+                          btnCancelOnPress: () {},
+                          btnOkOnPress: () {
+                            Navigator.pushNamedAndRemoveUntil(context,
+                                Routes.loginViewRoute, (route) => false);
+                          },
+                          btnOkText: 'نعم',
+                          btnCancelText: 'لا',
+                        ).show();
                       }),
-                  SizedBox(height: 15.h),
+                  SizedBox(height: 14.h),
                 ],
               ),
             );
