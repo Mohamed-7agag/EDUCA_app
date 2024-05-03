@@ -18,16 +18,12 @@ class ProfileViewBody extends StatelessWidget {
   const ProfileViewBody({super.key});
 
   @override
-  
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: BlocBuilder<StudentProfileCubit, StudentProfileState>(
-        
         builder: (context, state) {
-          
           if (state is StudentProfileSuccess) {
-            print('sucess------------------------');
             return SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -122,13 +118,13 @@ class ProfileViewBody extends StatelessWidget {
                   SizedBox(height: 27.h),
                   ProfileItem(
                     title: "الصف الدراسي",
-                    value: state.studentModel.levelOraddress ?? '',
+                    value: state.studentModel.studentLevel ?? '',
                     iconData: Icons.school,
                     onpressed: () {
                       Navigator.pushNamed(
                         context,
                         Routes.profileSelectClassEditViewRoute,
-                        arguments: state.studentModel.levelOraddress ?? '',
+                        arguments: state.studentModel.studentLevel ?? '',
                       );
                     },
                   ),
@@ -158,7 +154,6 @@ class ProfileViewBody extends StatelessWidget {
           } else if (state is StudentProfileFailure) {
             return CustomFailureWidget(errMessage: state.errMessage);
           }
-          print('loading------------------------');
           return const CustomLoadingWidget();
         },
       ),

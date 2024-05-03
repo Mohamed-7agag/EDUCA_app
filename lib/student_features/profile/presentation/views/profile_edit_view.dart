@@ -103,7 +103,7 @@ class _ProfileEditViewState extends State<ProfileEditView> {
                                       password: widget.parameter == "password"
                                           ? controller.text.trim()
                                           : null,
-                                      studentLeveloraddress: null,
+                                      studentLevel: null,
                                       image: null,
                                     );
 
