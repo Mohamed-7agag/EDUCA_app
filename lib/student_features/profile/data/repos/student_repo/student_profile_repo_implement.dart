@@ -5,6 +5,7 @@ import 'package:field_training_app/Core/api_services/failure.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../../../Core/api_services/end_points.dart';
+import '../../../../auth/helper/upload_image_to_api.dart';
 import '../../models/student_model.dart';
 import 'student_profile_repo.dart';
 
@@ -47,7 +48,7 @@ class StudentProfileRepoImplement implements StudentProfileRepo {
           ApiKey.password: password ?? "",
           ApiKey.phone: phone != null ? "+2$phone" : "",
           ApiKey.studentLevel: studentLevel ?? "",
-          ApiKey.image: image ?? "",
+          ApiKey.image: image != null ? await uploadImageToApi(image) : "",
         },
       );
       return response != ""

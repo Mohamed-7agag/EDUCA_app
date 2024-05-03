@@ -43,6 +43,7 @@ class RegisterViewBody extends StatelessWidget {
               iconSize: 45,
               right: 115.w,
               top: 70.h,
+              isRegister: true,
             ),
             SizedBox(height: 40.h),
             Form(

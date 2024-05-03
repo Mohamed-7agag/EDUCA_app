@@ -15,12 +15,14 @@ class CustomUserImage extends StatelessWidget {
     required this.right,
     required this.top,
     required this.cameraSize,
+    this.isRegister = false,
   });
   final double radius;
   final double iconSize;
   final double right;
   final double top;
   final double cameraSize;
+  final bool? isRegister;
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +59,7 @@ class CustomUserImage extends StatelessWidget {
               top: top,
               child: IconButton(
                 onPressed: () {
-                  bottomSheet(context);
+                  bottomSheet(context, isRegister ?? false);
                 },
                 icon: Icon(
                   Icons.add_a_photo_outlined,

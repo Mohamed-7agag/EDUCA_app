@@ -35,6 +35,7 @@ class ProfileViewBody extends StatelessWidget {
                     right: 112.w,
                     top: 70.h,
                     cameraSize: 20,
+                    isRegister: false,
                   ),
                   SizedBox(height: 25.h),
                   Text(

@@ -1,5 +1,5 @@
 // ignore_for_file: use_build_context_synchronously
-
+import 'package:field_training_app/student_features/profile/presentation/view_model/cubit/student_profile_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,7 +10,7 @@ import '../../../../Core/utils/styles.dart';
 import '../../../auth/presentation/view_model/auth_cubit/auth_cubit.dart';
 import '../../../auth/presentation/view_model/change_profile_image.dart';
 
-void bottomSheet(BuildContext context) {
+void bottomSheet(BuildContext context, bool isRegister) {
   showModalBottomSheet<void>(
     context: context,
     builder: (BuildContext ctx) {
@@ -29,7 +29,13 @@ void bottomSheet(BuildContext context) {
                     final pickedFile =
                         await picker.pickImage(source: ImageSource.camera);
                     if (pickedFile != null) {
-                      context.read<AuthCubit>().image = pickedFile;
+                      if (isRegister) {
+                        context.read<AuthCubit>().image = pickedFile;
+                      } else {
+                        context
+                            .read<StudentProfileCubit>()
+                            .updateStudentData(image: pickedFile);
+                      }
                       context
                           .read<ChangeProfileImageCubit>()
                           .changeImage(pickedFile);
@@ -60,7 +66,13 @@ void bottomSheet(BuildContext context) {
                     final pickedFile =
                         await picker.pickImage(source: ImageSource.gallery);
                     if (pickedFile != null) {
-                      context.read<AuthCubit>().image = pickedFile;
+                      if (isRegister) {
+                        context.read<AuthCubit>().image = pickedFile;
+                      } else {
+                        context
+                            .read<StudentProfileCubit>()
+                            .updateStudentData(image: pickedFile);
+                      }
                       context
                           .read<ChangeProfileImageCubit>()
                           .changeImage(pickedFile);
