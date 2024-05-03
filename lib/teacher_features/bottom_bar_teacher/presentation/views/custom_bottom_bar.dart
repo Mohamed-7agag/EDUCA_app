@@ -1,5 +1,6 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/student_features/bottom_bar/presentation/view_model/bottom_bar_cubit.dart';
+import 'package:field_training_app/student_features/profile/presentation/views/profile_view.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views/courser_teacher_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -54,16 +55,16 @@ class CustomBottomBarForTeacherView extends StatelessWidget {
               child: IndexedStack(
             index: state,
             children: [
-              //const ProfileView(),
-              Container(
-                color: Colors.blue,
-                child: const Center(
-                  child: Text(
-                    'courses',
-                    style: TextStyle(fontSize: 24, color: Colors.white),
-                  ),
-                ),
-              ),
+              const ProfileView(),
+              // Container(
+              //   color: Colors.blue,
+              //   child: const Center(
+              //     child: Text(
+              //       'courses',
+              //       style: TextStyle(fontSize: 24, color: Colors.white),
+              //     ),
+              //   ),
+              // ),
               const CoursesTeacherView(),
 
               const HomeTeacherView()

@@ -6,7 +6,7 @@ class StudentModel extends Equatable {
   final String? lastName;
   final String? email;
   final String? phone;
-  final String? level;
+  final String? levelOraddress;
   final String? profileImageUrl;
 
   const StudentModel({
@@ -15,7 +15,7 @@ class StudentModel extends Equatable {
     this.lastName,
     this.email,
     this.phone,
-    this.level,
+    this.levelOraddress,
     this.profileImageUrl,
   });
 
@@ -26,7 +26,7 @@ class StudentModel extends Equatable {
         lastName: json['lastName'] as String?,
         email: json['email'] as String?,
         phone: json['phone'] as String?,
-        level: json['level'] as String?,
+        levelOraddress: json['level'] as String?,
         profileImageUrl: json['profileImageUrl'] as String?,
       );
 
@@ -36,7 +36,7 @@ class StudentModel extends Equatable {
         'lastName': lastName,
         'email': email,
         'phone': phone,
-        'level': level,
+        'level': levelOraddress,
         'profileImageUrl': profileImageUrl,
       };
 
@@ -48,7 +48,7 @@ class StudentModel extends Equatable {
       lastName,
       email,
       phone,
-      level,
+      levelOraddress,
       profileImageUrl,
     ];
   }

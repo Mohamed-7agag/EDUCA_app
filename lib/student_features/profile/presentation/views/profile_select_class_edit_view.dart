@@ -94,7 +94,7 @@ class _ProfileSelectClassEditViewState
                               context
                                   .read<StudentProfileCubit>()
                                   .updateStudentData(
-                                      studentLevel: widget.value);
+                                      studentLeveloraddress: widget.value);
                             });
                   },
                 ),

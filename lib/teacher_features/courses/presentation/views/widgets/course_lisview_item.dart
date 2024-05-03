@@ -1,5 +1,6 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:field_training_app/Core/utils/constatnt.dart';
+import 'package:field_training_app/Core/utils/routes.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,7 +11,9 @@ class CourseListViewItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushNamed(context, Routes.courseDetailsTeacherViewRoute);
+      },
       splashColor: kSplashColor,
       borderRadius: BorderRadius.circular(8.r),
       child: Container(
