@@ -5,12 +5,14 @@ abstract class ApiRequests {
   Future<dynamic> post({
     required String endPoint,
     Object? data,
+    bool isFromData = false,
   });
 
   //? Put Method
   Future<dynamic> put({
     required String endPoint,
     Object? data,
+    bool isFromData = false,
   });
 
   //? Delete Method

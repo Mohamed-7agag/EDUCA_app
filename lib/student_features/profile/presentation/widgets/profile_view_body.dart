@@ -45,7 +45,7 @@ class ProfileViewBody extends StatelessWidget {
                   SizedBox(height: 2.h),
                   Text(state.studentModel.email ?? '',
                       style: Styles.textStyle16, textAlign: TextAlign.center),
-                  SizedBox(height: 30.h),
+                  SizedBox(height: 28.h),
                   Row(
                     children: [
                       Expanded(

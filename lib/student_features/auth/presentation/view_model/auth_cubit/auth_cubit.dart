@@ -54,8 +54,7 @@ class AuthCubit extends Cubit<AuthState> {
       password: passwordController.text.trim(),
       phone: phoneController.text.trim(),
       studentLevel: studentLevel,
-      //image: image != null ? await uploadImageToApi(image!) : "",
-      image: "",
+      image: image ?? XFile(''),
     );
     result.fold((failure) {
       emit(AuthRegisterFailure(errMessage: failure.errMessage));
@@ -75,7 +74,7 @@ class AuthCubit extends Cubit<AuthState> {
       password: passwordController.text.trim(),
       phone: phoneController.text.trim(),
       address: addressController.text.trim(),
-      image: "",
+      image: image ?? XFile(''),
     );
     result.fold((failure) {
       emit(AuthRegisterFailure(errMessage: failure.errMessage));

@@ -4,9 +4,8 @@ import 'package:field_training_app/cache/cache_helper.dart';
 import 'package:field_training_app/student_features/profile/data/models/student_model.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:image_picker/image_picker.dart';
 import '../../../data/repos/student_repo/student_profile_repo.dart';
-
 part 'student_profile_state.dart';
 
 class StudentProfileCubit extends Cubit<StudentProfileState> {
@@ -34,7 +33,7 @@ class StudentProfileCubit extends Cubit<StudentProfileState> {
     String? password,
     String? phone,
     String? studentLevel,
-    String? image,
+    XFile? image,
   }) async {
     emit(StudentProfileUpdateLoading());
     var result = await studentProfileRepo.updateStudentData(

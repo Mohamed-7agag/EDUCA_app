@@ -35,11 +35,15 @@ class ApiServices extends ApiRequests {
 
 //! Post Method
   @override
-  Future post({required String endPoint, Object? data}) async {
+  Future post({
+    required String endPoint,
+    dynamic data,
+    bool isFromData = false,
+  }) async {
     try {
       final response = await _dio.post(
         endPoint,
-        data: data,
+        data: isFromData ? FormData.fromMap(data) : data,
       );
       return response.data;
     } on DioException catch (e) {
@@ -49,13 +53,15 @@ class ApiServices extends ApiRequests {
 
 //! put Method
   @override
-  Future put(
-    {required String endPoint, Object? data}) async {
+  Future put({
+    required String endPoint,
+    dynamic data,
+    bool isFromData = false,
+  }) async {
     try {
       final response = await _dio.put(
         endPoint,
-        data: data,
-        
+        data: isFromData ? FormData.fromMap(data) : data,
       );
       return response.data;
     } on DioException catch (e) {

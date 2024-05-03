@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:field_training_app/Core/api_services/api_service.dart';
 import 'package:field_training_app/Core/api_services/failure.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../../../Core/api_services/end_points.dart';
 import '../../models/student_model.dart';
@@ -34,11 +35,12 @@ class StudentProfileRepoImplement implements StudentProfileRepo {
     String? password,
     String? phone,
     String? studentLevel,
-    String? image,
+    XFile? image,
   }) async {
     try {
       var response = await apiServices.put(
         endPoint: endPoint,
+        isFromData: true,
         data: {
           ApiKey.firstName: firstName ?? "",
           ApiKey.lastName: lastName ?? "",
