@@ -125,7 +125,7 @@ class ProfileViewBody extends StatelessWidget {
                       Navigator.pushNamed(
                         context,
                         Routes.profileSelectClassEditViewRoute,
-                        arguments: state.studentModel.levelOraddress ?? '',
+                        arguments: state.studentModel.studentLevel ?? '',
                       );
                     },
                   ),
