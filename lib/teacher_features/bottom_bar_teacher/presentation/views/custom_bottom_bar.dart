@@ -54,8 +54,8 @@ class CustomBottomBarForTeacherView extends StatelessWidget {
           body: SafeArea(
               child: IndexedStack(
             index: state,
-            children: [
-              const ProfileView(),
+            children: const [
+              ProfileView(),
               // Container(
               //   color: Colors.blue,
               //   child: const Center(
@@ -65,9 +65,9 @@ class CustomBottomBarForTeacherView extends StatelessWidget {
               //     ),
               //   ),
               // ),
-              const CoursesTeacherView(),
+              CoursesTeacherView(),
 
-              const HomeTeacherView()
+              HomeTeacherView()
             ],
           )),
         );

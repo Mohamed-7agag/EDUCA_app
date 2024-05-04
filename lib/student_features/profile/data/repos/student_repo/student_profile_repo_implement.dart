@@ -2,9 +2,10 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:field_training_app/Core/api_services/api_service.dart';
 import 'package:field_training_app/Core/api_services/failure.dart';
-
+import 'package:image_picker/image_picker.dart';
 
 import '../../../../../Core/api_services/end_points.dart';
+import '../../../../auth/helper/upload_image_to_api.dart';
 import '../../models/student_model.dart';
 import 'student_profile_repo.dart';
 
@@ -35,11 +36,12 @@ class StudentProfileRepoImplement implements StudentProfileRepo {
     String? password,
     String? phone,
     String? studentLevel,
-    String? image,
+    XFile? image,
   }) async {
     try {
       var response = await apiServices.put(
         endPoint: endPoint,
+        isFromData: true,
         data: {
           ApiKey.firstName: firstName ?? "",
           ApiKey.lastName: lastName ?? "",
@@ -61,7 +63,6 @@ class StudentProfileRepoImplement implements StudentProfileRepo {
   }
 
   //
-  @override
   Future<Either<Failure, StudentModel>> getTeacherData(
       {required String endPoint}) async {
     try {

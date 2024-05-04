@@ -81,6 +81,9 @@ class AppRouter {
                 create: (context) => ChangeProfileImageCubit(),
               ),
               BlocProvider(
+                create: (context) => AuthCubit(getIt.get<AuthRepoImplement>()),
+              ),
+              BlocProvider(
                 create: (context) => StudentProfileCubit(
                     getIt.get<StudentProfileRepoImplement>())
                   ..getStudentData(),

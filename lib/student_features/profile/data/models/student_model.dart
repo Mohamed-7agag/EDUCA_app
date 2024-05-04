@@ -6,7 +6,7 @@ class StudentModel extends Equatable {
   final String? lastName;
   final String? email;
   final String? phone;
-  final String? levelOraddress;
+  final String? studentLevel;
   final String? profileImageUrl;
 
   const StudentModel({
@@ -15,9 +15,10 @@ class StudentModel extends Equatable {
     this.lastName,
     this.email,
     this.phone,
-    this.levelOraddress,
+    this.studentLevel,
     this.profileImageUrl,
   });
+
 
   factory StudentModel.fromJson(Map<String, dynamic> json) => StudentModel(
         id: json['id'] as int?,
@@ -25,7 +26,7 @@ class StudentModel extends Equatable {
         lastName: json['lastName'] as String?,
         email: json['email'] as String?,
         phone: json['phone'] as String?,
-        levelOraddress: json['level'] as String?,
+        studentLevel: json['level'] as String?,
         profileImageUrl: json['profileImageUrl'] as String?,
       );
 
@@ -35,7 +36,7 @@ class StudentModel extends Equatable {
         'lastName': lastName,
         'email': email,
         'phone': phone,
-        'level': levelOraddress,
+        'level': studentLevel,
         'profileImageUrl': profileImageUrl,
       };
 
@@ -47,7 +48,7 @@ class StudentModel extends Equatable {
       lastName,
       email,
       phone,
-      levelOraddress,
+      studentLevel,
       profileImageUrl,
     ];
   }

@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:image_picker/image_picker.dart';
 import '../../../../Core/api_services/failure.dart';
 import '../models/login_model.dart';
 
@@ -16,7 +17,7 @@ abstract class AuthRepo {
     required String password,
     required String phone,
     required String studentLevel,
-    required String image,
+    required XFile image,
   });
   Future<Either<Failure, String>> teacherRegister({
     required String firstName,
@@ -26,6 +27,6 @@ abstract class AuthRepo {
     required String password,
     required String phone,
     required String address,
-    required String image,
+    required XFile image,
   });
 }
