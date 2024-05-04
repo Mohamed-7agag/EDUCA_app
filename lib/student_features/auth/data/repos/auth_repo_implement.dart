@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:field_training_app/Core/api_services/api_service.dart';
@@ -87,7 +89,7 @@ class AuthRepoImplement implements AuthRepo {
     try {
       var response = await apiServices.post(
         endPoint: EndPoint.teacherRegister,
-        isFromData:  true,
+        isFromData: true,
         data: {
           ApiKey.firstName: firstName,
           ApiKey.lastName: lastName,
@@ -96,7 +98,7 @@ class AuthRepoImplement implements AuthRepo {
           ApiKey.password: password,
           ApiKey.phone: "+2$phone",
           ApiKey.address: address,
-          ApiKey.image:  await uploadImageToApi(image),
+          ApiKey.image: await uploadImageToApi(image),
         },
       );
       return response == null
