@@ -5,7 +5,8 @@ import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
 import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
 import 'package:field_training_app/cache/cache_helper.dart';
-import 'package:field_training_app/student_features/profile/presentation/view_model/cubit/student_profile_cubit.dart';
+
+import 'package:field_training_app/teacher_features/profile_teacher/presentation/view_model/cubit/student_profile_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -41,7 +42,7 @@ class _TeacherProfileEditViewState extends State<TeacherProfileEditView> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                "تعديل بيانات الطالب",
+                "تعديل بيانات المعلم",
                 style: Styles.textStyle24.copyWith(
                     fontWeight: FontWeight.bold, color: kPrimaryColor),
                 textAlign: TextAlign.right,
@@ -65,20 +66,20 @@ class _TeacherProfileEditViewState extends State<TeacherProfileEditView> {
               SizedBox(height: 40.h),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: BlocConsumer<StudentProfileCubit, StudentProfileState>(
+                child: BlocConsumer<TeacherProfileCubit, TeacherProfileState>(
                   listener: (context, state) {
-                    if (state is StudentProfileUpdateSuccess) {
+                    if (state is TeacherProfileUpdateSuccess) {
                       successCherryToast(
                           context, "عملية ناجحة", "تم تعديل بياناتك");
 
                       Navigator.pushNamed(
-                          context, Routes.customBottomBarViewRoute);
-                    } else if (state is StudentProfileUpdateFailure) {
+                          context, Routes.customBottomBarForTeacherViewRoute);
+                    } else if (state is TeacherProfileUpdateFailure) {
                       errorCherryToast(context, "حدث خطأ", state.errMessage);
                     }
                   },
                   builder: (context, state) {
-                    return state is StudentProfileUpdateLoading
+                    return state is TeacherProfileUpdateLoading
                         ? const CustomLoadingWidget()
                         : CustomButton(
                             text: "تعديل",
@@ -89,8 +90,8 @@ class _TeacherProfileEditViewState extends State<TeacherProfileEditView> {
                                     "قم بتعبئة هذا الحقل");
                               } else {
                                 context
-                                    .read<StudentProfileCubit>()
-                                    .updateStudentData(
+                                    .read<TeacherProfileCubit>()
+                                    .updateTeacherData(
                                       firstName: widget.parameter == "firstName"
                                           ? controller.text.trim()
                                           : null,
@@ -103,7 +104,7 @@ class _TeacherProfileEditViewState extends State<TeacherProfileEditView> {
                                       password: widget.parameter == "password"
                                           ? controller.text.trim()
                                           : null,
-                                      studentLevel: null,
+                                      address: null,
                                       image: null,
                                     );
 

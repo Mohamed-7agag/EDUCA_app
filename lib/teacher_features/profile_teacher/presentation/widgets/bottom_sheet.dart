@@ -1,7 +1,8 @@
 // ignore_for_file: use_build_context_synchronously
 import 'package:field_training_app/student_features/auth/presentation/view_model/auth_cubit/auth_cubit.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/change_profile_image.dart';
-import 'package:field_training_app/student_features/profile/presentation/view_model/cubit/student_profile_cubit.dart';
+
+import 'package:field_training_app/teacher_features/profile_teacher/presentation/view_model/cubit/student_profile_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -33,8 +34,8 @@ void bottomSheet(BuildContext context, bool isRegister) {
                         context.read<AuthCubit>().image = pickedFile;
                       } else {
                         context
-                            .read<StudentProfileCubit>()
-                            .updateStudentData(image: pickedFile);
+                            .read<TeacherProfileCubit>()
+                            .updateTeacherData(image: pickedFile);
                       }
                       context
                           .read<ChangeProfileImageCubit>()
@@ -70,8 +71,8 @@ void bottomSheet(BuildContext context, bool isRegister) {
                         context.read<AuthCubit>().image = pickedFile;
                       } else {
                         context
-                            .read<StudentProfileCubit>()
-                            .updateStudentData(image: pickedFile);
+                            .read<TeacherProfileCubit>()
+                            .updateTeacherData(image: pickedFile);
                       }
                       context
                           .read<ChangeProfileImageCubit>()
