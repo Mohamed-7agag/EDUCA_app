@@ -2,11 +2,11 @@ import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/student_features/bottom_bar/presentation/view_model/bottom_bar_cubit.dart';
 
 import 'package:field_training_app/teacher_features/courses/presentation/views/courser_teacher_view.dart';
-import 'package:field_training_app/teacher_features/profile_teacher/presentation/views/profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import '../../../home_teacher/presentation/views/home_view.dart';
+import '../../../profile_teacher/presentation/views/teacher_profile_view.dart';
 
 class CustomBottomBarForTeacherView extends StatelessWidget {
   const CustomBottomBarForTeacherView({super.key});

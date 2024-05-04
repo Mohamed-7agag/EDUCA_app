@@ -26,13 +26,13 @@ class CourseDetailsViewBody extends StatelessWidget {
             Positioned(
               bottom: -25.h,
               child: Container(
-                height: 60.h,
+                height: 55.h,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(40.r),
-                      topRight: Radius.circular(40.r),
+                      topLeft: Radius.circular(35.r),
+                      topRight: Radius.circular(35.r),
                     )),
               ),
             ),

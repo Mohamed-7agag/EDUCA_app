@@ -7,8 +7,6 @@ import 'package:field_training_app/teacher_features/courses/presentation/views/c
 import 'package:field_training_app/teacher_features/courses/presentation/views/enrolled_students_view.dart';
 import 'package:field_training_app/teacher_features/profile_teacher/data/repos/teacher_repo/student_profile_repo_implement.dart';
 import 'package:field_training_app/teacher_features/profile_teacher/presentation/view_model/cubit/student_profile_cubit.dart';
-import 'package:field_training_app/teacher_features/profile_teacher/presentation/views/profile_edit_view.dart';
-import 'package:field_training_app/teacher_features/profile_teacher/presentation/views/profile_view.dart';
 import 'package:field_training_app/teacher_features/teacher/presentation/views/create_class.dart';
 import 'package:field_training_app/teacher_features/teacher/presentation/views/terms_view.dart';
 import 'package:field_training_app/teacher_features/teacher/presentation/views_model/cubit/drop_down_list_cubit.dart';
@@ -33,6 +31,8 @@ import '../../student_features/profile/presentation/views/profile_select_class_e
 import '../../student_features/profile/presentation/views/profile_view.dart';
 import '../../student_features/splash/presentation/views/splash_view.dart';
 import '../../teacher_features/bottom_bar_teacher/presentation/views/custom_bottom_bar.dart';
+import '../../teacher_features/profile_teacher/presentation/views/teacher_profile_edit_view.dart';
+import '../../teacher_features/profile_teacher/presentation/views/teacher_profile_view.dart';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
