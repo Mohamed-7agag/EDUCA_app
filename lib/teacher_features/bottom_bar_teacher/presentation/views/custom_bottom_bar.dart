@@ -1,6 +1,6 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/student_features/bottom_bar/presentation/view_model/bottom_bar_cubit.dart';
-import 'package:field_training_app/student_features/profile/presentation/views/profile_view.dart';
+
 import 'package:field_training_app/teacher_features/courses/presentation/views/courser_teacher_view.dart';
 import 'package:field_training_app/teacher_features/profile_teacher/presentation/views/profile_view.dart';
 import 'package:flutter/material.dart';
