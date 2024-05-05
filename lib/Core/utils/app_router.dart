@@ -1,8 +1,8 @@
-
 import 'package:field_training_app/Core/utils/app_services.dart';
 import 'package:field_training_app/student_features/auth/data/repos/auth_repo_implement.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/auth_cubit/auth_cubit.dart';
 import 'package:field_training_app/student_features/profile/data/repos/student_repo/student_profile_repo_implement.dart';
+import 'package:field_training_app/student_features/quiz/presentation/views/quiz_view.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views/course_details_teacher_view.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views/enrolled_students_view.dart';
 import 'package:field_training_app/teacher_features/profile_teacher/data/repos/teacher_repo/student_profile_repo_implement.dart';
@@ -106,18 +106,17 @@ class AppRouter {
               BlocProvider(
                 create: (context) => BottomBarCubit(),
               ),
-                BlocProvider(
+              BlocProvider(
                 create: (context) => ChangeProfileImageCubit(),
               ),
               BlocProvider(
                 create: (context) => AuthCubit(getIt.get<AuthRepoImplement>()),
               ),
-               BlocProvider(
+              BlocProvider(
                 create: (context) => TeacherProfileCubit(
                     getIt.get<TeacherProfileRepoImplement>())
                   ..getTeacherData(),
               ),
-             
             ],
             child: const CustomBottomBarForTeacherView(),
           ),
@@ -126,10 +125,10 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (context) => const ProfileView(),
         );
-         case Routes.teacherProfileViewRoute:
+      case Routes.teacherProfileViewRoute:
         return MaterialPageRoute(
           builder: (context) => const TeacherProfileView(),
-        ); 
+        );
       case Routes.profileEditViewRoute:
         var args = settings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(
@@ -142,7 +141,7 @@ class AppRouter {
             ),
           ),
         );
-        case Routes.teacherProfileEditViewRoute:
+      case Routes.teacherProfileEditViewRoute:
         var args = settings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
@@ -158,8 +157,8 @@ class AppRouter {
         var args = settings.arguments as String;
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
-            create: (context) => StudentProfileCubit(
-                    getIt.get<StudentProfileRepoImplement>()),
+            create: (context) =>
+                StudentProfileCubit(getIt.get<StudentProfileRepoImplement>()),
             child: ProfileSelectClassEditView(value: args),
           ),
         );
@@ -186,6 +185,10 @@ class AppRouter {
       case Routes.enrolledStudentsViewRoute:
         return MaterialPageRoute(
           builder: (context) => const EnrolledStudentsView(),
+        );
+      case Routes.quizViewRoute:
+        return MaterialPageRoute(
+          builder: (context) => const QuizView(),
         );
       default:
         return MaterialPageRoute(

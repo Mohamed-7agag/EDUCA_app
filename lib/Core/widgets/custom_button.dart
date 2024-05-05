@@ -10,13 +10,14 @@ class CustomButton extends StatelessWidget {
     required this.onpressed,
     this.backroundcolor,
     this.rectangleBorder,
-    this.textStyle,
+    this.textStyle, this.padding,
   });
   final String text;
   final VoidCallback onpressed;
 
   final Color? backroundcolor;
   final TextStyle? textStyle;
+  final EdgeInsetsGeometry? padding;
 
   final RoundedRectangleBorder? rectangleBorder;
 
@@ -28,7 +29,7 @@ class CustomButton extends StatelessWidget {
         elevation: 0.0,
         backgroundColor: backroundcolor ?? kPrimaryColor,
         foregroundColor: Colors.white,
-        padding: const EdgeInsets.only(bottom: 15, top: 17),
+        padding: padding ?? const EdgeInsets.only(bottom: 15, top: 17),
         shape: rectangleBorder ??
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(6.r),

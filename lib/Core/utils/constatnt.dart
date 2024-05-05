@@ -10,3 +10,18 @@ const String introScreenKey = "introScreen";
 const String optionStateKey = "optionState";
 const String termsKey = "terms";
 const String passwordKey = "password";
+
+
+List<String> questions = [
+  'ما هو اطول نهر في العالم؟',
+  'ما هي عاصمة فرنسا؟',
+  'ما هي عاصمة اليابان؟',
+  'ما هو اطول جبل في العالم؟',
+];
+
+List<List<String>> answers = [
+  ['نهر الأمازون', 'نهر النيل', 'نهر اليانغتسي', 'نهر الميسيسيبي'],
+  ['باريس', 'برلين', 'لندن', 'مدريد'],
+  ['طوكيو', 'سيول', 'بكين', 'موسكو'],
+  ['إيفرست', 'كيليمنجارو', 'ماكينلي', 'كانتستسنا'],
+];

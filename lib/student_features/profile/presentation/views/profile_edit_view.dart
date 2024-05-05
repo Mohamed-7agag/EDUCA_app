@@ -46,7 +46,7 @@ class _ProfileEditViewState extends State<ProfileEditView> {
                     fontWeight: FontWeight.bold, color: kPrimaryColor),
                 textAlign: TextAlign.right,
               ),
-              SizedBox(height: 50.h),
+              SizedBox(height: 40.h),
               TextFormField(
                 controller: controller,
                 cursorColor: kPrimaryColor,
@@ -62,7 +62,7 @@ class _ProfileEditViewState extends State<ProfileEditView> {
                   ),
                 ),
               ),
-              SizedBox(height: 40.h),
+              SizedBox(height: 60.h),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: BlocConsumer<StudentProfileCubit, StudentProfileState>(
