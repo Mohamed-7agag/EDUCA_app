@@ -3,6 +3,7 @@ import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/cache/cache_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../../../Core/utils/routes.dart';
 
@@ -38,12 +39,23 @@ class _SplashViewState extends State<SplashView> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-          child: Center(
-        child: Image.asset(
-          "assets/images/logo.png",
-          width: 100.w,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Lottie.asset(
+              "assets/animation/splash.json",
+              repeat: true,
+              width: double.infinity,
+              height: double.infinity,
+              fit: BoxFit.fill,
+            ),
+            Image.asset(
+              "assets/images/logo.png",
+              width: 100.w,
+            ),
+          ],
         ),
-      )),
+      ),
     );
   }
 }

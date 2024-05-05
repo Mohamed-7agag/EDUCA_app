@@ -1,7 +1,8 @@
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import '../../../../Core/widgets/custom_search_loading_widget.dart';
 import 'search_text_field.dart';
 
 class SearchViewBody extends StatelessWidget {
@@ -22,6 +23,7 @@ class SearchViewBody extends StatelessWidget {
             style: Styles.textStyle14,
           ),
           SizedBox(height: 20.h),
+          const Expanded(child: CustomSearchLoadingWidget()),
           // const Expanded(
           //   child: SearchListView(),
           // ),
