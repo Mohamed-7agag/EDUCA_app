@@ -3,7 +3,7 @@ import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/Core/widgets/custom_failure_widget.dart';
 import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
-import 'package:field_training_app/Core/widgets/custom_user_image.dart';
+import 'package:field_training_app/Core/widgets/profile_user_image.dart';
 import 'package:field_training_app/cache/cache_helper.dart';
 import 'package:field_training_app/student_features/profile/presentation/view_model/cubit/student_profile_cubit.dart';
 import 'package:field_training_app/student_features/profile/presentation/widgets/custom_profile_edit_name.dart';
@@ -29,13 +29,13 @@ class ProfileViewBody extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   SizedBox(height: 22.h),
-                  CustomUserImage(
+                  ProfileUserImage(
                     radius: 52.r,
                     iconSize: 45,
                     right: 112.w,
                     top: 70.h,
-                    cameraSize: 20,
-                    isRegister: false,
+                    cameraSize: 22,
+                    image: state.studentModel.profileImageUrl,
                   ),
                   SizedBox(height: 25.h),
                   Text(

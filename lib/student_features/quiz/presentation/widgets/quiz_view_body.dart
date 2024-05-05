@@ -1,9 +1,11 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
+import 'package:field_training_app/student_features/quiz/presentation/view_model/counter_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'question_and_answers.dart';
@@ -26,7 +28,7 @@ class QuizViewBody extends StatelessWidget {
               children: [
                 SizedBox(height: 60.h),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height-150.h,
+                  height: MediaQuery.of(context).size.height - 150.h,
                   child: PageView.builder(
                     reverse: true,
                     physics: const NeverScrollableScrollPhysics(),
@@ -50,9 +52,13 @@ class QuizViewBody extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Text("3",
-                  style: Styles.textStyle22.copyWith(color: kPrimaryColor)),
-              Text(" / 12", style: Styles.textStyle16),
+              BlocBuilder<CounterCubit, double>(
+                builder: (context, state) {
+                  return Text((state.toInt() + 1).toString(),
+                      style: Styles.textStyle22.copyWith(color: kPrimaryColor));
+                },
+              ),
+              Text(" / ${questions.length}", style: Styles.textStyle16),
             ],
           ),
         ),
@@ -65,10 +71,14 @@ class QuizViewBody extends StatelessWidget {
                 text: "التالي",
                 onpressed: () {
                   if (_controller.page! < questions.length - 1) {
-                    _controller.nextPage(
-                      duration: const Duration(milliseconds: 600),
-                      curve: Curves.ease,
-                    );
+                    _controller
+                        .nextPage(
+                          duration: const Duration(milliseconds: 600),
+                          curve: Curves.ease,
+                        )
+                        .then((value) => context
+                            .read<CounterCubit>()
+                            .increment(_controller.page!));
                   }
                 },
                 textStyle:
@@ -81,10 +91,14 @@ class QuizViewBody extends StatelessWidget {
                 text: "السابق",
                 onpressed: () {
                   if (_controller.page! > 0) {
-                    _controller.previousPage(
-                      duration: const Duration(milliseconds: 600),
-                      curve: Curves.ease,
-                    );
+                    _controller
+                        .previousPage(
+                          duration: const Duration(milliseconds: 600),
+                          curve: Curves.ease,
+                        )
+                        .then((value) => context
+                            .read<CounterCubit>()
+                            .decrement(_controller.page!));
                   }
                 },
                 textStyle:

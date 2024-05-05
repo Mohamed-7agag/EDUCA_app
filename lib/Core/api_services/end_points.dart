@@ -20,11 +20,12 @@ class ApiKey {
   //? for login and register
   static String firstName = "firstName";
   static String lastName = "lastName";
-  static String userName = "username";
+  static String userName = "userName";
   static String email = "email";
   static String password = "password";
   static String phone = "phone";
   static String studentLevel = "level";
   static String address = "address";
-  static String image = "profileImageUrl";
+  static String image = "profileImage";
+  static String imageUrl = "profileImageUrl";
 }

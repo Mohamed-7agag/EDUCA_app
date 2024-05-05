@@ -29,6 +29,8 @@ import '../../student_features/notification/presentation/views/notification_view
 import '../../student_features/profile/presentation/view_model/cubit/student_profile_cubit.dart';
 import '../../student_features/profile/presentation/views/profile_select_class_edit_view.dart';
 import '../../student_features/profile/presentation/views/profile_view.dart';
+import '../../student_features/quiz/presentation/view_model/counter_cubit.dart';
+import '../../student_features/quiz/presentation/view_model/select_answer_cubit.dart';
 import '../../student_features/splash/presentation/views/splash_view.dart';
 import '../../teacher_features/bottom_bar_teacher/presentation/views/custom_bottom_bar.dart';
 import '../../teacher_features/profile_teacher/presentation/views/teacher_profile_edit_view.dart';
@@ -67,7 +69,7 @@ class AppRouter {
                 create: (context) => AuthCubit(getIt.get<AuthRepoImplement>()),
               ),
               BlocProvider(
-                create: (context) => ChangeProfileImageCubit(),
+                create: (context) => ChangeRegisterImageCubit(),
               ),
             ],
             child: const RegisterView(),
@@ -82,10 +84,7 @@ class AppRouter {
                 create: (context) => BottomBarCubit(),
               ),
               BlocProvider(
-                create: (context) => ChangeProfileImageCubit(),
-              ),
-              BlocProvider(
-                create: (context) => AuthCubit(getIt.get<AuthRepoImplement>()),
+                create: (context) => ChangeRegisterImageCubit(),
               ),
               BlocProvider(
                 create: (context) => StudentProfileCubit(
@@ -107,7 +106,7 @@ class AppRouter {
                 create: (context) => BottomBarCubit(),
               ),
               BlocProvider(
-                create: (context) => ChangeProfileImageCubit(),
+                create: (context) => ChangeRegisterImageCubit(),
               ),
               BlocProvider(
                 create: (context) => AuthCubit(getIt.get<AuthRepoImplement>()),
@@ -188,7 +187,17 @@ class AppRouter {
         );
       case Routes.quizViewRoute:
         return MaterialPageRoute(
-          builder: (context) => const QuizView(),
+          builder: (context) => MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => CounterCubit(),
+              ),
+              BlocProvider(
+                create: (context) => SelectAnswerCubit(),
+              ),
+            ],
+            child: const QuizView(),
+          ),
         );
       default:
         return MaterialPageRoute(
