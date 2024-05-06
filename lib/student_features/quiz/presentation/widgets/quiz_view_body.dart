@@ -8,6 +8,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../Core/utils/routes.dart';
 import 'question_and_answers.dart';
 
 class QuizViewBody extends StatelessWidget {
@@ -79,6 +80,11 @@ class QuizViewBody extends StatelessWidget {
                         .then((value) => context
                             .read<CounterCubit>()
                             .increment(_controller.page!));
+                  } else {
+                    Navigator.pushReplacementNamed(
+                      context,
+                      Routes.quizResultViewRoute,
+                    );
                   }
                 },
                 textStyle:

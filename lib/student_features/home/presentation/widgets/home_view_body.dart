@@ -77,13 +77,13 @@ class HomeViewBody extends StatelessWidget {
               style: Styles.textStyle14.copyWith(color: Colors.grey),
             ),
           ),
-          SizedBox(height: 25.h),
+          SizedBox(height: 22.h),
           Padding(
             padding: const EdgeInsets.only(left: 20),
             child: Container(
               padding: EdgeInsets.only(right: 20.w, left: 6.w),
               width: double.infinity,
-              height: 80.h,
+              height: 75.h,
               decoration: BoxDecoration(
                 color: kPrimaryColor,
                 borderRadius: BorderRadius.only(
@@ -94,12 +94,22 @@ class HomeViewBody extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  ClipRRect(
-                      borderRadius: BorderRadius.circular(50),
-                      child:
-                          Image.asset("assets/images/icon.png", width: 70.w)),
+                  IconButton(
+                    style: IconButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        foregroundColor: kPrimaryColor,
+                        padding: const EdgeInsets.all(15)),
+                    onPressed: () {
+                      //Navigator.pushNamed(context, Routes.searchViewRoute);
+                      Navigator.pushNamed(context, Routes.quizViewRoute);
+                    },
+                    icon: const Icon(
+                      Icons.arrow_back_rounded,
+                      size: 38,
+                    ),
+                  ),
                   Text(
-                    "أبدا الان رحلتك\nالتعلمية مع EDUCA",
+                    "ابحث الأن\nوابدأ رحلتك التعليمية",
                     textDirection: TextDirection.rtl,
                     style: Styles.textStyle18.copyWith(color: Colors.white),
                   ),

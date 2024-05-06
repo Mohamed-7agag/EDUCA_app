@@ -15,10 +15,19 @@ class SplashView extends StatefulWidget {
 }
 
 class _SplashViewState extends State<SplashView> {
+  bool start = false;
+
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(milliseconds: 1600), () {
+
+    Future.delayed(const Duration(milliseconds: 500), () {
+      setState(() {
+        start = true;
+      });
+    });
+
+    Future.delayed(const Duration(milliseconds: 1800), () {
       Navigator.pushReplacementNamed(
         context,
         CacheHelper.getData(key: introScreenKey) == true
@@ -38,23 +47,14 @@ class _SplashViewState extends State<SplashView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            Lottie.asset(
-              "assets/animation/splash.json",
-              repeat: true,
-              width: double.infinity,
-              height: double.infinity,
-              fit: BoxFit.fill,
-            ),
-            Image.asset(
-              "assets/images/logo.png",
-              width: 100.w,
-            ),
-          ],
-        ),
+      body: Center(
+        child: start == true
+            ? Lottie.asset(
+                "assets/animation/splash3.json",
+                width: 300.w,
+                repeat: true,
+              )
+            : const SizedBox.shrink(),
       ),
     );
   }

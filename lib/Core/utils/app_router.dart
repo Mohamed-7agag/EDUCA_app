@@ -31,6 +31,7 @@ import '../../student_features/profile/presentation/views/profile_select_class_e
 import '../../student_features/profile/presentation/views/profile_view.dart';
 import '../../student_features/quiz/presentation/view_model/counter_cubit.dart';
 import '../../student_features/quiz/presentation/view_model/select_answer_cubit.dart';
+import '../../student_features/quiz/presentation/views/quiz_result_view.dart';
 import '../../student_features/splash/presentation/views/splash_view.dart';
 import '../../teacher_features/bottom_bar_teacher/presentation/views/custom_bottom_bar.dart';
 import '../../teacher_features/profile_teacher/presentation/views/teacher_profile_edit_view.dart';
@@ -198,6 +199,10 @@ class AppRouter {
             ],
             child: const QuizView(),
           ),
+        );
+      case Routes.quizResultViewRoute:
+        return MaterialPageRoute(
+          builder: (context) => const QuizResultView(),
         );
       default:
         return MaterialPageRoute(

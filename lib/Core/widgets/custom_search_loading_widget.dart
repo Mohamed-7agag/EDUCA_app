@@ -10,7 +10,7 @@ class CustomSearchLoadingWidget extends StatelessWidget {
     return Center(
       child: Lottie.asset(
         "assets/animation/search.json",
-        width: 300.w,
+        width: 250.w,
       ),
     );
   }
