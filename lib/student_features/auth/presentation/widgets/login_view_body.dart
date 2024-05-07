@@ -9,8 +9,8 @@ import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
 import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/auth_cubit/auth_cubit.dart';
-import 'package:field_training_app/student_features/auth/presentation/widgets/custom_logo.dart';
 import 'package:field_training_app/student_features/auth/presentation/widgets/custom_text_field.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../../../Core/utils/routes.dart';
 import '../view_model/password_visibility_cubit.dart';
@@ -22,9 +22,14 @@ class LoginViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Expanded(
+        Expanded(
           flex: 3,
-          child: CustomLogo(),
+          child: Center(
+            child: Lottie.asset(
+              "assets/animation/login.json",
+              frameRate: FrameRate.max,
+            ),
+          ),
         ),
         Expanded(
           flex: 5,

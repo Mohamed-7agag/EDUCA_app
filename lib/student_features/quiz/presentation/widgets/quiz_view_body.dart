@@ -37,7 +37,7 @@ class QuizViewBody extends StatelessWidget {
                     itemCount: questions.length,
                     itemBuilder: (context, index) {
                       return QuestionAndAnswer(
-                        question: questions[index],
+                        questionIndex: index,
                         answers: answers[index],
                       );
                     },
@@ -91,9 +91,9 @@ class QuizViewBody extends StatelessWidget {
                 textStyle:
                     Styles.textStyle16.copyWith(fontWeight: FontWeight.bold),
                 padding: EdgeInsets.only(
-                    left: 24.w, right: 24.w, top: 8.h, bottom: 5.h),
+                    left: 30.w, right: 30.w, top: 10.h, bottom: 7.h),
               ),
-              SizedBox(width: 150.w),
+              SizedBox(width: 140.w),
               CustomButton(
                 text: "السابق",
                 onpressed: () {
@@ -111,7 +111,7 @@ class QuizViewBody extends StatelessWidget {
                 textStyle:
                     Styles.textStyle16.copyWith(fontWeight: FontWeight.bold),
                 padding: EdgeInsets.only(
-                    left: 20.w, right: 20.w, top: 7.h, bottom: 5.h),
+                    left: 25.w, right: 25.w, top: 10.h, bottom: 7.h),
               ),
             ],
           ),
