@@ -23,10 +23,11 @@ class LoginViewBody extends StatelessWidget {
     return Column(
       children: [
         const Expanded(
+          flex: 3,
           child: CustomLogo(),
         ),
         Expanded(
-          flex: 2,
+          flex: 5,
           child: Container(
             width: double.infinity,
             padding: const EdgeInsets.only(left: 20, right: 20, top: 25),

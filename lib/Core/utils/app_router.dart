@@ -201,8 +201,9 @@ class AppRouter {
           ),
         );
       case Routes.quizResultViewRoute:
+        var args = settings.arguments as int;
         return MaterialPageRoute(
-          builder: (context) => const QuizResultView(),
+          builder: (context) => QuizResultView(numberOfQuestions: args),
         );
       default:
         return MaterialPageRoute(

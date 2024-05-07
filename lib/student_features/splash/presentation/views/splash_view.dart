@@ -21,13 +21,13 @@ class _SplashViewState extends State<SplashView> {
   void initState() {
     super.initState();
 
-    Future.delayed(const Duration(milliseconds: 500), () {
+    Future.delayed(const Duration(milliseconds: 400), () {
       setState(() {
         start = true;
       });
     });
 
-    Future.delayed(const Duration(milliseconds: 1800), () {
+    Future.delayed(const Duration(milliseconds: 2000), () {
       Navigator.pushReplacementNamed(
         context,
         CacheHelper.getData(key: introScreenKey) == true

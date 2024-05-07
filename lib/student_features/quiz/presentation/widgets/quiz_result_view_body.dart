@@ -8,8 +8,9 @@ import 'package:lottie/lottie.dart';
 import '../../../../Core/utils/routes.dart';
 
 class QuizResultViewBody extends StatelessWidget {
-  const QuizResultViewBody({super.key});
+  const QuizResultViewBody({super.key, required this.numberOfQuestions});
 
+  final int numberOfQuestions;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -46,11 +47,11 @@ class QuizResultViewBody extends StatelessWidget {
           //   textAlign: TextAlign.end,
           // ),
           SizedBox(height: 35.h),
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              QuizDegree(left: 80, right: 100),
-              QuizDegree(left: 19, right: 25),
+              const QuizDegree(left: 80, right: 100),
+              QuizDegree(left: 19, right: numberOfQuestions),
             ],
           ),
           Expanded(child: SizedBox(height: 30.h)),

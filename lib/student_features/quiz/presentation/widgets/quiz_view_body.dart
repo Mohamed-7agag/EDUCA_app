@@ -84,6 +84,7 @@ class QuizViewBody extends StatelessWidget {
                     Navigator.pushReplacementNamed(
                       context,
                       Routes.quizResultViewRoute,
+                      arguments: questions.length,
                     );
                   }
                 },
