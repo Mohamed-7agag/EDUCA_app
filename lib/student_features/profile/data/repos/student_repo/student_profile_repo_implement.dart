@@ -64,5 +64,4 @@ class StudentProfileRepoImplement implements StudentProfileRepo {
   }
 
   //
-  
 }

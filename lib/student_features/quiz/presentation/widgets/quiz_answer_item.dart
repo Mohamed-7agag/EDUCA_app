@@ -6,7 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class QuizAnswerItem extends StatelessWidget {
-  const QuizAnswerItem({super.key, required this.text, required this.questionIndex});
+  const QuizAnswerItem(
+      {super.key, required this.text, required this.questionIndex});
 
   final String text;
   final int questionIndex;
@@ -34,7 +35,9 @@ class QuizAnswerItem extends StatelessWidget {
             child: Text(
               text,
               style: Styles.textStyle16.copyWith(
-                  color: state[questionIndex] == text ? kPrimaryColor : Colors.black),
+                  color: state[questionIndex] == text
+                      ? kPrimaryColor
+                      : Colors.black),
               textDirection: TextDirection.rtl,
             ),
           );

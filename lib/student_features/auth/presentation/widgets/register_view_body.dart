@@ -124,8 +124,8 @@ class RegisterViewBody extends StatelessWidget {
                     ),
                   ),
                   BlocProvider(
-                    create: (context) => RegisterOptionCubit(),
-                    child: BlocBuilder<RegisterOptionCubit, String>(
+                    create: (context) => OptionCubit(),
+                    child: BlocBuilder<OptionCubit, String>(
                       builder: (context, optionState) {
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,

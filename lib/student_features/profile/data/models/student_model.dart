@@ -19,7 +19,6 @@ class StudentModel extends Equatable {
     this.profileImageUrl,
   });
 
-
   factory StudentModel.fromJson(Map<String, dynamic> json) => StudentModel(
         id: json['id'] as int?,
         firstName: json['firstName'] as String?,

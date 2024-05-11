@@ -25,7 +25,7 @@ class CustomRadioListTile extends StatelessWidget {
       title: Text(value, style: Styles.textStyle16, textAlign: TextAlign.right),
       groupValue: optionState,
       onChanged: (value) {
-        context.read<RegisterOptionCubit>().changeRegisterOption(value!);
+        context.read<OptionCubit>().changeRegisterOption(value!);
       },
     );
   }

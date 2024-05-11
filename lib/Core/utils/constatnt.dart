@@ -11,7 +11,6 @@ const String optionStateKey = "optionState";
 const String termsKey = "terms";
 const String passwordKey = "password";
 
-
 List<String> questions = [
   'ما هو اطول نهر في العالم؟',
   'ما هي عاصمة فرنسا؟',

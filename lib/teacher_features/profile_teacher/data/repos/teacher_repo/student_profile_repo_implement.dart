@@ -7,7 +7,6 @@ import 'package:field_training_app/teacher_features/profile_teacher/data/models/
 import 'package:field_training_app/teacher_features/profile_teacher/data/repos/teacher_repo/student_profile_repo.dart';
 import 'package:image_picker/image_picker.dart';
 
-
 class TeacherProfileRepoImplement implements TeacherProfileRepo {
   final ApiServices apiServices;
 
@@ -62,5 +61,4 @@ class TeacherProfileRepoImplement implements TeacherProfileRepo {
   }
 
   //
-  
 }

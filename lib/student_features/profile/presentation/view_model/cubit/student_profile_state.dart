@@ -29,9 +29,3 @@ final class StudentProfileUpdateFailure extends StudentProfileState {
   final String errMessage;
   const StudentProfileUpdateFailure({required this.errMessage});
 }
-
-
-
-
-
-
