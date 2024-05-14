@@ -27,7 +27,7 @@ class QuizAnswerItem extends StatelessWidget {
             decoration: BoxDecoration(
               border: state[questionIndex] == text
                   ? Border.all(color: kPrimaryColor, width: 1.3)
-                  : Border.all(color: Colors.grey),
+                  : Border.all(color: Colors.grey[400]!),
               borderRadius: state[questionIndex] == text
                   ? BorderRadius.circular(8.r)
                   : BorderRadius.circular(6.r),
