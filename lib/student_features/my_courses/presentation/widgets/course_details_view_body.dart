@@ -1,7 +1,12 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
+import 'package:field_training_app/Core/utils/routes.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
+import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
+import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
+import 'package:field_training_app/student_features/payment/presentation/view_model/payment_cubit/payment_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CourseDetailsViewBody extends StatelessWidget {
@@ -174,7 +179,31 @@ class CourseDetailsViewBody extends StatelessWidget {
         Expanded(child: SizedBox(height: 10.h)),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-          child: CustomButton(text: "تسجيل المادة", onpressed: () {}),
+          child: BlocConsumer<PaymentCubit, PaymentState>(
+            listener: (context, state) {
+              if (state is PaymentRequestTokenSuccessState) {
+                Navigator.pushNamed(context, Routes.paymentOptionViewRoute);
+              }
+              if (state is PaymentRequestTokenErrorState) {
+                errorCherryToast(context, "حدث خطا", state.error);
+              }
+            },
+            builder: (context, state) {
+              return state is PaymentOrderIdLoadingState
+                  ? const CustomLoadingWidget()
+                  : CustomButton(
+                      text: "تسجيل المادة",
+                      onpressed: () {
+                        context.read<PaymentCubit>().getOrderRegistrationID(
+                              price: "1200",
+                              firstName: "Mohamed",
+                              lastName: "Hagag",
+                              email: "mh169824@gmail.com",
+                              phone: "01203435611",
+                            );
+                      });
+            },
+          ),
         )
       ],
     );

@@ -1,7 +1,12 @@
+import 'package:field_training_app/Core/api_services/payment_api_services.dart';
 import 'package:field_training_app/Core/utils/app_services.dart';
 import 'package:field_training_app/student_features/auth/data/repos/auth_repo_implement.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/auth_cubit/auth_cubit.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/register_option_cubit.dart';
+import 'package:field_training_app/student_features/payment/presentation/view_model/payment_cubit/payment_cubit.dart';
+import 'package:field_training_app/student_features/payment/presentation/views/payment_option_view.dart';
+import 'package:field_training_app/student_features/payment/presentation/views/ref_code_view.dart';
+import 'package:field_training_app/student_features/payment/presentation/views/visa_view.dart';
 import 'package:field_training_app/student_features/profile/data/repos/student_repo/student_profile_repo_implement.dart';
 import 'package:field_training_app/student_features/quiz/presentation/views/quiz_view.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views/course_details_teacher_view.dart';
@@ -186,7 +191,11 @@ class AppRouter {
         );
       case Routes.courseDetailsViewRoute:
         return MaterialPageRoute(
-          builder: (context) => const CourseDetailsView(),
+          builder: (context) => BlocProvider(
+            create: (context) =>
+                PaymentCubit(getIt.get<PaymentApiServices>())..getAuthToken(),
+            child: const CourseDetailsView(),
+          ),
         );
       case Routes.termsViewRoute:
         return MaterialPageRoute(
@@ -218,6 +227,21 @@ class AppRouter {
         var args = settings.arguments as int;
         return MaterialPageRoute(
           builder: (context) => QuizResultView(numberOfQuestions: args),
+        );
+      case Routes.paymentOptionViewRoute:
+        return MaterialPageRoute(
+          builder: (context) => const PaymentOptionView(),
+        );
+      case Routes.refCodeViewRoute:
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => PaymentCubit(getIt.get<PaymentApiServices>())..getRefCode(),
+            child: const RefCodeView(),
+          ),
+        );
+      case Routes.visaViewRoute:
+        return MaterialPageRoute(
+          builder: (context) => const VisaView(),
         );
       default:
         return MaterialPageRoute(
