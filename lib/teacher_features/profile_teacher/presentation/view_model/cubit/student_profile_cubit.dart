@@ -13,7 +13,6 @@ class TeacherProfileCubit extends Cubit<TeacherProfileState> {
   TeacherProfileCubit(this.teacherProfileRepo) : super(TeacherProfileInitial());
   final TeacherProfileRepo teacherProfileRepo;
 
-
   Future<void> getTeacherData() async {
     emit(TeacherProfileLoading());
     var result = await teacherProfileRepo.getTeacherData(

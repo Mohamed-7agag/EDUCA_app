@@ -7,5 +7,3 @@ Future uploadImageToApi(XFile image) async {
     filename: image.path.split('/').last,
   );
 }
-
-

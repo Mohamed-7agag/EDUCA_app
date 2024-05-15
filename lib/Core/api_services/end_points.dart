@@ -10,6 +10,10 @@ class EndPoint {
   static String getTeacherById(int id) {
     return "teacher/$id";
   }
+
+  static String search(String? teacherName, String? subjectName) {
+    return "student/search?teacherName=$teacherName&subjectName=$subjectName";
+  }
 }
 
 class ApiKey {

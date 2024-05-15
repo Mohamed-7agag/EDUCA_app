@@ -1,20 +1,33 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
+import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
+import 'package:field_training_app/student_features/search/presentation/view_model/search_cubit/search_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SearchTextFormField extends StatelessWidget {
-  const SearchTextFormField({super.key});
+  SearchTextFormField({super.key, required this.searchType});
+
+  TextEditingController controller = TextEditingController();
+  final String searchType;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       cursorColor: kPrimaryColor,
       cursorHeight: 30.h,
       cursorRadius: Radius.circular(10.r),
       textAlign: TextAlign.right,
       decoration: InputDecoration(
-        hintText: "ابحث هنا",
+        hintText: searchType == "معلم"
+            ? "ادخل اسم المعلم"
+            : searchType == "مادة دراسية"
+                ? "ادخل اسم المادة الدراسية"
+                : "حدد نوع البحث اولا",
         hintTextDirection: TextDirection.rtl,
         hintStyle: Styles.textStyle14.copyWith(color: kPrimaryColor),
         filled: true,
@@ -22,7 +35,24 @@ class SearchTextFormField extends StatelessWidget {
             const EdgeInsets.symmetric(vertical: 17, horizontal: 16),
         fillColor: kSplashColor,
         prefixIcon: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              if (controller.text.isNotEmpty || controller.text != "") {
+                if (searchType == "معلم") {
+                  context
+                      .read<SearchCubit>()
+                      .getSearchResults(controller.text, null);
+                } else if (searchType == "مادة دراسية") {
+                  context
+                      .read<SearchCubit>()
+                      .getSearchResults(null, controller.text);
+                } else {
+                  errorCherryToast(
+                      context, "حدث خطأ", "لابد من تحديد نوع البحث");
+                }
+              } else {
+                errorCherryToast(context, "حدث خطأ", "حقل البحث فارغ");
+              }
+            },
             icon: const Icon(
               Icons.search,
               color: kPrimaryColor,

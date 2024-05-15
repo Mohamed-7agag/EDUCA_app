@@ -1,6 +1,12 @@
+import 'package:field_training_app/Core/api_services/payment_api_services.dart';
 import 'package:field_training_app/Core/utils/app_services.dart';
 import 'package:field_training_app/student_features/auth/data/repos/auth_repo_implement.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/auth_cubit/auth_cubit.dart';
+import 'package:field_training_app/student_features/auth/presentation/view_model/register_option_cubit.dart';
+import 'package:field_training_app/student_features/payment/presentation/view_model/payment_cubit/payment_cubit.dart';
+import 'package:field_training_app/student_features/payment/presentation/views/payment_option_view.dart';
+import 'package:field_training_app/student_features/payment/presentation/views/ref_code_view.dart';
+import 'package:field_training_app/student_features/payment/presentation/views/visa_view.dart';
 import 'package:field_training_app/student_features/profile/data/repos/student_repo/student_profile_repo_implement.dart';
 import 'package:field_training_app/student_features/quiz/presentation/views/quiz_view.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views/course_details_teacher_view.dart';
@@ -33,6 +39,8 @@ import '../../student_features/profile/presentation/views/profile_view.dart';
 import '../../student_features/quiz/presentation/view_model/counter_cubit.dart';
 import '../../student_features/quiz/presentation/view_model/select_answer_cubit.dart';
 import '../../student_features/quiz/presentation/views/quiz_result_view.dart';
+import '../../student_features/search/data/repo/search_repo_implement.dart';
+import '../../student_features/search/presentation/view_model/search_cubit/search_cubit.dart';
 import '../../student_features/splash/presentation/views/splash_view.dart';
 import '../../teacher_features/bottom_bar_teacher/presentation/views/custom_bottom_bar.dart';
 import '../../teacher_features/profile_teacher/presentation/views/teacher_profile_edit_view.dart';
@@ -169,11 +177,26 @@ class AppRouter {
         );
       case Routes.searchViewRoute:
         return MaterialPageRoute(
-          builder: (context) => const SearchView(),
+          builder: (context) => MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) =>
+                    SearchCubit(getIt.get<SearchRepoImplement>()),
+              ),
+              BlocProvider(
+                create: (context) => OptionCubit(),
+              ),
+            ],
+            child: const SearchView(),
+          ),
         );
       case Routes.courseDetailsViewRoute:
         return MaterialPageRoute(
-          builder: (context) => const CourseDetailsView(),
+          builder: (context) => BlocProvider(
+            create: (context) =>
+                PaymentCubit(getIt.get<PaymentApiServices>())..getAuthToken(),
+            child: const CourseDetailsView(),
+          ),
         );
       case Routes.termsViewRoute:
         return MaterialPageRoute(
@@ -209,6 +232,21 @@ class AppRouter {
         case Routes.splashViewRoute:
         return MaterialPageRoute(
           builder: (context) => const MakeQuizView(),
+        );
+      case Routes.paymentOptionViewRoute:
+        return MaterialPageRoute(
+          builder: (context) => const PaymentOptionView(),
+        );
+      case Routes.refCodeViewRoute:
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => PaymentCubit(getIt.get<PaymentApiServices>())..getRefCode(),
+            child: const RefCodeView(),
+          ),
+        );
+      case Routes.visaViewRoute:
+        return MaterialPageRoute(
+          builder: (context) => const VisaView(),
         );
       default:
         return MaterialPageRoute(

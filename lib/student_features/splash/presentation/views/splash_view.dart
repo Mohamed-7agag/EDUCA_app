@@ -53,6 +53,7 @@ class _SplashViewState extends State<SplashView> {
                 "assets/animation/splash3.json",
                 width: 300.w,
                 repeat: true,
+                frameRate: FrameRate.max,
               )
             : const SizedBox.shrink(),
       ),
