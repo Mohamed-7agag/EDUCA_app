@@ -22,7 +22,7 @@ class AuthCubit extends Cubit<AuthState> {
   TextEditingController passwordController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController addressController = TextEditingController();
-  
+
   XFile? image;
   String studentLevel = '';
   String governorate = '';

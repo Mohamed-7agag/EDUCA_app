@@ -38,7 +38,7 @@ class HomeViewBody extends StatelessWidget {
                     SizedBox(width: 8.w),
                     IconButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, Routes.searchViewRoute);
+                        Navigator.pushNamed(context, Routes.searchOptionViewRoute);
                       },
                       icon: const Icon(
                         Icons.search_rounded,
@@ -81,7 +81,7 @@ class HomeViewBody extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 20),
             child: Container(
-              padding: EdgeInsets.only(right: 20.w, left: 6.w),
+              padding: EdgeInsets.only(right: 20.w, left: 7.w),
               width: double.infinity,
               height: 75.h,
               decoration: BoxDecoration(
@@ -98,7 +98,7 @@ class HomeViewBody extends StatelessWidget {
                     style: IconButton.styleFrom(
                         backgroundColor: Colors.white,
                         foregroundColor: kPrimaryColor,
-                        padding: const EdgeInsets.all(15)),
+                        padding: const EdgeInsets.all(14)),
                     onPressed: () {
                       //Navigator.pushNamed(context, Routes.searchViewRoute);
                       Navigator.pushNamed(context, Routes.quizViewRoute);

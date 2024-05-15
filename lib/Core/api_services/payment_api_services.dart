@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:field_training_app/Core/api_services/failure.dart';
-import 'package:field_training_app/Core/utils/constatnt.dart';
+import 'package:field_training_app/Core/utils/payment_constants.dart';
 
 class PaymentApiServices {
   final Dio _dio;

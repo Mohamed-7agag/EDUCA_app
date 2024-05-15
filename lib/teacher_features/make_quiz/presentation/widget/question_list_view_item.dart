@@ -1,9 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:field_training_app/Core/utils/constatnt.dart';
-import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/teacher_features/make_quiz/presentation/widget/custom_answers_question.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'package:field_training_app/teacher_features/make_quiz/data/question_model.dart';

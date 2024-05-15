@@ -23,11 +23,7 @@ class SearchTextFormField extends StatelessWidget {
       cursorRadius: Radius.circular(10.r),
       textAlign: TextAlign.right,
       decoration: InputDecoration(
-        hintText: searchType == "معلم"
-            ? "ادخل اسم المعلم"
-            : searchType == "مادة دراسية"
-                ? "ادخل اسم المادة الدراسية"
-                : "حدد نوع البحث اولا",
+        hintText: "ابحث هنا",
         hintTextDirection: TextDirection.rtl,
         hintStyle: Styles.textStyle14.copyWith(color: kPrimaryColor),
         filled: true,
@@ -36,18 +32,20 @@ class SearchTextFormField extends StatelessWidget {
         fillColor: kSplashColor,
         prefixIcon: IconButton(
             onPressed: () {
+              //! must be changed
               if (controller.text.isNotEmpty || controller.text != "") {
-                if (searchType == "معلم") {
+                if (searchType == "teacher") {
                   context
                       .read<SearchCubit>()
                       .getSearchResults(controller.text, null);
-                } else if (searchType == "مادة دراسية") {
+                } else if (searchType == "subject") {
                   context
                       .read<SearchCubit>()
                       .getSearchResults(null, controller.text);
                 } else {
-                  errorCherryToast(
-                      context, "حدث خطأ", "لابد من تحديد نوع البحث");
+                  context
+                      .read<SearchCubit>()
+                      .getSearchResults(null, controller.text);
                 }
               } else {
                 errorCherryToast(context, "حدث خطأ", "حقل البحث فارغ");

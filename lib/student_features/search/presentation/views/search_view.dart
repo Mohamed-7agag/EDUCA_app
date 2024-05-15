@@ -2,13 +2,14 @@ import 'package:field_training_app/student_features/search/presentation/widgets/
 import 'package:flutter/material.dart';
 
 class SearchView extends StatelessWidget {
-  const SearchView({super.key});
+  const SearchView({super.key, required this.searchType});
+  final String searchType;
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(child: SearchViewBody()),
+      body: SafeArea(child: SearchViewBody(searchType: searchType)),
     );
   }
 }

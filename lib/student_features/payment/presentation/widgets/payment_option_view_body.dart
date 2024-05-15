@@ -1,4 +1,4 @@
-import 'package:field_training_app/Core/utils/constatnt.dart';
+import 'package:field_training_app/Core/utils/payment_constants.dart';
 import 'package:field_training_app/Core/utils/routes.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:flutter/material.dart';
