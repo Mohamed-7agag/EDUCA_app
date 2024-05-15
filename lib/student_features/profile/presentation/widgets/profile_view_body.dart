@@ -38,14 +38,14 @@ class ProfileViewBody extends StatelessWidget {
                 children: [
                   SizedBox(height: 22.h),
                   ProfileUserImage(
-                    radius: 52.r,
+                    radius: 53.r,
                     iconSize: 45,
                     right: 112.w,
                     top: 70.h,
                     cameraSize: 22,
                     image: state.studentModel.profileImageUrl,
                   ),
-                  SizedBox(height: 25.h),
+                  SizedBox(height: 20.h),
                   Text(
                       "${state.studentModel.firstName} ${state.studentModel.lastName}",
                       style: Styles.textStyle24

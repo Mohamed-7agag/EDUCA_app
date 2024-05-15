@@ -235,13 +235,15 @@ class AppRouter {
       case Routes.refCodeViewRoute:
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
-            create: (context) => PaymentCubit(getIt.get<PaymentApiServices>())..getRefCode(),
+            create: (context) =>
+                PaymentCubit(getIt.get<PaymentApiServices>())..getRefCode(),
             child: const RefCodeView(),
           ),
         );
       case Routes.visaViewRoute:
+        var args = settings.arguments as String;
         return MaterialPageRoute(
-          builder: (context) => const VisaView(),
+          builder: (context) => VisaView(url: args),
         );
       default:
         return MaterialPageRoute(
