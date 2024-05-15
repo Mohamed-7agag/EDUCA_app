@@ -1,4 +1,5 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
+import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/teacher_features/make_quiz/data/question_model.dart';
 import 'package:field_training_app/teacher_features/make_quiz/presentation/widget/show_quiz_view_body.dart';
 import 'package:flutter/material.dart';
@@ -14,13 +15,14 @@ class ShowQuizView extends StatelessWidget {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text(
-              'Test name',
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-            ),
             Text(
-              ' ${questionList.length}/${questionList.length} ',
-              style: TextStyle(color: kPrimaryColor, fontSize: 25),
+              '${questionList.length} سؤال',
+              style: Styles.textStyle18.copyWith(color: kPrimaryColor),
+              textDirection: TextDirection.rtl,
+            ),
+            const Text(
+              'الاختبار',
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
             ),
           ],
         ),

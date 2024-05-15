@@ -11,7 +11,7 @@ class ShowQuizListViewBuider extends StatelessWidget {
       itemCount: questionList.length,
       itemBuilder: (context, index) {
         return Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: QuestionListViewItem(
             questionModel: questionList[index],
             cnt: index + 1,
