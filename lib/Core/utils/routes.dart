@@ -29,6 +29,7 @@ abstract class Routes {
 
 
   static const String createQuizViewRoute = '/createQuizView';
+  static const String showQuizViewRoute = '/showQuizView';
   
   static const String paymentOptionViewRoute = '/paymentOptionView';
   static const String refCodeViewRoute = '/refCodeView';

@@ -12,6 +12,7 @@ import 'package:field_training_app/student_features/quiz/presentation/views/quiz
 import 'package:field_training_app/teacher_features/courses/presentation/views/course_details_teacher_view.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views/enrolled_students_view.dart';
 import 'package:field_training_app/teacher_features/make_quiz/presentation/views/make_quiz_view.dart';
+import 'package:field_training_app/teacher_features/make_quiz/presentation/views/show_quiz_view.dart';
 import 'package:field_training_app/teacher_features/profile_teacher/data/repos/teacher_repo/student_profile_repo_implement.dart';
 import 'package:field_training_app/teacher_features/profile_teacher/presentation/view_model/cubit/student_profile_cubit.dart';
 import 'package:field_training_app/teacher_features/teacher/presentation/views/create_class.dart';
@@ -41,7 +42,7 @@ import '../../student_features/quiz/presentation/view_model/select_answer_cubit.
 import '../../student_features/quiz/presentation/views/quiz_result_view.dart';
 import '../../student_features/search/data/repo/search_repo_implement.dart';
 import '../../student_features/search/presentation/view_model/search_cubit/search_cubit.dart';
-import '../../student_features/splash/presentation/views/splash_view.dart';
+
 import '../../teacher_features/bottom_bar_teacher/presentation/views/custom_bottom_bar.dart';
 import '../../teacher_features/profile_teacher/presentation/views/teacher_profile_edit_view.dart';
 import '../../teacher_features/profile_teacher/presentation/views/teacher_profile_view.dart';
@@ -229,9 +230,13 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (context) => QuizResultView(numberOfQuestions: args),
         );
-        case Routes.splashViewRoute:
+      case Routes.splashViewRoute:
         return MaterialPageRoute(
           builder: (context) => const MakeQuizView(),
+        );
+      case Routes.showQuizViewRoute:
+        return MaterialPageRoute(
+          builder: (context) => const ShowQuizView(),
         );
       case Routes.paymentOptionViewRoute:
         return MaterialPageRoute(
@@ -240,7 +245,8 @@ class AppRouter {
       case Routes.refCodeViewRoute:
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
-            create: (context) => PaymentCubit(getIt.get<PaymentApiServices>())..getRefCode(),
+            create: (context) =>
+                PaymentCubit(getIt.get<PaymentApiServices>())..getRefCode(),
             child: const RefCodeView(),
           ),
         );
