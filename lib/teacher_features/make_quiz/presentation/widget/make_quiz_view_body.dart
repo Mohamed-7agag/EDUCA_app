@@ -25,7 +25,7 @@ class _MakeQuizViewBodyState extends State<MakeQuizViewBody> {
   TextEditingController answer4Controller = TextEditingController();
 
   MyOption myOption = MyOption.option1;
-  String Answer = '';
+  String answer = '';
 
   @override
   @override
@@ -96,7 +96,7 @@ class _MakeQuizViewBodyState extends State<MakeQuizViewBody> {
               onChanged: (val) {
                 setState(() {
                   myOption = val!;
-                  Answer = answer1Controller.text;
+                  answer = answer1Controller.text;
                 });
               },
             ),
@@ -119,7 +119,7 @@ class _MakeQuizViewBodyState extends State<MakeQuizViewBody> {
               onChanged: (val) {
                 setState(() {
                   myOption = val!;
-                  Answer = answer2Controller.text;
+                  answer = answer2Controller.text;
                 });
               },
             ),
@@ -142,7 +142,7 @@ class _MakeQuizViewBodyState extends State<MakeQuizViewBody> {
               onChanged: (val) {
                 setState(() {
                   myOption = val!;
-                  Answer = answer3Controller.text;
+                  answer = answer3Controller.text;
                 });
               },
             ),
@@ -165,7 +165,7 @@ class _MakeQuizViewBodyState extends State<MakeQuizViewBody> {
               onChanged: (val) {
                 setState(() {
                   myOption = val!;
-                  Answer = answer4Controller.text;
+                  answer = answer4Controller.text;
                 });
               },
             ),
@@ -176,7 +176,7 @@ class _MakeQuizViewBodyState extends State<MakeQuizViewBody> {
                 text: 'اضافة السؤال',
                 onpressed: () {
                   if (myOption == MyOption.option1) {
-                    Answer = answer1Controller.text;
+                    answer = answer1Controller.text;
                   }
                   setState(() {});
                   if (questionController.text == '') {
@@ -201,7 +201,7 @@ class _MakeQuizViewBodyState extends State<MakeQuizViewBody> {
                           answer3Controller.text,
                           answer4Controller.text
                         ],
-                        correctAnswer: Answer));
+                        correctAnswer: answer));
                   }
                 },
               ),
