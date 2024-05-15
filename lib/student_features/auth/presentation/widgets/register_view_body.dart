@@ -6,8 +6,10 @@ import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
 import 'package:field_training_app/cache/cache_helper.dart';
 import 'package:field_training_app/student_features/auth/helper/register_validation.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/auth_cubit/auth_cubit.dart';
+import 'package:field_training_app/student_features/auth/presentation/view_model/governorate_cubit.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/student_level_cubit.dart';
 import 'package:field_training_app/student_features/auth/presentation/widgets/custom_text_field.dart';
+import 'package:field_training_app/student_features/auth/presentation/widgets/governoates_values.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -201,12 +203,75 @@ class RegisterViewBody extends StatelessWidget {
                                     ),
                                   )
                                 : optionState == "معلم"
-                                    ? CustomTextField(
-                                        controller: context
-                                            .read<AuthCubit>()
-                                            .addressController,
-                                        hintText: "العنوان",
-                                        keyboardType: TextInputType.text,
+                                    ? Column(
+                                        children: [
+                                          BlocProvider(
+                                            create: (context) =>
+                                                GovernorateSelectCubit(),
+                                            child: BlocBuilder<
+                                                GovernorateSelectCubit, String>(
+                                              builder:
+                                                  (context, studentLevelState) {
+                                                return DropdownButton(
+                                                  borderRadius:
+                                                      BorderRadius.circular(6),
+                                                  underline: Container(
+                                                      height: 1,
+                                                      color: Colors.grey),
+                                                  icon: const Icon(
+                                                      Icons.arrow_drop_down,
+                                                      color: kPrimaryColor,
+                                                      size: 30),
+                                                  alignment:
+                                                      Alignment.centerRight,
+                                                  style: Styles.textStyle16
+                                                      .copyWith(
+                                                          color: Colors.black),
+                                                  elevation: 1,
+                                                  hint: Text(
+                                                    studentLevelState,
+                                                    style: GoogleFonts.tajawal(
+                                                        fontSize: 13.sp),
+                                                  ),
+                                                  onChanged: (val) {
+                                                    context
+                                                        .read<
+                                                            GovernorateSelectCubit>()
+                                                        .changeState(
+                                                            val.toString());
+                                                    context
+                                                            .read<AuthCubit>()
+                                                            .governorate =
+                                                        val.toString();
+                                                  },
+                                                  isExpanded: true,
+                                                  items: governorates.map<
+                                                      DropdownMenuItem<String>>(
+                                                    (String value) {
+                                                      return DropdownMenuItem<
+                                                          String>(
+                                                        alignment: Alignment
+                                                            .centerRight,
+                                                        value: value,
+                                                        child: Text(value,
+                                                            style: GoogleFonts
+                                                                .tajawal()),
+                                                      );
+                                                    },
+                                                  ).toList(),
+                                                );
+                                              },
+                                            ),
+                                          ),
+                                          SizedBox(height: 12.h),
+                                          CustomTextField(
+                                            controller: context
+                                                .read<AuthCubit>()
+                                                .addressController,
+                                            hintText: "العنوان",
+                                            keyboardType: TextInputType.text,
+                                          ),
+                                        ],
                                       )
                                     : const SizedBox.shrink(),
                             optionState == ""

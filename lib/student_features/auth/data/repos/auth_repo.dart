@@ -27,6 +27,7 @@ abstract class AuthRepo {
     required String password,
     required String phone,
     required String address,
+    required String governorate,
     required XFile image,
   });
 }

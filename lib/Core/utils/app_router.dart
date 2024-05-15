@@ -51,10 +51,10 @@ import '../../teacher_features/profile_teacher/presentation/views/teacher_profil
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case Routes.splashViewRoute:
-        return MaterialPageRoute(
-          builder: (context) => const SplashView(),
-        );
+      // case Routes.splashViewRoute:
+      //   return MaterialPageRoute(
+      //     builder: (context) => const SplashView(),
+      //   );
       case Routes.createClassViewRoute:
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
@@ -73,7 +73,7 @@ class AppRouter {
             child: const LoginView(),
           ),
         );
-      case Routes.registerViewRoute:
+      case Routes.splashViewRoute:
         return MaterialPageRoute(
           builder: (context) => MultiBlocProvider(
             providers: [
@@ -231,10 +231,10 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (context) => QuizResultView(numberOfQuestions: args),
         );
-      case Routes.createQuizViewRoute:
-        return MaterialPageRoute(
-          builder: (context) => const MakeQuizView(),
-        );
+      // case Routes.splashViewRoute:
+      //   return MaterialPageRoute(
+      //     builder: (context) => const MakeQuizView(),
+      //   );
       case Routes.showQuizViewRoute:
         return MaterialPageRoute(
           builder: (context) => const ShowQuizView(),

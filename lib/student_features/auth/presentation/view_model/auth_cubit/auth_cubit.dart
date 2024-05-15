@@ -22,8 +22,10 @@ class AuthCubit extends Cubit<AuthState> {
   TextEditingController passwordController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController addressController = TextEditingController();
+  
   XFile? image;
   String studentLevel = '';
+  String governorate = '';
 
   //! Login method
   Future<void> login() async {
@@ -74,6 +76,7 @@ class AuthCubit extends Cubit<AuthState> {
       password: passwordController.text.trim(),
       phone: phoneController.text.trim(),
       address: addressController.text.trim(),
+      governorate: governorate,
       image: image ?? XFile(''),
     );
     result.fold((failure) {

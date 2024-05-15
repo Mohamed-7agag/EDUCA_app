@@ -85,6 +85,7 @@ class AuthRepoImplement implements AuthRepo {
     required String phone,
     required String address,
     required XFile image,
+    required String governorate,
   }) async {
     try {
       var response = await apiServices.post(
@@ -98,6 +99,7 @@ class AuthRepoImplement implements AuthRepo {
           ApiKey.password: password,
           ApiKey.phone: "+2$phone",
           ApiKey.address: address,
+          ApiKey.governorate: governorate,
           ApiKey.image: await uploadImageToApi(image),
         },
       );
