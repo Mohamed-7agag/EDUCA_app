@@ -1,16 +1,17 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:flutter/material.dart';
 
-class VisaViewBody extends StatefulWidget {
-  const VisaViewBody({super.key});
+class VisaViewBody extends StatelessWidget {
+  VisaViewBody({super.key});
 
-  @override
-  State<VisaViewBody> createState() => _VisaViewBodyState();
-}
+  PlatformWebViewControllerCreationParams params =
+      const PlatformWebViewControllerCreationParams();
 
-class _VisaViewBodyState extends State<VisaViewBody> {
   WebViewController controller = WebViewController()
+    ..platform
     ..setJavaScriptMode(JavaScriptMode.unrestricted)
     ..setBackgroundColor(const Color(0x00000000))
     ..setNavigationDelegate(
@@ -28,19 +29,12 @@ class _VisaViewBodyState extends State<VisaViewBody> {
           return NavigationDecision.navigate;
         },
       ),
-    )..loadRequest(Uri.parse(PaymentConstants.visaUrl));
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   if (Platform.isAndroid) {
-  //     WebView.platform = SurfaceAndroidWebView();
-  //   }
-  // }
+    )
+    ..loadRequest(Uri.parse(PaymentConstants.visaUrl));
 
   @override
   Widget build(BuildContext context) {
-    return  WebViewWidget(
+    return WebViewWidget(
       controller: controller,
     );
   }

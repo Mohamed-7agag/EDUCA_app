@@ -24,14 +24,14 @@ class PaymentOptionViewBody extends StatelessWidget {
           PaymentOptionItem(
             image: "assets/images/visa.png",
             onTap: () {
-              Navigator.pushNamed(context, Routes.visaViewRoute);
+              Navigator.pushReplacementNamed(context, Routes.visaViewRoute);
             },
           ),
           SizedBox(height: 25.h),
           PaymentOptionItem(
             image: "assets/images/refcode.png",
             onTap: () {
-              Navigator.pushNamed(context, Routes.refCodeViewRoute);
+              Navigator.pushReplacementNamed(context, Routes.refCodeViewRoute);
             },
           ),
         ],

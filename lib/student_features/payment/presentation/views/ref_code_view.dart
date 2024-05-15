@@ -23,33 +23,34 @@ class RefCodeView extends StatelessWidget {
                 if (state is PaymentRefCodeSuccessState) {
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Text('يجب عليك الذهاب لاي متجر للدفع',
-                          style: Styles.textStyle20
-                              .copyWith(fontWeight: FontWeight.bold)),
+                      Text(
+                        'يجب عليك الذهاب لاي متجر للدفع',
+                        style: Styles.textStyle20
+                            .copyWith(fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.center,
+                      ),
                       SizedBox(height: 10.h),
                       Text(
                         'الرمز المرجعي الخاص بك',
                         style: Styles.textStyle18,
+                        textAlign: TextAlign.center,
                       ),
                       SizedBox(height: 30.0.h),
                       Container(
+                        alignment: Alignment.center,
                         padding: const EdgeInsets.only(top: 16, bottom: 4),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
                           color: kPrimaryColor,
                         ),
-                        child: Center(
-                          child: Text(
-                            PaymentConstants.paymentRefCode.isEmpty
-                                ? '🚫'
-                                : PaymentConstants.paymentRefCode,
-                            style: const TextStyle(
-                              fontSize: 40.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
+                        child: Text(
+                          PaymentConstants.paymentRefCode,
+                          style: const TextStyle(
+                            fontSize: 40.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
                           ),
                         ),
                       )

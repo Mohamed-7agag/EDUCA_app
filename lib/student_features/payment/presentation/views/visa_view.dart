@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../widgets/visa_view_body.dart';
 
 class VisaView extends StatelessWidget {
@@ -7,7 +6,7 @@ class VisaView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SafeArea(child: VisaViewBody()),
     );
   }
