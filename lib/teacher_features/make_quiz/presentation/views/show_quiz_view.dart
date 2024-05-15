@@ -20,7 +20,7 @@ class ShowQuizView extends StatelessWidget {
             ),
             Text(
               ' ${questionList.length}/${questionList.length} ',
-              style: TextStyle(color: kPrimaryColor, fontSize: 25),
+              style: const TextStyle(color: kPrimaryColor, fontSize: 25),
             ),
           ],
         ),

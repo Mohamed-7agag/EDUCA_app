@@ -1,11 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:field_training_app/Core/utils/constatnt.dart';
-import 'package:field_training_app/Core/widgets/custom_button.dart';
-import 'package:flutter/gestures.dart';
+
+
 import 'package:flutter/material.dart';
 
 import 'package:field_training_app/teacher_features/make_quiz/data/question_model.dart';
-import 'package:flutter/widgets.dart';
 
 class QuestionListViewItem extends StatelessWidget {
   QuestionListViewItem({
@@ -22,7 +21,7 @@ class QuestionListViewItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "${cnt} : ${questionModel.question}",
+          "$cnt : ${questionModel.question}",
           style: const TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 10),
@@ -82,7 +81,7 @@ class QuestionListViewItem extends StatelessWidget {
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(kPrimaryColor),
                 ),
-                child: Text(
+                child: const Text(
                   "تعديل",
                   style: TextStyle(color: Colors.white),
                 )),
@@ -92,7 +91,7 @@ class QuestionListViewItem extends StatelessWidget {
                 backgroundColor: MaterialStateProperty.all(kPrimaryColor),
               ),
               onPressed: () {},
-              child: Text("حذف", style: TextStyle(color: Colors.white)),
+              child: const Text("حذف", style: TextStyle(color: Colors.white)),
             ),
           ],
         ),
