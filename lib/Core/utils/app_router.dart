@@ -5,6 +5,7 @@ import 'package:field_training_app/student_features/profile/data/repos/student_r
 import 'package:field_training_app/student_features/quiz/presentation/views/quiz_view.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views/course_details_teacher_view.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views/enrolled_students_view.dart';
+import 'package:field_training_app/teacher_features/make_quiz/presentation/views/make_quiz_view.dart';
 import 'package:field_training_app/teacher_features/profile_teacher/data/repos/teacher_repo/student_profile_repo_implement.dart';
 import 'package:field_training_app/teacher_features/profile_teacher/presentation/view_model/cubit/student_profile_cubit.dart';
 import 'package:field_training_app/teacher_features/teacher/presentation/views/create_class.dart';
@@ -40,10 +41,10 @@ import '../../teacher_features/profile_teacher/presentation/views/teacher_profil
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case Routes.splashViewRoute:
-        return MaterialPageRoute(
-          builder: (context) => const SplashView(),
-        );
+      // case Routes.splashViewRoute:
+      //   return MaterialPageRoute(
+      //     builder: (context) => const SplashView(),
+      //   );
       case Routes.createClassViewRoute:
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
@@ -204,6 +205,10 @@ class AppRouter {
         var args = settings.arguments as int;
         return MaterialPageRoute(
           builder: (context) => QuizResultView(numberOfQuestions: args),
+        );
+        case Routes.splashViewRoute:
+        return MaterialPageRoute(
+          builder: (context) => const MakeQuizView(),
         );
       default:
         return MaterialPageRoute(
