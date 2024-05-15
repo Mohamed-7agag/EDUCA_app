@@ -10,6 +10,10 @@ const String introScreenKey = "introScreen";
 const String optionStateKey = "optionState";
 const String termsKey = "terms";
 const String passwordKey = "password";
+const String studentFirstName = "studentFirstName";
+const String studentLastName = "studentLastName";
+const String studentPhone = "studentPhone";
+const String studentEmail = "studentEmail";
 
 List<String> questions = [
   'ما هو اطول نهر في العالم؟',

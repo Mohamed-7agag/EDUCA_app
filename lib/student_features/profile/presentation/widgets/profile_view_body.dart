@@ -24,6 +24,14 @@ class ProfileViewBody extends StatelessWidget {
       child: BlocBuilder<StudentProfileCubit, StudentProfileState>(
         builder: (context, state) {
           if (state is StudentProfileSuccess) {
+            CacheHelper.saveData(
+                key: studentFirstName, value: state.studentModel.firstName!);
+            CacheHelper.saveData(
+                key: studentEmail, value: state.studentModel.email!);
+            CacheHelper.saveData(
+                key: studentLastName, value: state.studentModel.lastName!);
+            CacheHelper.saveData(
+                key: studentPhone, value: state.studentModel.phone!);
             return SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,

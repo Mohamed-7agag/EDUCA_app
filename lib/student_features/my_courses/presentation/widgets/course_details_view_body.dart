@@ -4,6 +4,7 @@ import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
 import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
+import 'package:field_training_app/cache/cache_helper.dart';
 import 'package:field_training_app/student_features/payment/presentation/view_model/payment_cubit/payment_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -195,11 +196,13 @@ class CourseDetailsViewBody extends StatelessWidget {
                       text: "تسجيل المادة",
                       onpressed: () {
                         context.read<PaymentCubit>().getOrderRegistrationID(
-                              price: "1200",
-                              firstName: "Mohamed",
-                              lastName: "Hagag",
-                              email: "mh169824@gmail.com",
-                              phone: "01203435611",
+                              price: "8000",
+                              firstName:
+                                  CacheHelper.getData(key: studentFirstName),
+                              lastName:
+                                  CacheHelper.getData(key: studentLastName),
+                              email: CacheHelper.getData(key: studentEmail),
+                              phone: CacheHelper.getData(key: studentPhone),
                             );
                       });
             },
