@@ -1,10 +1,12 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/routes.dart';
+import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
 import 'package:field_training_app/teacher_features/make_quiz/data/question_model.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 enum MyOption { option1, option2, option3, option4 }
 
@@ -30,22 +32,23 @@ class _MakeQuizViewBodyState extends State<MakeQuizViewBody> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const SizedBox(height: 10),
+            SizedBox(height: 20.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                TextButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, Routes.showQuizViewRoute);
-                    },
-                    child: const Text(
-                      " عرض الاختبار",
-                      style: TextStyle(color: kPrimaryColor, fontSize: 23),
-                    )),
+                InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(context, Routes.showQuizViewRoute);
+                  },
+                  child: const Text(
+                    " عرض الاختبار",
+                    style: TextStyle(color: kPrimaryColor, fontSize: 20),
+                  ),
+                ),
                 const Text(
                   'السؤال :  1',
                   textAlign: TextAlign.right,
@@ -53,30 +56,40 @@ class _MakeQuizViewBodyState extends State<MakeQuizViewBody> {
                 ),
               ],
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 20),
             TextField(
               controller: questionController,
+              textAlign: TextAlign.end,
               decoration: InputDecoration(
-                hintText: 'ادخل السؤال',
-                hintTextDirection: TextDirection.rtl,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-              ),
+                  hintText: 'ادخل السؤال',
+                  hintTextDirection: TextDirection.rtl,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                    borderSide: const BorderSide(color: kPrimaryColor),
+                  )),
             ),
-            const SizedBox(height: 10),
-            const Text(
+            const SizedBox(height: 20),
+            Text(
               ' الاختيارات ',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 19),
+              textAlign: TextAlign.end,
+              style: Styles.textStyle20,
             ),
             RadioListTile(
               activeColor: kPrimaryColor,
+              controlAffinity: ListTileControlAffinity.trailing,
+              contentPadding: const EdgeInsets.all(0),
               value: MyOption.option1,
               title: TextField(
                 controller: answer1Controller,
+                textAlign: TextAlign.end,
                 decoration: const InputDecoration(
                   hintTextDirection: TextDirection.rtl,
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: kPrimaryColor, width: 1.3),
+                  ),
                 ),
               ),
               groupValue: myOption,
@@ -89,11 +102,17 @@ class _MakeQuizViewBodyState extends State<MakeQuizViewBody> {
             ),
             RadioListTile(
               activeColor: kPrimaryColor,
+              controlAffinity: ListTileControlAffinity.trailing,
+              contentPadding: const EdgeInsets.all(0),
               value: MyOption.option2,
               title: TextField(
                 controller: answer2Controller,
+                textAlign: TextAlign.end,
                 decoration: const InputDecoration(
                   hintTextDirection: TextDirection.rtl,
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: kPrimaryColor, width: 1.3),
+                  ),
                 ),
               ),
               groupValue: myOption,
@@ -106,11 +125,17 @@ class _MakeQuizViewBodyState extends State<MakeQuizViewBody> {
             ),
             RadioListTile(
               activeColor: kPrimaryColor,
+              controlAffinity: ListTileControlAffinity.trailing,
+              contentPadding: const EdgeInsets.all(0),
               value: MyOption.option3,
               title: TextField(
                 controller: answer3Controller,
+                textAlign: TextAlign.end,
                 decoration: const InputDecoration(
                   hintTextDirection: TextDirection.rtl,
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: kPrimaryColor, width: 1.3),
+                  ),
                 ),
               ),
               groupValue: myOption,
@@ -123,11 +148,17 @@ class _MakeQuizViewBodyState extends State<MakeQuizViewBody> {
             ),
             RadioListTile(
               activeColor: kPrimaryColor,
+              controlAffinity: ListTileControlAffinity.trailing,
+              contentPadding: const EdgeInsets.all(0),
               value: MyOption.option4,
               title: TextField(
                 controller: answer4Controller,
+                textAlign: TextAlign.end,
                 decoration: const InputDecoration(
                   hintTextDirection: TextDirection.rtl,
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: kPrimaryColor, width: 1.3),
+                  ),
                 ),
               ),
               groupValue: myOption,
@@ -138,7 +169,7 @@ class _MakeQuizViewBodyState extends State<MakeQuizViewBody> {
                 });
               },
             ),
-            const SizedBox(height: 30),
+            SizedBox(height: 40.h),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 80.0),
               child: CustomButton(

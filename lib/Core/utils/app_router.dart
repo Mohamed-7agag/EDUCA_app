@@ -252,8 +252,9 @@ class AppRouter {
           ),
         );
       case Routes.visaViewRoute:
+        var args = settings.arguments as String;
         return MaterialPageRoute(
-          builder: (context) => const VisaView(),
+          builder: (context) => VisaView(url: args),
         );
       default:
         return MaterialPageRoute(
