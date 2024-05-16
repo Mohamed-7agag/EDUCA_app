@@ -9,7 +9,6 @@ import 'package:field_training_app/student_features/auth/presentation/view_model
 import 'package:field_training_app/student_features/auth/presentation/view_model/governorate_cubit.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/student_level_cubit.dart';
 import 'package:field_training_app/student_features/auth/presentation/widgets/custom_text_field.dart';
-import 'package:field_training_app/student_features/auth/presentation/widgets/governoates_values.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

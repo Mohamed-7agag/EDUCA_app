@@ -32,6 +32,5 @@ class ApiKey {
   static String address = "address";
   static String governorate = "Governorate";
   static String image = "profileImage";
-  
   static String imageUrl = "profileImageUrl";
 }

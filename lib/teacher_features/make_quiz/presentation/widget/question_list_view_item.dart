@@ -1,8 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:field_training_app/Core/utils/constatnt.dart';
-
 import 'package:field_training_app/teacher_features/make_quiz/presentation/widget/custom_answers_question.dart';
-
 import 'package:flutter/material.dart';
 
 import 'package:field_training_app/teacher_features/make_quiz/data/question_model.dart';
@@ -31,22 +29,22 @@ class QuestionListViewItem extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         CustomAnswersQuestion(
-          CharAnswer: "A",
+          charAnswer: "A",
           questionModel: questionModel,
           idex: 0,
         ),
         CustomAnswersQuestion(
-          CharAnswer: "B",
+          charAnswer: "B",
           questionModel: questionModel,
           idex: 1,
         ),
         CustomAnswersQuestion(
-          CharAnswer: "C",
+          charAnswer: "C",
           questionModel: questionModel,
           idex: 2,
         ),
         CustomAnswersQuestion(
-          CharAnswer: "D",
+          charAnswer: "D",
           questionModel: questionModel,
           idex: 3,
         ),

@@ -29,7 +29,7 @@ class QuizViewBody extends StatelessWidget {
               children: [
                 SizedBox(height: 60.h),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height - 150.h,
+                  height: MediaQuery.of(context).size.height - 160.h,
                   child: PageView.builder(
                     reverse: true,
                     physics: const NeverScrollableScrollPhysics(),
@@ -89,11 +89,11 @@ class QuizViewBody extends StatelessWidget {
                   }
                 },
                 textStyle:
-                    Styles.textStyle16.copyWith(fontWeight: FontWeight.bold),
+                    Styles.textStyle18.copyWith(fontWeight: FontWeight.bold),
                 padding: EdgeInsets.only(
-                    left: 30.w, right: 30.w, top: 10.h, bottom: 7.h),
+                    left: 40.w, right: 40.w, top: 12.h, bottom: 8.h),
               ),
-              SizedBox(width: 140.w),
+              SizedBox(width: 110.w),
               CustomButton(
                 text: "السابق",
                 onpressed: () {
@@ -109,9 +109,9 @@ class QuizViewBody extends StatelessWidget {
                   }
                 },
                 textStyle:
-                    Styles.textStyle16.copyWith(fontWeight: FontWeight.bold),
+                    Styles.textStyle18.copyWith(fontWeight: FontWeight.bold),
                 padding: EdgeInsets.only(
-                    left: 25.w, right: 25.w, top: 10.h, bottom: 7.h),
+                    left: 30.w, right: 30.w, top: 12.h, bottom: 8.h),
               ),
             ],
           ),

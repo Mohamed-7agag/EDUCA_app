@@ -5,12 +5,12 @@ class CustomAnswersQuestion extends StatelessWidget {
   const CustomAnswersQuestion({
     super.key,
     required this.questionModel,
-    required this.CharAnswer,
+    required this.charAnswer,
     required this.idex,
   });
 
   final QuestionModel questionModel;
-  final String CharAnswer;
+  final String charAnswer;
   final int idex;
 
   @override
@@ -18,7 +18,7 @@ class CustomAnswersQuestion extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
       child: Text(
-        "$CharAnswer : ${questionModel.answers[idex]}",
+        "$charAnswer : ${questionModel.answers[idex]}",
         style: TextStyle(
           color: questionModel.answers[idex] == questionModel.correctAnswer
               ? Colors.green

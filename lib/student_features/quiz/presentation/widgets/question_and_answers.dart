@@ -14,30 +14,19 @@ class QuestionAndAnswer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Text(
-            questions[questionIndex],
-            style: Styles.textStyle18,
-            textDirection: TextDirection.rtl,
-          ),
-          SizedBox(height: 20.h),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8.r),
-            child: Image.asset(
-              "assets/images/math.png",
-              height: 170.h,
-              fit: BoxFit.fill,
-            ),
-          ),
-          SizedBox(height: 20.h),
-          SizedBox(
-            height: 600.h,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Text(
+          questions[questionIndex],
+          style: Styles.textStyle18,
+          textDirection: TextDirection.rtl,
+        ),
+        SizedBox(height: 30.h),
+        Expanded(
+          child: SizedBox(
             child: ListView.builder(
               itemCount: answers.length,
-              physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (BuildContext context, int index) {
                 return Padding(
                   padding: const EdgeInsets.symmetric(vertical: 7),
@@ -49,8 +38,8 @@ class QuestionAndAnswer extends StatelessWidget {
               },
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
