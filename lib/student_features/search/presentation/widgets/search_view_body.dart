@@ -1,7 +1,10 @@
+import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
+import '../../../auth/presentation/view_model/governorate_cubit.dart';
 import 'search_list_view.dart';
 import 'search_text_field.dart';
 
@@ -13,23 +16,64 @@ class SearchViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          SizedBox(height: 20.h),
-          SearchTextFormField(
-            searchType: searchType,
-          ),
-          SizedBox(height: 20.h),
-          Text(
-            "نتائج البحث",
-            style: Styles.textStyle14,
-          ),
-          SizedBox(height: 20.h),
-          const Expanded(
-            child: SearchListView(),
-          ),
-        ],
+      child: BlocProvider(
+        create: (context) => GovernorateSelectCubit(),
+        child: BlocBuilder<GovernorateSelectCubit, String>(
+          builder: (context,  governateState) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                SizedBox(height: 20.h),
+                SearchTextFormField(
+                  searchType: searchType,
+                  governateState: governateState,
+                ),
+                searchType == "governate"
+                    ? SizedBox(height: 16.h)
+                    : const SizedBox.shrink(),
+                searchType == "governate"
+                    ? DropdownButton(
+                        borderRadius: BorderRadius.circular(6),
+                        underline: Container(height: 1, color: Colors.grey),
+                        icon: const Icon(Icons.arrow_drop_down,
+                            color: kPrimaryColor, size: 30),
+                        alignment: Alignment.centerRight,
+                        style: Styles.textStyle16.copyWith(color: Colors.black),
+                        elevation: 1,
+                        hint: Text(
+                          governateState,
+                          style: GoogleFonts.tajawal(fontSize: 13.sp),
+                        ),
+                        onChanged: (val) {
+                          context
+                              .read<GovernorateSelectCubit>()
+                              .changeState(val.toString());
+                        },
+                        isExpanded: true,
+                        items: governorates.map<DropdownMenuItem<String>>(
+                          (String value) {
+                            return DropdownMenuItem<String>(
+                              alignment: Alignment.centerRight,
+                              value: value,
+                              child: Text(value, style: GoogleFonts.tajawal()),
+                            );
+                          },
+                        ).toList(),
+                      )
+                    : const SizedBox.shrink(),
+                SizedBox(height: 25.h),
+                Text(
+                  "نتائج البحث",
+                  style: Styles.textStyle14,
+                ),
+                SizedBox(height: 20.h),
+                const Expanded(
+                  child: SearchListView(),
+                ),
+              ],
+            );
+          },
+        ),
       ),
     );
   }

@@ -210,7 +210,7 @@ class RegisterViewBody extends StatelessWidget {
                                             child: BlocBuilder<
                                                 GovernorateSelectCubit, String>(
                                               builder:
-                                                  (context, studentLevelState) {
+                                                  (context, governateState) {
                                                 return DropdownButton(
                                                   borderRadius:
                                                       BorderRadius.circular(6),
@@ -228,7 +228,7 @@ class RegisterViewBody extends StatelessWidget {
                                                           color: Colors.black),
                                                   elevation: 1,
                                                   hint: Text(
-                                                    studentLevelState,
+                                                    governateState,
                                                     style: GoogleFonts.tajawal(
                                                         fontSize: 13.sp),
                                                   ),

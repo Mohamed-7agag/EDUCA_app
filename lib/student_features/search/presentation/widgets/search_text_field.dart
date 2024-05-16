@@ -9,10 +9,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SearchTextFormField extends StatelessWidget {
-  SearchTextFormField({super.key, required this.searchType});
+  SearchTextFormField(
+      {super.key, required this.searchType, this.governateState});
 
   TextEditingController controller = TextEditingController();
   final String searchType;
+  final String? governateState;
 
   @override
   Widget build(BuildContext context) {
@@ -32,20 +34,23 @@ class SearchTextFormField extends StatelessWidget {
         fillColor: kSplashColor,
         prefixIcon: IconButton(
             onPressed: () {
-              //! must be changed
               if (controller.text.isNotEmpty || controller.text != "") {
                 if (searchType == "teacher") {
                   context
                       .read<SearchCubit>()
-                      .getSearchResults(controller.text, null);
+                      .getSearchByTeacherName(controller.text);
                 } else if (searchType == "subject") {
                   context
                       .read<SearchCubit>()
-                      .getSearchResults(null, controller.text);
+                      .getSearchBySubjectName(controller.text);
                 } else {
-                  context
-                      .read<SearchCubit>()
-                      .getSearchResults(null, controller.text);
+                  if (governateState == "أختر المحافظة") {
+                    errorCherryToast(
+                        context, "حدث خطأ", "يرجي اختيار المحافظة");
+                  } else {
+                    context.read<SearchCubit>().getSearchByTeachersInGovernate(
+                        controller.text, governateState);
+                  }
                 }
               } else {
                 errorCherryToast(context, "حدث خطأ", "حقل البحث فارغ");

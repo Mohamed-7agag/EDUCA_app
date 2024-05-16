@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PaymentOptionItem extends StatelessWidget {
-  const PaymentOptionItem({super.key, required this.image, required this.onTap, required this.text});
+  const PaymentOptionItem(
+      {super.key,
+      required this.image,
+      required this.onTap,
+      required this.text});
 
   final String image;
   final String text;
@@ -24,7 +28,7 @@ class PaymentOptionItem extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(image, width: 130.h,fit: BoxFit.fill),
+            Image.asset(image, width: 130.h, fit: BoxFit.fill),
             SizedBox(height: 18.h),
             Text(text, style: Styles.textStyle18),
           ],

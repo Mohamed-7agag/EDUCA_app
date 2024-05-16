@@ -38,7 +38,8 @@ class HomeViewBody extends StatelessWidget {
                     SizedBox(width: 8.w),
                     IconButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, Routes.searchOptionViewRoute);
+                        Navigator.pushNamed(
+                            context, Routes.searchOptionViewRoute);
                       },
                       icon: const Icon(
                         Icons.search_rounded,

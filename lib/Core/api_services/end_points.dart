@@ -11,8 +11,13 @@ class EndPoint {
     return "teacher/$id";
   }
 
-  static String search(String? teacherName, String? subjectName) {
-    return "student/search?teacherName=$teacherName&subjectName=$subjectName";
+  static String searchByTeacherOrSubject(String? searchName) {
+    return "student/search?searchQuery=$searchName";
+  }
+
+  static String searchByTeachersInGovernate(
+      String? teacherName, String? governorate) {
+    return "student/search?searchQuery=$teacherName&Governate=$governorate";
   }
 }
 
