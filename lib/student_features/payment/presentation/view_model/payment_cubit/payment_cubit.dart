@@ -18,7 +18,6 @@ class PaymentCubit extends Cubit<PaymentState> {
     }).catchError((error) {
       emit(PaymentAuthErrorState(error.toString()));
     });
-    
   }
 
   Future getOrderRegistrationID({

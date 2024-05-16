@@ -14,7 +14,7 @@ class QuestionListViewItem extends StatelessWidget {
     required this.cnt,
   });
   int cnt;
- final QuestionModel questionModel;
+  final QuestionModel questionModel;
 
   @override
   Widget build(BuildContext context) {
@@ -77,4 +77,3 @@ class QuestionListViewItem extends StatelessWidget {
     );
   }
 }
-

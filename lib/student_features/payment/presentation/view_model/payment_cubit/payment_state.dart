@@ -8,6 +8,7 @@ sealed class PaymentState extends Equatable {
 }
 
 final class PaymentInitial extends PaymentState {}
+
 //! for Auth token
 class PaymentInitialState extends PaymentState {}
 

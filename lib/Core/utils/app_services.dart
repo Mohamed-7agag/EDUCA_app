@@ -11,7 +11,8 @@ final getIt = GetIt.instance;
 
 void appServices() {
   getIt.registerLazySingleton<ApiServices>((() => ApiServices(Dio())));
-  getIt.registerLazySingleton<PaymentApiServices>((() => PaymentApiServices(Dio())));
+  getIt.registerLazySingleton<PaymentApiServices>(
+      (() => PaymentApiServices(Dio())));
 
   getIt.registerLazySingleton<AuthRepoImplement>(
     () => AuthRepoImplement(
