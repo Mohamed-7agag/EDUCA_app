@@ -4,6 +4,7 @@ import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
 import 'package:field_training_app/teacher_features/make_quiz/data/question_model.dart';
+import 'package:field_training_app/teacher_features/make_quiz/data/quiz_model.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,10 +12,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 enum MyOption { option1, option2, option3, option4 }
 
 class MakeQuizViewBody extends StatefulWidget {
-  const MakeQuizViewBody({super.key});
+  const MakeQuizViewBody({super.key, required this.titleQuiz});
 
   @override
   State<MakeQuizViewBody> createState() => _MakeQuizViewBodyState();
+  final String  titleQuiz;
 }
 
 class _MakeQuizViewBodyState extends State<MakeQuizViewBody> {
@@ -26,7 +28,7 @@ class _MakeQuizViewBodyState extends State<MakeQuizViewBody> {
 
   MyOption myOption = MyOption.option1;
   String answer = '';
-
+  
   @override
   @override
   Widget build(BuildContext context) {
@@ -207,7 +209,16 @@ class _MakeQuizViewBodyState extends State<MakeQuizViewBody> {
               ),
             ),
             const SizedBox(height: 30),
-            CustomButton(text: "انهاء الاختبار", onpressed: () {})
+            CustomButton(
+                text: "انهاء الاختبار",
+                onpressed: () {
+                  quizList.add(QuizModel(
+                    questions: questionList,
+                    title: widget.titleQuiz,
+                    date: "2022-11-11",
+                  ));
+                  print(quizList[0].title);
+                }),
           ],
         ),
       ),

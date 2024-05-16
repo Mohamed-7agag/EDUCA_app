@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 
 
 class MakeQuizView extends StatelessWidget {
-  const MakeQuizView({super.key});
-
+  const MakeQuizView({super.key, required this.titleQuiz});
+  final String titleQuiz;
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SafeArea(child: MakeQuizViewBody()),
+    return  Scaffold(
+      body: SafeArea(child: MakeQuizViewBody(titleQuiz: titleQuiz,)),
     );
   }
 }

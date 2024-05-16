@@ -1,7 +1,7 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
-import 'package:field_training_app/teacher_features/make_quiz/presentation/views/make_quiz_view.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -142,10 +142,8 @@ class CourseDetailsTeacherViewBody extends StatelessWidget {
                       children: [
                         InkWell(
                           onTap: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => const MakeQuizView(),
-                              ),
+                            Navigator.of(context).pushNamed(
+                              Routes.showAllQuizzesViewRoute,
                             );
                           },
                           splashColor: kSplashColor,

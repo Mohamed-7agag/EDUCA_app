@@ -14,6 +14,7 @@ import 'package:field_training_app/student_features/splash/presentation/views/sp
 import 'package:field_training_app/teacher_features/courses/presentation/views/course_details_teacher_view.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views/enrolled_students_view.dart';
 import 'package:field_training_app/teacher_features/make_quiz/presentation/views/make_quiz_view.dart';
+import 'package:field_training_app/teacher_features/make_quiz/presentation/views/show_all_quizzes_view.dart';
 import 'package:field_training_app/teacher_features/make_quiz/presentation/views/show_quiz_view.dart';
 import 'package:field_training_app/teacher_features/profile_teacher/data/repos/teacher_repo/student_profile_repo_implement.dart';
 import 'package:field_training_app/teacher_features/profile_teacher/presentation/view_model/cubit/student_profile_cubit.dart';
@@ -52,10 +53,10 @@ import '../../teacher_features/profile_teacher/presentation/views/teacher_profil
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      // case Routes.splashViewRoute:
-      //   return MaterialPageRoute(
-      //     builder: (context) => const SplashView(),
-      //   );
+      case Routes.splashViewRoute:
+        return MaterialPageRoute(
+          builder: (context) => const SplashView(),
+        );
       case Routes.createClassViewRoute:
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
@@ -237,13 +238,18 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (context) => QuizResultView(numberOfQuestions: args),
         );
-      case Routes.splashViewRoute:
+      case Routes.createQuizViewRoute:
+         var args = settings.arguments as String;
         return MaterialPageRoute(
-          builder: (context) => const MakeQuizView(),
+          builder: (context) =>  MakeQuizView(titleQuiz: args,),
         );
       case Routes.showQuizViewRoute:
         return MaterialPageRoute(
           builder: (context) => const ShowQuizView(),
+        );
+      case Routes.showAllQuizzesViewRoute:
+        return MaterialPageRoute(
+          builder: (context) => const ShowAllQuizzesView(),
         );
       case Routes.paymentOptionViewRoute:
         return MaterialPageRoute(
