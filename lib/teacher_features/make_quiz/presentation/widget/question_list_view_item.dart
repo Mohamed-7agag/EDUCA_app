@@ -29,22 +29,22 @@ class QuestionListViewItem extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         CustomAnswersQuestion(
-          CharAnswer: "A",
+          charAnswer: "A",
           questionModel: questionModel,
           idex: 0,
         ),
         CustomAnswersQuestion(
-          CharAnswer: "B",
+          charAnswer: "B",
           questionModel: questionModel,
           idex: 1,
         ),
         CustomAnswersQuestion(
-          CharAnswer: "C",
+          charAnswer: "C",
           questionModel: questionModel,
           idex: 2,
         ),
         CustomAnswersQuestion(
-          CharAnswer: "D",
+          charAnswer: "D",
           questionModel: questionModel,
           idex: 3,
         ),
