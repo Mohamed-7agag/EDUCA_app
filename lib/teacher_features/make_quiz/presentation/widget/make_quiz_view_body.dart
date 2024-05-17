@@ -16,7 +16,7 @@ class MakeQuizViewBody extends StatefulWidget {
 
   @override
   State<MakeQuizViewBody> createState() => _MakeQuizViewBodyState();
-  final String  titleQuiz;
+  final String titleQuiz;
 }
 
 class _MakeQuizViewBodyState extends State<MakeQuizViewBody> {
@@ -28,7 +28,7 @@ class _MakeQuizViewBodyState extends State<MakeQuizViewBody> {
 
   MyOption myOption = MyOption.option1;
   String answer = '';
-  
+
   @override
   @override
   Widget build(BuildContext context) {
@@ -217,7 +217,6 @@ class _MakeQuizViewBodyState extends State<MakeQuizViewBody> {
                     title: widget.titleQuiz,
                     date: "2022-11-11",
                   ));
-                  print(quizList[0].title);
                 }),
           ],
         ),

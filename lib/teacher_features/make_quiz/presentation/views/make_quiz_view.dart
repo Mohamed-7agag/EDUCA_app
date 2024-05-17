@@ -6,8 +6,8 @@ class MakeQuizView extends StatelessWidget {
   final String titleQuiz;
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      body: SafeArea(child: MakeQuizViewBody(titleQuiz: titleQuiz,)),
+    return Scaffold(
+      body: SafeArea(child: MakeQuizViewBody(titleQuiz: titleQuiz)),
     );
   }
 }

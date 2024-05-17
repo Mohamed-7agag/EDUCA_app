@@ -3,7 +3,7 @@ import 'package:field_training_app/Core/utils/routes.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'course_item.dart';
+import '../../../courses/presentation/widgets/course_item.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
@@ -122,7 +122,7 @@ class HomeViewBody extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(right: 20),
             child: Text(
-              "الكورسات الاخيرة",
+              "المواد الدراسية الاخيرة",
               textDirection: TextDirection.rtl,
               style: Styles.textStyle16,
             ),
@@ -149,7 +149,7 @@ class HomeViewBody extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(right: 20),
             child: Text(
-              "كورسات موصي بها",
+              "مواد دراسية موصي بها",
               textDirection: TextDirection.rtl,
               style: Styles.textStyle16,
             ),

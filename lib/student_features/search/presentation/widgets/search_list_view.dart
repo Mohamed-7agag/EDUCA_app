@@ -1,7 +1,7 @@
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_failure_widget.dart';
 import 'package:field_training_app/Core/widgets/custom_search_loading_widget.dart';
-import 'package:field_training_app/student_features/search/data/models/teacher_searched_model.dart';
+import 'package:field_training_app/Core/models/teacher_model.dart';
 import 'package:field_training_app/student_features/search/presentation/view_model/search_cubit/search_cubit.dart';
 import 'package:field_training_app/student_features/search/presentation/widgets/subject_search_item.dart';
 import 'package:field_training_app/student_features/search/presentation/widgets/teacher_search_item.dart';
@@ -20,7 +20,7 @@ class SearchListView extends StatelessWidget {
               ? ListView.builder(
                   itemCount: state.searchedList.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return state.searchedList is List<TeacherSearchedModel>
+                    return state.searchedList is List<TeacherModel>
                         ? TeacherSearchItem(
                             teacherSearchedModel: state.searchedList[index],
                           )

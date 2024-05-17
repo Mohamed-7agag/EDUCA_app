@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-class SubjectSearchedModel extends Equatable {
+class SubjectModel extends Equatable {
   final int? id;
   final String? subjName;
   final String? level;
@@ -10,7 +10,7 @@ class SubjectSearchedModel extends Equatable {
   final String? profileImageUrl;
   final int? teacherId;
 
-  const SubjectSearchedModel({
+  const SubjectModel({
     this.id,
     this.subjName,
     this.level,
@@ -21,8 +21,8 @@ class SubjectSearchedModel extends Equatable {
     this.teacherId,
   });
 
-  factory SubjectSearchedModel.fromJson(Map<String, dynamic> json) {
-    return SubjectSearchedModel(
+  factory SubjectModel.fromJson(Map<String, dynamic> json) {
+    return SubjectModel(
       id: json['id'] as int?,
       subjName: json['subjName'] as String?,
       level: json['level'] as String?,

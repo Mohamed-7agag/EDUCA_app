@@ -2,7 +2,7 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/student_features/home/presentation/views/home_view.dart';
-import 'package:field_training_app/student_features/my_courses/presentation/views/my_courses_view.dart';
+import 'package:field_training_app/student_features/courses/presentation/views/my_courses_view.dart';
 import 'package:field_training_app/student_features/profile/presentation/views/profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

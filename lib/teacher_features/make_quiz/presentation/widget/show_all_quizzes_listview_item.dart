@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 
 class ShowAllQuizzesListViewItem extends StatelessWidget {
   const ShowAllQuizzesListViewItem({
-    Key? key,
+    super.key,
     required this.quizName,
     required this.quizDate,
     required this.questionNumbers,
     required this.onDelete,
     required this.onEdit,
-  }) : super(key: key);
+  });
 
   final String quizName;
   final String quizDate;

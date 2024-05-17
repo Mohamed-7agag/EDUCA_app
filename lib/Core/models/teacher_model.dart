@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-class TeacherSearchedModel extends Equatable {
+class TeacherModel extends Equatable {
   final int? id;
   final String? email;
   final String? firstName;
@@ -10,7 +10,7 @@ class TeacherSearchedModel extends Equatable {
   final List<dynamic>? subjects;
   final String? profileImageUrl;
 
-  const TeacherSearchedModel({
+  const TeacherModel({
     this.id,
     this.email,
     this.firstName,
@@ -21,8 +21,8 @@ class TeacherSearchedModel extends Equatable {
     this.profileImageUrl,
   });
 
-  factory TeacherSearchedModel.fromJson(Map<String, dynamic> json) {
-    return TeacherSearchedModel(
+  factory TeacherModel.fromJson(Map<String, dynamic> json) {
+    return TeacherModel(
       id: json['id'] as int?,
       email: json['email'] as String?,
       firstName: json['firstName'] as String?,

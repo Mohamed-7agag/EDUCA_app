@@ -3,6 +3,8 @@ import 'package:field_training_app/Core/utils/app_services.dart';
 import 'package:field_training_app/student_features/auth/data/repos/auth_repo_implement.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/auth_cubit/auth_cubit.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/register_option_cubit.dart';
+import 'package:field_training_app/student_features/courses/presentation/view_model/favourite_courses_cubit.dart';
+import 'package:field_training_app/student_features/courses/presentation/views/course_details_view.dart';
 import 'package:field_training_app/student_features/payment/presentation/view_model/payment_cubit/payment_cubit.dart';
 import 'package:field_training_app/student_features/payment/presentation/views/payment_option_view.dart';
 import 'package:field_training_app/student_features/payment/presentation/views/ref_code_view.dart';
@@ -29,8 +31,6 @@ import 'package:field_training_app/student_features/auth/presentation/views/logi
 import 'package:field_training_app/student_features/auth/presentation/views/register_view.dart';
 import 'package:field_training_app/student_features/bottom_bar/presentation/views/custom_bottom_bar.dart';
 import 'package:field_training_app/student_features/introduction_screens/presentation/views/introduction_screens.dart';
-import 'package:field_training_app/student_features/my_courses/presentation/view_model/favourite_courses_cubit.dart';
-import 'package:field_training_app/student_features/my_courses/presentation/views/course_details_view.dart';
 import 'package:field_training_app/student_features/profile/presentation/views/profile_edit_view.dart';
 import 'package:field_training_app/student_features/search/presentation/views/search_view.dart';
 
@@ -239,9 +239,11 @@ class AppRouter {
           builder: (context) => QuizResultView(numberOfQuestions: args),
         );
       case Routes.createQuizViewRoute:
-         var args = settings.arguments as String;
+        var args = settings.arguments as String;
         return MaterialPageRoute(
-          builder: (context) =>  MakeQuizView(titleQuiz: args,),
+          builder: (context) => MakeQuizView(
+            titleQuiz: args,
+          ),
         );
       case Routes.showQuizViewRoute:
         return MaterialPageRoute(

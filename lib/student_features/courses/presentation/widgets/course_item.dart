@@ -1,10 +1,11 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/routes.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
-import 'package:field_training_app/student_features/my_courses/presentation/view_model/favourite_courses_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../view_model/favourite_courses_cubit.dart';
 
 class CourseItem extends StatelessWidget {
   const CourseItem({super.key});

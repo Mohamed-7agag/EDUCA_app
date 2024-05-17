@@ -1,4 +1,4 @@
-import 'package:field_training_app/student_features/my_courses/presentation/widgets/my_courses_item.dart';
+import 'package:field_training_app/student_features/courses/presentation/widgets/my_courses_item.dart';
 import 'package:flutter/material.dart';
 
 class MyCoursesViewBody extends StatelessWidget {
