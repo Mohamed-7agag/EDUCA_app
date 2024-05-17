@@ -2,9 +2,9 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:field_training_app/Core/api_services/api_service.dart';
 import 'package:field_training_app/Core/api_services/failure.dart';
-import 'package:field_training_app/student_features/search/data/models/teacher_searched_model.dart';
+import 'package:field_training_app/Core/models/teacher_model.dart';
 import '../../../../Core/api_services/end_points.dart';
-import '../models/subject_searched_model.dart';
+import '../../../../Core/models/subject_model.dart';
 import 'search_repo.dart';
 
 class SearchRepoImplement implements SearchRepo {
@@ -12,16 +12,16 @@ class SearchRepoImplement implements SearchRepo {
   SearchRepoImplement({required this.apiServices});
 
   @override
-  Future<Either<Failure, List<TeacherSearchedModel>>> getSearchByTeacherName(
+  Future<Either<Failure, List<TeacherModel>>> getSearchByTeacherName(
       String? teacherName) async {
     try {
       var data = await apiServices.get(
         endPoint: EndPoint.searchByTeacherOrSubject(teacherName),
       );
 
-      List<TeacherSearchedModel> searchedList = [];
+      List<TeacherModel> searchedList = [];
       for (var item in data) {
-        searchedList.add(TeacherSearchedModel.fromJson(item));
+        searchedList.add(TeacherModel.fromJson(item));
       }
       return right(searchedList);
     } catch (e) {
@@ -32,18 +32,17 @@ class SearchRepoImplement implements SearchRepo {
     }
   }
 
-  //! need edit
   @override
-  Future<Either<Failure, List<SubjectSearchedModel>>> getSearchBySubjectName(
+  Future<Either<Failure, List<SubjectModel>>> getSearchBySubjectName(
       String? subjectName) async {
     try {
       var data = await apiServices.get(
         endPoint: EndPoint.searchByTeacherOrSubject(subjectName),
       );
 
-      List<SubjectSearchedModel> searchedList = [];
+      List<SubjectModel> searchedList = [];
       for (var item in data) {
-        searchedList.add(SubjectSearchedModel.fromJson(item));
+        searchedList.add(SubjectModel.fromJson(item));
       }
       return right(searchedList);
     } catch (e) {
@@ -55,7 +54,7 @@ class SearchRepoImplement implements SearchRepo {
   }
 
   @override
-  Future<Either<Failure, List<TeacherSearchedModel>>>
+  Future<Either<Failure, List<TeacherModel>>>
       getSearchByTeachersInGovernate(
           String? teacherName, String? governate) async {
     try {
@@ -63,9 +62,9 @@ class SearchRepoImplement implements SearchRepo {
         endPoint: EndPoint.searchByTeachersInGovernate(teacherName, governate),
       );
 
-      List<TeacherSearchedModel> searchedList = [];
+      List<TeacherModel> searchedList = [];
       for (var item in data) {
-        searchedList.add(TeacherSearchedModel.fromJson(item));
+        searchedList.add(TeacherModel.fromJson(item));
       }
       return right(searchedList);
     } catch (e) {

@@ -1,19 +1,23 @@
+import 'package:field_training_app/Core/models/subject_model.dart';
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/routes.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
-import 'package:field_training_app/student_features/my_courses/presentation/view_model/favourite_courses_cubit.dart';
+import 'package:field_training_app/Core/utils/subject_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../view_model/favourite_courses_cubit.dart';
+
 class CourseItem extends StatelessWidget {
-  const CourseItem({super.key});
+  const CourseItem({super.key, required this.subjectModel});
+  final SubjectModel subjectModel;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, Routes.courseDetailsViewRoute);
+        Navigator.pushNamed(context, Routes.courseDetailsViewRoute,arguments: subjectModel);
       },
       splashColor: kSplashColor,
       borderRadius: BorderRadius.circular(8.r),
@@ -43,7 +47,7 @@ class CourseItem extends StatelessWidget {
                     topLeft: Radius.circular(8.r),
                     topRight: Radius.circular(8.r),
                   ),
-                  child: Image.asset("assets/images/math.png"),
+                  child: Image.asset(subjectImage(subjectModel.subjName!),),
                 ),
                 Positioned(
                   top: 6.h,
@@ -107,7 +111,7 @@ class CourseItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Text(
-                          "الرياضيات",
+                          "${subjectModel.subjName}",
                           style: Styles.textStyle14,
                           textAlign: TextAlign.right,
                         ),
@@ -124,7 +128,7 @@ class CourseItem extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(right: 11),
                     child: Text(
-                      "للصف الاول الاعدادي / ترم أول",
+                      "${subjectModel.level} / ترم أول",
                       style: Styles.textStyle12,
                       textDirection: TextDirection.rtl,
                       overflow: TextOverflow.ellipsis,
@@ -137,7 +141,7 @@ class CourseItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Text(
-                          "25 جنيه",
+                          "${subjectModel.pricePerHour} جنيه",
                           style:
                               Styles.textStyle14.copyWith(color: kPrimaryColor),
                           textAlign: TextAlign.right,

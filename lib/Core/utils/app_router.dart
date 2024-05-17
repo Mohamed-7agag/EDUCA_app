@@ -1,8 +1,13 @@
 import 'package:field_training_app/Core/api_services/payment_api_services.dart';
+import 'package:field_training_app/Core/models/subject_model.dart';
 import 'package:field_training_app/Core/utils/app_services.dart';
 import 'package:field_training_app/student_features/auth/data/repos/auth_repo_implement.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/auth_cubit/auth_cubit.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/register_option_cubit.dart';
+import 'package:field_training_app/student_features/courses/presentation/view_model/favourite_courses_cubit.dart';
+import 'package:field_training_app/student_features/courses/presentation/views/course_details_view.dart';
+import 'package:field_training_app/student_features/home/data/repo/home_repo_implement.dart';
+import 'package:field_training_app/student_features/home/presentation/view_model/cubit/home_cubit.dart';
 import 'package:field_training_app/student_features/payment/presentation/view_model/payment_cubit/payment_cubit.dart';
 import 'package:field_training_app/student_features/payment/presentation/views/payment_option_view.dart';
 import 'package:field_training_app/student_features/payment/presentation/views/ref_code_view.dart';
@@ -31,13 +36,12 @@ import 'package:field_training_app/student_features/auth/presentation/views/logi
 import 'package:field_training_app/student_features/auth/presentation/views/register_view.dart';
 import 'package:field_training_app/student_features/bottom_bar/presentation/views/custom_bottom_bar.dart';
 import 'package:field_training_app/student_features/introduction_screens/presentation/views/introduction_screens.dart';
-import 'package:field_training_app/student_features/my_courses/presentation/view_model/favourite_courses_cubit.dart';
-import 'package:field_training_app/student_features/my_courses/presentation/views/course_details_view.dart';
 import 'package:field_training_app/student_features/profile/presentation/views/profile_edit_view.dart';
 import 'package:field_training_app/student_features/search/presentation/views/search_view.dart';
 
 import '../../student_features/auth/presentation/view_model/change_profile_image.dart';
 import '../../student_features/bottom_bar/presentation/view_model/bottom_bar_cubit.dart';
+import '../../student_features/chat_gpt/presentation/view_model/chat_cubit.dart';
 import '../../student_features/notification/presentation/views/notification_view.dart';
 import '../../student_features/profile/presentation/view_model/cubit/student_profile_cubit.dart';
 import '../../student_features/profile/presentation/views/profile_select_class_edit_view.dart';
@@ -108,12 +112,19 @@ class AppRouter {
                 create: (context) => BottomBarCubit(),
               ),
               BlocProvider(
+                create: (context) => ChatCubit(),
+              ),
+              BlocProvider(
                 create: (context) => ChangeRegisterImageCubit(),
               ),
               BlocProvider(
                 create: (context) => StudentProfileCubit(
                     getIt.get<StudentProfileRepoImplement>())
                   ..getStudentData(),
+              ),
+              BlocProvider(
+                create: (context) =>
+                    HomeCubit(getIt.get<HomeRepoImplement>())..getSubjects(),
               ),
               BlocProvider(
                 create: (context) => FavouriteCoursesCubit(),
@@ -210,11 +221,12 @@ class AppRouter {
           builder: (context) => const SearchOptionsView(),
         );
       case Routes.courseDetailsViewRoute:
+        var args = settings.arguments as SubjectModel;
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
             create: (context) =>
                 PaymentCubit(getIt.get<PaymentApiServices>())..getAuthToken(),
-            child: const CourseDetailsView(),
+            child: CourseDetailsView(subjectModel: args),
           ),
         );
       case Routes.termsViewRoute:

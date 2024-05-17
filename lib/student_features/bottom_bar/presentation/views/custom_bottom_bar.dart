@@ -1,8 +1,9 @@
 // ignore_for_file: deprecated_member_use
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:field_training_app/Core/utils/constatnt.dart';
+import 'package:field_training_app/student_features/chat_gpt/presentation/views/chat_gpt_view.dart';
 import 'package:field_training_app/student_features/home/presentation/views/home_view.dart';
-import 'package:field_training_app/student_features/my_courses/presentation/views/my_courses_view.dart';
+import 'package:field_training_app/student_features/courses/presentation/views/my_courses_view.dart';
 import 'package:field_training_app/student_features/profile/presentation/views/profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -63,6 +64,10 @@ class CustomBottomBarView extends StatelessWidget {
                       text: "أنا",
                     ),
                     GButton(
+                      icon: Icons.chat_outlined,
+                      text: "ChatGPT",
+                    ),
+                    GButton(
                       icon: Icons.beenhere_outlined,
                       text: "كورساتي",
                     ),
@@ -77,7 +82,12 @@ class CustomBottomBarView extends StatelessWidget {
             body: SafeArea(
                 child: IndexedStack(
               index: state,
-              children: const [ProfileView(), MyCoursesView(), HomeView()],
+              children: const [
+                ProfileView(),
+                ChatGPTView(),
+                MyCoursesView(),
+                HomeView()
+              ],
             )),
           ),
         );

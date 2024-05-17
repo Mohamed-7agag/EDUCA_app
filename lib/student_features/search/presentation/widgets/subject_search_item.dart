@@ -1,12 +1,12 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
-import 'package:field_training_app/student_features/search/data/models/subject_searched_model.dart';
+import 'package:field_training_app/Core/models/subject_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SubjectSearchItem extends StatelessWidget {
   const SubjectSearchItem({super.key, required this.subjectSearchedModel});
-  final SubjectSearchedModel subjectSearchedModel;
+  final SubjectModel subjectSearchedModel;
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +19,8 @@ class SubjectSearchItem extends StatelessWidget {
             Text("${subjectSearchedModel.teacherName}"),
             SizedBox(width: 10.w),
             Container(
-              width: 40,
-              height: 40,
+              width: 30,
+              height: 30,
               decoration: BoxDecoration(
                 color: kSplashColor,
                 borderRadius: BorderRadius.circular(100),
@@ -39,13 +39,13 @@ class SubjectSearchItem extends StatelessWidget {
         ),
         SizedBox(height: 12.h),
         Row(
-          mainAxisAlignment: MainAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text("${subjectSearchedModel.level}", style: Styles.textStyle12),
-            SizedBox(width: 14.w),
-            Text("${subjectSearchedModel.subjName}"),
+            Text("${subjectSearchedModel.subjName}", style: Styles.textStyle16),
           ],
         ),
+        SizedBox(height: 5.h),
         const Divider(color: Colors.grey, thickness: 0.4),
       ],
     );

@@ -1,12 +1,12 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
-import 'package:field_training_app/student_features/search/data/models/teacher_searched_model.dart';
+import 'package:field_training_app/Core/models/teacher_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TeacherSearchItem extends StatelessWidget {
   const TeacherSearchItem({super.key, required this.teacherSearchedModel});
 
-  final TeacherSearchedModel teacherSearchedModel;
+  final TeacherModel teacherSearchedModel;
 
   @override
   Widget build(BuildContext context) {
