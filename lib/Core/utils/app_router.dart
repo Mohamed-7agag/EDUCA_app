@@ -11,8 +11,10 @@ import 'package:field_training_app/student_features/profile/data/repos/student_r
 import 'package:field_training_app/student_features/quiz/presentation/views/quiz_view.dart';
 import 'package:field_training_app/student_features/search/presentation/views/search_options_view.dart';
 import 'package:field_training_app/student_features/splash/presentation/views/splash_view.dart';
+import 'package:field_training_app/teacher_features/courses/data/repos/add_course_repo/add_Course_repo_implement.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views/course_details_teacher_view.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views/enrolled_students_view.dart';
+import 'package:field_training_app/teacher_features/courses/presentation/views_model/cubit/add_course_cubit.dart';
 import 'package:field_training_app/teacher_features/make_quiz/presentation/views/make_quiz_view.dart';
 import 'package:field_training_app/teacher_features/make_quiz/presentation/views/show_all_quizzes_view.dart';
 import 'package:field_training_app/teacher_features/make_quiz/presentation/views/show_quiz_view.dart';
@@ -59,8 +61,16 @@ class AppRouter {
         );
       case Routes.createClassViewRoute:
         return MaterialPageRoute(
-          builder: (context) => BlocProvider(
-            create: (context) => DropDownListCubit(),
+          builder: (context) => MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => DropDownListCubit(),
+              ),
+              BlocProvider(
+                create: (context) =>
+                    AddCourseCubit(getIt.get<AddCourseRepoImplement>()),
+              ),
+            ],
             child: const CreateClassView(),
           ),
         );
@@ -239,9 +249,11 @@ class AppRouter {
           builder: (context) => QuizResultView(numberOfQuestions: args),
         );
       case Routes.createQuizViewRoute:
-         var args = settings.arguments as String;
+        var args = settings.arguments as String;
         return MaterialPageRoute(
-          builder: (context) =>  MakeQuizView(titleQuiz: args,),
+          builder: (context) => MakeQuizView(
+            titleQuiz: args,
+          ),
         );
       case Routes.showQuizViewRoute:
         return MaterialPageRoute(

@@ -107,6 +107,10 @@ class _TeacherProfileEditViewState extends State<TeacherProfileEditView> {
                                       address: widget.parameter == "address"
                                           ? controller.text.trim()
                                           : null,
+                                      governorate:
+                                          widget.parameter == "Governorate"
+                                              ? controller.text.trim()
+                                              : null,
                                       image: null,
                                     );
 

@@ -34,6 +34,7 @@ class TeacherProfileRepoImplement implements TeacherProfileRepo {
     String? password,
     String? phone,
     String? address,
+    String? governorate,
     XFile? image,
   }) async {
     try {
@@ -46,6 +47,7 @@ class TeacherProfileRepoImplement implements TeacherProfileRepo {
           ApiKey.password: password ?? "",
           ApiKey.phone: phone != null ? "+2$phone" : "",
           ApiKey.address: address ?? "",
+          ApiKey.governorate: governorate ?? "",
           ApiKey.image: image ?? "",
         },
       );

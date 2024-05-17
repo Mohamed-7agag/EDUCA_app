@@ -1,6 +1,7 @@
 class EndPoint {
   static String baseUrl = "http://edu1.runasp.net/api/";
   static String login = "account/login";
+  static String addCourse = "subject";
   static String studentRegister = "studentaccount/register";
   static String teacherRegister = "teacheraccount/register";
   static String getStudentById(int id) {
@@ -38,4 +39,12 @@ class ApiKey {
   static String governorate = "Governorate";
   static String image = "profileImage";
   static String imageUrl = "profileImageUrl";
+
+  static String teacherId = "teacherId";
+  static String subjectName = "subjName";
+  static String pricePerHour = "pricePerHour";
+  static String level = "level";
+  static String describtion = "describtion";
+  static String addingTime = "addingTime";
+  
 }

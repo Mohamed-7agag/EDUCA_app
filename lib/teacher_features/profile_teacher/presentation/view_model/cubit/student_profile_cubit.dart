@@ -33,6 +33,7 @@ class TeacherProfileCubit extends Cubit<TeacherProfileState> {
     String? password,
     String? phone,
     String? address,
+    String? governorate,
     XFile? image,
   }) async {
     emit(TeacherProfileUpdateLoading());
@@ -43,6 +44,7 @@ class TeacherProfileCubit extends Cubit<TeacherProfileState> {
       password: password,
       phone: phone,
       address: address,
+      governorate: governorate!,
       image: image,
     );
     result.fold((failure) {
