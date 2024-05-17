@@ -3,6 +3,7 @@ class EndPoint {
   static String login = "account/login";
   static String studentRegister = "studentaccount/register";
   static String teacherRegister = "teacheraccount/register";
+  static String allSubject = "subject";
   static String getStudentById(int id) {
     return "student/$id";
   }

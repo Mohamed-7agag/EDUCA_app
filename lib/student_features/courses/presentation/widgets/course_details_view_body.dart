@@ -1,6 +1,8 @@
+import 'package:field_training_app/Core/models/subject_model.dart';
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/routes.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
+import 'package:field_training_app/Core/utils/subject_image.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
 import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
@@ -11,7 +13,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CourseDetailsViewBody extends StatelessWidget {
-  const CourseDetailsViewBody({super.key});
+  const CourseDetailsViewBody({super.key, required this.subjectModel});
+  final SubjectModel subjectModel;
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +25,9 @@ class CourseDetailsViewBody extends StatelessWidget {
           children: [
             Container(
               height: 230.h,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("assets/images/english.png"),
+                  image: AssetImage(subjectImage(subjectModel.subjName!)),
                   fit: BoxFit.fill,
                 ),
               ),
@@ -86,7 +89,7 @@ class CourseDetailsViewBody extends StatelessWidget {
               ),
               SizedBox(height: 7.h),
               Text(
-                "جبر واحصاء",
+                subjectModel.subjName!,
                 style: Styles.textStyle16,
               ),
               SizedBox(height: 22.h),
@@ -121,7 +124,7 @@ class CourseDetailsViewBody extends StatelessWidget {
                       ),
                       SizedBox(height: 7.h),
                       Text(
-                        "الصف الثالث الثانوي",
+                        subjectModel.level!,
                         style: Styles.textStyle16,
                       ),
                     ],
@@ -136,7 +139,7 @@ class CourseDetailsViewBody extends StatelessWidget {
               ),
               SizedBox(height: 7.h),
               Text(
-                "هي مادة للصف الثالث الثانوي و تحتوي علي 6 فصول و كل فصل يحتوي علي 3 دروس",
+                subjectModel.describtion!,
                 style: Styles.textStyle14,
                 textDirection: TextDirection.rtl,
                 maxLines: 3,
@@ -163,7 +166,7 @@ class CourseDetailsViewBody extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "25 جنية",
+                    "${subjectModel.pricePerHour} جنية",
                     style: Styles.textStyle16.copyWith(color: kPrimaryColor),
                     textDirection: TextDirection.rtl,
                   ),

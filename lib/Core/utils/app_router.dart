@@ -1,10 +1,13 @@
 import 'package:field_training_app/Core/api_services/payment_api_services.dart';
+import 'package:field_training_app/Core/models/subject_model.dart';
 import 'package:field_training_app/Core/utils/app_services.dart';
 import 'package:field_training_app/student_features/auth/data/repos/auth_repo_implement.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/auth_cubit/auth_cubit.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/register_option_cubit.dart';
 import 'package:field_training_app/student_features/courses/presentation/view_model/favourite_courses_cubit.dart';
 import 'package:field_training_app/student_features/courses/presentation/views/course_details_view.dart';
+import 'package:field_training_app/student_features/home/data/repo/home_repo_implement.dart';
+import 'package:field_training_app/student_features/home/presentation/view_model/cubit/home_cubit.dart';
 import 'package:field_training_app/student_features/payment/presentation/view_model/payment_cubit/payment_cubit.dart';
 import 'package:field_training_app/student_features/payment/presentation/views/payment_option_view.dart';
 import 'package:field_training_app/student_features/payment/presentation/views/ref_code_view.dart';
@@ -106,6 +109,10 @@ class AppRouter {
                   ..getStudentData(),
               ),
               BlocProvider(
+                create: (context) =>
+                    HomeCubit(getIt.get<HomeRepoImplement>())..getSubjects(),
+              ),
+              BlocProvider(
                 create: (context) => FavouriteCoursesCubit(),
               ),
             ],
@@ -200,11 +207,12 @@ class AppRouter {
           builder: (context) => const SearchOptionsView(),
         );
       case Routes.courseDetailsViewRoute:
+        var args = settings.arguments as SubjectModel;
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
             create: (context) =>
                 PaymentCubit(getIt.get<PaymentApiServices>())..getAuthToken(),
-            child: const CourseDetailsView(),
+            child: CourseDetailsView(subjectModel: args),
           ),
         );
       case Routes.termsViewRoute:
