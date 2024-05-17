@@ -23,19 +23,19 @@ class CustomMessage extends StatelessWidget {
         isUser == false
             ? CircleAvatar(
                 backgroundColor: Colors.white,
-                radius: 18,
+                radius: 17,
                 child: Image.asset(
                   "assets/images/chatGPT.png",
                   fit: BoxFit.fill,
                 ),
               )
             : const SizedBox.shrink(),
-        isUser == false ? SizedBox(width: 5.w) : const SizedBox.shrink(),
+        isUser == false ? SizedBox(width: 4.w) : const SizedBox.shrink(),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 8)
               .copyWith(bottom: 5),
           constraints: BoxConstraints(
-            maxWidth: MediaQuery.of(context).size.width - 80.w,
+            maxWidth: MediaQuery.of(context).size.width - 75.w,
           ),
           decoration: BoxDecoration(
             color: isUser == true ? kPrimaryColor : const Color(0xffEEEEEE),
@@ -66,11 +66,11 @@ class CustomMessage extends StatelessWidget {
             ],
           ),
         ),
-        isUser == true ? SizedBox(width: 5.w) : const SizedBox.shrink(),
+        isUser == true ? SizedBox(width: 4.w) : const SizedBox.shrink(),
         isUser == true
             ? const CircleAvatar(
                 backgroundColor: kSplashMoreDarkerColor,
-                radius: 18,
+                radius: 17,
                 child: Icon(
                   Icons.person,
                   color: kPrimaryColor,

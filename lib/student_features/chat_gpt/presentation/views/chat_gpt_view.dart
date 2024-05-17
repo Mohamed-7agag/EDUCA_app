@@ -7,8 +7,7 @@ class ChatGPTView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Colors.white,
+    return Scaffold(
       body: SafeArea(child: ChatGPTViewBody()),
     );
   }
