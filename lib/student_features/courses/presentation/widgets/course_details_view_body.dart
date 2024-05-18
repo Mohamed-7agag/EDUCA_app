@@ -85,13 +85,38 @@ class CourseDetailsViewBody extends StatelessWidget {
                               .copyWith(fontWeight: FontWeight.w600),
                         ),
                         SizedBox(width: 10.w),
-                        CustomCachedImage(imageUrl: subjectModel.profileImageUrl ?? '',width: 40,height: 40,errorIconSize: 23,),
+                        CustomCachedImage(
+                          imageUrl: subjectModel.profileImageUrl ?? '',
+                          width: 40,
+                          height: 40,
+                          errorIconSize: 23,
+                        ),
                       ],
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 30.h),
+              SizedBox(
+                height: 30.h,
+              ),
+              subjectModel.addingTime != null
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(subjectModel.addingTime!.substring(0, 10),
+                            style: Styles.textStyle14),
+                        SizedBox(width: 10.w),
+                        Text(
+                          ' : تاريخ الأنشاء',
+                          style:
+                              Styles.textStyle12.copyWith(color: Colors.grey),
+                        ),
+                      ],
+                    )
+                  : const SizedBox.shrink(),
+              subjectModel.addingTime != null
+                  ? SizedBox(height: 22.h)
+                  : const SizedBox.shrink(),
               Text(
                 "المادة الدراسية : ",
                 style: Styles.textStyle12.copyWith(color: Colors.grey),
@@ -119,7 +144,7 @@ class CourseDetailsViewBody extends StatelessWidget {
                       ),
                       SizedBox(height: 7.h),
                       Text(
-                        "الفصل الثاني",
+                        subjectModel.term == 1 ? 'الترم الأول' : 'الترم الثاني',
                         style: Styles.textStyle16,
                       ),
                     ],
@@ -209,7 +234,8 @@ class CourseDetailsViewBody extends StatelessWidget {
                       text: "تسجيل المادة",
                       onpressed: () {
                         context.read<PaymentCubit>().getOrderRegistrationID(
-                              price: "8000",
+                              price:
+                                  (subjectModel.pricePerHour! * 100).toString(),
                               firstName:
                                   CacheHelper.getData(key: studentFirstName),
                               lastName:

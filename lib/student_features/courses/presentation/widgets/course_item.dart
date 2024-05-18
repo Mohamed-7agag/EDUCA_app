@@ -131,7 +131,7 @@ class CourseItem extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(right: 11),
                     child: Text(
-                      "${subjectModel.level} / ترم أول",
+                      "${subjectModel.level} / ${subjectModel.term == 1 ? 'الترم الأول' : 'الترم الثاني'}",
                       style: Styles.textStyle12,
                       textDirection: TextDirection.rtl,
                       overflow: TextOverflow.ellipsis,

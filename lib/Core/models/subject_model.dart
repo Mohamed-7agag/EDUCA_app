@@ -10,6 +10,7 @@ class SubjectModel extends Equatable {
   final String? profileImageUrl;
   final int? teacherId;
   final int? term;
+  final String? addingTime;
 
   const SubjectModel({
     this.id,
@@ -21,6 +22,7 @@ class SubjectModel extends Equatable {
     this.profileImageUrl,
     this.teacherId,
     this.term,
+    this.addingTime,
   });
 
   factory SubjectModel.fromJson(Map<String, dynamic> json) {
@@ -34,6 +36,7 @@ class SubjectModel extends Equatable {
       profileImageUrl: json['profileImageUrl'] as String?,
       teacherId: json['teacherId'] as int?,
       term: json['term'] as int?,
+      addingTime: json['addingTime'] as String?,
     );
   }
 
@@ -47,6 +50,7 @@ class SubjectModel extends Equatable {
         'profileImageUrl': profileImageUrl,
         'teacherId': teacherId,
         'term': term,
+        'addingTime': addingTime,
       };
 
   @override
@@ -61,6 +65,7 @@ class SubjectModel extends Equatable {
       profileImageUrl,
       teacherId,
       term,
+      addingTime,
     ];
   }
 }
