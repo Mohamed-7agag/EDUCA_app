@@ -1,4 +1,3 @@
-import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views/widgets/course_lisview_item.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views_model/cubit/get_all_courses_teacher_cubit.dart';
 
@@ -16,9 +15,11 @@ class CourseListViewBuider extends StatelessWidget {
           return ListView.builder(
             itemCount: state.courses.length,
             itemBuilder: (context, index) {
-              return  Padding(
-                padding:const EdgeInsets.all(8.0),
-                child: CourseListViewItem(course: state.courses[index],),
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CourseListViewItem(
+                  course: state.courses[index],
+                ),
               );
             },
           );
@@ -27,7 +28,7 @@ class CourseListViewBuider extends StatelessWidget {
         }
         return const Center(
             child: CircularProgressIndicator(
-          color: kPrimaryColor,
+          color: Colors.amber,
         ));
       },
     );

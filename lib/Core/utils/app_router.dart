@@ -1,6 +1,8 @@
+import 'package:field_training_app/Core/api_services/end_points.dart';
 import 'package:field_training_app/Core/api_services/payment_api_services.dart';
 import 'package:field_training_app/Core/models/subject_model.dart';
 import 'package:field_training_app/Core/utils/app_services.dart';
+import 'package:field_training_app/cache/cache_helper.dart';
 import 'package:field_training_app/student_features/auth/data/repos/auth_repo_implement.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/auth_cubit/auth_cubit.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/register_option_cubit.dart';
@@ -16,6 +18,7 @@ import 'package:field_training_app/student_features/profile/data/repos/student_r
 import 'package:field_training_app/student_features/quiz/presentation/views/quiz_view.dart';
 import 'package:field_training_app/student_features/search/presentation/views/search_options_view.dart';
 import 'package:field_training_app/student_features/splash/presentation/views/splash_view.dart';
+import 'package:field_training_app/teacher_features/courses/data/models/course_model.dart';
 import 'package:field_training_app/teacher_features/courses/data/repos/add_course_repo/add_Course_repo_implement.dart';
 import 'package:field_training_app/teacher_features/courses/data/repos/course_repo/course_repo_implement.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views/course_details_teacher_view.dart';
@@ -146,7 +149,7 @@ class AppRouter {
                 create: (context) => ChangeRegisterImageCubit(),
               ),
               BlocProvider(
-                create: (context) => GetAllCoursesTeacherCubit(getIt.get<CourseRepoImplement>())..getCourses(teacherId: "10")
+                create: (context) => GetAllCoursesTeacherCubit(getIt.get<CourseRepoImplement>())..getCourses(teacherId: CacheHelper.getData(key: ApiKey.id))
                 ,
               ),
               BlocProvider(
@@ -244,8 +247,9 @@ class AppRouter {
           builder: (context) => TermsView(),
         );
       case Routes.courseDetailsTeacherViewRoute:
+      var args = settings.arguments as CourseModel;
         return MaterialPageRoute(
-          builder: (context) => const CourseDetailsTeacherView(),
+          builder: (context) =>  CourseDetailsTeacherView(courseModel: args,),
         );
       case Routes.enrolledStudentsViewRoute:
         return MaterialPageRoute(

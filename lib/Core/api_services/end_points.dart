@@ -22,10 +22,12 @@ class EndPoint {
     return "student/search?searchQuery=$teacherName&Governate=$governorate";
   }
 
-  static String allCoursesWithTeacherId(String id) {
-    return "teacher/10/subjects";
+  static String allCoursesWithTeacherId(int id) {
+    return "teacher/$id/subjects";
   }
-  
+  static String deleteSubjectWithTeacherId(int id) {
+    return "subject/$id";
+  }
 }
 
 class ApiKey {
