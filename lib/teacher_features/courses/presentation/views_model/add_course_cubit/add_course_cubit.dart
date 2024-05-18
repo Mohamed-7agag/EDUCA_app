@@ -1,7 +1,7 @@
+import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:field_training_app/teacher_features/courses/data/repos/add_course_repo/add_course_repo.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'add_course_state.dart';
 
@@ -10,12 +10,13 @@ class AddCourseCubit extends Cubit<AddCourseState> {
 
   final AddCourseRepo addCourseRepo;
 
-  TextEditingController controller = TextEditingController();
+  TextEditingController controller=TextEditingController();
 
-  String level = '';
-  String subjName = '';
-  String trem = '';
-  int price = 0;
+  String level='';
+  String subjName='';
+  String trem='';
+  int price=0;
+
 
   Future<void> addCourse() async {
     emit(AddCourseLoading());
@@ -26,8 +27,10 @@ class AddCourseCubit extends Cubit<AddCourseState> {
       describtion: controller.text,
     );
     result.fold((failure) {
+      print("failed");
       emit(AddCourseFailure(errMessage: failure.errMessage));
     }, (courseModel) {
+       print("success");
       emit(AddCourseSuccess());
     });
   }

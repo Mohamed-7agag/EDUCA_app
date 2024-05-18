@@ -18,7 +18,8 @@ class CourseListViewItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, Routes.courseDetailsTeacherViewRoute,arguments: course);
+        Navigator.pushNamed(context, Routes.courseDetailsTeacherViewRoute,
+            arguments: course);
       },
       splashColor: kSplashColor,
       borderRadius: BorderRadius.circular(8.r),
@@ -98,7 +99,11 @@ class CourseListViewItem extends StatelessWidget {
                                     btnOkOnPress: () {
                                       context
                                           .read<GetAllCoursesTeacherCubit>()
-                                          .deleteCourse(subjectId: 6);
+                                          .deleteCourse(subjectId: 4);
+                                      Navigator.pushReplacementNamed(
+                                          context,
+                                          Routes
+                                              .customBottomBarForTeacherViewRoute);
                                     },
                                     btnOkText: 'نعم',
                                     btnCancelText: 'لا',

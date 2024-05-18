@@ -1,5 +1,3 @@
-// ignore_for_file: file_names
-
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:field_training_app/Core/api_services/api_service.dart';
@@ -37,6 +35,7 @@ class AddCourseRepoImplement implements AddCourseRepo {
      
       return right(courseModel);
     } catch (e) {
+      print("failure: $e");
       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));
       }
