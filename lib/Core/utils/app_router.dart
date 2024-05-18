@@ -17,9 +17,11 @@ import 'package:field_training_app/student_features/quiz/presentation/views/quiz
 import 'package:field_training_app/student_features/search/presentation/views/search_options_view.dart';
 import 'package:field_training_app/student_features/splash/presentation/views/splash_view.dart';
 import 'package:field_training_app/teacher_features/courses/data/repos/add_course_repo/add_Course_repo_implement.dart';
+import 'package:field_training_app/teacher_features/courses/data/repos/course_repo/course_repo_implement.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views/course_details_teacher_view.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views/enrolled_students_view.dart';
-import 'package:field_training_app/teacher_features/courses/presentation/views_model/cubit/add_course_cubit.dart';
+import 'package:field_training_app/teacher_features/courses/presentation/views_model/add_course_cubit/add_course_cubit.dart';
+import 'package:field_training_app/teacher_features/courses/presentation/views_model/cubit/get_all_courses_teacher_cubit.dart';
 import 'package:field_training_app/teacher_features/make_quiz/presentation/views/make_quiz_view.dart';
 import 'package:field_training_app/teacher_features/make_quiz/presentation/views/show_all_quizzes_view.dart';
 import 'package:field_training_app/teacher_features/make_quiz/presentation/views/show_quiz_view.dart';
@@ -144,8 +146,16 @@ class AppRouter {
                 create: (context) => ChangeRegisterImageCubit(),
               ),
               BlocProvider(
+                create: (context) => GetAllCoursesTeacherCubit(getIt.get<CourseRepoImplement>())..getCourses(teacherId: "10")
+                ,
+              ),
+              BlocProvider(
+                create: (context) => ChatCubit(),
+              ),
+              BlocProvider(
                 create: (context) => AuthCubit(getIt.get<AuthRepoImplement>()),
               ),
+             
               BlocProvider(
                 create: (context) => TeacherProfileCubit(
                     getIt.get<TeacherProfileRepoImplement>())

@@ -21,6 +21,11 @@ class EndPoint {
       String? teacherName, String? governorate) {
     return "student/search?searchQuery=$teacherName&Governate=$governorate";
   }
+
+  static String allCoursesWithTeacherId(String id) {
+    return "teacher/10/subjects";
+  }
+  
 }
 
 class ApiKey {

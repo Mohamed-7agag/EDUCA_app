@@ -3,8 +3,7 @@ import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
 import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
-import 'package:field_training_app/student_features/auth/presentation/view_model/auth_cubit/auth_cubit.dart';
-import 'package:field_training_app/teacher_features/courses/presentation/views_model/cubit/add_course_cubit.dart';
+import 'package:field_training_app/teacher_features/courses/presentation/views_model/add_course_cubit/add_course_cubit.dart';
 
 import 'package:field_training_app/teacher_features/teacher/data/course_data.dart';
 import 'package:field_training_app/teacher_features/teacher/presentation/views_model/cubit/drop_down_list_cubit.dart';

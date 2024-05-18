@@ -6,7 +6,7 @@ import 'package:field_training_app/student_features/home/data/repo/home_repo_imp
 import 'package:field_training_app/student_features/profile/data/repos/student_repo/student_profile_repo_implement.dart';
 import 'package:field_training_app/student_features/search/data/repo/search_repo_implement.dart';
 import 'package:field_training_app/teacher_features/courses/data/repos/add_course_repo/add_Course_repo_implement.dart';
-import 'package:field_training_app/teacher_features/courses/presentation/views_model/cubit/add_course_cubit.dart';
+import 'package:field_training_app/teacher_features/courses/data/repos/course_repo/course_repo_implement.dart';
 import 'package:field_training_app/teacher_features/profile_teacher/data/repos/teacher_repo/student_profile_repo_implement.dart';
 import 'package:get_it/get_it.dart';
 
@@ -49,4 +49,10 @@ void appServices() {
       apiServices: getIt<ApiServices>(),
     ),
   );
+  getIt.registerLazySingleton<CourseRepoImplement>(
+    () => CourseRepoImplement(
+      apiServices: getIt<ApiServices>(),
+    ),
+  );
+ 
 }

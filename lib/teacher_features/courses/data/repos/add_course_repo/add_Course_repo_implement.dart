@@ -27,12 +27,12 @@ class AddCourseRepoImplement implements AddCourseRepo {
           ApiKey.level: level,
           ApiKey.describtion: describtion,
           ApiKey.pricePerHour: pricePerHour,
-          ApiKey.addingTime: DateTime.now()
+          ApiKey.addingTime: "2024-05-11T11:15:58.661"
         },
       );
-      print("data: $data");
+     
       CourseModel courseModel = CourseModel.fromJson(data);
-      print("object: $courseModel");
+     
       return right(courseModel);
     } catch (e) {
       print("failure: $e");
@@ -44,11 +44,7 @@ class AddCourseRepoImplement implements AddCourseRepo {
   }
 
   @override
-  Future<Either<Failure, CourseModel>> getCourses(
-      {required String teacherId}) async {
-    throw UnimplementedError();
-  }
-
+  
   @override
   Future<Either<Failure, CourseModel>> updateCourse(
       {required String subjectName,

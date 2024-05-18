@@ -12,10 +12,7 @@ abstract class AddCourseRepo {
     required String describtion,
   });
 
-  Future<Either<Failure, CourseModel>> getCourses({
-    required String teacherId,
-  });
-
+  
   Future<Either<Failure, CourseModel>> updateCourse({
     required String subjectName,
     required int pricePerHour,

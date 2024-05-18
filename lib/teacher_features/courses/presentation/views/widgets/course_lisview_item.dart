@@ -2,11 +2,14 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/routes.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
+import 'package:field_training_app/teacher_features/courses/data/models/course_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CourseListViewItem extends StatelessWidget {
-  const CourseListViewItem({super.key});
+  const CourseListViewItem({super.key, required this.course});
+
+  final CourseModel course;
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +65,9 @@ class CourseListViewItem extends StatelessWidget {
                           title: 'تنبيه',
                           desc: 'هل تريد حذف هذا المادة الدراسية ؟',
                           btnCancelOnPress: () {},
-                          btnOkOnPress: () {},
+                          btnOkOnPress: () {
+                            
+                          },
                           btnOkText: 'نعم',
                           btnCancelText: 'لا',
                         ).show();
@@ -98,7 +103,7 @@ class CourseListViewItem extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Text(
-                        "الرياضيات",
+                        course.subjectName!,
                         style: Styles.textStyle14,
                         textAlign: TextAlign.right,
                       ),
@@ -111,10 +116,20 @@ class CourseListViewItem extends StatelessWidget {
                     ],
                   ),
                   SizedBox(height: 6.h),
-                  Text(
-                    "للصف الاول الاعدادي / ترم أول",
-                    style: Styles.textStyle14,
-                    textAlign: TextAlign.right,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        course.addingTime!.substring(0, 10),
+                        style: Styles.textStyle14,
+                        textAlign: TextAlign.right,
+                      ),
+                      Text(
+                        course.level!,
+                        style: Styles.textStyle14,
+                        textAlign: TextAlign.right,
+                      ),
+                    ],
                   ),
                   SizedBox(height: 6.h),
                 ],
