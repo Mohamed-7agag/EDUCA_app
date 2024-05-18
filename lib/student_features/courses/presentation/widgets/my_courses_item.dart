@@ -1,11 +1,15 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:field_training_app/Core/models/subject_model.dart';
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
+import 'package:field_training_app/Core/utils/subject_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyCoursesItem extends StatelessWidget {
-  const MyCoursesItem({super.key});
+  const MyCoursesItem({super.key, this.isFavourite = true, required this.subjectModel});
+  final bool? isFavourite;
+  final SubjectModel subjectModel;
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +23,8 @@ class MyCoursesItem extends StatelessWidget {
           color: Colors.white,
           boxShadow: const [
             BoxShadow(
-              color: Color.fromARGB(9, 0, 0, 0),
-              blurRadius: 3.0,
+              color: Color.fromARGB(12, 0, 0, 0),
+              blurRadius: 4.0,
             ),
           ],
           border: Border(
@@ -43,44 +47,46 @@ class MyCoursesItem extends StatelessWidget {
                       topRight: Radius.circular(10.r),
                     ),
                     child: Image.asset(
-                      "assets/images/english.png",
+                      subjectImage(subjectModel.subjName ?? ''),
                       fit: BoxFit.fitWidth,
                     ),
                   ),
-                  Positioned(
-                    top: 4.h,
-                    left: 4.w,
-                    child: IconButton(
-                      onPressed: () {
-                        AwesomeDialog(
-                          context: context,
-                          dialogType: DialogType.infoReverse,
-                          animType: AnimType.topSlide,
-                          title: 'تنبيه',
-                          desc: 'هل تريد حذف هذا المادة الدراسية ؟',
-                          btnCancelOnPress: () {},
-                          btnOkOnPress: () {},
-                          btnOkText: 'نعم',
-                          btnCancelText: 'لا',
-                        ).show();
-                      },
-                      icon: Icon(
-                        Icons.delete,
-                        color: kPrimaryColor,
-                        size: 21.sp,
-                      ),
-                      style: ButtonStyle(
-                        backgroundColor:
-                            const MaterialStatePropertyAll(Colors.white),
-                        shape: MaterialStatePropertyAll(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadiusDirectional.all(
-                                Radius.circular(4.r)),
+                  isFavourite == true
+                      ? Positioned(
+                          top: 4.h,
+                          left: 4.w,
+                          child: IconButton(
+                            onPressed: () {
+                              AwesomeDialog(
+                                context: context,
+                                dialogType: DialogType.infoReverse,
+                                animType: AnimType.topSlide,
+                                title: 'تنبيه',
+                                desc: 'هل تريد حذف هذا المادة الدراسية ؟',
+                                btnCancelOnPress: () {},
+                                btnOkOnPress: () {},
+                                btnOkText: 'نعم',
+                                btnCancelText: 'لا',
+                              ).show();
+                            },
+                            icon: Icon(
+                              Icons.delete,
+                              color: kPrimaryColor,
+                              size: 21.sp,
+                            ),
+                            style: ButtonStyle(
+                              backgroundColor:
+                                  const MaterialStatePropertyAll(Colors.white),
+                              shape: MaterialStatePropertyAll(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadiusDirectional.all(
+                                      Radius.circular(4.r)),
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                    ),
-                  ),
+                        )
+                      : const SizedBox.shrink(),
                 ],
               ),
             ),
@@ -94,7 +100,7 @@ class MyCoursesItem extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Text("حسين علي",
+                        Text(subjectModel.teacherName?? '',
                             style: Styles.textStyle14
                                 .copyWith(fontWeight: FontWeight.bold)),
                         SizedBox(width: 6.w),
@@ -110,7 +116,7 @@ class MyCoursesItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Text(
-                          "الرياضيات",
+                          subjectModel.subjName ?? '',
                           style: Styles.textStyle14,
                           textAlign: TextAlign.right,
                         ),
@@ -127,7 +133,7 @@ class MyCoursesItem extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(right: 14),
                     child: Text(
-                      "للصف الاول الاعدادي / ترم أول",
+                      "${subjectModel.level?? ''}  / ترم أول",
                       style: Styles.textStyle14,
                       textAlign: TextAlign.right,
                     ),

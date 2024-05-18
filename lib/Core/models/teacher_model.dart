@@ -7,6 +7,7 @@ class TeacherModel extends Equatable {
   final String? lastName;
   final String? address;
   final String? phone;
+  final String? governorate;
   final List<dynamic>? subjects;
   final String? profileImageUrl;
 
@@ -17,6 +18,7 @@ class TeacherModel extends Equatable {
     this.lastName,
     this.address,
     this.phone,
+    this.governorate,
     this.subjects,
     this.profileImageUrl,
   });
@@ -29,6 +31,7 @@ class TeacherModel extends Equatable {
       lastName: json['lastName'] as String?,
       address: json['address'] as String?,
       phone: json['phone'] as String?,
+      governorate: json['governorate'] as String?,
       subjects: json['subjects'] as List<dynamic>?,
       profileImageUrl: json['profileImageUrl'] as String?,
     );
@@ -41,6 +44,7 @@ class TeacherModel extends Equatable {
         'lastName': lastName,
         'address': address,
         'phone': phone,
+        'governorate': governorate,
         'subjects': subjects,
         'profileImageUrl': profileImageUrl,
       };
@@ -54,6 +58,7 @@ class TeacherModel extends Equatable {
       lastName,
       address,
       phone,
+      governorate,
       subjects,
       profileImageUrl,
     ];

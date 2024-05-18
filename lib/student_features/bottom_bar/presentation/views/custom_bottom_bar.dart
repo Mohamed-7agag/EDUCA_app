@@ -86,7 +86,7 @@ class CustomBottomBarView extends StatelessWidget {
                 ProfileView(),
                 ChatGPTView(),
                 MyCoursesView(),
-                HomeView()
+                HomeView(),
               ],
             )),
           ),

@@ -1,3 +1,4 @@
+import 'package:field_training_app/Core/models/subject_model.dart';
 import 'package:field_training_app/student_features/courses/presentation/widgets/my_courses_item.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +14,7 @@ class MyCoursesViewBody extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           return const Padding(
             padding: EdgeInsets.only(top: 10, bottom: 6),
-            child: MyCoursesItem(),
+            child: MyCoursesItem(subjectModel: SubjectModel(),),
           );
         },
       ),
