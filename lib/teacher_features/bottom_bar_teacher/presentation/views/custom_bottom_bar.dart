@@ -1,5 +1,6 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/student_features/bottom_bar/presentation/view_model/bottom_bar_cubit.dart';
+import 'package:field_training_app/student_features/chat_gpt/presentation/views/chat_gpt_view.dart';
 
 import 'package:field_training_app/teacher_features/courses/presentation/views/courser_teacher_view.dart';
 import 'package:flutter/material.dart';
@@ -40,6 +41,11 @@ class CustomBottomBarForTeacherView extends StatelessWidget {
                     iconSize: 27,
                     text: "أنا",
                   ),
+                   GButton(
+                    icon: Icons.chat_outlined,
+                    iconSize: 27,
+                    text: "ChatGPT",
+                  ),
                   GButton(
                     icon: Icons.beenhere_outlined,
                     text: "كورساتي",
@@ -57,15 +63,8 @@ class CustomBottomBarForTeacherView extends StatelessWidget {
             index: state,
             children: const [
               TeacherProfileView(),
-              // Container(
-              //   color: Colors.blue,
-              //   child: const Center(
-              //     child: Text(
-              //       'courses',
-              //       style: TextStyle(fontSize: 24, color: Colors.white),
-              //     ),
-              //   ),
-              // ),
+              ChatGPTView(),
+            
               CoursesTeacherView(),
 
               HomeTeacherView()

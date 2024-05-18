@@ -1,6 +1,7 @@
 class EndPoint {
   static String baseUrl = "http://edu1.runasp.net/api/";
   static String login = "account/login";
+  static String addCourse = "subject";
   static String studentRegister = "studentaccount/register";
   static String teacherRegister = "teacheraccount/register";
   static String allSubject = "subject";
@@ -20,6 +21,11 @@ class EndPoint {
       String? teacherName, String? governorate) {
     return "student/search?searchQuery=$teacherName&Governate=$governorate";
   }
+
+  static String allCoursesWithTeacherId(String id) {
+    return "teacher/10/subjects";
+  }
+  
 }
 
 class ApiKey {
@@ -39,4 +45,12 @@ class ApiKey {
   static String governorate = "Governorate";
   static String image = "profileImage";
   static String imageUrl = "profileImageUrl";
+
+  static String teacherId = "teacherId";
+  static String subjectName = "subjName";
+  static String pricePerHour = "pricePerHour";
+  static String level = "level";
+  static String describtion = "describtion";
+  static String addingTime = "addingTime";
+  
 }

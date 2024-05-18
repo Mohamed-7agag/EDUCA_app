@@ -82,14 +82,14 @@ class ProfileTeacherViewBody extends StatelessWidget {
                     ],
                   ),
                   //
-                  SizedBox(height: 27.h),
-                  ProfileItem(
-                    isEdit: false,
-                    title: "البريد الالكتروني",
-                    value: state.teacherModel.email ?? '',
-                    iconData: Icons.email,
-                    onpressed: () {},
-                  ),
+                  // SizedBox(height: 27.h),
+                  // ProfileItem(
+                  //   isEdit: false,
+                  //   title: "البريد الالكتروني",
+                  //   value: state.teacherModel.email ?? '',
+                  //   iconData: Icons.email,
+                  //   onpressed: () {},
+                  // ),
                   SizedBox(height: 27.h),
                   ProfileItem(
                     title: "كلمة المرور",
@@ -122,6 +122,20 @@ class ProfileTeacherViewBody extends StatelessWidget {
                   ),
                   SizedBox(height: 27.h),
                   ProfileItem(
+                    title: " المحافظة",
+                    value: state.teacherModel.governorate ?? '',
+                    iconData: Icons.school,
+                    onpressed: () {
+                      Navigator.pushNamed(
+                          context, Routes.teacherProfileEditViewRoute,
+                          arguments: {
+                            "parameter": "Governorate",
+                            "value": state.teacherModel.governorate!,
+                          });
+                    },
+                  ),
+                  SizedBox(height: 27.h),
+                  ProfileItem(
                     title: " العنوان",
                     value: state.teacherModel.address ?? '',
                     iconData: Icons.school,
@@ -134,6 +148,7 @@ class ProfileTeacherViewBody extends StatelessWidget {
                           });
                     },
                   ),
+
                   SizedBox(height: 30.h),
                   CustomButton(
                       text: "تسجيل الخروج",

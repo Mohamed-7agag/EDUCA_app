@@ -1,6 +1,9 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
+import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
+import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
+import 'package:field_training_app/teacher_features/courses/presentation/views_model/add_course_cubit/add_course_cubit.dart';
 
 import 'package:field_training_app/teacher_features/teacher/data/course_data.dart';
 import 'package:field_training_app/teacher_features/teacher/presentation/views_model/cubit/drop_down_list_cubit.dart';
@@ -42,6 +45,7 @@ class CreateClassViewBody extends StatelessWidget {
                             .changeIndexDropDownListsubject(subfo[
                                 BlocProvider.of<DropDownListCubit>(context)
                                     .lev]![0]);
+                        context.read<AddCourseCubit>().level = value;
                       },
                       listItemBuilder: classOptionsValues,
                     ),
@@ -55,6 +59,7 @@ class CreateClassViewBody extends StatelessWidget {
                       onSelected: (value) {
                         BlocProvider.of<DropDownListCubit>(context)
                             .changeIndexDropDownListsubject(value);
+                        context.read<AddCourseCubit>().subjName = value;
                       },
                       listItemBuilder: subfo[
                               BlocProvider.of<DropDownListCubit>(context)
@@ -76,6 +81,8 @@ class CreateClassViewBody extends StatelessWidget {
                             onSelected: (value) {
                               BlocProvider.of<DropDownListCubit>(context)
                                   .changeIndexDropDownListprice(value);
+                              context.read<AddCourseCubit>().price =
+                                  int.parse(value);
                             },
                             listItemBuilder: coursePrice,
                           ),
@@ -108,8 +115,8 @@ class CreateClassViewBody extends StatelessWidget {
                     SizedBox(height: 10.h),
                     TextField(
                       controller: context
-                          .read<DropDownListCubit>()
-                          .descriptionController,
+                          .read<AddCourseCubit>()
+                          .controller,
                       cursorColor: kPrimaryColor,
                       textAlign: TextAlign.right,
                       decoration: InputDecoration(
@@ -127,11 +134,34 @@ class CreateClassViewBody extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 120.h),
-                    CustomButton(
-                      text: "أنشاء",
-                      onpressed: () {
-                        Navigator.pushNamed(
-                            context, Routes.customBottomBarForTeacherViewRoute);
+                    BlocConsumer<AddCourseCubit, AddCourseState>(
+                      listener: (context, state) {
+                        if (state is AddCourseSuccess) {
+                          successCherryToast(
+                            context,
+                            "عملية ناجحة",
+                            "تم انشاء المادة بنجاح",
+                          );
+
+                          Navigator.pushNamed(context,
+                              Routes.customBottomBarForTeacherViewRoute);
+                        } else if (state is AddCourseFailure) {
+                          errorCherryToast(
+                            context,
+                            "حدث خطأ",
+                            state.errMessage,
+                          );
+                        }
+                      },
+                      builder: (context, state) {
+                        return state is AddCourseLoading
+                            ? const CustomLoadingWidget()
+                            : CustomButton(
+                                text: "أنشاء",
+                                onpressed: () {
+                                  context.read<AddCourseCubit>().addCourse();
+                                },
+                              );
                       },
                     ),
                   ],

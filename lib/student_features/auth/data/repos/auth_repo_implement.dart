@@ -16,7 +16,7 @@ class AuthRepoImplement implements AuthRepo {
 
   AuthRepoImplement({required this.apiServices});
 
-  //! Login
+  
   @override
   Future<Either<Failure, LoginModel>> login(
       {required String name, required String password}) async {

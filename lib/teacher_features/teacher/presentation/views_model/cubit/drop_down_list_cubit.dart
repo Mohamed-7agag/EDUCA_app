@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DropDownListCubit extends Cubit<String> {
@@ -7,7 +6,7 @@ class DropDownListCubit extends Cubit<String> {
   String sub = "اللغة العربية";
   String price = "اختر السعر";
   String term = "اختر الترم";
-  TextEditingController descriptionController = TextEditingController();
+  
   void changeIndexDropDownListLevel(String ch) {
     lev = ch;
     emit(ch);
