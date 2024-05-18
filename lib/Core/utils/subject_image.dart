@@ -6,17 +6,20 @@ String subjectImage(String subject) {
       subject == 'ديناميكا' ||
       subject == 'جبر و هندسة') {
     return 'assets/images/math.png';
-  } else if (subject == 'الكيمياء' || subject == 'علوم') {
+  } else if (subject == 'الكيمياء' || subject == 'العلوم') {
     return 'assets/images/chemestry.png';
   } else if (subject == 'اللغة الفرنسية') {
     return 'assets/images/francais.png';
-  } else if (subject == 'اللغة الأيطالية') {
+  } else if (subject == 'اللغة الإيطالية' ||
+      subject == 'اللغة الألمانية' ||
+      subject == 'اللغة الإسبانية' ||
+      subject == 'اللغة الروسية') {
     return 'assets/images/italy.png';
   } else if (subject == 'الفيزياء') {
     return 'assets/images/physics.png';
-  } else if (subject == 'جغرافيا') {
+  } else if (subject == 'جغرافيا' || subject == 'الدراسات الاجتماعية') {
     return 'assets/images/geography.png';
-  } else if (subject == 'أحياء') {
+  } else if (subject == 'الأحياء') {
     return 'assets/images/biologyy.png';
   }
   return 'assets/images/subject.png';

@@ -67,17 +67,26 @@ class CourseDetailsViewBody extends StatelessWidget {
                       backgroundColor: kSplashColor,
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        "حسين القزاز",
-                        style: Styles.textStyle16
-                            .copyWith(fontWeight: FontWeight.w600),
-                      ),
-                      SizedBox(width: 7.w),
-                      const CircleAvatar(backgroundColor: kSplashColor),
-                    ],
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        Routes.teacherDetailsViewRoute,
+                        arguments: subjectModel.teacherId,
+                      );
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          "حسين القزاز",
+                          style: Styles.textStyle16
+                              .copyWith(fontWeight: FontWeight.w600),
+                        ),
+                        SizedBox(width: 7.w),
+                        const CircleAvatar(backgroundColor: kSplashColor),
+                      ],
+                    ),
                   ),
                 ],
               ),

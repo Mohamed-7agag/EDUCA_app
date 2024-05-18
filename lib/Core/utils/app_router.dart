@@ -13,6 +13,9 @@ import 'package:field_training_app/student_features/payment/presentation/views/p
 import 'package:field_training_app/student_features/payment/presentation/views/ref_code_view.dart';
 import 'package:field_training_app/student_features/payment/presentation/views/visa_view.dart';
 import 'package:field_training_app/student_features/profile/data/repos/student_repo/student_profile_repo_implement.dart';
+import 'package:field_training_app/student_features/teacher_details_and_subjects/data/repo/teacher_details_repo_implement.dart';
+import 'package:field_training_app/student_features/teacher_details_and_subjects/presentation/view_model/cubit/teacher_details_cubit.dart';
+import 'package:field_training_app/student_features/teacher_details_and_subjects/presentation/views/teacher_details_view.dart';
 import 'package:field_training_app/student_features/quiz/presentation/views/quiz_view.dart';
 import 'package:field_training_app/student_features/search/presentation/views/search_options_view.dart';
 import 'package:field_training_app/student_features/splash/presentation/views/splash_view.dart';
@@ -281,6 +284,16 @@ class AppRouter {
         var args = settings.arguments as String;
         return MaterialPageRoute(
           builder: (context) => VisaView(url: args),
+        );
+      case Routes.teacherDetailsViewRoute:
+        var teacherID = settings.arguments as int;
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) =>
+                TeacherDetailsCubit(getIt.get<TeacherDetailsRepoImplement>())
+                  ..getTeacherData(teacherID: teacherID),
+            child: const TeacherDetailsView(),
+          ),
         );
       default:
         return MaterialPageRoute(
