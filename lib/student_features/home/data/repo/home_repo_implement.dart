@@ -13,7 +13,7 @@ class HomeRepoImplement implements HomeRepo {
   @override
   Future<Either<Failure, List<SubjectModel>>> getAllSubject() async {
     try {
-      var data = await apiServices.get(endPoint: EndPoint.allSubject);
+      var data = await apiServices.get(endPoint: EndPoint.subject);
       List<SubjectModel> subjectList = [];
       for (var element in data) {
         subjectList.add(SubjectModel.fromJson(element));

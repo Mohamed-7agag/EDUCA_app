@@ -1,10 +1,9 @@
 class EndPoint {
   static String baseUrl = "http://edu1.runasp.net/api/";
   static String login = "account/login";
-  static String addCourse = "subject";
   static String studentRegister = "studentaccount/register";
   static String teacherRegister = "teacheraccount/register";
-  static String allSubject = "subject";
+  static String subject = "subject";
   static String getStudentById(int id) {
     return "student/$id";
   }
@@ -23,7 +22,7 @@ class EndPoint {
   }
 
   static String allCoursesWithTeacherId(String id) {
-    return "teacher/10/subjects";
+    return "teacher/$id/subjects";
   }
   
 }

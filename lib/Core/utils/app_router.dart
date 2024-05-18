@@ -14,12 +14,12 @@ import 'package:field_training_app/student_features/payment/presentation/views/r
 import 'package:field_training_app/student_features/payment/presentation/views/visa_view.dart';
 import 'package:field_training_app/student_features/profile/data/repos/student_repo/student_profile_repo_implement.dart';
 import 'package:field_training_app/student_features/teacher_details_and_subjects/data/repo/teacher_details_repo_implement.dart';
-import 'package:field_training_app/student_features/teacher_details_and_subjects/presentation/view_model/cubit/teacher_details_cubit.dart';
 import 'package:field_training_app/student_features/teacher_details_and_subjects/presentation/views/teacher_details_view.dart';
 import 'package:field_training_app/student_features/quiz/presentation/views/quiz_view.dart';
 import 'package:field_training_app/student_features/search/presentation/views/search_options_view.dart';
 import 'package:field_training_app/student_features/splash/presentation/views/splash_view.dart';
-import 'package:field_training_app/teacher_features/courses/data/repos/add_course_repo/add_Course_repo_implement.dart';
+import 'package:field_training_app/student_features/teacher_details_and_subjects/presentation/views/teacher_subjects_view.dart';
+import 'package:field_training_app/teacher_features/courses/data/repos/add_course_repo/add_course_repo_implement.dart';
 import 'package:field_training_app/teacher_features/courses/data/repos/course_repo/course_repo_implement.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views/course_details_teacher_view.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views/enrolled_students_view.dart';
@@ -57,6 +57,7 @@ import '../../student_features/quiz/presentation/views/quiz_result_view.dart';
 import '../../student_features/search/data/repo/search_repo_implement.dart';
 import '../../student_features/search/presentation/view_model/search_cubit/search_cubit.dart';
 
+import '../../student_features/teacher_details_and_subjects/presentation/view_model/cubit/teacher_details_cubit.dart';
 import '../../teacher_features/bottom_bar_teacher/presentation/views/custom_bottom_bar.dart';
 import '../../teacher_features/profile_teacher/presentation/views/teacher_profile_edit_view.dart';
 import '../../teacher_features/profile_teacher/presentation/views/teacher_profile_view.dart';
@@ -149,8 +150,9 @@ class AppRouter {
                 create: (context) => ChangeRegisterImageCubit(),
               ),
               BlocProvider(
-                create: (context) => GetAllCoursesTeacherCubit(getIt.get<CourseRepoImplement>())..getCourses(teacherId: "10")
-                ,
+                create: (context) =>
+                    GetAllCoursesTeacherCubit(getIt.get<CourseRepoImplement>())
+                      ..getCourses(teacherId: "10"),
               ),
               BlocProvider(
                 create: (context) => ChatCubit(),
@@ -158,7 +160,6 @@ class AppRouter {
               BlocProvider(
                 create: (context) => AuthCubit(getIt.get<AuthRepoImplement>()),
               ),
-             
               BlocProvider(
                 create: (context) => TeacherProfileCubit(
                     getIt.get<TeacherProfileRepoImplement>())
@@ -313,6 +314,16 @@ class AppRouter {
                 TeacherDetailsCubit(getIt.get<TeacherDetailsRepoImplement>())
                   ..getTeacherData(teacherID: teacherID),
             child: const TeacherDetailsView(),
+          ),
+        );
+      case Routes.teacherSubjectsViewRoute:
+        var teacherID = settings.arguments as int;
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) =>
+                TeacherDetailsCubit(getIt.get<TeacherDetailsRepoImplement>())
+                  ..getTeacherSubjects(teacherID: teacherID),
+            child: const TeacherSubjectsView(),
           ),
         );
       default:

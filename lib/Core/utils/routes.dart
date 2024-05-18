@@ -37,4 +37,5 @@ abstract class Routes {
   static const String visaViewRoute = '/visaView';
 
   static const String teacherDetailsViewRoute = '/teacherDetailsView';
+  static const String teacherSubjectsViewRoute = '/teacherSubjectsView';
 }

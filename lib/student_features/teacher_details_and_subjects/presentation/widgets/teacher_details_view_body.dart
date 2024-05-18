@@ -65,7 +65,9 @@ class TeacherDetailsViewBody extends StatelessWidget {
                 ),
                 Expanded(child: SizedBox(height: 30.h)),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, Routes.teacherSubjectsViewRoute,arguments: state.teacherModel.id);
+                  },
                   style: ElevatedButton.styleFrom(
                     elevation: 0,
                     backgroundColor: Colors.white,
