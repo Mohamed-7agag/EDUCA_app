@@ -22,7 +22,7 @@ class EndPoint {
   }
 
   static String allCoursesWithTeacherId(int id) {
-    return "teacher/$id/subjects";
+    return "teacher/8/subjects";
   }
   static String deleteSubjectWithTeacherId(int id) {
     return "subject/$id";

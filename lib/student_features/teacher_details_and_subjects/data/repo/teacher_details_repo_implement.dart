@@ -34,7 +34,7 @@ class TeacherDetailsRepoImplement implements TeacherDetailsRepo {
       {required int teacherID}) async {
     try {
       var data = await apiServices.get(
-        endPoint: EndPoint.allCoursesWithTeacherId(teacherID.toString()),
+        endPoint: EndPoint.allCoursesWithTeacherId(teacherID),
       );
       List<SubjectModel> subjectList = [];
       for (var element in data) {

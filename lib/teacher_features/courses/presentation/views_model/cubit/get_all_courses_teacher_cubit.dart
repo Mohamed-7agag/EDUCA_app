@@ -3,6 +3,7 @@ import 'package:field_training_app/teacher_features/courses/data/models/course_m
 import 'package:field_training_app/teacher_features/courses/data/repos/add_course_repo/add_course_repo.dart';
 import 'package:field_training_app/teacher_features/courses/data/repos/course_repo/course_repo.dart';
 import 'package:field_training_app/teacher_features/courses/data/repos/course_repo/course_repo.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'get_all_courses_teacher_state.dart';
 
@@ -14,7 +15,7 @@ class GetAllCoursesTeacherCubit extends Cubit<GetAllCoursesTeacherState> {
   void getCourses({required int teacherId}) async {
     emit(GetAllCoursesTeacherLoading());
     final result =
-        await courseRepo.getCourses(teacherId: teacherId);
+        await courseRepo.getCourses(teacherId: 10);
     result.fold((failure) {
       print("failed");
      emit(GetAllCoursesTeacherFailure(failure.toString()));

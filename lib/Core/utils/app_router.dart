@@ -153,8 +153,9 @@ class AppRouter {
                 create: (context) => ChangeRegisterImageCubit(),
               ),
               BlocProvider(
-                create: (context) => GetAllCoursesTeacherCubit(getIt.get<CourseRepoImplement>())..getCourses(teacherId: "10")
-                ,
+                create: (context) => GetAllCoursesTeacherCubit(
+                    getIt.get<CourseRepoImplement>())
+                  ..getCourses(teacherId: CacheHelper.getData(key: ApiKey.id)),
               ),
               BlocProvider(
                 create: (context) => ChatCubit(),
@@ -250,9 +251,11 @@ class AppRouter {
           builder: (context) => TermsView(),
         );
       case Routes.courseDetailsTeacherViewRoute:
-      var args = settings.arguments as CourseModel;
+        var args = settings.arguments as CourseModel;
         return MaterialPageRoute(
-          builder: (context) =>  CourseDetailsTeacherView(courseModel: args,),
+          builder: (context) => CourseDetailsTeacherView(
+            courseModel: args,
+          ),
         );
       case Routes.enrolledStudentsViewRoute:
         return MaterialPageRoute(
