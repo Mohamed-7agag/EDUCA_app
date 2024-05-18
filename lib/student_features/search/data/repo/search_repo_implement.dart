@@ -20,8 +20,10 @@ class SearchRepoImplement implements SearchRepo {
       );
 
       List<TeacherModel> searchedList = [];
-      for (var item in data) {
-        searchedList.add(TeacherModel.fromJson(item));
+      if (data.first.containsKey('email')) {
+        for (var item in data) {
+          searchedList.add(TeacherModel.fromJson(item));
+        }
       }
       return right(searchedList);
     } catch (e) {
@@ -39,11 +41,13 @@ class SearchRepoImplement implements SearchRepo {
       var data = await apiServices.get(
         endPoint: EndPoint.searchByTeacherOrSubject(subjectName),
       );
-
       List<SubjectModel> searchedList = [];
-      for (var item in data) {
-        searchedList.add(SubjectModel.fromJson(item));
+      if (data.first.containsKey('subjName')) {
+        for (var item in data) {
+          searchedList.add(SubjectModel.fromJson(item));
+        }
       }
+
       return right(searchedList);
     } catch (e) {
       if (e is DioException) {
@@ -54,17 +58,18 @@ class SearchRepoImplement implements SearchRepo {
   }
 
   @override
-  Future<Either<Failure, List<TeacherModel>>>
-      getSearchByTeachersInGovernate(
-          String? teacherName, String? governate) async {
+  Future<Either<Failure, List<TeacherModel>>> getSearchByTeachersInGovernate(
+      String teacherName, String governate) async {
     try {
       var data = await apiServices.get(
         endPoint: EndPoint.searchByTeachersInGovernate(teacherName, governate),
       );
 
       List<TeacherModel> searchedList = [];
-      for (var item in data) {
-        searchedList.add(TeacherModel.fromJson(item));
+      if (data.first.containsKey('email')) {
+        for (var item in data) {
+          searchedList.add(TeacherModel.fromJson(item));
+        }
       }
       return right(searchedList);
     } catch (e) {

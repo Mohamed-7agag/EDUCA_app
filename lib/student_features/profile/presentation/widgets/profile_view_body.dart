@@ -161,7 +161,8 @@ class ProfileViewBody extends StatelessWidget {
               ),
             );
           } else if (state is StudentProfileFailure) {
-            return CustomFailureWidget(errMessage: state.errMessage);
+            return const CustomFailureWidget(
+                errMessage: 'للأسف حدث خطأ ما , حاول مرة أخرى');
           }
           return const CustomLoadingWidget(width: 70);
         },

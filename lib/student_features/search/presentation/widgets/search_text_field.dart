@@ -66,7 +66,7 @@ class SearchTextFormField extends StatelessWidget {
         } else {
           context
               .read<SearchCubit>()
-              .getSearchByTeachersInGovernate(value, governateState);
+              .getSearchByTeachersInGovernate(value, governateState ?? '');
         }
       }
     } else {

@@ -1,6 +1,7 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/models/teacher_model.dart';
 import 'package:field_training_app/Core/utils/routes.dart';
+import 'package:field_training_app/Core/widgets/custom_cached_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -39,9 +40,9 @@ class TeacherSearchItem extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(100),
                 child: teacherSearchedModel.profileImageUrl != null
-                    ? Image.network(
-                        teacherSearchedModel.profileImageUrl!,
-                        fit: BoxFit.fill,
+                    ? CustomCachedImage(
+                      loadingWidth: 20.w,
+                        imageUrl: teacherSearchedModel.profileImageUrl!,
                       )
                     : const Icon(Icons.person, color: kPrimaryColor),
               ),

@@ -3,8 +3,9 @@ import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
 import 'package:flutter/material.dart';
 
 class CustomCachedImage extends StatelessWidget {
-  const CustomCachedImage({super.key, required this.imageUrl,});
+  const CustomCachedImage({super.key, required this.imageUrl, this.loadingWidth,});
   final String imageUrl;
+  final double? loadingWidth;
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -22,7 +23,7 @@ class CustomCachedImage extends StatelessWidget {
           );
         },
         progressIndicatorBuilder: (context, url, progress) {
-          return const CustomLoadingWidget();
+          return  CustomLoadingWidget(width: loadingWidth ?? 40,);
         },
       ),
     );
