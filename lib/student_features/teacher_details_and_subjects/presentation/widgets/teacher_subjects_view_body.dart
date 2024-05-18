@@ -1,3 +1,4 @@
+import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_failure_widget.dart';
 import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
 import 'package:field_training_app/student_features/courses/presentation/widgets/my_courses_item.dart';
@@ -15,18 +16,24 @@ class TeacherSubjectsViewBody extends StatelessWidget {
       child: BlocBuilder<TeacherDetailsCubit, TeacherDetailsState>(
         builder: (context, state) {
           if (state is TeacherSubjectsSuccess) {
-            return ListView.builder(
-              itemCount: state.subjectList.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Padding(
-                  padding: const EdgeInsets.only(top: 14, bottom: 5),
-                  child: MyCoursesItem(
-                    isFavourite: false,
-                    subjectModel: state.subjectList[index],
-                  ),
-                );
-              },
-            );
+            return state.subjectList.isEmpty
+                ? Center(
+                    child: Text(
+                    'لا يوجد مواد',
+                    style: Styles.textStyle16,
+                  ))
+                : ListView.builder(
+                    itemCount: state.subjectList.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Padding(
+                        padding: const EdgeInsets.only(top: 14, bottom: 5),
+                        child: MyCoursesItem(
+                          isFavourite: false,
+                          subjectModel: state.subjectList[index],
+                        ),
+                      );
+                    },
+                  );
           } else if (state is TeacherSubjectsFailure) {
             return CustomFailureWidget(errMessage: state.errMessage);
           }

@@ -21,6 +21,8 @@ String subjectImage(String subject) {
     return 'assets/images/geography.png';
   } else if (subject == 'الأحياء') {
     return 'assets/images/biologyy.png';
+  }else if (subject == 'التفكير العملي' || subject == 'التفكير النقدي') {
+    return 'assets/images/thinking.png';
   }
-  return 'assets/images/subject.png';
+  return 'assets/images/subject2.png';
 }

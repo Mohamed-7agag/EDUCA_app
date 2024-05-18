@@ -1,5 +1,6 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/models/teacher_model.dart';
+import 'package:field_training_app/Core/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -11,7 +12,10 @@ class TeacherSearchItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushNamed(context, Routes.teacherDetailsViewRoute,
+            arguments: teacherSearchedModel.id);
+      },
       child: Container(
         width: double.infinity,
         height: 70.h,

@@ -23,7 +23,7 @@ class MyCoursesItem extends StatelessWidget {
           color: Colors.white,
           boxShadow: const [
             BoxShadow(
-              color: Color.fromARGB(15, 0, 0, 0),
+              color: Color.fromARGB(12, 0, 0, 0),
               blurRadius: 4.0,
             ),
           ],
