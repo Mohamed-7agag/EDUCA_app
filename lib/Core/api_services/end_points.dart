@@ -18,7 +18,7 @@ class EndPoint {
 
   static String searchByTeachersInGovernate(
       String? teacherName, String? governorate) {
-    return "student/search?searchQuery=$teacherName&Governate=$governorate";
+    return "student/search?searchQuery=$teacherName&Governorate=$governorate";
   }
 
   static String allCoursesWithTeacherId(String id) {

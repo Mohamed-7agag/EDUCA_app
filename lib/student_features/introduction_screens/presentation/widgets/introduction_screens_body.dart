@@ -1,3 +1,4 @@
+
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/cache/cache_helper.dart';
@@ -50,34 +51,39 @@ class IntroScreensBody extends StatelessWidget {
       pages: [
         PageViewModel(
           decoration: const PageDecoration(
-              imageFlex: 2, imageAlignment: Alignment.topCenter),
+              imageFlex: 2, imageAlignment: Alignment.center),
           title: "EDUCA مرحبا بك ف تطبيق",
-          body: "استكشاف خياراتنا المتنوعة للعثور على المعلم المناسب لك",
+          body: 'ابحث بسهولة عن أفضل المعلمين واستعرض دوراتهم التعليمية المتنوعة',
           image: Image.asset(
-            "assets/images/on1.png",
-            width: double.infinity,
+            "assets/images/onB3.png",
+            width: MediaQuery.of(context).size.width - 70.w,
             fit: BoxFit.fill,
           ),
         ),
         PageViewModel(
           decoration: const PageDecoration(
-              imageFlex: 2, imageAlignment: Alignment.topCenter),
-          title: "خطوات بسيطة للبدء في البحث عن معلم",
-          body: "اختيار المعلم المناسب وحجز الدروس بسهولة",
+              imageFlex: 2, imageAlignment: Alignment.center),
+          title: 'مساعدة على مدار الساعة',
+          bodyWidget: Text(
+            'احصل على المساعدة والإرشاد من ChatGPT في أي وقت وأي مكان.',
+            style: Styles.textStyle16.copyWith(height: 1.7),
+            textAlign: TextAlign.center,
+            textDirection: TextDirection.rtl,
+          ),
           image: Image.asset(
-            "assets/images/on2.png",
-            width: double.infinity,
+            "assets/images/onB2.png",
+            width: MediaQuery.of(context).size.width - 80.w,
             fit: BoxFit.fill,
           ),
         ),
         PageViewModel(
           decoration: const PageDecoration(
-              imageFlex: 2, imageAlignment: Alignment.topCenter),
-          title: "استفد إلى أقصى حد ممكن من تجربة التعلم الخاصة بك",
-          body: "تقييم المعلمين وتقديم ملاحظات لتحسين التجربة التعليمية",
+              imageFlex: 2, imageAlignment: Alignment.center),
+          title: 'اختبارات تفاعلية',
+          body: 'اختبارات ممتعة لتقييم مستواك وتحسين مهاراتك في متناول يدك',
           image: Image.asset(
-            "assets/images/on3.png",
-            width: double.infinity,
+            "assets/images/onB1.png",
+            width: MediaQuery.of(context).size.width - 50.w,
             fit: BoxFit.fill,
           ),
         ),

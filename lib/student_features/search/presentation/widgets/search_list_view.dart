@@ -9,7 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SearchListView extends StatelessWidget {
-  const SearchListView({super.key});
+  const SearchListView({super.key, this.searchType});
+  final String? searchType;
 
   @override
   Widget build(BuildContext context) {
@@ -21,18 +22,24 @@ class SearchListView extends StatelessWidget {
                   itemCount: state.searchedList.length,
                   itemBuilder: (BuildContext context, int index) {
                     return state.searchedList is List<TeacherModel>
-                        ? TeacherSearchItem(
-                            teacherSearchedModel: state.searchedList[index],
+                        ? Padding(
+                            padding: const EdgeInsets.only(bottom: 6),
+                            child: TeacherSearchItem(
+                              teacherSearchedModel: state.searchedList[index],
+                            ),
                           )
-                        : SubjectSearchItem(
-                            subjectSearchedModel: state.searchedList[index],
+                        : Padding(
+                            padding: const EdgeInsets.only(bottom: 12),
+                            child: SubjectSearchItem(
+                              subjectSearchedModel: state.searchedList[index],
+                            ),
                           );
                   },
                 )
               : Center(
                   child: Text("لا توجد نتائج", style: Styles.textStyle16));
         } else if (state is SearchFailure) {
-          return CustomFailureWidget(errMessage: state.errMessage);
+          return const CustomFailureWidget(errMessage: "لا توجد نتائج");
         } else if (state is SearchLoading) {
           return const CustomSearchLoadingWidget();
         }

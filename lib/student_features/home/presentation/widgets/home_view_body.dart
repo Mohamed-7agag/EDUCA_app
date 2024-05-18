@@ -193,7 +193,8 @@ class HomeViewBody extends StatelessWidget {
                       },
                     );
                   } else if (state is HomeGetSubjectsFailure) {
-                    return CustomFailureWidget(errMessage: state.errMessage);
+                    return const CustomFailureWidget(
+                        errMessage: 'حدث خطأ أثناء تحميل المواد الدراسية');
                   }
                   return const CustomLoadingWidget();
                 },

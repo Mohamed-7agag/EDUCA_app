@@ -30,7 +30,7 @@ class SearchCubit extends Cubit<SearchState> {
   }
 
   Future<void> getSearchByTeachersInGovernate(
-      String? teacherName, String? subjectName) async {
+      String teacherName, String subjectName) async {
     emit(SearchLoading());
     final result = await searchRepoImplement.getSearchByTeachersInGovernate(
         teacherName, subjectName);

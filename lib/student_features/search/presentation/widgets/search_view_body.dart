@@ -19,7 +19,7 @@ class SearchViewBody extends StatelessWidget {
       child: BlocProvider(
         create: (context) => GovernorateSelectCubit(),
         child: BlocBuilder<GovernorateSelectCubit, String>(
-          builder: (context,  governateState) {
+          builder: (context, governateState) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
@@ -67,8 +67,8 @@ class SearchViewBody extends StatelessWidget {
                   style: Styles.textStyle14,
                 ),
                 SizedBox(height: 20.h),
-                const Expanded(
-                  child: SearchListView(),
+                Expanded(
+                  child: SearchListView(searchType: searchType),
                 ),
               ],
             );
