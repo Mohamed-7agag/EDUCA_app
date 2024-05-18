@@ -7,13 +7,13 @@ import 'package:field_training_app/teacher_features/courses/data/models/course_m
 import 'package:field_training_app/teacher_features/courses/data/repos/course_repo/course_repo.dart';
 
 class CourseRepoImplement implements CourseRepo {
-  final ApiServices apiServices;  
+  final ApiServices apiServices;
 
   CourseRepoImplement({required this.apiServices});
 
   @override
   Future<Either<Failure, List<CourseModel>>> getCourses({
-    required String teacherId,    
+    required int teacherId,
   }) async {
     try {
       var data = await apiServices.get(
@@ -24,6 +24,22 @@ class CourseRepoImplement implements CourseRepo {
         courseList.add(CourseModel.fromJson(item));
       }
       return right(courseList);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> deleteCourse({required int subjectId}) async {
+    try {
+      var data = await apiServices.delete(
+         EndPoint.deleteSubjectWithTeacherId(subjectId),
+      );
+      print(data.data);
+      return right(data);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));

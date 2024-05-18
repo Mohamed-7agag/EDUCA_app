@@ -2,8 +2,11 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/routes.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
+import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
 import 'package:field_training_app/teacher_features/courses/data/models/course_model.dart';
+import 'package:field_training_app/teacher_features/courses/presentation/views_model/cubit/get_all_courses_teacher_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CourseListViewItem extends StatelessWidget {
@@ -15,7 +18,7 @@ class CourseListViewItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, Routes.courseDetailsTeacherViewRoute);
+        Navigator.pushNamed(context, Routes.courseDetailsTeacherViewRoute,arguments: course);
       },
       splashColor: kSplashColor,
       borderRadius: BorderRadius.circular(8.r),
@@ -53,41 +56,72 @@ class CourseListViewItem extends StatelessWidget {
                       fit: BoxFit.fitWidth,
                     ),
                   ),
-                  Positioned(
-                    top: 4.h,
-                    left: 4.w,
-                    child: IconButton(
-                      onPressed: () {
-                        AwesomeDialog(
-                          context: context,
-                          dialogType: DialogType.infoReverse,
-                          animType: AnimType.topSlide,
-                          title: 'تنبيه',
-                          desc: 'هل تريد حذف هذا المادة الدراسية ؟',
-                          btnCancelOnPress: () {},
-                          btnOkOnPress: () {
-                            
+                  BlocConsumer<GetAllCoursesTeacherCubit,
+                      GetAllCoursesTeacherState>(
+                    listener: (context, state) {
+                      if (state is GetAllCoursesDeleteSubjectSuccess) {
+                        successCherryToast(
+                          context,
+                          "عملية ناجحة",
+                          "تم حذف المادة الدراسية بنجاح",
+                        );
+
+                        Navigator.pushReplacementNamed(
+                            context, Routes.customBottomBarForTeacherViewRoute);
+                      } else if (state is GetAllCoursesDeleteSubjectFailure) {
+                        errorCherryToast(
+                          context,
+                          "حدث خطأ",
+                          state.message,
+                        );
+                      }
+                    },
+                    builder: (context, state) {
+                      return Positioned(
+                        top: 4.h,
+                        left: 4.w,
+                        child: IconButton(
+                          onPressed: () {
+                            state is GetAllCoursesDeleteSubjectLoading
+                                ? const Center(
+                                    child: CircularProgressIndicator(
+                                      color: Colors.red,
+                                    ),
+                                  )
+                                : AwesomeDialog(
+                                    context: context,
+                                    dialogType: DialogType.infoReverse,
+                                    animType: AnimType.topSlide,
+                                    title: 'تنبيه',
+                                    desc: 'هل تريد حذف هذا المادة الدراسية ؟',
+                                    btnCancelOnPress: () {},
+                                    btnOkOnPress: () {
+                                      context
+                                          .read<GetAllCoursesTeacherCubit>()
+                                          .deleteCourse(subjectId: 6);
+                                    },
+                                    btnOkText: 'نعم',
+                                    btnCancelText: 'لا',
+                                  ).show();
                           },
-                          btnOkText: 'نعم',
-                          btnCancelText: 'لا',
-                        ).show();
-                      },
-                      icon: Icon(
-                        Icons.delete,
-                        color: kPrimaryColor,
-                        size: 21.sp,
-                      ),
-                      style: ButtonStyle(
-                        backgroundColor:
-                            const MaterialStatePropertyAll(Colors.white),
-                        shape: MaterialStatePropertyAll(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadiusDirectional.all(
-                                Radius.circular(4.r)),
+                          icon: Icon(
+                            Icons.delete,
+                            color: kPrimaryColor,
+                            size: 21.sp,
+                          ),
+                          style: ButtonStyle(
+                            backgroundColor:
+                                const MaterialStatePropertyAll(Colors.white),
+                            shape: MaterialStatePropertyAll(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadiusDirectional.all(
+                                    Radius.circular(4.r)),
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                    ),
+                      );
+                    },
                   ),
                 ],
               ),

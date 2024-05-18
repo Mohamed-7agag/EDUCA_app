@@ -1,6 +1,7 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
+import 'package:field_training_app/teacher_features/courses/data/models/course_model.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,7 +9,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../Core/utils/routes.dart';
 
 class CourseDetailsTeacherViewBody extends StatelessWidget {
-  const CourseDetailsTeacherViewBody({super.key});
+  const CourseDetailsTeacherViewBody({super.key, required this.courseModel});
+
+  final CourseModel courseModel;
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +56,7 @@ class CourseDetailsTeacherViewBody extends StatelessWidget {
               ),
               SizedBox(height: 7.h),
               Text(
-                "جبر واحصاء",
+                courseModel.subjectName!,
                 style: Styles.textStyle16,
               ),
               SizedBox(height: 22.h),
@@ -88,7 +91,7 @@ class CourseDetailsTeacherViewBody extends StatelessWidget {
                       ),
                       SizedBox(height: 7.h),
                       Text(
-                        "الصف الثالث الثانوي",
+                        courseModel.level!,
                         style: Styles.textStyle16,
                       ),
                     ],
@@ -103,7 +106,7 @@ class CourseDetailsTeacherViewBody extends StatelessWidget {
               ),
               SizedBox(height: 7.h),
               Text(
-                "هي مادة للصف الثالث الثانوي و تحتوي علي 6 فصول و كل فصل يحتوي علي 3 دروس",
+                courseModel.describtion!,
                 style: Styles.textStyle14,
                 textDirection: TextDirection.rtl,
                 maxLines: 3,
@@ -114,7 +117,7 @@ class CourseDetailsTeacherViewBody extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "25 جنية",
+                    "${courseModel.pricePerHour} جنية",
                     style: Styles.textStyle16.copyWith(color: kPrimaryColor),
                     textDirection: TextDirection.rtl,
                   ),

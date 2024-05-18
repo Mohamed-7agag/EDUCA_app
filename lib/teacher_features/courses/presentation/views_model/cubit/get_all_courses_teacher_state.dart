@@ -22,3 +22,16 @@ final class GetAllCoursesTeacherFailure extends GetAllCoursesTeacherState {
 
   const GetAllCoursesTeacherFailure(this.message);
 }
+final class GetAllCoursesDeleteSubjectSuccess extends GetAllCoursesTeacherState {
+ 
+}
+
+final class GetAllCoursesDeleteSubjectLoading extends GetAllCoursesTeacherState {}
+
+final class GetAllCoursesDeleteSubjectFailure extends GetAllCoursesTeacherState {
+  final String message; // error message
+
+  const GetAllCoursesDeleteSubjectFailure(this.message);
+}
+
+

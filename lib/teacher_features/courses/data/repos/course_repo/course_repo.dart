@@ -4,6 +4,10 @@ import 'package:field_training_app/teacher_features/courses/data/models/course_m
 
 abstract class CourseRepo {
   Future<Either<Failure, List<CourseModel>>> getCourses({
-    required String teacherId,
+    required int teacherId,
+  });
+
+  Future<Either<Failure, String>> deleteCourse({
+    required int subjectId,
   });
 }
