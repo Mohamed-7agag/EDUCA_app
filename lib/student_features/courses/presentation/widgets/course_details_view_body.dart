@@ -4,6 +4,7 @@ import 'package:field_training_app/Core/utils/routes.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/utils/subject_image.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
+import 'package:field_training_app/Core/widgets/custom_cached_image.dart';
 import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
 import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
 import 'package:field_training_app/cache/cache_helper.dart';
@@ -59,7 +60,7 @@ class CourseDetailsViewBody extends StatelessWidget {
                     onPressed: () {},
                     icon: const Icon(
                       Icons.favorite_border_outlined,
-                      size: 26,
+                      size: 25,
                       color: kPrimaryColor,
                     ),
                     style: IconButton.styleFrom(
@@ -79,12 +80,12 @@ class CourseDetailsViewBody extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Text(
-                          "حسين القزاز",
+                          subjectModel.teacherName!,
                           style: Styles.textStyle16
                               .copyWith(fontWeight: FontWeight.w600),
                         ),
-                        SizedBox(width: 7.w),
-                        const CircleAvatar(backgroundColor: kSplashColor),
+                        SizedBox(width: 10.w),
+                        CustomCachedImage(imageUrl: subjectModel.profileImageUrl ?? '',width: 40,height: 40,errorIconSize: 23,),
                       ],
                     ),
                   ),

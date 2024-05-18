@@ -23,21 +23,21 @@ class MyCoursesItem extends StatelessWidget {
           color: Colors.white,
           boxShadow: const [
             BoxShadow(
-              color: Color.fromARGB(12, 0, 0, 0),
-              blurRadius: 4.0,
+              color: Color.fromARGB(9, 0, 0, 0),
+              blurRadius: 3.0,
             ),
           ],
           border: Border(
-              left: BorderSide(color: Colors.grey.shade200, width: 0.6),
-              right: BorderSide(color: Colors.grey.shade200, width: 0.6),
-              bottom: BorderSide(color: Colors.grey.shade200, width: 0.8)),
+              left: BorderSide(color: Colors.grey.shade300, width: 0.5),
+              right: BorderSide(color: Colors.grey.shade300, width: 0.5),
+              bottom: BorderSide(color: Colors.grey.shade300, width: 0.6)),
           borderRadius: BorderRadius.circular(10.r),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SizedBox(
-              height: 110.h,
+              height: 100.h,
               child: Stack(
                 fit: StackFit.expand,
                 children: [

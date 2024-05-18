@@ -38,7 +38,6 @@ class CourseRepoImplement implements CourseRepo {
       var data = await apiServices.delete(
          EndPoint.deleteSubjectWithTeacherId(subjectId),
       );
-      print(data.data);
       return right(data);
     } catch (e) {
       if (e is DioException) {

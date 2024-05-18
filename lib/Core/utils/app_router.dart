@@ -1,4 +1,3 @@
-
 import 'package:field_training_app/Core/api_services/end_points.dart';
 import 'package:field_training_app/Core/api_services/payment_api_services.dart';
 import 'package:field_training_app/Core/models/subject_model.dart';
@@ -19,6 +18,10 @@ import 'package:field_training_app/student_features/profile/data/repos/student_r
 import 'package:field_training_app/student_features/quiz/presentation/views/quiz_view.dart';
 import 'package:field_training_app/student_features/search/presentation/views/search_options_view.dart';
 import 'package:field_training_app/student_features/splash/presentation/views/splash_view.dart';
+import 'package:field_training_app/student_features/teacher_details_and_subjects/data/repo/teacher_details_repo_implement.dart';
+import 'package:field_training_app/student_features/teacher_details_and_subjects/presentation/view_model/cubit/teacher_details_cubit.dart';
+import 'package:field_training_app/student_features/teacher_details_and_subjects/presentation/views/teacher_details_view.dart';
+import 'package:field_training_app/student_features/teacher_details_and_subjects/presentation/views/teacher_subjects_view.dart';
 import 'package:field_training_app/teacher_features/courses/data/models/course_model.dart';
 import 'package:field_training_app/teacher_features/courses/data/repos/add_course_repo/add_Course_repo_implement.dart';
 import 'package:field_training_app/teacher_features/courses/data/repos/course_repo/course_repo_implement.dart';
@@ -150,8 +153,9 @@ class AppRouter {
                 create: (context) => ChangeRegisterImageCubit(),
               ),
               BlocProvider(
-                create: (context) => GetAllCoursesTeacherCubit(getIt.get<CourseRepoImplement>())..getCourses(teacherId: CacheHelper.getData(key: ApiKey.id))
-                ,
+                create: (context) => GetAllCoursesTeacherCubit(
+                    getIt.get<CourseRepoImplement>())
+                  ..getCourses(teacherId: CacheHelper.getData(key: ApiKey.id)),
               ),
               BlocProvider(
                 create: (context) => ChatCubit(),
@@ -159,7 +163,6 @@ class AppRouter {
               BlocProvider(
                 create: (context) => AuthCubit(getIt.get<AuthRepoImplement>()),
               ),
-             
               BlocProvider(
                 create: (context) => TeacherProfileCubit(
                     getIt.get<TeacherProfileRepoImplement>())
@@ -248,9 +251,11 @@ class AppRouter {
           builder: (context) => TermsView(),
         );
       case Routes.courseDetailsTeacherViewRoute:
-      var args = settings.arguments as CourseModel;
+        var args = settings.arguments as CourseModel;
         return MaterialPageRoute(
-          builder: (context) =>  CourseDetailsTeacherView(courseModel: args,),
+          builder: (context) => CourseDetailsTeacherView(
+            courseModel: args,
+          ),
         );
       case Routes.enrolledStudentsViewRoute:
         return MaterialPageRoute(
@@ -306,6 +311,26 @@ class AppRouter {
         var args = settings.arguments as String;
         return MaterialPageRoute(
           builder: (context) => VisaView(url: args),
+        );
+      case Routes.teacherDetailsViewRoute:
+        var args = settings.arguments as int;
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) =>
+                TeacherDetailsCubit(getIt.get<TeacherDetailsRepoImplement>())
+                  ..getTeacherData(teacherID: args),
+            child: const TeacherDetailsView(),
+          ),
+        );
+      case Routes.teacherSubjectsViewRoute:
+        var args = settings.arguments as int;
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) =>
+                TeacherDetailsCubit(getIt.get<TeacherDetailsRepoImplement>())
+                  ..getTeacherSubjects(teacherID: args),
+            child: const TeacherSubjectsView(),
+          ),
         );
       default:
         return MaterialPageRoute(
