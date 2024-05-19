@@ -15,10 +15,8 @@ class GetAllCoursesTeacherCubit extends Cubit<GetAllCoursesTeacherState> {
     final result =
         await courseRepo.getCourses(teacherId:8);
     result.fold((failure) {
-      print("failed");
      emit(GetAllCoursesTeacherFailure(failure.toString()));
     }, (courseList) {
-      print("success");
       emit(GetAllCoursesTeacherSuccess(courseList));
     });
   }
@@ -29,10 +27,8 @@ class GetAllCoursesTeacherCubit extends Cubit<GetAllCoursesTeacherState> {
         await courseRepo.deleteCourse(subjectId: subjectId);
      
     result.fold((failure) {
-      print("failed");
       emit(GetAllCoursesDeleteSubjectFailure(failure.toString()));
     }, (courseList) {
-      print("success");
       emit(GetAllCoursesDeleteSubjectSuccess());
     });
   }

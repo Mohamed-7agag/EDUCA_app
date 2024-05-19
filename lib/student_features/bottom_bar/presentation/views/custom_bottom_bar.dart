@@ -41,6 +41,7 @@ class CustomBottomBarView extends StatelessWidget {
           child: Scaffold(
             bottomNavigationBar: Container(
               decoration: BoxDecoration(
+                color: Colors.white,
                 border: Border(
                     top: BorderSide(color: Colors.grey.shade200, width: 0.6)),
               ),
@@ -49,6 +50,7 @@ class CustomBottomBarView extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                 child: GNav(
                   gap: 8,
+                  backgroundColor: Colors.white,
                   selectedIndex: state,
                   tabBackgroundColor: kSplashDarkerColor,
                   activeColor: kPrimaryColor,

@@ -9,6 +9,7 @@ class QuizResultView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
           child: QuizResultViewBody(numberOfQuestions: numberOfQuestions)),
     );

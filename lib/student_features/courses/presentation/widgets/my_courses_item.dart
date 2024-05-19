@@ -1,20 +1,28 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:field_training_app/Core/models/subject_model.dart';
 import 'package:field_training_app/Core/utils/constatnt.dart';
+import 'package:field_training_app/Core/utils/routes.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/utils/subject_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyCoursesItem extends StatelessWidget {
-  const MyCoursesItem({super.key, this.isFavourite = true, required this.subjectModel});
+  const MyCoursesItem(
+      {super.key, this.isFavourite = true, required this.subjectModel});
   final bool? isFavourite;
   final SubjectModel subjectModel;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushNamed(
+          context,
+          Routes.courseDetailsViewRoute,
+          arguments: subjectModel,
+        );
+      },
       splashColor: kSplashColor,
       borderRadius: BorderRadius.circular(8.r),
       child: Container(
@@ -23,21 +31,21 @@ class MyCoursesItem extends StatelessWidget {
           color: Colors.white,
           boxShadow: const [
             BoxShadow(
-              color: Color.fromARGB(12, 0, 0, 0),
-              blurRadius: 4.0,
+              color: Color.fromARGB(9, 0, 0, 0),
+              blurRadius: 3.0,
             ),
           ],
           border: Border(
-              left: BorderSide(color: Colors.grey.shade200, width: 0.6),
-              right: BorderSide(color: Colors.grey.shade200, width: 0.6),
-              bottom: BorderSide(color: Colors.grey.shade200, width: 0.8)),
+              left: BorderSide(color: Colors.grey.shade300, width: 0.5),
+              right: BorderSide(color: Colors.grey.shade300, width: 0.5),
+              bottom: BorderSide(color: Colors.grey.shade300, width: 0.6)),
           borderRadius: BorderRadius.circular(10.r),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SizedBox(
-              height: 110.h,
+              height: 100.h,
               child: Stack(
                 fit: StackFit.expand,
                 children: [
@@ -100,7 +108,7 @@ class MyCoursesItem extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Text(subjectModel.teacherName?? '',
+                        Text(subjectModel.teacherName ?? '',
                             style: Styles.textStyle14
                                 .copyWith(fontWeight: FontWeight.bold)),
                         SizedBox(width: 6.w),
@@ -133,7 +141,7 @@ class MyCoursesItem extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(right: 14),
                     child: Text(
-                      "${subjectModel.level?? ''}  / ترم أول",
+                      "${subjectModel.level ?? ''}  / ${subjectModel.term == 1 ? 'الترم الأول' : 'الترم الثاني'}",
                       style: Styles.textStyle14,
                       textAlign: TextAlign.right,
                     ),

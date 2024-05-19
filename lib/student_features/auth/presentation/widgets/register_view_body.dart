@@ -3,6 +3,7 @@ import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
 import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
+import 'package:field_training_app/Core/widgets/pop_icon_button.dart';
 import 'package:field_training_app/cache/cache_helper.dart';
 import 'package:field_training_app/student_features/auth/helper/register_validation.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/auth_cubit/auth_cubit.dart';
@@ -31,13 +32,19 @@ class RegisterViewBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            SizedBox(height: 20.h),
-            Text(
-              "أنشاء حساب جديد",
-              style: Styles.textStyle22,
-              textAlign: TextAlign.right,
+            SizedBox(height: 15.h),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const CustomPopIconButton(),
+                Text(
+                  "أنشاء حساب جديد",
+                  style: Styles.textStyle20,
+                  textAlign: TextAlign.right,
+                ),
+              ],
             ),
-            SizedBox(height: 22.h),
+            SizedBox(height: 20.h),
             CustomUserImage(
               radius: 50.r,
               cameraSize: 20,

@@ -8,6 +8,7 @@ class VisaView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(child: VisaViewBody(url: url)),
     );
   }

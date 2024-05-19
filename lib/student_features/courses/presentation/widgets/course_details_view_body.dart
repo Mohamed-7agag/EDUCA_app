@@ -4,8 +4,10 @@ import 'package:field_training_app/Core/utils/routes.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/utils/subject_image.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
+import 'package:field_training_app/Core/widgets/custom_cached_image.dart';
 import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
 import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
+import 'package:field_training_app/Core/widgets/pop_icon_button.dart';
 import 'package:field_training_app/cache/cache_helper.dart';
 import 'package:field_training_app/student_features/payment/presentation/view_model/payment_cubit/payment_cubit.dart';
 import 'package:flutter/material.dart';
@@ -45,6 +47,10 @@ class CourseDetailsViewBody extends StatelessWidget {
                     )),
               ),
             ),
+            const Positioned(
+                top: 15,
+                left: 15,
+                child: CustomPopIconButton(backgroundColor: Colors.white70))
           ],
         ),
         Padding(
@@ -59,7 +65,7 @@ class CourseDetailsViewBody extends StatelessWidget {
                     onPressed: () {},
                     icon: const Icon(
                       Icons.favorite_border_outlined,
-                      size: 26,
+                      size: 25,
                       color: kPrimaryColor,
                     ),
                     style: IconButton.styleFrom(
@@ -79,18 +85,43 @@ class CourseDetailsViewBody extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Text(
-                          "حسين القزاز",
+                          subjectModel.teacherName!,
                           style: Styles.textStyle16
                               .copyWith(fontWeight: FontWeight.w600),
                         ),
-                        SizedBox(width: 7.w),
-                        const CircleAvatar(backgroundColor: kSplashColor),
+                        SizedBox(width: 10.w),
+                        CustomCachedImage(
+                          imageUrl: subjectModel.profileImageUrl ?? '',
+                          width: 40,
+                          height: 40,
+                          errorIconSize: 23,
+                        ),
                       ],
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 30.h),
+              SizedBox(
+                height: 30.h,
+              ),
+              subjectModel.addingTime != null
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(subjectModel.addingTime!.substring(0, 10),
+                            style: Styles.textStyle14),
+                        SizedBox(width: 10.w),
+                        Text(
+                          ' : تاريخ الأنشاء',
+                          style:
+                              Styles.textStyle12.copyWith(color: Colors.grey),
+                        ),
+                      ],
+                    )
+                  : const SizedBox.shrink(),
+              subjectModel.addingTime != null
+                  ? SizedBox(height: 22.h)
+                  : const SizedBox.shrink(),
               Text(
                 "المادة الدراسية : ",
                 style: Styles.textStyle12.copyWith(color: Colors.grey),
@@ -118,7 +149,7 @@ class CourseDetailsViewBody extends StatelessWidget {
                       ),
                       SizedBox(height: 7.h),
                       Text(
-                        "الفصل الثاني",
+                        subjectModel.term == 1 ? 'الترم الأول' : 'الترم الثاني',
                         style: Styles.textStyle16,
                       ),
                     ],
@@ -208,7 +239,8 @@ class CourseDetailsViewBody extends StatelessWidget {
                       text: "تسجيل المادة",
                       onpressed: () {
                         context.read<PaymentCubit>().getOrderRegistrationID(
-                              price: "8000",
+                              price:
+                                  (subjectModel.pricePerHour! * 100).toString(),
                               firstName:
                                   CacheHelper.getData(key: studentFirstName),
                               lastName:

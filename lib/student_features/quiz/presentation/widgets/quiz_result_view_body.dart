@@ -1,5 +1,6 @@
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
+import 'package:field_training_app/Core/widgets/pop_icon_button.dart';
 import 'package:field_training_app/student_features/quiz/presentation/widgets/quiz_degree.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,11 +19,17 @@ class QuizResultViewBody extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const SizedBox(height: 20),
-          Text(
-            "نتيجة الاختبار",
-            style: Styles.textStyle24,
-            textAlign: TextAlign.center,
+          const SizedBox(height: 15),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const CustomPopIconButton(),
+              Text(
+                "نتيجة الاختبار",
+                style: Styles.textStyle22,
+                textAlign: TextAlign.center,
+              ),
+            ],
           ),
           const SizedBox(height: 20),
           Lottie.asset(

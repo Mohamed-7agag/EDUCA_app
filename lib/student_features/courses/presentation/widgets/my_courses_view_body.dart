@@ -10,7 +10,7 @@ class MyCoursesViewBody extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: ListView.builder(
-        itemCount: 5,
+        itemCount: 10,
         itemBuilder: (BuildContext context, int index) {
           return const Padding(
             padding: EdgeInsets.only(top: 10, bottom: 6),
