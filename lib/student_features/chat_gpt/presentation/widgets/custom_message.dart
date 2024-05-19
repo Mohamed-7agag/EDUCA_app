@@ -25,7 +25,7 @@ class CustomMessage extends StatelessWidget {
         isUser == false
             ? CircleAvatar(
                 backgroundColor: Colors.white,
-                radius: 16,
+                radius: 15.5,
                 child: Image.asset(
                   "assets/images/chatGPT.png",
                   fit: BoxFit.fill,
@@ -42,12 +42,12 @@ class CustomMessage extends StatelessWidget {
           decoration: BoxDecoration(
             color: isUser == true ? kPrimaryColor : const Color(0xffEEEEEE),
             borderRadius: BorderRadius.only(
-              bottomLeft: const Radius.circular(12),
-              bottomRight: const Radius.circular(12),
+              bottomLeft: const Radius.circular(11),
+              bottomRight: const Radius.circular(11),
               topLeft:
-                  isUser ? const Radius.circular(12) : const Radius.circular(2),
+                  isUser ? const Radius.circular(11) : const Radius.circular(1),
               topRight:
-                  isUser ? const Radius.circular(2) : const Radius.circular(12),
+                  isUser ? const Radius.circular(1) : const Radius.circular(11),
             ),
           ),
           child: Column(
@@ -72,9 +72,9 @@ class CustomMessage extends StatelessWidget {
         isUser == true
             ? CustomCachedImage(
                 imageUrl: CacheHelper.getData(key: studentImageProfileKey),
-                width: 27,
-                height: 27,
-                errorIconSize: 18,
+                width: 26,
+                height: 26,
+                errorIconSize: 17,
               )
             : const SizedBox.shrink(),
       ],

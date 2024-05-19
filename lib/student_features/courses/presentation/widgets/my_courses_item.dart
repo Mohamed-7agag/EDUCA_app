@@ -130,7 +130,7 @@ class MyCoursesItem extends StatelessWidget {
                         ),
                         SizedBox(width: 5.w),
                         Icon(
-                          Icons.import_contacts_rounded,
+                          Icons.menu_book_rounded,
                           color: kPrimaryColor,
                           size: 18.sp,
                         ),

@@ -71,7 +71,7 @@ class CustomBottomBarView extends StatelessWidget {
                     ),
                     GButton(
                       icon: Icons.beenhere_outlined,
-                      text: "كورساتي",
+                      text: "موادي",
                     ),
                     GButton(
                       icon: Icons.home_outlined,
