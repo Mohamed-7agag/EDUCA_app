@@ -5,6 +5,7 @@ import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/Core/widgets/custom_cached_image.dart';
 import 'package:field_training_app/Core/widgets/custom_failure_widget.dart';
 import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
+import 'package:field_training_app/Core/widgets/pop_icon_button.dart';
 import 'package:field_training_app/student_features/teacher_details_and_subjects/presentation/view_model/cubit/teacher_details_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,12 +26,19 @@ class TeacherDetailsViewBody extends StatelessWidget {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                SizedBox(height: 30.h),
+                SizedBox(height: 15.h),
+                const Row(
+                  children: [
+                    CustomPopIconButton(),
+                  ],
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     CustomCachedImage(
                       imageUrl: state.teacherModel.profileImageUrl ?? '',
+                      width: 115,
+                      height: 115,
                     ),
                   ],
                 ),
@@ -66,7 +74,9 @@ class TeacherDetailsViewBody extends StatelessWidget {
                 Expanded(child: SizedBox(height: 30.h)),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, Routes.teacherSubjectsViewRoute,arguments: state.teacherModel.id);
+                    Navigator.pushNamed(
+                        context, Routes.teacherSubjectsViewRoute,
+                        arguments: state.teacherModel.id);
                   },
                   style: ElevatedButton.styleFrom(
                     elevation: 0,

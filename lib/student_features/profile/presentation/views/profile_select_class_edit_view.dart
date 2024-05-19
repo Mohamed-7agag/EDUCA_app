@@ -4,6 +4,7 @@ import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
 import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
+import 'package:field_training_app/Core/widgets/pop_icon_button.dart';
 import 'package:field_training_app/student_features/profile/presentation/view_model/cubit/student_profile_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,19 +29,25 @@ class _ProfileSelectClassEditViewState
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: kPrimaryColor,
+        title: const CustomPopIconButton(backgroundColor: Colors.white70),
+        actions: [
+          Text("تعديل الصف الدراسي",
+              style: Styles.textStyle18.copyWith(color: Colors.white)),
+          SizedBox(width: 14.w),
+        ],
+        elevation: 0,
+        automaticallyImplyLeading: false,
+        toolbarHeight: 60,
+      ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text(
-                "تعديل الصف الدراسي",
-                style: Styles.textStyle24.copyWith(
-                    fontWeight: FontWeight.bold, color: kPrimaryColor),
-                textAlign: TextAlign.right,
-              ),
-              SizedBox(height: 60.h),
+              SizedBox(height: 10.h),
               DropdownButton(
                 borderRadius: BorderRadius.circular(6),
                 padding: EdgeInsets.symmetric(horizontal: 10.w),
@@ -70,35 +77,31 @@ class _ProfileSelectClassEditViewState
                   },
                 ).toList(),
               ),
-              SizedBox(height: 40.h),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: BlocConsumer<StudentProfileCubit, StudentProfileState>(
-                  listener: (context, state) {
-                    if (state is StudentProfileUpdateSuccess) {
-                      successCherryToast(
-                          context, "عملية ناجحة", "تم تعديل بياناتك");
+              SizedBox(height: 60.h),
+              BlocConsumer<StudentProfileCubit, StudentProfileState>(
+                listener: (context, state) {
+                  if (state is StudentProfileUpdateSuccess) {
+                    successCherryToast(
+                        context, "عملية ناجحة", "تم تعديل بياناتك");
 
-                      context.read<StudentProfileCubit>().getStudentData();
-                      Navigator.pushNamed(
-                          context, Routes.customBottomBarViewRoute);
-                    } else if (state is StudentProfileUpdateFailure) {
-                      errorCherryToast(context, "حدث خطأ", state.errMessage);
-                    }
-                  },
-                  builder: (context, state) {
-                    return state is StudentProfileUpdateLoading
-                        ? const CustomLoadingWidget()
-                        : CustomButton(
-                            text: "تعديل",
-                            onpressed: () {
-                              context
-                                  .read<StudentProfileCubit>()
-                                  .updateStudentData(
-                                      studentLevel: widget.value);
-                            });
-                  },
-                ),
+                    context.read<StudentProfileCubit>().getStudentData();
+                    Navigator.pushNamed(
+                        context, Routes.customBottomBarViewRoute);
+                  } else if (state is StudentProfileUpdateFailure) {
+                    errorCherryToast(context, "حدث خطأ", state.errMessage);
+                  }
+                },
+                builder: (context, state) {
+                  return state is StudentProfileUpdateLoading
+                      ? const CustomLoadingWidget()
+                      : CustomButton(
+                          text: "تعديل",
+                          onpressed: () {
+                            context
+                                .read<StudentProfileCubit>()
+                                .updateStudentData(studentLevel: widget.value);
+                          });
+                },
               )
             ],
           ),

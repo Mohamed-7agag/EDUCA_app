@@ -7,6 +7,7 @@ import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/Core/widgets/custom_cached_image.dart';
 import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
 import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
+import 'package:field_training_app/Core/widgets/pop_icon_button.dart';
 import 'package:field_training_app/cache/cache_helper.dart';
 import 'package:field_training_app/student_features/payment/presentation/view_model/payment_cubit/payment_cubit.dart';
 import 'package:flutter/material.dart';
@@ -46,6 +47,10 @@ class CourseDetailsViewBody extends StatelessWidget {
                     )),
               ),
             ),
+            const Positioned(
+                top: 15,
+                left: 15,
+                child: CustomPopIconButton(backgroundColor: Colors.white70))
           ],
         ),
         Padding(
