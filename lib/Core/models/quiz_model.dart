@@ -16,7 +16,7 @@ class QuizModel {
   factory QuizModel.fromJson(Map<String, dynamic> json) {
     return QuizModel(
       subjectId: json[ApiKey.subjectId] as int?,
-      quizId: json[ApiKey.quizId] as int?,
+      quizId: json[ApiKey.id] as int?,
       description: json[ApiKey.description] as String?,
       createdDate: json[ApiKey.createdDate] as String?,
     );

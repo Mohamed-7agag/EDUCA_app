@@ -5,6 +5,7 @@ class EndPoint {
   static String teacherRegister = "teacheraccount/register";
   static String subject = "subject";
   static String quiz = "quiz";
+  static String questions = "questions";
   static String getStudentById(int id) {
     return "student/$id";
   }
