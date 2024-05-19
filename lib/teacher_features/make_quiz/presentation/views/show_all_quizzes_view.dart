@@ -2,12 +2,12 @@ import 'package:field_training_app/teacher_features/make_quiz/presentation/widge
 import 'package:flutter/material.dart';
 
 class ShowAllQuizzesView extends StatelessWidget {
-  const ShowAllQuizzesView({super.key});
-
+  const ShowAllQuizzesView({super.key, required this.subjectId});
+  final int subjectId;
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SafeArea(child: ShowAllQuizzesViewBody()),
+    return  Scaffold(
+      body: SafeArea(child: ShowAllQuizzesViewBody(subjectId: subjectId,)),
     );
   }
 }

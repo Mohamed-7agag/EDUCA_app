@@ -1,6 +1,6 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
-import 'package:field_training_app/teacher_features/make_quiz/data/question_model.dart';
+import 'package:field_training_app/teacher_features/make_quiz/data/constant_values.dart';
 import 'package:field_training_app/teacher_features/make_quiz/presentation/widget/show_quiz_view_body.dart';
 import 'package:flutter/material.dart';
 

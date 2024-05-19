@@ -3,6 +3,7 @@ import 'package:field_training_app/Core/utils/routes.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
+import 'package:field_training_app/teacher_features/make_quiz/data/constant_values.dart';
 import 'package:field_training_app/teacher_features/make_quiz/data/question_model.dart';
 import 'package:field_training_app/teacher_features/make_quiz/data/quiz_model.dart';
 
@@ -12,11 +13,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 enum MyOption { option1, option2, option3, option4 }
 
 class MakeQuizViewBody extends StatefulWidget {
-  const MakeQuizViewBody({super.key, required this.titleQuiz});
+  const MakeQuizViewBody({super.key, required this.titleQuiz, required this.quizId});
+
+
 
   @override
   State<MakeQuizViewBody> createState() => _MakeQuizViewBodyState();
   final String titleQuiz;
+  final int quizId ;
 }
 
 class _MakeQuizViewBodyState extends State<MakeQuizViewBody> {
@@ -29,7 +33,6 @@ class _MakeQuizViewBodyState extends State<MakeQuizViewBody> {
   MyOption myOption = MyOption.option1;
   String answer = '';
 
-  @override
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -195,15 +198,17 @@ class _MakeQuizViewBodyState extends State<MakeQuizViewBody> {
                       "تم اضافة السؤال",
                       "اضف سؤال اخر",
                     );
-                    questionList.add(QuestionModel(
-                        question: questionController.text,
-                        answers: [
-                          answer1Controller.text,
-                          answer2Controller.text,
-                          answer3Controller.text,
-                          answer4Controller.text
-                        ],
-                        correctAnswer: answer));
+                    
+                    questionList.add(
+                      QuestionModel(
+                          question: questionController.text,
+                          quizId: widget.quizId,
+                          option1: answer1Controller.text,
+                          option2: answer2Controller.text,
+                          option3: answer3Controller.text,
+                          option4: answer4Controller.text,
+                          correctAnswer: answer),
+                    );
                   }
                 },
               ),
@@ -212,11 +217,12 @@ class _MakeQuizViewBodyState extends State<MakeQuizViewBody> {
             CustomButton(
                 text: "انهاء الاختبار",
                 onpressed: () {
-                  quizList.add(QuizModel(
-                    questions: questionList,
-                    title: widget.titleQuiz,
-                    date: "2022-11-11",
-                  ));
+                  // quizList.add(
+                  //   QuizModel(
+                  //   questions: questionList,
+                  //   title: widget.titleQuiz,
+                  //   date: "2022-11-11",
+                  // ));
                 }),
           ],
         ),
