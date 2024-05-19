@@ -177,19 +177,18 @@ class _MakeQuizViewBodyState extends State<MakeQuizViewBody> {
             SizedBox(height: 40.h),
             BlocConsumer<AddQuestionCubit, AddQuestionState>(
               listener: (context, state) {
-                if(state is AddQuestionSuccess){
-                   successCherryToast(
-                                context,
-                                "تم اضافة السؤال",
-                                "اضف سؤال اخر",
-                              );
-                }
-                else if(state is AddQuestionFailure){
+                if (state is AddQuestionSuccess) {
+                  successCherryToast(
+                    context,
+                    "تم اضافة السؤال",
+                    "اضف سؤال اخر",
+                  );
+                } else if (state is AddQuestionFailure) {
                   errorCherryToast(
-                                context,
-                                "حدث خطاء",
-                               "${state.errMessage}",
-                              );
+                    context,
+                    "حدث خطاء",
+                    "${state.errMessage}",
+                  );
                 }
               },
               builder: (context, state) {
@@ -214,8 +213,6 @@ class _MakeQuizViewBodyState extends State<MakeQuizViewBody> {
                               errorCherryToast(
                                   context, "حدث خطاء", "ادخل جميع الاختيارات");
                             } else {
-                            
-
                               questionList.add(
                                 QuestionModel(
                                     question: questionController.text,
@@ -226,9 +223,14 @@ class _MakeQuizViewBodyState extends State<MakeQuizViewBody> {
                                     option4: answer4Controller.text,
                                     correctAnswer: answer),
                               );
-                              context
-                                  .read<AddQuestionCubit>()
-                                  .addQuestion(quizId: 23);
+                              context.read<AddQuestionCubit>().addQuestion(
+                                  quizId: 23,
+                                  content: questionController.text,
+                                  option1: answer1Controller.text,
+                                  option2: answer2Controller.text,
+                                  option3: answer3Controller.text,
+                                  option4: answer4Controller.text,
+                                  correctAnswer: answer);
                             }
                           },
                         ),

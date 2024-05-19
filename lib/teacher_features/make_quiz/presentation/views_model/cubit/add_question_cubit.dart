@@ -10,15 +10,23 @@ class AddQuestionCubit extends Cubit<AddQuestionState> {
 
   final AddQuizRepo addQuizRepo;
 
-  Future<void> addQuestion({required int quizId}) async {
+  Future<void> addQuestion({
+    required int quizId,
+    required String content,
+    required String option1,
+    required String option2,
+    required String option3,
+    required String option4,
+    required String correctAnswer,
+  }) async {
     emit(AddQuestionLoading());
     var result = await addQuizRepo.addQuestion(
-      content: 'content',
-      option1: 'option1',
-      option2: 'option2',
-      option3: 'option3',
-      option4: 'option4',
-      correctAnswer: 'correctAnswer',
+      content: content,
+      option1: option1,
+      option2: option2,
+      option3: option3,
+      option4: option4,
+      correctAnswer: correctAnswer,
       quizId: quizId,
     );
     result.fold((failure) {

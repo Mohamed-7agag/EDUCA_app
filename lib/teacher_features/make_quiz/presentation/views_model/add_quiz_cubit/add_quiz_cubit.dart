@@ -11,11 +11,11 @@ class AddQuizCubit extends Cubit<AddQuizState> {
   final AddQuizRepo addQuizRepo;
   
 
-  Future<void> addQuiz({required String title}) async {
+  Future<void> addQuiz({required String title,required int subjectId}) async {
      emit(AddQuizLoading());
     var result = await addQuizRepo.addQuiz(
       description: title,
-      subjectId: 25,
+      subjectId: subjectId,
     );
     result.fold((failure) {
       print("failed quiz add");
