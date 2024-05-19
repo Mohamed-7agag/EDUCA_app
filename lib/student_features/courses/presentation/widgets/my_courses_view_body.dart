@@ -14,7 +14,9 @@ class MyCoursesViewBody extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           return const Padding(
             padding: EdgeInsets.only(top: 10, bottom: 6),
-            child: MyCoursesItem(subjectModel: SubjectModel(),),
+            child: MyCoursesItem(
+              subjectModel: SubjectModel(),
+            ),
           );
         },
       ),

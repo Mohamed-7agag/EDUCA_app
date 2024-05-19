@@ -41,7 +41,7 @@ class CustomBottomBarForTeacherView extends StatelessWidget {
                     iconSize: 27,
                     text: "أنا",
                   ),
-                   GButton(
+                  GButton(
                     icon: Icons.chat_outlined,
                     iconSize: 27,
                     text: "ChatGPT",
@@ -64,9 +64,7 @@ class CustomBottomBarForTeacherView extends StatelessWidget {
             children: const [
               TeacherProfileView(),
               ChatGPTView(),
-            
               CoursesTeacherView(),
-
               HomeTeacherView()
             ],
           )),

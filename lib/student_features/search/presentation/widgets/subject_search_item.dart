@@ -32,18 +32,17 @@ class SubjectSearchItem extends StatelessWidget {
                 Text("${subjectSearchedModel.teacherName}"),
                 SizedBox(width: 10.w),
                 Container(
-                  width: 30,
-                  height: 30,
-                  decoration: BoxDecoration(
-                    color: kSplashColor,
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                  child: CustomCachedImage(
-                    loadingWidth: 18.w,
+                    width: 30,
+                    height: 30,
+                    decoration: BoxDecoration(
+                      color: kSplashColor,
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                    child: CustomCachedImage(
+                      loadingWidth: 18.w,
                       imageUrl: subjectSearchedModel.profileImageUrl ?? '',
                       errorIconSize: 18,
-                    )
-                )
+                    ))
               ],
             ),
             SizedBox(height: 14.h),

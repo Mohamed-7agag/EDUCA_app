@@ -9,7 +9,8 @@ class CustomCachedImage extends StatelessWidget {
     required this.imageUrl,
     this.loadingWidth,
     this.width,
-    this.height, this.errorIconSize,
+    this.height,
+    this.errorIconSize,
   });
   final String imageUrl;
   final double? loadingWidth;
@@ -33,7 +34,8 @@ class CustomCachedImage extends StatelessWidget {
               color: kSplashDarkerColor,
               borderRadius: BorderRadius.circular(100),
             ),
-            child:  Icon(Icons.person, color: kPrimaryColor,size: errorIconSize ?? 40),
+            child: Icon(Icons.person,
+                color: kPrimaryColor, size: errorIconSize ?? 40),
           );
         },
         progressIndicatorBuilder: (context, url, progress) {

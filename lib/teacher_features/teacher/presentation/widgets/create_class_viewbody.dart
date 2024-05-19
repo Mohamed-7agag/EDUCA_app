@@ -114,9 +114,7 @@ class CreateClassViewBody extends StatelessWidget {
                     ),
                     SizedBox(height: 10.h),
                     TextField(
-                      controller: context
-                          .read<AddCourseCubit>()
-                          .controller,
+                      controller: context.read<AddCourseCubit>().controller,
                       cursorColor: kPrimaryColor,
                       textAlign: TextAlign.right,
                       decoration: InputDecoration(

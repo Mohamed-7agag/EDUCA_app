@@ -1,4 +1,3 @@
-
 import 'package:field_training_app/teacher_features/make_quiz/presentation/widget/show_all_quizes_listview_builder.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +8,8 @@ class ShowAllQuizzesViewBody extends StatelessWidget {
   final int subjectId;
   @override
   Widget build(BuildContext context) {
-    return  ShowAllQuizzesListViewBuilder(subjectId: subjectId,);
+    return ShowAllQuizzesListViewBuilder(
+      subjectId: subjectId,
+    );
   }
 }

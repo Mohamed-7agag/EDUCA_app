@@ -8,9 +8,12 @@ class CourseDetailsTeacherView extends StatelessWidget {
   final CourseModel courseModel;
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(child: CourseDetailsTeacherViewBody(courseModel: courseModel,)),
+      body: SafeArea(
+          child: CourseDetailsTeacherViewBody(
+        courseModel: courseModel,
+      )),
     );
   }
 }

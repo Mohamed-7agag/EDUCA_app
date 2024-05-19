@@ -25,8 +25,13 @@ class EndPoint {
   static String allCoursesWithTeacherId(int id) {
     return "subject/$id/subjects";
   }
+
   static String deleteSubjectWithTeacherId(int id) {
     return "subject/$id";
+  }
+
+  static String getAllQuizzesAssociatedWithSubjectID(int subjectID) {
+    return "subject/$subjectID/quizzes";
   }
 }
 
@@ -62,6 +67,6 @@ class ApiKey {
   static String option1 = "option1";
   static String option2 = "option2";
   static String option3 = "option3";
-  static String option4 = "option4"; 
-  static String createdDate="createdDate"; 
+  static String option4 = "option4";
+  static String createdDate = "createdDate";
 }

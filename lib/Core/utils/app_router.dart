@@ -296,11 +296,14 @@ class AppRouter {
           builder: (context) => const ShowQuizView(),
         );
       case Routes.showAllQuizzesViewRoute:
-          var args = settings.arguments as int;
+        var args = settings.arguments as int;
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
-            create: (context) => AddQuizCubit(getIt.get<AddQuizRepoImplement>()),
-            child:  ShowAllQuizzesView(subjectId: args,),
+            create: (context) =>
+                AddQuizCubit(getIt.get<AddQuizRepoImplement>()),
+            child: ShowAllQuizzesView(
+              subjectId: args,
+            ),
           ),
         );
       case Routes.paymentOptionViewRoute:

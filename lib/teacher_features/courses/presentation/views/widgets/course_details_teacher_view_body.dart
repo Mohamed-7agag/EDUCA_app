@@ -146,9 +146,8 @@ class CourseDetailsTeacherViewBody extends StatelessWidget {
                         InkWell(
                           onTap: () {
                             Navigator.of(context).pushNamed(
-                              Routes.showAllQuizzesViewRoute,
-                              arguments: courseModel.subjectId
-                            );
+                                Routes.showAllQuizzesViewRoute,
+                                arguments: courseModel.subjectId);
                           },
                           splashColor: kSplashColor,
                           borderRadius: BorderRadius.circular(6),

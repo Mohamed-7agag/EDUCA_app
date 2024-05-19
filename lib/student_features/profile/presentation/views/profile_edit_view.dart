@@ -76,7 +76,7 @@ class _ProfileEditViewState extends State<ProfileEditView> {
                   if (state is StudentProfileUpdateSuccess) {
                     successCherryToast(
                         context, "عملية ناجحة", "تم تعديل بياناتك");
-              
+
                     Navigator.pushNamed(
                         context, Routes.customBottomBarViewRoute);
                   } else if (state is StudentProfileUpdateFailure) {
@@ -91,8 +91,8 @@ class _ProfileEditViewState extends State<ProfileEditView> {
                           onpressed: () {
                             if (controller.text == "" ||
                                 controller.text.isEmpty) {
-                              errorCherryToast(context, "حدث خطأ",
-                                  "قم بتعبئة هذا الحقل");
+                              errorCherryToast(
+                                  context, "حدث خطأ", "قم بتعبئة هذا الحقل");
                             } else {
                               context
                                   .read<StudentProfileCubit>()
@@ -112,7 +112,7 @@ class _ProfileEditViewState extends State<ProfileEditView> {
                                     studentLevel: null,
                                     image: null,
                                   );
-              
+
                               widget.parameter == "password"
                                   ? CacheHelper.saveData(
                                       key: passwordKey,
