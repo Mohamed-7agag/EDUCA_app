@@ -5,10 +5,8 @@ import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
 import 'package:field_training_app/teacher_features/make_quiz/data/constant_values.dart';
 import 'package:field_training_app/teacher_features/make_quiz/data/question_model.dart';
-<<<<<<< HEAD
-=======
+
 import 'package:field_training_app/teacher_features/make_quiz/presentation/views_model/cubit/add_question_cubit.dart';
->>>>>>> fd59e1553ec47e776f539099db10f8f0ec0e55fc
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -178,7 +176,6 @@ class _MakeQuizViewBodyState extends State<MakeQuizViewBody> {
               },
             ),
             SizedBox(height: 40.h),
-<<<<<<< HEAD
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 80.0),
               child: CustomButton(
@@ -216,7 +213,7 @@ class _MakeQuizViewBodyState extends State<MakeQuizViewBody> {
                   }
                 },
               ),
-=======
+            ),
             BlocConsumer<AddQuestionCubit, AddQuestionState>(
               listener: (context, state) {
                 if (state is AddQuestionSuccess) {
@@ -229,7 +226,7 @@ class _MakeQuizViewBodyState extends State<MakeQuizViewBody> {
                   errorCherryToast(
                     context,
                     "حدث خطاء",
-                    "${state.errMessage}",
+                    state.errMessage,
                   );
                 }
               },
@@ -266,19 +263,19 @@ class _MakeQuizViewBodyState extends State<MakeQuizViewBody> {
                                     correctAnswer: answer),
                               );
                               context.read<AddQuestionCubit>().addQuestion(
-                                  quizId: 23,
-                                  content: questionController.text,
-                                  option1: answer1Controller.text,
-                                  option2: answer2Controller.text,
-                                  option3: answer3Controller.text,
-                                  option4: answer4Controller.text,
-                                  correctAnswer: answer);
+                                    quizId: 23,
+                                    content: questionController.text,
+                                    option1: answer1Controller.text,
+                                    option2: answer2Controller.text,
+                                    option3: answer3Controller.text,
+                                    option4: answer4Controller.text,
+                                    correctAnswer: answer,
+                                  );
                             }
                           },
                         ),
                       );
               },
->>>>>>> fd59e1553ec47e776f539099db10f8f0ec0e55fc
             ),
             const SizedBox(height: 30),
             CustomButton(

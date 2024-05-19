@@ -38,14 +38,10 @@ class ShowAllQuizzesListViewBuilder extends StatelessWidget {
               Navigator.of(context).pop();
               Navigator.of(context).pushNamed(
                 Routes.createQuizViewRoute,
-<<<<<<< HEAD
-                arguments: [controller.text, state.quizModel.quizId],
-=======
                 arguments: {
                   "quizId": state.quizModel.quizId,
                   "titleQuiz": controller.text,
                 },
->>>>>>> fd59e1553ec47e776f539099db10f8f0ec0e55fc
               );
             } else if (state is AddQuizFailure) {
               errorCherryToast(context, 'خطأ', 'خطأ في عملية الاضافة');
@@ -80,13 +76,9 @@ class ShowAllQuizzesListViewBuilder extends StatelessWidget {
                                       ),
                                     );
                                   } else {
-<<<<<<< HEAD
-                                    context.read<AddQuizCubit>().addQuiz();
-=======
                                     context.read<AddQuizCubit>().addQuiz(
                                         title: controller.text,
                                         subjectId: subjectId);
->>>>>>> fd59e1553ec47e776f539099db10f8f0ec0e55fc
                                   }
                                 },
                                 child: const Text("اضافة"),
