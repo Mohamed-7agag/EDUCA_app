@@ -147,6 +147,7 @@ class CourseDetailsTeacherViewBody extends StatelessWidget {
                           onTap: () {
                             Navigator.of(context).pushNamed(
                               Routes.showAllQuizzesViewRoute,
+                              arguments: courseModel.subjectId
                             );
                           },
                           splashColor: kSplashColor,

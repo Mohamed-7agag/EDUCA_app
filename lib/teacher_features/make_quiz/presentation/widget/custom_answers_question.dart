@@ -18,9 +18,9 @@ class CustomAnswersQuestion extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
       child: Text(
-        "$charAnswer : ${questionModel.answers[idex]}",
+        "$charAnswer : ${questionModel.option1}",
         style: TextStyle(
-          color: questionModel.answers[idex] == questionModel.correctAnswer
+          color: questionModel.option1 == questionModel.correctAnswer
               ? Colors.green
               : Colors.red,
           fontSize: 19,

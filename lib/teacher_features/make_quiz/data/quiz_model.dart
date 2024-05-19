@@ -1,12 +1,27 @@
+import 'package:field_training_app/Core/api_services/end_points.dart';
 import 'package:field_training_app/teacher_features/make_quiz/data/question_model.dart';
 
 class QuizModel {
+  final String? description;
+  final String? createdDate;
+  final int? subjectId;
+  final int? quizId;
+
   QuizModel({
-    required this.title,
-    required this.date,
-    required this.questions,
+    this.subjectId,
+    this.quizId,
+    this.description,
+    this.createdDate,
   });
-  final String title;
-  final String date;
-  final List<QuestionModel> questions;
+ 
+
+  factory QuizModel.fromJson(Map<String, dynamic> json) {
+    return QuizModel( 
+      subjectId: json[ApiKey.subjectId] as int?,
+      quizId: json[ApiKey.quizId] as int?,
+      description: json[ApiKey.description] as String?,
+      createdDate: json[ApiKey.createdDate] as String?,
+    );
+  }
+
 }

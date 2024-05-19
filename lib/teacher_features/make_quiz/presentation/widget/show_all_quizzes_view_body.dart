@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class ShowAllQuizzesViewBody extends StatelessWidget {
-  const ShowAllQuizzesViewBody({super.key});
-
+  const ShowAllQuizzesViewBody({super.key, required this.subjectId});
+  final int subjectId;
   @override
   Widget build(BuildContext context) {
-    return  ShowAllQuizzesListViewBuilder();
+    return  ShowAllQuizzesListViewBuilder(subjectId: subjectId,);
   }
 }

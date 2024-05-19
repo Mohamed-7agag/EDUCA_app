@@ -4,6 +4,7 @@ class EndPoint {
   static String studentRegister = "studentaccount/register";
   static String teacherRegister = "teacheraccount/register";
   static String subject = "subject";
+  static String quiz = "quiz";
   static String getStudentById(int id) {
     return "student/$id";
   }
@@ -53,5 +54,14 @@ class ApiKey {
   static String level = "level";
   static String describtion = "describtion";
   static String addingTime = "addingTime";
-  
+  static String subjectId = "subjectId";
+
+  static String content = "content";
+  static String correctAnswer = "correctAnswer";
+  static String quizId = "quizId";
+  static String option1 = "option1";
+  static String option2 = "option2";
+  static String option3 = "option3";
+  static String option4 = "option4"; 
+  static String createdDate="createdDate"; 
 }
