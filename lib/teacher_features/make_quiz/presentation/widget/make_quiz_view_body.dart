@@ -5,22 +5,22 @@ import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
 import 'package:field_training_app/teacher_features/make_quiz/data/constant_values.dart';
 import 'package:field_training_app/teacher_features/make_quiz/data/question_model.dart';
-import 'package:field_training_app/teacher_features/make_quiz/data/quiz_model.dart';
+import 'package:field_training_app/teacher_features/make_quiz/presentation/views_model/cubit/add_question_cubit.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 enum MyOption { option1, option2, option3, option4 }
 
 class MakeQuizViewBody extends StatefulWidget {
-  const MakeQuizViewBody({super.key, required this.titleQuiz, required this.quizId});
-
-
+  const MakeQuizViewBody(
+      {super.key, required this.titleQuiz, required this.quizId});
 
   @override
   State<MakeQuizViewBody> createState() => _MakeQuizViewBodyState();
   final String titleQuiz;
-  final int quizId ;
+  final int quizId;
 }
 
 class _MakeQuizViewBodyState extends State<MakeQuizViewBody> {
@@ -175,43 +175,65 @@ class _MakeQuizViewBodyState extends State<MakeQuizViewBody> {
               },
             ),
             SizedBox(height: 40.h),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 80.0),
-              child: CustomButton(
-                text: 'اضافة السؤال',
-                onpressed: () {
-                  if (myOption == MyOption.option1) {
-                    answer = answer1Controller.text;
-                  }
-                  setState(() {});
-                  if (questionController.text == '') {
-                    errorCherryToast(context, "حدث خطاء", "ادخل السؤال");
-                  } else if (answer1Controller.text == '' ||
-                      answer2Controller.text == '' ||
-                      answer3Controller.text == '' ||
-                      answer4Controller.text == '') {
-                    errorCherryToast(
-                        context, "حدث خطاء", "ادخل جميع الاختيارات");
-                  } else {
-                    successCherryToast(
-                      context,
-                      "تم اضافة السؤال",
-                      "اضف سؤال اخر",
-                    );
-                    
-                    questionList.add(
-                      QuestionModel(
-                          question: questionController.text,
-                          quizId: widget.quizId,
-                          option1: answer1Controller.text,
-                          option2: answer2Controller.text,
-                          option3: answer3Controller.text,
-                          option4: answer4Controller.text,
-                          correctAnswer: answer),
-                    );
-                  }
-                },
-              ),
+            BlocConsumer<AddQuestionCubit, AddQuestionState>(
+              listener: (context, state) {
+                if(state is AddQuestionSuccess){
+                   successCherryToast(
+                                context,
+                                "تم اضافة السؤال",
+                                "اضف سؤال اخر",
+                              );
+                }
+                else if(state is AddQuestionFailure){
+                  errorCherryToast(
+                                context,
+                                "حدث خطاء",
+                               "${state.errMessage}",
+                              );
+                }
+              },
+              builder: (context, state) {
+                return state is AddQuestionLoading
+                    ? const Center(child: CircularProgressIndicator())
+                    : Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 80.0),
+                        child: CustomButton(
+                          text: 'اضافة السؤال',
+                          onpressed: () {
+                            if (myOption == MyOption.option1) {
+                              answer = answer1Controller.text;
+                            }
+                            setState(() {});
+                            if (questionController.text == '') {
+                              errorCherryToast(
+                                  context, "حدث خطاء", "ادخل السؤال");
+                            } else if (answer1Controller.text == '' ||
+                                answer2Controller.text == '' ||
+                                answer3Controller.text == '' ||
+                                answer4Controller.text == '') {
+                              errorCherryToast(
+                                  context, "حدث خطاء", "ادخل جميع الاختيارات");
+                            } else {
+                            
+
+                              questionList.add(
+                                QuestionModel(
+                                    question: questionController.text,
+                                    quizId: widget.quizId,
+                                    option1: answer1Controller.text,
+                                    option2: answer2Controller.text,
+                                    option3: answer3Controller.text,
+                                    option4: answer4Controller.text,
+                                    correctAnswer: answer),
+                              );
+                              context
+                                  .read<AddQuestionCubit>()
+                                  .addQuestion(quizId: 23);
+                            }
+                          },
+                        ),
+                      );
+              },
             ),
             const SizedBox(height: 30),
             CustomButton(

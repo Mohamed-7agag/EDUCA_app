@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:field_training_app/teacher_features/make_quiz/data/quiz_model.dart';
 import 'package:field_training_app/teacher_features/make_quiz/data/repos/add_quiz_repo/add_quiz_repo.dart';
@@ -10,11 +9,12 @@ class AddQuizCubit extends Cubit<AddQuizState> {
   AddQuizCubit(this.addQuizRepo) : super(AddQuizInitial());
 
   final AddQuizRepo addQuizRepo;
+  
 
-  Future<void> addQuiz() async {
+  Future<void> addQuiz({required String title}) async {
      emit(AddQuizLoading());
     var result = await addQuizRepo.addQuiz(
-      description: 'description',
+      description: title,
       subjectId: 25,
     );
     result.fold((failure) {

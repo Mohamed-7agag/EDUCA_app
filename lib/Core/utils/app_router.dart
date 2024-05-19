@@ -33,7 +33,8 @@ import 'package:field_training_app/teacher_features/make_quiz/data/repos/add_qui
 import 'package:field_training_app/teacher_features/make_quiz/presentation/views/make_quiz_view.dart';
 import 'package:field_training_app/teacher_features/make_quiz/presentation/views/show_all_quizzes_view.dart';
 import 'package:field_training_app/teacher_features/make_quiz/presentation/views/show_quiz_view.dart';
-import 'package:field_training_app/teacher_features/make_quiz/presentation/views_model/cubit/add_quiz_cubit.dart';
+import 'package:field_training_app/teacher_features/make_quiz/presentation/views_model/add_quiz_cubit/add_quiz_cubit.dart';
+import 'package:field_training_app/teacher_features/make_quiz/presentation/views_model/cubit/add_question_cubit.dart';
 import 'package:field_training_app/teacher_features/profile_teacher/data/repos/teacher_repo/student_profile_repo_implement.dart';
 import 'package:field_training_app/teacher_features/profile_teacher/presentation/view_model/cubit/student_profile_cubit.dart';
 import 'package:field_training_app/teacher_features/teacher/presentation/views/create_class.dart';
@@ -283,12 +284,14 @@ class AppRouter {
           builder: (context) => QuizResultView(numberOfQuestions: args),
         );
       case Routes.createQuizViewRoute:
-        var args = settings.arguments as String;
-        var args2 = settings.arguments as int;
+        var args = settings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(
-          builder: (context) => MakeQuizView(
-            titleQuiz: args,
-            quizId: args2,
+          builder: (context) => BlocProvider(
+            create: (context) => AddQuestionCubit(getIt.get<AddQuizRepoImplement>()),
+            child: MakeQuizView(
+              titleQuiz: args["titleQuiz"],
+              quizId: args["quizId"],
+            ),
           ),
         );
       case Routes.showQuizViewRoute:
@@ -296,11 +299,14 @@ class AppRouter {
           builder: (context) => const ShowQuizView(),
         );
       case Routes.showAllQuizzesViewRoute:
-          var args = settings.arguments as int;
+        var args = settings.arguments as int;
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
-            create: (context) => AddQuizCubit(getIt.get<AddQuizRepoImplement>()),
-            child:  ShowAllQuizzesView(subjectId: args,),
+            create: (context) =>
+                AddQuizCubit(getIt.get<AddQuizRepoImplement>()),
+            child: ShowAllQuizzesView(
+              subjectId: args,
+            ),
           ),
         );
       case Routes.paymentOptionViewRoute:
