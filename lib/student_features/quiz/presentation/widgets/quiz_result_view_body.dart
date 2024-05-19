@@ -9,9 +9,13 @@ import 'package:lottie/lottie.dart';
 import '../../../../Core/utils/routes.dart';
 
 class QuizResultViewBody extends StatelessWidget {
-  const QuizResultViewBody({super.key, required this.numberOfQuestions});
+  const QuizResultViewBody(
+      {super.key,
+      required this.numberOfQuestions,
+      required this.numberOfCorrectAnswers});
 
   final int numberOfQuestions;
+  final int numberOfCorrectAnswers;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -32,33 +36,39 @@ class QuizResultViewBody extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 20),
-          Lottie.asset(
-            'assets/animation/done.json',
-            height: 300.h,
-            frameRate: FrameRate.max,
-          ),
+          numberOfCorrectAnswers * 2 >= numberOfQuestions
+              ? Lottie.asset(
+                  'assets/animation/done.json',
+                  height: 300.h,
+                  frameRate: FrameRate.max,
+                )
+              : Lottie.asset(
+                  'assets/animation/failure.json',
+                  height: 300.h,
+                  frameRate: FrameRate.max,
+                ),
           SizedBox(height: 30.h),
-          // Lottie.asset(
-          //   'assets/animation/failure.json',
-          //   height: 300.h,
-          //   frameRate: FrameRate.max,
-          // ),
-          Text(
-            "تهانينا لك , لقد نجحت في الاختبار",
-            style: Styles.textStyle18,
-            textAlign: TextAlign.end,
-          ),
-          // Text(
-          //   "للأسف , لقد رسبت في الاختبار",
-          //   style: Styles.textStyle18,
-          //   textAlign: TextAlign.end,
-          // ),
+          numberOfCorrectAnswers * 2 >= numberOfQuestions
+              ? Text(
+                  "تهانينا لك , لقد نجحت في الاختبار",
+                  style: Styles.textStyle18,
+                  textAlign: TextAlign.end,
+                )
+              : Text(
+                  "للأسف , لقد رسبت في الاختبار",
+                  style: Styles.textStyle18,
+                  textAlign: TextAlign.end,
+                ),
           SizedBox(height: 35.h),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              const QuizDegree(left: 80, right: 100),
-              QuizDegree(left: 19, right: numberOfQuestions),
+              QuizDegree(
+                  left: ((numberOfCorrectAnswers / numberOfQuestions) * 100)
+                      .toInt(),
+                  right: 100),
+              QuizDegree(
+                  left: numberOfCorrectAnswers, right: numberOfQuestions),
             ],
           ),
           Expanded(child: SizedBox(height: 30.h)),

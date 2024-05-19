@@ -4,7 +4,7 @@ import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
 import 'package:field_training_app/teacher_features/make_quiz/data/constant_values.dart';
-import 'package:field_training_app/teacher_features/make_quiz/data/question_model.dart';
+import 'package:field_training_app/Core/models/question_model.dart';
 
 import 'package:field_training_app/teacher_features/make_quiz/presentation/views_model/cubit/add_question_cubit.dart';
 

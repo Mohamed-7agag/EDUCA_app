@@ -1,7 +1,11 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
+import 'package:field_training_app/Core/widgets/custom_failure_widget.dart';
+import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
 import 'package:field_training_app/student_features/quiz/presentation/view_model/counter_cubit.dart';
+import 'package:field_training_app/student_features/quiz/presentation/view_model/quiz_cubit/quiz_cubit.dart';
+import 'package:field_training_app/student_features/quiz/presentation/widgets/calculate_correct_answers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -30,16 +34,34 @@ class QuizViewBody extends StatelessWidget {
                 SizedBox(height: 60.h),
                 SizedBox(
                   height: MediaQuery.of(context).size.height - 160.h,
-                  child: PageView.builder(
-                    reverse: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    controller: _controller,
-                    itemCount: questions.length,
-                    itemBuilder: (context, index) {
-                      return QuestionAndAnswer(
-                        questionIndex: index,
-                        answers: answers[index],
-                      );
+                  child: BlocBuilder<QuizCubit, QuizState>(
+                    builder: (context, state) {
+                      if (state is QuestionSuccess) {
+                        return PageView.builder(
+                          reverse: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          controller: _controller,
+                          itemCount: questions.length,
+                          //itemCount: state.questionList.length,
+                          itemBuilder: (context, index) {
+                            correctAnswersList.add(state.questionList[index].correctAnswer);
+                            return QuestionAndAnswer(
+                              questionIndex: index,
+                              answers: answers[index],
+                              // answers: [
+                              //   state.questionList[index].option1,
+                              //   state.questionList[index].option2,
+                              //   state.questionList[index].option3,
+                              //   state.questionList[index].option4
+                              // ],
+                            );
+                          },
+                        );
+                      } else if (state is QuestionFaliure) {
+                        return CustomFailureWidget(
+                            errMessage: state.errMessage);
+                      }
+                      return const CustomLoadingWidget();
                     },
                   ),
                 ),
@@ -69,7 +91,7 @@ class QuizViewBody extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CustomButton(
-                text: "التالي",
+                text: _controller.page! != questions.length - 1 ?  "التالي" : 'أنهاء',
                 onpressed: () {
                   if (_controller.page! < questions.length - 1) {
                     _controller
@@ -81,10 +103,11 @@ class QuizViewBody extends StatelessWidget {
                             .read<CounterCubit>()
                             .increment(_controller.page!));
                   } else {
+                    int quizResult =  calculateCorrectAnswers(studentAnswersList, correctAnswersList);
                     Navigator.pushReplacementNamed(
                       context,
                       Routes.quizResultViewRoute,
-                      arguments: questions.length,
+                      arguments: [correctAnswersList.length,quizResult],
                     );
                   }
                 },

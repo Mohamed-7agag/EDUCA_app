@@ -31,7 +31,7 @@ class QuestionAndAnswer extends StatelessWidget {
                 return Padding(
                   padding: const EdgeInsets.symmetric(vertical: 7),
                   child: QuizAnswerItem(
-                    text: answers[index],
+                    studentAnswer: answers[index],
                     questionIndex: questionIndex,
                   ),
                 );

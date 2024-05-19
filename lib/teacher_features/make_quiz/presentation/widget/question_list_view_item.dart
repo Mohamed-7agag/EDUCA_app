@@ -3,7 +3,7 @@ import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/teacher_features/make_quiz/presentation/widget/custom_answers_question.dart';
 import 'package:flutter/material.dart';
 
-import 'package:field_training_app/teacher_features/make_quiz/data/question_model.dart';
+import 'package:field_training_app/Core/models/question_model.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 // ignore: must_be_immutable
