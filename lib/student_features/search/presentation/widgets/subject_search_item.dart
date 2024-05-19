@@ -38,14 +38,11 @@ class SubjectSearchItem extends StatelessWidget {
                     color: kSplashColor,
                     borderRadius: BorderRadius.circular(100),
                   ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(100),
-                    child: subjectSearchedModel.profileImageUrl != null
-                        ? CustomCachedImage(
-                          loadingWidth: 20.w,
-                            imageUrl: subjectSearchedModel.profileImageUrl!)
-                        : const Icon(Icons.person, color: kPrimaryColor),
-                  ),
+                  child: CustomCachedImage(
+                    loadingWidth: 18.w,
+                      imageUrl: subjectSearchedModel.profileImageUrl ?? '',
+                      errorIconSize: 18,
+                    )
                 )
               ],
             ),

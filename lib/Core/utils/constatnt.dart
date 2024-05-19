@@ -11,6 +11,7 @@ const String introScreenKey = "introScreen";
 const String optionStateKey = "optionState";
 const String termsKey = "terms";
 const String passwordKey = "password";
+const String studentImageProfileKey = "studentImageProfile";
 const String studentFirstName = "studentFirstName";
 const String studentLastName = "studentLastName";
 const String studentPhone = "studentPhone";
