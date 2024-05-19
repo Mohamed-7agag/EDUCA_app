@@ -37,15 +37,11 @@ class TeacherSearchItem extends StatelessWidget {
                 color: kSplashColor,
                 borderRadius: BorderRadius.circular(100),
               ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(100),
-                child: teacherSearchedModel.profileImageUrl != null
-                    ? CustomCachedImage(
-                      loadingWidth: 20.w,
-                        imageUrl: teacherSearchedModel.profileImageUrl!,
-                      )
-                    : const Icon(Icons.person, color: kPrimaryColor),
-              ),
+              child: CustomCachedImage(
+                    loadingWidth: 20.w,
+                      imageUrl: teacherSearchedModel.profileImageUrl ?? '',
+                      errorIconSize: 22,
+                    )
             )
           ],
         ),

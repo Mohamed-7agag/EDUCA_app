@@ -1,5 +1,7 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
+import 'package:field_training_app/Core/widgets/custom_cached_image.dart';
+import 'package:field_training_app/cache/cache_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -23,7 +25,7 @@ class CustomMessage extends StatelessWidget {
         isUser == false
             ? CircleAvatar(
                 backgroundColor: Colors.white,
-                radius: 17,
+                radius: 16,
                 child: Image.asset(
                   "assets/images/chatGPT.png",
                   fit: BoxFit.fill,
@@ -68,13 +70,11 @@ class CustomMessage extends StatelessWidget {
         ),
         isUser == true ? SizedBox(width: 4.w) : const SizedBox.shrink(),
         isUser == true
-            ? const CircleAvatar(
-                backgroundColor: kSplashMoreDarkerColor,
-                radius: 17,
-                child: Icon(
-                  Icons.person,
-                  color: kPrimaryColor,
-                ),
+            ? CustomCachedImage(
+                imageUrl: CacheHelper.getData(key: studentImageProfileKey),
+                width: 27,
+                height: 27,
+                errorIconSize: 18,
               )
             : const SizedBox.shrink(),
       ],

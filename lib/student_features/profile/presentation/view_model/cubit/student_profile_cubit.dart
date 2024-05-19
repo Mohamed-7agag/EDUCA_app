@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:field_training_app/Core/api_services/end_points.dart';
+import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/cache/cache_helper.dart';
 import 'package:field_training_app/student_features/profile/data/models/student_model.dart';
 
@@ -23,6 +24,9 @@ class StudentProfileCubit extends Cubit<StudentProfileState> {
     result.fold((failure) {
       emit(StudentProfileFailure(errMessage: failure.errMessage));
     }, (studentModel) {
+      CacheHelper.saveData(
+          key: studentImageProfileKey,
+          value: studentModel.profileImageUrl ?? '');
       emit(StudentProfileSuccess(studentModel: studentModel));
     });
   }
