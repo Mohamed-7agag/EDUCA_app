@@ -14,22 +14,21 @@ class ShowAllQuizzesListViewItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, Routes.showQuizViewRoute,
-            arguments: {
-              "quizId": quizModel.quizId,
-              "subjectId": quizModel.subjectId , 
-              "titleQuiz": quizModel.description,
-            });
+        Navigator.pushNamed(context, Routes.showQuizViewRoute, arguments: {
+          "quizId": quizModel.id,
+          "subjectId": quizModel.subjectId,
+          "titleQuiz": quizModel.description,
+        });
       },
       child: Directionality(
         textDirection: TextDirection.rtl,
         child: ListTile(
           leading: const Icon(Icons.description_outlined),
           title: Text(quizModel.description ?? ""),
-          subtitle: Row(
+          subtitle: const Row(
             children: [
               Text("10/10/2010"),
-              const Spacer(),
+              Spacer(),
               Text('10 اسئلة'),
             ],
           ),
@@ -37,9 +36,7 @@ class ShowAllQuizzesListViewItem extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               TextButton.icon(
-                onPressed: () {
-                  
-                },
+                onPressed: () {},
                 icon: const Icon(
                   Icons.edit_outlined,
                   color: kPrimaryColor,

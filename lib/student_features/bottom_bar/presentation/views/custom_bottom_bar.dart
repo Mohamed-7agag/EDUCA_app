@@ -55,7 +55,7 @@ class CustomBottomBarView extends StatelessWidget {
                   tabBackgroundColor: kSplashDarkerColor,
                   activeColor: kPrimaryColor,
                   padding: const EdgeInsets.only(
-                      left: 20, right: 20, top: 12, bottom: 12),
+                      left: 18, right: 16, top: 12, bottom: 12),
                   onTabChange: (value) {
                     context.read<BottomBarCubit>().changeBottomBarIndex(value);
                   },
@@ -71,7 +71,7 @@ class CustomBottomBarView extends StatelessWidget {
                     ),
                     GButton(
                       icon: Icons.beenhere_outlined,
-                      text: "موادي",
+                      text: "موادي الدراسية",
                     ),
                     GButton(
                       icon: Icons.home_outlined,

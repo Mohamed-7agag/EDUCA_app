@@ -28,7 +28,8 @@ class MyCoursesViewBody extends StatelessWidget {
               },
             );
           } else if (state is EnrolledSubjectsFailure) {
-            return CustomFailureWidget(errMessage: state.errMessage);
+            return const CustomFailureWidget(
+                errMessage: 'حدث خطأ أثناء تحميل المواد الدراسية');
           }
           return const CustomLoadingWidget();
         },

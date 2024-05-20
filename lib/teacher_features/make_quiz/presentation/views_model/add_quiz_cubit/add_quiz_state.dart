@@ -25,7 +25,7 @@ final class GetAllQuizLoading extends AddQuizState {}
 
 final class GetAllQuizSuccess extends AddQuizState {
   final List<QuizModel> quizModelList;
-  const GetAllQuizSuccess( {required this.quizModelList});
+  const GetAllQuizSuccess({required this.quizModelList});
 }
 
 final class GetAllQuizFailure extends AddQuizState {

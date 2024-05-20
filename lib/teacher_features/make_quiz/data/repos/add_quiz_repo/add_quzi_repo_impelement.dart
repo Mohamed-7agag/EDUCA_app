@@ -100,7 +100,7 @@ class AddQuizRepoImplement implements AddQuizRepo {
 
       for (var item in data) {
         questionModelList.add(QuestionModel.fromJson(item));
-      }    
+      }
 
       return right(questionModelList);
     } on DioException catch (e) {

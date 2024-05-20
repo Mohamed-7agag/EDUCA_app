@@ -48,7 +48,7 @@ class ShowAllQuizzesListViewBuilder extends StatelessWidget {
               Navigator.of(context).pushNamed(
                 Routes.createQuizViewRoute,
                 arguments: {
-                  "quizId": state.quizModel.quizId,
+                  "quizId": state.quizModel.id,
                   "titleQuiz": controller.text,
                   "subjectId": subjectId
                 },

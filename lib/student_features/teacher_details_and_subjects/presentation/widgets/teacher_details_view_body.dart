@@ -109,7 +109,8 @@ class TeacherDetailsViewBody extends StatelessWidget {
               ],
             );
           } else if (state is TeacherDetailsFailure) {
-            return CustomFailureWidget(errMessage: state.errMessage);
+            return const CustomFailureWidget(
+                errMessage: 'حدث خطأ أثناء تحميل بيانات المعلم');
           }
           return const CustomLoadingWidget();
         },
