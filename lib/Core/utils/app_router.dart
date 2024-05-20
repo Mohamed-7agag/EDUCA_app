@@ -18,6 +18,7 @@ import 'package:field_training_app/student_features/payment/presentation/views/v
 import 'package:field_training_app/student_features/profile/data/repos/student_repo/student_profile_repo_implement.dart';
 import 'package:field_training_app/student_features/quiz/presentation/view_model/quiz_cubit/quiz_cubit.dart';
 import 'package:field_training_app/student_features/quiz/presentation/views/quiz_view.dart';
+import 'package:field_training_app/student_features/quiz/presentation/views/quizzes_list_view.dart';
 import 'package:field_training_app/student_features/search/presentation/views/search_options_view.dart';
 import 'package:field_training_app/student_features/splash/presentation/views/splash_view.dart';
 import 'package:field_training_app/student_features/teacher_details_and_subjects/data/repo/teacher_details_repo_implement.dart';
@@ -262,7 +263,8 @@ class AppRouter {
               ),
               BlocProvider(
                 create: (context) =>
-                    EnrollmentCubit(getIt.get<EnrollmentRepoImplement>()),
+                    EnrollmentCubit(getIt.get<EnrollmentRepoImplement>())
+                      ..allStudentsEnrolledInSpecSubject(args[0].id! as int),
               ),
             ],
             child: CourseDetailsView(
@@ -301,6 +303,15 @@ class AppRouter {
               ),
             ],
             child: const QuizView(),
+          ),
+        );
+      case Routes.quizzesListViewRoute:
+        var args = settings.arguments as int;
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => QuizCubit(getIt.get<QuizRepoImplement>()
+              ..getAllQuizzesAssociatedWithSubject(subjectID: args)),
+            child: const QuizzesListView(),
           ),
         );
       case Routes.quizResultViewRoute:
