@@ -31,60 +31,66 @@ class QuizzesListView extends StatelessWidget {
       body: BlocBuilder<QuizCubit, QuizState>(
         builder: (context, state) {
           if (state is QuizSuccess) {
-            return ListView.builder(
-              itemCount: state.quizzes.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20)
-                      .copyWith(top: 14),
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, Routes.quizViewRoute,
-                          arguments: state.quizzes[index].id);
-                    },
-                    splashColor: kSplashColor,
-                    borderRadius: BorderRadius.circular(8.r),
-                    child: Container(
-                      alignment: Alignment.centerRight,
-                      width: double.infinity,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 14, vertical: 14),
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey[400]!),
-                          borderRadius: BorderRadius.circular(8.r)),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(
-                            "${index + 1} الأختبار",
-                            style: Styles.textStyle16,
-                          ),
-                          SizedBox(height: 5.h),
-                          state.quizzes[index].description != null
-                              ? Text(
-                                  state.quizzes[index].description!,
+            return state.quizzes.isNotEmpty
+                ? ListView.builder(
+                    itemCount: state.quizzes.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 8),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.pushNamed(context, Routes.quizViewRoute,
+                                arguments: state.quizzes[index].id);
+                          },
+                          splashColor: kSplashColor,
+                          borderRadius: BorderRadius.circular(8.r),
+                          child: Container(
+                            alignment: Alignment.centerRight,
+                            width: double.infinity,
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 14, vertical: 14),
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey[400]!),
+                                borderRadius: BorderRadius.circular(8.r)),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(
+                                  "${index + 1} الأختبار",
+                                  style: Styles.textStyle16,
+                                ),
+                                SizedBox(height: 5.h),
+                                state.quizzes[index].description != null
+                                    ? Text(
+                                        state.quizzes[index].description!,
+                                      )
+                                    : const SizedBox.shrink(),
+                                state.quizzes[index].description != null
+                                    ? SizedBox(height: 5.h)
+                                    : const SizedBox.shrink(),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Text(
+                                      state.quizzes[index].createdDate!
+                                          .substring(0, 10),
+                                      style: Styles.textStyle12,
+                                    ),
+                                    Text(' : تاريخ الأنشاء',
+                                        style: Styles.textStyle12),
+                                  ],
                                 )
-                              : const SizedBox.shrink(),
-                          state.quizzes[index].description != null
-                              ? SizedBox(height: 5.h)
-                              : const SizedBox.shrink(),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Text(
-                                state.quizzes[index].createdDate!.substring(0, 10),
-                                style: Styles.textStyle12,
-                              ),
-                              Text(' : تاريخ الأنشاء', style: Styles.textStyle12),
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                );
-              },
-            );
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  )
+                : const Center(
+                    child: Text('لا يوجد أختبارات لهذه المادة'),
+                  );
           } else if (state is QuizFaliure) {
             return const CustomFailureWidget(
                 errMessage: 'حدث خطأ أثناء الحصول على الأختبارات');

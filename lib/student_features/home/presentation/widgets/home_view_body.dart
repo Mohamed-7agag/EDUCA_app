@@ -24,36 +24,16 @@ class HomeViewBody extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        Navigator.pushNamed(
-                            context, Routes.notificationViewRoute);
-                      },
-                      icon: const Icon(
-                        Icons.notifications_outlined,
-                        color: kPrimaryColor,
-                        size: 28,
-                      ),
-                      style:
-                          IconButton.styleFrom(backgroundColor: kSplashColor),
-                    ),
-                    SizedBox(width: 8.w),
-                    IconButton(
-                      onPressed: () {
-                        Navigator.pushNamed(
-                            context, Routes.searchOptionViewRoute);
-                      },
-                      icon: const Icon(
-                        Icons.search_rounded,
-                        color: kPrimaryColor,
-                        size: 28,
-                      ),
-                      style:
-                          IconButton.styleFrom(backgroundColor: kSplashColor),
-                    ),
-                  ],
+                IconButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, Routes.searchOptionViewRoute);
+                  },
+                  icon: const Icon(
+                    Icons.search_rounded,
+                    color: kPrimaryColor,
+                    size: 28,
+                  ),
+                  style: IconButton.styleFrom(backgroundColor: kSplashColor),
                 ),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -82,13 +62,13 @@ class HomeViewBody extends StatelessWidget {
               style: Styles.textStyle14.copyWith(color: Colors.grey),
             ),
           ),
-          SizedBox(height: 22.h),
+          SizedBox(height: 20.h),
           Padding(
             padding: const EdgeInsets.only(left: 20),
             child: Container(
               padding: EdgeInsets.only(right: 20.w, left: 6.w),
               width: double.infinity,
-              height: 75.h,
+              height: 72.h,
               decoration: BoxDecoration(
                 color: kPrimaryColor,
                 borderRadius: BorderRadius.only(
@@ -103,10 +83,10 @@ class HomeViewBody extends StatelessWidget {
                     style: IconButton.styleFrom(
                         backgroundColor: Colors.white,
                         foregroundColor: kPrimaryColor,
-                        padding: const EdgeInsets.all(15)),
+                        padding: const EdgeInsets.all(14)),
                     onPressed: () {
-                      //Navigator.pushNamed(context, Routes.searchViewRoute);
-                      Navigator.pushNamed(context, Routes.quizViewRoute);
+                      Navigator.pushNamed(
+                          context, Routes.searchOptionViewRoute);
                     },
                     icon: const Icon(
                       Icons.arrow_back_rounded,
