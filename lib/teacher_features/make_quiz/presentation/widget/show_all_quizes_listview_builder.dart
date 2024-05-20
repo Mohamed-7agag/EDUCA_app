@@ -1,3 +1,4 @@
+import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/routes.dart';
 import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
 import 'package:field_training_app/teacher_features/make_quiz/presentation/views_model/add_quiz_cubit/add_quiz_cubit.dart';
@@ -17,18 +18,31 @@ class ShowAllQuizzesListViewBuilder extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Expanded(
-          child: ListView.builder(
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return ShowAllQuizzesListViewItem(
-                  questionNumbers: "10",
-                  quizDate: "20/04/2023",
-                  quizName: "اختبار المرحلة الثانية",
-                  onDelete: () {},
-                  onEdit: () {},
-                );
-              }),
+        BlocBuilder<AddQuizCubit, AddQuizState>(
+          builder: (context, state) {
+            if (state is GetAllQuizSuccess) {
+              return Expanded(
+                child: ListView.builder(
+                    itemCount: state.quizModelList.length,
+                    itemBuilder: (context, index) {
+                      return ShowAllQuizzesListViewItem(
+                        questionNumbers: "10",
+                        quizDate: state.quizModelList[index].createdDate??"20/04/2023",
+                        quizName: state.quizModelList[index].description ??
+                            "null comming",
+                        onDelete: () {},
+                        onEdit: () {},
+                      );
+                    }),
+              );
+            } else if (state is GetAllQuizFailure) {
+              {
+                return Text(state.errMessage);
+              }
+            } else {
+              return const Center(child: CircularProgressIndicator());
+            }
+          },
         ),
         BlocConsumer<AddQuizCubit, AddQuizState>(
           listener: (context, state) {
@@ -54,6 +68,11 @@ class ShowAllQuizzesListViewBuilder extends StatelessWidget {
                     padding:
                         const EdgeInsets.only(bottom: 24, right: 20, left: 20),
                     child: ElevatedButton(
+                      style: const ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll(
+                          kPrimaryColor,
+                        ),
+                      ),
                       onPressed: () {
                         showDialog(
                           context: context,
@@ -87,7 +106,10 @@ class ShowAllQuizzesListViewBuilder extends StatelessWidget {
                           ),
                         );
                       },
-                      child: const Text("اضافة اختبار جديد"),
+                      child: const Text(
+                        "اضافة اختبار جديد",
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
                   );
           },

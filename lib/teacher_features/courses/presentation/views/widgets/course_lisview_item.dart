@@ -43,6 +43,7 @@ class CourseListViewItem extends StatelessWidget {
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
+         
           children: [
             SizedBox(
               height: 110.h,

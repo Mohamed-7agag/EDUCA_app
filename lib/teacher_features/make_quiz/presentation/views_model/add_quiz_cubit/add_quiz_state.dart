@@ -20,3 +20,15 @@ final class AddQuizFailure extends AddQuizState {
   final String errMessage;
   const AddQuizFailure({required this.errMessage});
 }
+
+final class GetAllQuizLoading extends AddQuizState {}
+
+final class GetAllQuizSuccess extends AddQuizState {
+  final List<QuizModel> quizModelList;
+  const GetAllQuizSuccess( {required this.quizModelList});
+}
+
+final class GetAllQuizFailure extends AddQuizState {
+  final String errMessage;
+  const GetAllQuizFailure({required this.errMessage});
+}

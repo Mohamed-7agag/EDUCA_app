@@ -287,7 +287,8 @@ class AppRouter {
         var args = settings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
-            create: (context) => AddQuestionCubit(getIt.get<AddQuizRepoImplement>()),
+            create: (context) =>
+                AddQuestionCubit(getIt.get<AddQuizRepoImplement>()),
             child: MakeQuizView(
               titleQuiz: args["titleQuiz"],
               quizId: args["quizId"],
@@ -302,8 +303,8 @@ class AppRouter {
         var args = settings.arguments as int;
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
-            create: (context) =>
-                AddQuizCubit(getIt.get<AddQuizRepoImplement>()),
+            create: (context) => AddQuizCubit(getIt.get<AddQuizRepoImplement>())
+              ..getAllQuiz(subjectId: args),
             child: ShowAllQuizzesView(
               subjectId: args,
             ),

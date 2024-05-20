@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:field_training_app/Core/api_services/api_service.dart';
 import 'package:field_training_app/Core/api_services/end_points.dart';
 import 'package:field_training_app/Core/api_services/failure.dart';
+import 'package:field_training_app/teacher_features/make_quiz/data/constant_values.dart';
 import 'package:field_training_app/teacher_features/make_quiz/data/question_model.dart';
 import 'package:field_training_app/teacher_features/make_quiz/data/quiz_model.dart';
 import 'package:field_training_app/teacher_features/make_quiz/data/repos/add_quiz_repo/add_quiz_repo.dart';
@@ -65,6 +66,30 @@ class AddQuizRepoImplement implements AddQuizRepo {
         return left(ServerFailure.fromDioError(e));
       }
       return left(ServerFailure("حدث خطأ ما"));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<QuizModel>>> getAllQuizzes(
+      {required int subjectId}) async {
+    try {
+      var data = await apiServices.get(
+        endPoint: EndPoint.getAllGuizsBySubjectId(subjectId),
+      );
+
+      List<QuizModel> quizModelList = [];
+
+      for (var item in data) {
+        quizModelList.add(QuizModel.fromJson(item));
+      }
+    
+      quizList = quizModelList;
+
+      return right(quizModelList);
+    } on DioException catch (e) {
+      return left(ServerFailure.fromDioError(e));
+    } catch (e) {
+      return left(ServerFailure(e.toString()));
     }
   }
 }
