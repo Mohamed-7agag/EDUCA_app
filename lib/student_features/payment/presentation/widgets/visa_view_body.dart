@@ -10,7 +10,6 @@ class VisaViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WebViewController controller = WebViewController()
-      ..platform
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setBackgroundColor(const Color(0x00000000))
       ..setNavigationDelegate(

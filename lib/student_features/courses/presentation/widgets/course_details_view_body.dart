@@ -496,6 +496,8 @@ class CourseDetailsViewBody extends StatelessWidget {
                     }
                     if (state is EnrollmentFailure) {
                       errorCherryToast(context, "حدث خطا", state.errMessage);
+                      // Navigator.pushNamed(
+                      //     context, Routes.paymentOptionViewRoute);
                     }
                   },
                   builder: (context, state) {
