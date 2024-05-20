@@ -1,16 +1,17 @@
-import 'package:field_training_app/Core/models/question_model.dart';
 import 'package:flutter/material.dart';
 
 class CustomAnswersQuestion extends StatelessWidget {
   const CustomAnswersQuestion({
     super.key,
-    required this.questionModel,
     required this.charAnswer,
     required this.idex,
+    required this.answer,
+    required this.correctAnswer,
   });
 
-  final QuestionModel questionModel;
+  final String answer;
   final String charAnswer;
+  final String correctAnswer;
   final int idex;
 
   @override
@@ -18,9 +19,9 @@ class CustomAnswersQuestion extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
       child: Text(
-        "$charAnswer : ${questionModel.option1}",
+        "$charAnswer : $answer",
         style: TextStyle(
-          color: questionModel.option1 == questionModel.correctAnswer
+          color: answer == charAnswer
               ? Colors.green
               : Colors.red,
           fontSize: 19,

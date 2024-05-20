@@ -35,7 +35,8 @@ import 'package:field_training_app/teacher_features/make_quiz/presentation/views
 import 'package:field_training_app/teacher_features/make_quiz/presentation/views/show_all_quizzes_view.dart';
 import 'package:field_training_app/teacher_features/make_quiz/presentation/views/show_quiz_view.dart';
 import 'package:field_training_app/teacher_features/make_quiz/presentation/views_model/add_quiz_cubit/add_quiz_cubit.dart';
-import 'package:field_training_app/teacher_features/make_quiz/presentation/views_model/cubit/add_question_cubit.dart';
+import 'package:field_training_app/teacher_features/make_quiz/presentation/views_model/add_question_cubit/add_question_cubit.dart';
+import 'package:field_training_app/teacher_features/make_quiz/presentation/views_model/cubit/get_all_question_cubit.dart';
 import 'package:field_training_app/teacher_features/profile_teacher/data/repos/teacher_repo/student_profile_repo_implement.dart';
 import 'package:field_training_app/teacher_features/profile_teacher/presentation/view_model/cubit/student_profile_cubit.dart';
 import 'package:field_training_app/teacher_features/teacher/presentation/views/create_class.dart';
@@ -304,8 +305,16 @@ class AppRouter {
           ),
         );
       case Routes.showQuizViewRoute:
+        var args = settings.arguments as int;
         return MaterialPageRoute(
-          builder: (context) => const ShowQuizView(),
+          builder: (context) => BlocProvider(
+            create: (context) =>
+                GetAllQuestionCubit(getIt.get<AddQuizRepoImplement>())
+                  ..getAllQuestion(quizId: args),
+            child: ShowQuizView(
+              quizId: args,
+            ),
+          ),
         );
       case Routes.showAllQuizzesViewRoute:
         var args = settings.arguments as int;

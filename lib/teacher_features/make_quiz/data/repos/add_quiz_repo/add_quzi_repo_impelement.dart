@@ -5,7 +5,7 @@ import 'package:field_training_app/Core/api_services/end_points.dart';
 import 'package:field_training_app/Core/api_services/failure.dart';
 import 'package:field_training_app/Core/models/quiz_model.dart';
 import 'package:field_training_app/Core/models/question_model.dart';
- 
+
 import 'package:field_training_app/teacher_features/make_quiz/data/repos/add_quiz_repo/add_quiz_repo.dart';
 
 class AddQuizRepoImplement implements AddQuizRepo {
@@ -79,10 +79,30 @@ class AddQuizRepoImplement implements AddQuizRepo {
       for (var item in data) {
         quizModelList.add(QuizModel.fromJson(item));
       }
-    
-      quizList = quizModelList;
 
       return right(quizModelList);
+    } on DioException catch (e) {
+      return left(ServerFailure.fromDioError(e));
+    } catch (e) {
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<QuestionModel>>> getAllQuestions(
+      {required int quizId}) async {
+    try {
+      var data = await apiServices.get(
+        endPoint: EndPoint.getAllQuestionsByQuizId(quizId),
+      );
+
+      List<QuestionModel> questionModelList = [];
+
+      for (var item in data) {
+        questionModelList.add(QuestionModel.fromJson(item));
+      }    
+
+      return right(questionModelList);
     } on DioException catch (e) {
       return left(ServerFailure.fromDioError(e));
     } catch (e) {

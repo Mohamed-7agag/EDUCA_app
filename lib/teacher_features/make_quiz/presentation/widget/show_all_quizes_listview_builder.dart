@@ -26,12 +26,7 @@ class ShowAllQuizzesListViewBuilder extends StatelessWidget {
                     itemCount: state.quizModelList.length,
                     itemBuilder: (context, index) {
                       return ShowAllQuizzesListViewItem(
-                        questionNumbers: "10",
-                        quizDate: state.quizModelList[index].createdDate??"20/04/2023",
-                        quizName: state.quizModelList[index].description ??
-                            "null comming",
-                        onDelete: () {},
-                        onEdit: () {},
+                        quizModel: state.quizModelList[index],
                       );
                     }),
               );

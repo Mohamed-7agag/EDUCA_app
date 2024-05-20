@@ -43,6 +43,9 @@ class EndPoint {
   static String getAllGuizsBySubjectId(int id) {
     return "subject/$id/quizzes";
   }
+  static String getAllQuestionsByQuizId(int id) {
+    return "questions/byquiz/$id";
+  }
 }
 
 class ApiKey {
