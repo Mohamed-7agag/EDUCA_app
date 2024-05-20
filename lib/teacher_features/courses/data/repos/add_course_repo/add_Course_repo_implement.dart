@@ -32,10 +32,9 @@ class AddCourseRepoImplement implements AddCourseRepo {
           ApiKey.addingTime: "2024-05-11T11:15:58.661"
         },
       );
-    
+
       CourseModel courseModel = CourseModel.fromJson(data);
-        print("-----------courseModel: ${courseModel.subjectId}");
-     
+
       return right(courseModel);
     } catch (e) {
       if (e is DioException) {
@@ -46,7 +45,6 @@ class AddCourseRepoImplement implements AddCourseRepo {
   }
 
   @override
-  
   @override
   Future<Either<Failure, CourseModel>> updateCourse(
       {required String subjectName,

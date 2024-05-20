@@ -18,8 +18,6 @@ class CourseListViewItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        print(course.subjectId);
-        print(course.teacherId);
         Navigator.pushNamed(context, Routes.courseDetailsTeacherViewRoute,
             arguments: course);
       },
@@ -162,7 +160,7 @@ class CourseListViewItem extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        course.addingTime??"null coming",
+                        course.addingTime ?? "null coming",
                         style: Styles.textStyle14,
                         textAlign: TextAlign.right,
                       ),

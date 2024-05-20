@@ -1,4 +1,3 @@
-
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/cache/cache_helper.dart';
@@ -53,7 +52,8 @@ class IntroScreensBody extends StatelessWidget {
           decoration: const PageDecoration(
               imageFlex: 2, imageAlignment: Alignment.center),
           title: "EDUCA مرحبا بك ف تطبيق",
-          body: 'ابحث بسهولة عن أفضل المعلمين واستعرض دوراتهم التعليمية المتنوعة',
+          body:
+              'ابحث بسهولة عن أفضل المعلمين واستعرض دوراتهم التعليمية المتنوعة',
           image: Image.asset(
             "assets/images/onB3.png",
             width: MediaQuery.of(context).size.width - 70.w,

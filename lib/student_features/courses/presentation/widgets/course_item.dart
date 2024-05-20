@@ -103,7 +103,12 @@ class CourseItem extends StatelessWidget {
                             style: Styles.textStyle14.copyWith(
                                 fontWeight: FontWeight.bold, fontSize: 12.sp)),
                         SizedBox(width: 6.w),
-                        CustomCachedImage(imageUrl: subjectModel.profileImageUrl ?? '',width: 26,height: 26,errorIconSize: 18,),
+                        CustomCachedImage(
+                          imageUrl: subjectModel.profileImageUrl ?? '',
+                          width: 26,
+                          height: 26,
+                          errorIconSize: 18,
+                        ),
                       ],
                     ),
                   ),
@@ -120,7 +125,7 @@ class CourseItem extends StatelessWidget {
                         ),
                         SizedBox(width: 5.w),
                         Icon(
-                          Icons.import_contacts_rounded,
+                          Icons.menu_book_rounded,
                           color: kPrimaryColor,
                           size: 18.sp,
                         ),

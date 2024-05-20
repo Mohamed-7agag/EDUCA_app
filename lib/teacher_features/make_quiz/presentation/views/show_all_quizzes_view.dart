@@ -6,8 +6,11 @@ class ShowAllQuizzesView extends StatelessWidget {
   final int subjectId;
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      body: SafeArea(child: ShowAllQuizzesViewBody(subjectId: subjectId,)),
+    return Scaffold(
+      body: SafeArea(
+          child: ShowAllQuizzesViewBody(
+        subjectId: subjectId,
+      )),
     );
   }
 }

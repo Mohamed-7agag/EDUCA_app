@@ -6,26 +6,25 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 part 'get_all_courses_teacher_state.dart';
 
 class GetAllCoursesTeacherCubit extends Cubit<GetAllCoursesTeacherState> {
-  GetAllCoursesTeacherCubit(this.courseRepo) : super(GetAllCoursesTeacherInitial());
+  GetAllCoursesTeacherCubit(this.courseRepo)
+      : super(GetAllCoursesTeacherInitial());
 
   final CourseRepo courseRepo;
 
   void getCourses({required int teacherId}) async {
     emit(GetAllCoursesTeacherLoading());
-    final result =
-        await courseRepo.getCourses(teacherId:8);
+    final result = await courseRepo.getCourses(teacherId: 8);
     result.fold((failure) {
-     emit(GetAllCoursesTeacherFailure(failure.toString()));
+      emit(GetAllCoursesTeacherFailure(failure.toString()));
     }, (courseList) {
       emit(GetAllCoursesTeacherSuccess(courseList));
     });
   }
 
-  void deleteCourse( {required int subjectId}) async {
+  void deleteCourse({required int subjectId}) async {
     emit(GetAllCoursesDeleteSubjectLoading());
-    final result =
-        await courseRepo.deleteCourse(subjectId: subjectId);
-     
+    final result = await courseRepo.deleteCourse(subjectId: subjectId);
+
     result.fold((failure) {
       emit(GetAllCoursesDeleteSubjectFailure(failure.toString()));
     }, (courseList) {

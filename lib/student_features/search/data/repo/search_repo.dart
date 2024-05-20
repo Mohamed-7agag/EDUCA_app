@@ -7,8 +7,8 @@ import '../../../../Core/models/teacher_model.dart';
 abstract class SearchRepo {
   Future<Either<Failure, List<TeacherModel>>> getSearchByTeacherName(
       String? teacherName);
-  Future<Either<Failure, List<SubjectModel>>>
-      getSearchBySubjectName(String? subjectName);
-  Future<Either<Failure, List<TeacherModel>>>
-      getSearchByTeachersInGovernate(String teacherName, String governate);
+  Future<Either<Failure, List<SubjectModel>>> getSearchBySubjectName(
+      String? subjectName);
+  Future<Either<Failure, List<TeacherModel>>> getSearchByTeachersInGovernate(
+      String teacherName, String governate);
 }

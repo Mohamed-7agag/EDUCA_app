@@ -31,18 +31,17 @@ class TeacherSearchItem extends StatelessWidget {
                 "${teacherSearchedModel.firstName} ${teacherSearchedModel.lastName}"),
             SizedBox(width: 10.w),
             Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                color: kSplashColor,
-                borderRadius: BorderRadius.circular(100),
-              ),
-              child: CustomCachedImage(
-                    loadingWidth: 20.w,
-                      imageUrl: teacherSearchedModel.profileImageUrl ?? '',
-                      errorIconSize: 22,
-                    )
-            )
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  color: kSplashColor,
+                  borderRadius: BorderRadius.circular(100),
+                ),
+                child: CustomCachedImage(
+                  loadingWidth: 20.w,
+                  imageUrl: teacherSearchedModel.profileImageUrl ?? '',
+                  errorIconSize: 22,
+                ))
           ],
         ),
       ),

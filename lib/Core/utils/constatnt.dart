@@ -17,6 +17,9 @@ const String studentLastName = "studentLastName";
 const String studentPhone = "studentPhone";
 const String studentEmail = "studentEmail";
 
+List<String> studentAnswersList = [];
+List<String> correctAnswersList = [];
+
 List<String> questions = [
   'ما هو اطول نهر في العالم؟',
   'ما هي عاصمة فرنسا؟',

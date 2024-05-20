@@ -7,9 +7,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class QuizAnswerItem extends StatelessWidget {
   const QuizAnswerItem(
-      {super.key, required this.text, required this.questionIndex});
+      {super.key, required this.studentAnswer, required this.questionIndex});
 
-  final String text;
+  final String studentAnswer;
   final int questionIndex;
 
   @override
@@ -17,7 +17,8 @@ class QuizAnswerItem extends StatelessWidget {
     return InkWell(
       splashColor: kSplashColor,
       onTap: () {
-        context.read<SelectAnswerCubit>().setAnswer(questionIndex, text);
+        context.read<SelectAnswerCubit>().setAnswer(questionIndex, studentAnswer);
+        studentAnswersList[questionIndex] = studentAnswer;
       },
       child: BlocBuilder<SelectAnswerCubit, List<String>>(
         builder: (context, state) {
@@ -25,17 +26,17 @@ class QuizAnswerItem extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 16.h),
             width: double.infinity,
             decoration: BoxDecoration(
-              border: state[questionIndex] == text
+              border: state[questionIndex] == studentAnswer
                   ? Border.all(color: kPrimaryColor, width: 1.3)
                   : Border.all(color: Colors.grey[400]!),
-              borderRadius: state[questionIndex] == text
+              borderRadius: state[questionIndex] == studentAnswer
                   ? BorderRadius.circular(8.r)
                   : BorderRadius.circular(6.r),
             ),
             child: Text(
-              text,
+              studentAnswer,
               style: Styles.textStyle16.copyWith(
-                  color: state[questionIndex] == text
+                  color: state[questionIndex] == studentAnswer
                       ? kPrimaryColor
                       : Colors.black),
               textDirection: TextDirection.rtl,

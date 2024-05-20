@@ -20,6 +20,7 @@ final class TeacherDetailsFailure extends TeacherDetailsState {
   final String errMessage;
   const TeacherDetailsFailure({required this.errMessage});
 }
+
 final class TeacherSubjectsLoading extends TeacherDetailsState {}
 
 final class TeacherSubjectsSuccess extends TeacherDetailsState {

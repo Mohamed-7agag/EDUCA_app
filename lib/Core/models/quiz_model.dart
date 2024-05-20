@@ -12,15 +12,13 @@ class QuizModel {
     this.description,
     this.createdDate,
   });
- 
 
   factory QuizModel.fromJson(Map<String, dynamic> json) {
-    return QuizModel( 
+    return QuizModel(
       subjectId: json[ApiKey.subjectId] as int?,
       quizId: json[ApiKey.id] as int?,
       description: json[ApiKey.description] as String?,
       createdDate: json[ApiKey.createdDate] as String?,
     );
   }
-
 }

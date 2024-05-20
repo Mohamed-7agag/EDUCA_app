@@ -3,9 +3,9 @@ import 'package:dio/dio.dart';
 import 'package:field_training_app/Core/api_services/api_service.dart';
 import 'package:field_training_app/Core/api_services/end_points.dart';
 import 'package:field_training_app/Core/api_services/failure.dart';
-import 'package:field_training_app/teacher_features/make_quiz/data/constant_values.dart';
-import 'package:field_training_app/teacher_features/make_quiz/data/question_model.dart';
-import 'package:field_training_app/teacher_features/make_quiz/data/quiz_model.dart';
+import 'package:field_training_app/Core/models/quiz_model.dart';
+import 'package:field_training_app/Core/models/question_model.dart';
+ 
 import 'package:field_training_app/teacher_features/make_quiz/data/repos/add_quiz_repo/add_quiz_repo.dart';
 
 class AddQuizRepoImplement implements AddQuizRepo {
@@ -22,11 +22,9 @@ class AddQuizRepoImplement implements AddQuizRepo {
       );
 
       QuizModel quizModel = QuizModel.fromJson(data);
-      print("-----------quizmodel: ${quizModel}");
 
       return right(quizModel);
     } catch (e) {
-      print("failure: $e");
       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));
       }
@@ -61,7 +59,6 @@ class AddQuizRepoImplement implements AddQuizRepo {
 
       return right(questionModel);
     } catch (e) {
-      print("failure: $e");
       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));
       }

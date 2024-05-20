@@ -17,10 +17,10 @@ class TeacherSubjectsView extends StatelessWidget {
         backgroundColor: kPrimaryColor,
         title: const CustomPopIconButton(backgroundColor: Colors.white70),
         actions: [
-          Text('المواد الدراسية', style: Styles.textStyle18.copyWith(color: Colors.white)),
+          Text('المواد الدراسية',
+              style: Styles.textStyle18.copyWith(color: Colors.white)),
           SizedBox(width: 14.w),
         ],
-        
         elevation: 0,
         automaticallyImplyLeading: false,
         toolbarHeight: 60,

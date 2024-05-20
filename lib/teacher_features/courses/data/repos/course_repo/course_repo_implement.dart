@@ -36,7 +36,7 @@ class CourseRepoImplement implements CourseRepo {
   Future<Either<Failure, String>> deleteCourse({required int subjectId}) async {
     try {
       var data = await apiServices.delete(
-         EndPoint.deleteSubjectWithTeacherId(subjectId),
+        EndPoint.deleteSubjectWithTeacherId(subjectId),
       );
       return right(data);
     } catch (e) {

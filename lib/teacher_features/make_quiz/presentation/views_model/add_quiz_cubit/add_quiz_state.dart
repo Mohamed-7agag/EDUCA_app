@@ -12,8 +12,8 @@ final class AddQuizInitial extends AddQuizState {}
 final class AddQuizLoading extends AddQuizState {}
 
 final class AddQuizSuccess extends AddQuizState {
-  final  QuizModel quizModel;
-  const AddQuizSuccess( {required this.quizModel});
+  final QuizModel quizModel;
+  const AddQuizSuccess({required this.quizModel});
 }
 
 final class AddQuizFailure extends AddQuizState {

@@ -1,4 +1,4 @@
-import 'package:field_training_app/teacher_features/make_quiz/data/question_model.dart';
+import 'package:field_training_app/Core/models/question_model.dart';
 import 'package:flutter/material.dart';
 
 class CustomAnswersQuestion extends StatelessWidget {
