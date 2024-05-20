@@ -17,22 +17,8 @@ const String studentLastName = "studentLastName";
 const String studentPhone = "studentPhone";
 const String studentEmail = "studentEmail";
 
-List<String> studentAnswersList = List.generate(20, (index) => '');
-List<String> correctAnswersList = List.generate(20, (index) => '');
-
-List<String> questions = [
-  'ما هو اطول نهر في العالم؟',
-  'ما هي عاصمة فرنسا؟',
-  'ما هي عاصمة اليابان؟',
-  'ما هو اطول جبل في العالم؟',
-];
-
-List<List<String>> answers = [
-  ['نهر الأمازون', 'نهر النيل', 'نهر اليانغتسي', 'نهر الميسيسيبي'],
-  ['باريس', 'برلين', 'لندن', 'مدريد'],
-  ['طوكيو', 'سيول', 'بكين', 'موسكو'],
-  ['إيفرست', 'كيليمنجارو', 'ماكينلي', 'كانتستسنا'],
-];
+List<String> studentAnswersList = [];
+List<String> correctAnswersList = [];
 
 const List<String> governorates = [
   'الأقصر',

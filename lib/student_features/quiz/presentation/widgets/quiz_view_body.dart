@@ -25,6 +25,10 @@ class QuizViewBody extends StatelessWidget {
     return BlocBuilder<QuizCubit, QuizState>(
       builder: (context, state) {
         if (state is QuestionSuccess) {
+          correctAnswersList =
+              List.generate(state.questionList.length, (index) => '');
+          studentAnswersList =
+              List.generate(state.questionList.length, (index) => '');
           return Stack(
             alignment: Alignment.center,
             fit: StackFit.expand,
@@ -109,8 +113,8 @@ class QuizViewBody extends StatelessWidget {
                             Routes.quizResultViewRoute,
                             arguments: [state.questionList.length, quizResult],
                           );
-                          correctAnswersList = List.generate(20, (index) => '');
-                          studentAnswersList = List.generate(20, (index) => '');
+                          correctAnswersList.clear();
+                          studentAnswersList.clear();
                         }
                       },
                       textStyle: Styles.textStyle18
