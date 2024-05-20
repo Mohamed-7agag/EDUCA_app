@@ -37,26 +37,28 @@ class QuizViewBody extends StatelessWidget {
                       SizedBox(height: 60.h),
                       SizedBox(
                         height: MediaQuery.of(context).size.height - 160.h,
-                        child: PageView.builder(
-                          reverse: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          controller: _controller,
-                          itemCount: state.questionList.length,
-                          itemBuilder: (context, index) {
-                            correctAnswersList
-                                .add(state.questionList[index].correctAnswer);
-                            return QuestionAndAnswer(
-                              questionModel: state.questionList[index],
-                              questionIndex: index,
-                              answers: [
-                                state.questionList[index].option1,
-                                state.questionList[index].option2,
-                                state.questionList[index].option3,
-                                state.questionList[index].option4
-                              ],
-                            );
-                          },
-                        ),
+                        child: state.questionList.isEmpty
+                            ? const Center(child: Text('للأسف لا توجد أسئلة'))
+                            : PageView.builder(
+                                reverse: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                controller: _controller,
+                                itemCount: state.questionList.length,
+                                itemBuilder: (context, index) {
+                                  correctAnswersList[index] =
+                                      state.questionList[index].correctAnswer;
+                                  return QuestionAndAnswer(
+                                    questionModel: state.questionList[index],
+                                    questionIndex: index,
+                                    answers: [
+                                      state.questionList[index].option1,
+                                      state.questionList[index].option2,
+                                      state.questionList[index].option3,
+                                      state.questionList[index].option4
+                                    ],
+                                  );
+                                },
+                              ),
                       ),
                     ],
                   ),
@@ -99,16 +101,16 @@ class QuizViewBody extends StatelessWidget {
                                   .increment(_controller.page!));
                         } else {
                           int quizResult = calculateCorrectAnswers(
-                              studentAnswersList, correctAnswersList);
+                              studentAnswersList,
+                              correctAnswersList,
+                              state.questionList.length);
                           Navigator.pushReplacementNamed(
                             context,
                             Routes.quizResultViewRoute,
-                            arguments: [correctAnswersList.length, quizResult],
+                            arguments: [state.questionList.length, quizResult],
                           );
-                          print(correctAnswersList);
-                          print(studentAnswersList);
-                          correctAnswersList.clear();
-                          studentAnswersList.clear();
+                          correctAnswersList = List.generate(20, (index) => '');
+                          studentAnswersList = List.generate(20, (index) => '');
                         }
                       },
                       textStyle: Styles.textStyle18

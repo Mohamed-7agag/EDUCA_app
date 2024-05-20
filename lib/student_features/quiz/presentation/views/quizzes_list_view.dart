@@ -53,15 +53,30 @@ class QuizzesListView extends StatelessWidget {
                           border: Border.all(color: Colors.grey[400]!),
                           borderRadius: BorderRadius.circular(8.r)),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
                             "${index + 1} الأختبار",
                             style: Styles.textStyle16,
                           ),
                           SizedBox(height: 5.h),
-                          Text(
-                            state.quizzes[index].createdDate!.substring(0, 10),
-                            style: Styles.textStyle12,
+                          state.quizzes[index].description != null
+                              ? Text(
+                                  state.quizzes[index].description!,
+                                )
+                              : const SizedBox.shrink(),
+                          state.quizzes[index].description != null
+                              ? SizedBox(height: 5.h)
+                              : const SizedBox.shrink(),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text(
+                                state.quizzes[index].createdDate!.substring(0, 10),
+                                style: Styles.textStyle12,
+                              ),
+                              Text(' : تاريخ الأنشاء', style: Styles.textStyle12),
+                            ],
                           )
                         ],
                       ),

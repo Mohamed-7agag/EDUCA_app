@@ -6,8 +6,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class QuizAnswerItem extends StatelessWidget {
-  const QuizAnswerItem(
-      {super.key, required this.answer, required this.questionIndex});
+  const QuizAnswerItem({
+    super.key,
+    required this.answer,
+    required this.questionIndex,
+  });
 
   final String answer;
   final int questionIndex;
@@ -23,6 +26,7 @@ class QuizAnswerItem extends StatelessWidget {
       child: BlocBuilder<SelectAnswerCubit, List<String>>(
         builder: (context, state) {
           return Container(
+            alignment: Alignment.centerRight,
             padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 16.h),
             width: double.infinity,
             decoration: BoxDecoration(

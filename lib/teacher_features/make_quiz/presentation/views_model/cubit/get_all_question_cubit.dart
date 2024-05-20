@@ -1,7 +1,7 @@
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:field_training_app/Core/models/question_model.dart';
 import 'package:field_training_app/teacher_features/make_quiz/data/repos/add_quiz_repo/add_quiz_repo.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'get_all_question_state.dart';
 
