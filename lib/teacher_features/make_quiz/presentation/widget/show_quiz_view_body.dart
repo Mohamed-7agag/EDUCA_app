@@ -4,9 +4,14 @@ import 'package:field_training_app/teacher_features/make_quiz/presentation/widge
 import 'package:flutter/material.dart';
 
 class ShowQuizViewBody extends StatelessWidget {
-  const ShowQuizViewBody({super.key, required this.allquestionList, required this.quizId, required this.subjectId, required this.titleQuiz});
+  const ShowQuizViewBody(
+      {super.key,
+      required this.allquestionList,
+      required this.quizId,
+      required this.subjectId,
+      required this.titleQuiz});
   final List<QuestionModel> allquestionList;
-  final int quizId ;
+  final int quizId;
   final int subjectId;
   final String titleQuiz;
 
@@ -24,11 +29,13 @@ class ShowQuizViewBody extends StatelessWidget {
             children: [
               ElevatedButton.icon(
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, Routes.createQuizViewRoute,arguments: {
-                    'quizId':quizId,
-                     'subjectId':subjectId,
-                    'titleQuiz':titleQuiz,
-                  });
+                  Navigator.pushReplacementNamed(
+                      context, Routes.createQuizViewRoute,
+                      arguments: {
+                        'quizId': quizId,
+                        'subjectId': subjectId,
+                        'titleQuiz': titleQuiz,
+                      });
                 },
                 icon: const Icon(Icons.add),
                 label: const Text('Add Question'),

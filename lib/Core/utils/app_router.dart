@@ -289,6 +289,7 @@ class AppRouter {
           builder: (context) => const EnrolledStudentsView(),
         );
       case Routes.quizViewRoute:
+        var args = settings.arguments as int;
         return MaterialPageRoute(
           builder: (context) => MultiBlocProvider(
             providers: [
@@ -296,7 +297,8 @@ class AppRouter {
                 create: (context) => CounterCubit(),
               ),
               BlocProvider(
-                create: (context) => QuizCubit(getIt.get<QuizRepoImplement>()),
+                create: (context) => QuizCubit(getIt.get<QuizRepoImplement>())
+                  ..getAllQuestionsAssociatedWithQuiz(args),
               ),
               BlocProvider(
                 create: (context) => SelectAnswerCubit(),
@@ -309,8 +311,8 @@ class AppRouter {
         var args = settings.arguments as int;
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
-            create: (context) => QuizCubit(getIt.get<QuizRepoImplement>()
-              ..getAllQuizzesAssociatedWithSubject(subjectID: args)),
+            create: (context) => QuizCubit(getIt.get<QuizRepoImplement>())
+              ..getAllQuizzesAssociatedWithSubjectID(args),
             child: const QuizzesListView(),
           ),
         );

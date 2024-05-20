@@ -14,7 +14,10 @@ enum MyOption { option1, option2, option3, option4 }
 
 class MakeQuizViewBody extends StatefulWidget {
   const MakeQuizViewBody(
-      {super.key, required this.titleQuiz, required this.quizId, required this.subjectId});
+      {super.key,
+      required this.titleQuiz,
+      required this.quizId,
+      required this.subjectId});
 
   @override
   State<MakeQuizViewBody> createState() => _MakeQuizViewBodyState();
@@ -218,7 +221,6 @@ class _MakeQuizViewBodyState extends State<MakeQuizViewBody> {
                               errorCherryToast(
                                   context, "حدث خطاء", "ادخل جميع الاختيارات");
                             } else {
-                             
                               context.read<AddQuestionCubit>().addQuestion(
                                     quizId: widget.quizId,
                                     content: questionController.text,

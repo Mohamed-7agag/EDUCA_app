@@ -21,9 +21,7 @@ class CustomAnswersQuestion extends StatelessWidget {
       child: Text(
         "$charAnswer : $answer",
         style: TextStyle(
-          color: answer == charAnswer
-              ? Colors.green
-              : Colors.red,
+          color: answer == charAnswer ? Colors.green : Colors.red,
           fontSize: 19,
         ),
         textDirection: TextDirection.rtl,

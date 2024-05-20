@@ -5,7 +5,8 @@ class MakeQuizView extends StatelessWidget {
   const MakeQuizView({
     super.key,
     required this.titleQuiz,
-    required this.quizId, required this.subjectId,
+    required this.quizId,
+    required this.subjectId,
   });
   final String titleQuiz;
   final int quizId;
@@ -14,10 +15,9 @@ class MakeQuizView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: SafeArea(
           child: MakeQuizViewBody(
-            subjectId: subjectId,
+        subjectId: subjectId,
         titleQuiz: titleQuiz,
         quizId: quizId,
       )),

@@ -1,11 +1,13 @@
+import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SelectAnswerCubit extends Cubit<List<String>> {
-  SelectAnswerCubit() : super(List.generate(20, (index) => ''));
+  SelectAnswerCubit() : super([]);
 
   void setAnswer(int questionIndex, String answer) {
-    state[questionIndex] = answer;
-    List<String> temp = List.from(state);
+    List<String> temp =  List.from(state);
+    temp[questionIndex] = answer;
+    studentAnswersList = temp;
     emit(temp);
   }
 }

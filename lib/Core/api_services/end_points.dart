@@ -18,8 +18,6 @@ class EndPoint {
     return "student/search?searchQuery=$searchName";
   }
 
-  
-
   static String searchByTeachersInGovernate(
       String? teacherName, String? governorate) {
     return "student/search?searchQuery=$teacherName&Governorate=$governorate";
@@ -38,7 +36,7 @@ class EndPoint {
   }
 
   static String getAllQuestionsAssociatedWithQuizID(int quizID) {
-    return "subject/$quizID/quizzes";
+    return "questions/byquiz/$quizID";
   }
 
   static String studentEnrollment(int studentID, int subjectID) {
@@ -52,6 +50,7 @@ class EndPoint {
   static String getSubjectByID(int subjectID) {
     return 'subject/$subjectID';
   }
+
   static String allStudentEnrolledInSpecificSubject(int subjectID) {
     return 'enrollment/subject/$subjectID';
   }
@@ -59,6 +58,7 @@ class EndPoint {
   static String getAllGuizsBySubjectId(int id) {
     return "subject/$id/quizzes";
   }
+
   static String getAllQuestionsByQuizId(int id) {
     return "questions/byquiz/$id";
   }

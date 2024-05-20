@@ -1,24 +1,32 @@
-import 'package:field_training_app/Core/api_services/end_points.dart';
+import 'package:equatable/equatable.dart';
 
-class QuizModel {
+class QuizModel extends Equatable {
+  final int? id;
+  final int? subjectId;
   final String? description;
   final String? createdDate;
-  final int? subjectId;
-  final int? quizId;
 
-  QuizModel({
+  const QuizModel({
+    this.id,
     this.subjectId,
-    this.quizId,
     this.description,
     this.createdDate,
   });
 
-  factory QuizModel.fromJson(Map<String, dynamic> json) {
-    return QuizModel(
-      subjectId: json[ApiKey.subjectId] as int?,
-      quizId: json[ApiKey.id] as int?,
-      description: json[ApiKey.description] as String?,
-      createdDate: json[ApiKey.createdDate] as String?,
-    );
-  }
+  factory QuizModel.fromJson(Map<String, dynamic> json) => QuizModel(
+        id: json['id'] as int?,
+        subjectId: json['subjectId'] as int?,
+        description: json['description'] as String?,
+        createdDate: json['createdDate'] as String?,
+      );
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'subjectId': subjectId,
+        'description': description,
+        'createdDate': createdDate,
+      };
+
+  @override
+  List<Object?> get props => [id, subjectId, description, createdDate];
 }

@@ -36,13 +36,13 @@ class QuestionListViewItem extends StatelessWidget {
         ),
         CustomAnswersQuestion(
           charAnswer: "B",
-         answer: questionModel.option2,
+          answer: questionModel.option2,
           correctAnswer: questionModel.correctAnswer,
           idex: 1,
         ),
         CustomAnswersQuestion(
           charAnswer: "C",
-         answer: questionModel.option3,
+          answer: questionModel.option3,
           correctAnswer: questionModel.correctAnswer,
           idex: 2,
         ),
@@ -57,9 +57,7 @@ class QuestionListViewItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             ElevatedButton(
-                onPressed: () {
-                  
-                },
+                onPressed: () {},
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(kPrimaryColor),
                 ),
@@ -72,9 +70,7 @@ class QuestionListViewItem extends StatelessWidget {
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(kPrimaryColor),
               ),
-              onPressed: () {
-                
-              },
+              onPressed: () {},
               child: const Text("حذف", style: TextStyle(color: Colors.white)),
             ),
           ],

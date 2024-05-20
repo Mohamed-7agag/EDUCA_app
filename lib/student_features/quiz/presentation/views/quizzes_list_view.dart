@@ -1,4 +1,5 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
+import 'package:field_training_app/Core/utils/routes.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_failure_widget.dart';
 import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
@@ -33,7 +34,40 @@ class QuizzesListView extends StatelessWidget {
             return ListView.builder(
               itemCount: state.quizzes.length,
               itemBuilder: (BuildContext context, int index) {
-                return Text(state.quizzes[index].subjectId!.toString());
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20)
+                      .copyWith(top: 14),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, Routes.quizViewRoute,
+                          arguments: state.quizzes[index].id);
+                    },
+                    splashColor: kSplashColor,
+                    borderRadius: BorderRadius.circular(8.r),
+                    child: Container(
+                      alignment: Alignment.centerRight,
+                      width: double.infinity,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 14, vertical: 14),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey[400]!),
+                          borderRadius: BorderRadius.circular(8.r)),
+                      child: Column(
+                        children: [
+                          Text(
+                            "${index + 1} الأختبار",
+                            style: Styles.textStyle16,
+                          ),
+                          SizedBox(height: 5.h),
+                          Text(
+                            state.quizzes[index].createdDate!.substring(0, 10),
+                            style: Styles.textStyle12,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                );
               },
             );
           } else if (state is QuizFaliure) {
