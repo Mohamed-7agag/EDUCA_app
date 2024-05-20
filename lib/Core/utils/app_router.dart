@@ -7,6 +7,7 @@ import 'package:field_training_app/student_features/auth/presentation/view_model
 import 'package:field_training_app/student_features/auth/presentation/view_model/register_option_cubit.dart';
 import 'package:field_training_app/student_features/courses/presentation/view_model/favourite_courses_cubit.dart';
 import 'package:field_training_app/student_features/courses/presentation/views/course_details_view.dart';
+import 'package:field_training_app/student_features/enrollment/data/models/all_students_enrolled_in_spec_subject_model/st_dto.dart';
 import 'package:field_training_app/student_features/enrollment/data/repo/enrollment_repo_implement.dart';
 import 'package:field_training_app/student_features/enrollment/presentation/view_model/cubit/enrollment_cubit.dart';
 import 'package:field_training_app/student_features/home/data/repo/home_repo_implement.dart';
@@ -28,9 +29,11 @@ import 'package:field_training_app/teacher_features/courses/data/models/course_m
 import 'package:field_training_app/teacher_features/courses/data/repos/add_course_repo/add_Course_repo_implement.dart';
 import 'package:field_training_app/teacher_features/courses/data/repos/course_repo/course_repo_implement.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views/course_details_teacher_view.dart';
+import 'package:field_training_app/teacher_features/courses/presentation/views/enrolled_student_details_view.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views/enrolled_students_view.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views_model/add_course_cubit/add_course_cubit.dart';
-import 'package:field_training_app/teacher_features/courses/presentation/views_model/cubit/get_all_courses_teacher_cubit.dart';
+import 'package:field_training_app/teacher_features/courses/presentation/views_model/get_all_courses_cubit/get_all_courses_teacher_cubit.dart';
+import 'package:field_training_app/teacher_features/courses/presentation/views_model/get_enrolled_student_cubit/get_enrolled_student_cubit.dart';
 import 'package:field_training_app/teacher_features/make_quiz/data/repos/add_quiz_repo/add_quzi_repo_impelement.dart';
 import 'package:field_training_app/teacher_features/make_quiz/presentation/views/make_quiz_view.dart';
 import 'package:field_training_app/teacher_features/make_quiz/presentation/views/show_all_quizzes_view.dart';
@@ -283,9 +286,23 @@ class AppRouter {
           ),
         );
       case Routes.enrolledStudentsViewRoute:
+        var args = settings.arguments as int;
         return MaterialPageRoute(
-          builder: (context) => const EnrolledStudentsView(),
+          builder: (context) => BlocProvider(
+            create: (context) =>
+                GetEnrolledStudentCubit(getIt.get<EnrollmentRepoImplement>())
+                  ..getEnrolledStudent(subjectID: args),
+            child: const EnrolledStudentsView(),
+          ),
         );
+      case Routes.enrolledStudentDetailsRoute:
+        var args = settings.arguments as StDto;
+        return MaterialPageRoute(
+            builder: (context) =>  EnrolledStudentDetailsView(
+              stDto: args,
+              
+            ));
+
       case Routes.quizViewRoute:
         return MaterialPageRoute(
           builder: (context) => MultiBlocProvider(

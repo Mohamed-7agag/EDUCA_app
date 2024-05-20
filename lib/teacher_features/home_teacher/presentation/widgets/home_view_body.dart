@@ -4,7 +4,7 @@ import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views/widgets/course_lisview_item.dart';
-import 'package:field_training_app/teacher_features/courses/presentation/views_model/cubit/get_all_courses_teacher_cubit.dart';
+import 'package:field_training_app/teacher_features/courses/presentation/views_model/get_all_courses_cubit/get_all_courses_teacher_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

@@ -16,14 +16,13 @@ class CustomAnswersQuestion extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+   
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
       child: Text(
         "$charAnswer : $answer",
         style: TextStyle(
-          color: answer == charAnswer
-              ? Colors.green
-              : Colors.red,
+          color: answer == correctAnswer ? Colors.green : Colors.red,
           fontSize: 19,
         ),
         textDirection: TextDirection.rtl,

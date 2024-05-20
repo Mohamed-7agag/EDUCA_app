@@ -8,8 +8,10 @@ import '../models/all_students_enrolled_in_spec_subject_model/all_students_enrol
 abstract class EnrollmentRepo {
   Future<Either<Failure, String>> studentEnrollment(
       {required int studentID, required int subjectID});
+
   Future<Either<Failure, List<AllStudentEnrolledSubjectsModel>>>
       allStudentEnrolledSubjects({required int studentID});
+      
   Future<Either<Failure, SubjectModel>> getSubjectByID(
       {required int subjectID});
   Future<Either<Failure, List<AllStudentsEnrolledInSpecSubjectModel>>>

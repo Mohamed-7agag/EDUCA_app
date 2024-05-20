@@ -177,7 +177,8 @@ class CourseDetailsTeacherViewBody extends StatelessWidget {
                   InkWell(
                     onTap: () {
                       Navigator.pushNamed(
-                          context, Routes.enrolledStudentsViewRoute);
+                          context, Routes.enrolledStudentsViewRoute,
+                          arguments: courseModel.subjectId);
                     },
                     child: Text(
                       "عرض",
