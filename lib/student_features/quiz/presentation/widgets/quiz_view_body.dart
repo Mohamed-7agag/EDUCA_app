@@ -44,7 +44,8 @@ class QuizViewBody extends StatelessWidget {
                           itemCount: questions.length,
                           //itemCount: state.questionList.length,
                           itemBuilder: (context, index) {
-                            correctAnswersList.add(state.questionList[index].correctAnswer);
+                            correctAnswersList
+                                .add(state.questionList[index].correctAnswer);
                             return QuestionAndAnswer(
                               questionIndex: index,
                               answers: answers[index],
@@ -91,7 +92,9 @@ class QuizViewBody extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CustomButton(
-                text: _controller.page! != questions.length - 1 ?  "التالي" : 'أنهاء',
+                text: _controller.page! != questions.length - 1
+                    ? "التالي"
+                    : 'أنهاء',
                 onpressed: () {
                   if (_controller.page! < questions.length - 1) {
                     _controller
@@ -103,11 +106,12 @@ class QuizViewBody extends StatelessWidget {
                             .read<CounterCubit>()
                             .increment(_controller.page!));
                   } else {
-                    int quizResult =  calculateCorrectAnswers(studentAnswersList, correctAnswersList);
+                    int quizResult = calculateCorrectAnswers(
+                        studentAnswersList, correctAnswersList);
                     Navigator.pushReplacementNamed(
                       context,
                       Routes.quizResultViewRoute,
-                      arguments: [correctAnswersList.length,quizResult],
+                      arguments: [correctAnswersList.length, quizResult],
                     );
                   }
                 },

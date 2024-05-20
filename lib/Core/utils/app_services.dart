@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:field_training_app/Core/api_services/api_service.dart';
 import 'package:field_training_app/Core/api_services/payment_api_services.dart';
 import 'package:field_training_app/student_features/auth/data/repos/auth_repo_implement.dart';
+import 'package:field_training_app/student_features/enrollment/data/repo/enrollment_repo_implement.dart';
 import 'package:field_training_app/student_features/home/data/repo/home_repo_implement.dart';
 import 'package:field_training_app/student_features/profile/data/repos/student_repo/student_profile_repo_implement.dart';
 import 'package:field_training_app/student_features/quiz/data/repo/quiz_repo_implement.dart';
@@ -70,6 +71,11 @@ void appServices() {
   );
   getIt.registerLazySingleton<QuizRepoImplement>(
     () => QuizRepoImplement(
+      apiServices: getIt<ApiServices>(),
+    ),
+  );
+  getIt.registerLazySingleton<EnrollmentRepoImplement>(
+    () => EnrollmentRepoImplement(
       apiServices: getIt<ApiServices>(),
     ),
   );

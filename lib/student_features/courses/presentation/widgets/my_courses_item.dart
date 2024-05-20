@@ -4,6 +4,7 @@ import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/routes.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/utils/subject_image.dart';
+import 'package:field_training_app/Core/widgets/custom_cached_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -20,7 +21,7 @@ class MyCoursesItem extends StatelessWidget {
         Navigator.pushNamed(
           context,
           Routes.courseDetailsViewRoute,
-          arguments: subjectModel,
+          arguments: [subjectModel, true],
         );
       },
       splashColor: kSplashColor,
@@ -112,8 +113,12 @@ class MyCoursesItem extends StatelessWidget {
                             style: Styles.textStyle14
                                 .copyWith(fontWeight: FontWeight.bold)),
                         SizedBox(width: 6.w),
-                        CircleAvatar(
-                            radius: 13.r, backgroundColor: kPrimaryColor),
+                        CustomCachedImage(
+                            imageUrl: subjectModel.profileImageUrl ?? '',
+                            height: 25.h,
+                            width: 25.w,
+                            loadingWidth: 20.w,
+                            errorIconSize: 15),
                       ],
                     ),
                   ),

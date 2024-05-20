@@ -19,7 +19,7 @@ class CourseItem extends StatelessWidget {
     return InkWell(
       onTap: () {
         Navigator.pushNamed(context, Routes.courseDetailsViewRoute,
-            arguments: subjectModel);
+            arguments: [subjectModel, false]);
       },
       splashColor: kSplashColor,
       borderRadius: BorderRadius.circular(8.r),

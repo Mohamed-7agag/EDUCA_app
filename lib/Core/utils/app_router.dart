@@ -1,6 +1,5 @@
 import 'package:field_training_app/Core/api_services/end_points.dart';
 import 'package:field_training_app/Core/api_services/payment_api_services.dart';
-import 'package:field_training_app/Core/models/subject_model.dart';
 import 'package:field_training_app/Core/utils/app_services.dart';
 import 'package:field_training_app/cache/cache_helper.dart';
 import 'package:field_training_app/student_features/auth/data/repos/auth_repo_implement.dart';
@@ -8,6 +7,8 @@ import 'package:field_training_app/student_features/auth/presentation/view_model
 import 'package:field_training_app/student_features/auth/presentation/view_model/register_option_cubit.dart';
 import 'package:field_training_app/student_features/courses/presentation/view_model/favourite_courses_cubit.dart';
 import 'package:field_training_app/student_features/courses/presentation/views/course_details_view.dart';
+import 'package:field_training_app/student_features/enrollment/data/repo/enrollment_repo_implement.dart';
+import 'package:field_training_app/student_features/enrollment/presentation/view_model/cubit/enrollment_cubit.dart';
 import 'package:field_training_app/student_features/home/data/repo/home_repo_implement.dart';
 import 'package:field_training_app/student_features/home/presentation/view_model/cubit/home_cubit.dart';
 import 'package:field_training_app/student_features/payment/presentation/view_model/payment_cubit/payment_cubit.dart';
@@ -130,6 +131,12 @@ class AppRouter {
                 create: (context) => ChatCubit(),
               ),
               BlocProvider(
+                create: (context) =>
+                    EnrollmentCubit(getIt.get<EnrollmentRepoImplement>())
+                      ..allStudentEnrolledSubjectsModel(
+                          CacheHelper.getData(key: ApiKey.id)),
+              ),
+              BlocProvider(
                 create: (context) => ChangeRegisterImageCubit(),
               ),
               BlocProvider(
@@ -244,12 +251,24 @@ class AppRouter {
           builder: (context) => const SearchOptionsView(),
         );
       case Routes.courseDetailsViewRoute:
-        var args = settings.arguments as SubjectModel;
+        var args = settings.arguments as List<dynamic>;
         return MaterialPageRoute(
-          builder: (context) => BlocProvider(
-            create: (context) =>
-                PaymentCubit(getIt.get<PaymentApiServices>())..getAuthToken(),
-            child: CourseDetailsView(subjectModel: args),
+          builder: (context) => MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) =>
+                    PaymentCubit(getIt.get<PaymentApiServices>())
+                      ..getAuthToken(),
+              ),
+              BlocProvider(
+                create: (context) =>
+                    EnrollmentCubit(getIt.get<EnrollmentRepoImplement>()),
+              ),
+            ],
+            child: CourseDetailsView(
+              subjectModel: args[0],
+              isEnrolled: args[1],
+            ),
           ),
         );
       case Routes.termsViewRoute:

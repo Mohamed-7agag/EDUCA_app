@@ -27,7 +27,7 @@ class SubjectModel extends Equatable {
 
   factory SubjectModel.fromJson(Map<String, dynamic> json) {
     return SubjectModel(
-      id: json['id'] as int?,
+      id: json['subjectId'] as int?,
       subjName: json['subjName'] as String?,
       level: json['level'] as String?,
       describtion: json['describtion'] as String?,

@@ -17,7 +17,9 @@ class QuizAnswerItem extends StatelessWidget {
     return InkWell(
       splashColor: kSplashColor,
       onTap: () {
-        context.read<SelectAnswerCubit>().setAnswer(questionIndex, studentAnswer);
+        context
+            .read<SelectAnswerCubit>()
+            .setAnswer(questionIndex, studentAnswer);
         studentAnswersList[questionIndex] = studentAnswer;
       },
       child: BlocBuilder<SelectAnswerCubit, List<String>>(
