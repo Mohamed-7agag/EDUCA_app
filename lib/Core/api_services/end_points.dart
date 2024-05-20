@@ -34,8 +34,24 @@ class EndPoint {
   static String getAllQuizzesAssociatedWithSubjectID(int subjectID) {
     return "subject/$subjectID/quizzes";
   }
+
   static String getAllQuestionsAssociatedWithQuizID(int quizID) {
     return "subject/$quizID/quizzes";
+  }
+
+  static String studentEnrollment(int studentID, int subjectID) {
+    return 'enrollment?StudentId=$studentID&SubjectId=$subjectID';
+  }
+
+  static String allstudentEnrolledSubjects(int studentID) {
+    return 'enrollment/student/$studentID';
+  }
+
+  static String getSubjectByID(int subjectID) {
+    return 'subject/$subjectID';
+  }
+  static String allStudentEnrolledInSpecificSubject(int subjectID) {
+    return 'enrollment/subject/$subjectID';
   }
 }
 

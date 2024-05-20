@@ -12,11 +12,11 @@ final class AddQuestionInitial extends AddQuestionState {}
 final class AddQuestionLoading extends AddQuestionState {}
 
 final class AddQuestionSuccess extends AddQuestionState {
-  final  QuestionModel questionModel;
-  const AddQuestionSuccess( {required this.questionModel});
+  final QuestionModel questionModel;
+  const AddQuestionSuccess({required this.questionModel});
 }
 
 final class AddQuestionFailure extends AddQuestionState {
   final String errMessage;
-  const AddQuestionFailure( {required this.errMessage});
+  const AddQuestionFailure({required this.errMessage});
 }
