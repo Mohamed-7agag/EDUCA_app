@@ -18,6 +18,8 @@ class EndPoint {
     return "student/search?searchQuery=$searchName";
   }
 
+  
+
   static String searchByTeachersInGovernate(
       String? teacherName, String? governorate) {
     return "student/search?searchQuery=$teacherName&Governorate=$governorate";
@@ -52,6 +54,13 @@ class EndPoint {
   }
   static String allStudentEnrolledInSpecificSubject(int subjectID) {
     return 'enrollment/subject/$subjectID';
+  }
+
+  static String getAllGuizsBySubjectId(int id) {
+    return "subject/$id/quizzes";
+  }
+  static String getAllQuestionsByQuizId(int id) {
+    return "questions/byquiz/$id";
   }
 }
 

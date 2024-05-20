@@ -19,7 +19,22 @@ class AddQuizCubit extends Cubit<AddQuizState> {
     result.fold((failure) {
       emit(AddQuizFailure(errMessage: failure.errMessage));
     }, (quizmodel) {
+      print("success quiz add");
       emit(AddQuizSuccess(quizModel: quizmodel));
+    });
+  }
+
+  Future<void> getAllQuiz({required int subjectId}) async {
+    emit(GetAllQuizLoading());
+    var result = await addQuizRepo.getAllQuizzes(
+      subjectId: subjectId,
+    );
+    result.fold((failure) {
+      print("failed get quiz ");
+      emit(GetAllQuizFailure(errMessage: failure.errMessage));
+    }, (quizModelList) {
+      print("success get quiz ");
+      emit(GetAllQuizSuccess(quizModelList: quizModelList));
     });
   }
 }

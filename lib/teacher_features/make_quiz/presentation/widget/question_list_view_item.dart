@@ -30,22 +30,26 @@ class QuestionListViewItem extends StatelessWidget {
         const SizedBox(height: 10),
         CustomAnswersQuestion(
           charAnswer: "A",
-          questionModel: questionModel,
+          answer: questionModel.option1,
+          correctAnswer: questionModel.correctAnswer,
           idex: 0,
         ),
         CustomAnswersQuestion(
           charAnswer: "B",
-          questionModel: questionModel,
+         answer: questionModel.option2,
+          correctAnswer: questionModel.correctAnswer,
           idex: 1,
         ),
         CustomAnswersQuestion(
           charAnswer: "C",
-          questionModel: questionModel,
+         answer: questionModel.option3,
+          correctAnswer: questionModel.correctAnswer,
           idex: 2,
         ),
         CustomAnswersQuestion(
           charAnswer: "D",
-          questionModel: questionModel,
+          answer: questionModel.option4,
+          correctAnswer: questionModel.correctAnswer,
           idex: 3,
         ),
         SizedBox(height: 16.h),
@@ -53,7 +57,9 @@ class QuestionListViewItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  
+                },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(kPrimaryColor),
                 ),
@@ -66,7 +72,9 @@ class QuestionListViewItem extends StatelessWidget {
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(kPrimaryColor),
               ),
-              onPressed: () {},
+              onPressed: () {
+                
+              },
               child: const Text("حذف", style: TextStyle(color: Colors.white)),
             ),
           ],

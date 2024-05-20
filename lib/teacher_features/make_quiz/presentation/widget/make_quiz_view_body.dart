@@ -3,10 +3,8 @@ import 'package:field_training_app/Core/utils/routes.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
-import 'package:field_training_app/teacher_features/make_quiz/data/constant_values.dart';
-import 'package:field_training_app/Core/models/question_model.dart';
 
-import 'package:field_training_app/teacher_features/make_quiz/presentation/views_model/cubit/add_question_cubit.dart';
+import 'package:field_training_app/teacher_features/make_quiz/presentation/views_model/add_question_cubit/add_question_cubit.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,12 +14,13 @@ enum MyOption { option1, option2, option3, option4 }
 
 class MakeQuizViewBody extends StatefulWidget {
   const MakeQuizViewBody(
-      {super.key, required this.titleQuiz, required this.quizId});
+      {super.key, required this.titleQuiz, required this.quizId, required this.subjectId});
 
   @override
   State<MakeQuizViewBody> createState() => _MakeQuizViewBodyState();
   final String titleQuiz;
   final int quizId;
+  final int subjectId;
 }
 
 class _MakeQuizViewBodyState extends State<MakeQuizViewBody> {
@@ -48,7 +47,12 @@ class _MakeQuizViewBodyState extends State<MakeQuizViewBody> {
               children: [
                 InkWell(
                   onTap: () {
-                    Navigator.pushNamed(context, Routes.showQuizViewRoute);
+                    Navigator.pushNamed(context, Routes.showQuizViewRoute,
+                        arguments: {
+                          'quizId': widget.quizId,
+                          'subjectId': widget.subjectId,
+                          'titleQuiz': widget.titleQuiz
+                        });
                   },
                   child: const Text(
                     " عرض الاختبار",
@@ -176,44 +180,6 @@ class _MakeQuizViewBodyState extends State<MakeQuizViewBody> {
               },
             ),
             SizedBox(height: 40.h),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 80.0),
-              child: CustomButton(
-                text: 'اضافة السؤال',
-                onpressed: () {
-                  if (myOption == MyOption.option1) {
-                    answer = answer1Controller.text;
-                  }
-                  setState(() {});
-                  if (questionController.text == '') {
-                    errorCherryToast(context, "حدث خطاء", "ادخل السؤال");
-                  } else if (answer1Controller.text == '' ||
-                      answer2Controller.text == '' ||
-                      answer3Controller.text == '' ||
-                      answer4Controller.text == '') {
-                    errorCherryToast(
-                        context, "حدث خطاء", "ادخل جميع الاختيارات");
-                  } else {
-                    successCherryToast(
-                      context,
-                      "تم اضافة السؤال",
-                      "اضف سؤال اخر",
-                    );
-
-                    questionList.add(
-                      QuestionModel(
-                          question: questionController.text,
-                          quizId: widget.quizId,
-                          option1: answer1Controller.text,
-                          option2: answer2Controller.text,
-                          option3: answer3Controller.text,
-                          option4: answer4Controller.text,
-                          correctAnswer: answer),
-                    );
-                  }
-                },
-              ),
-            ),
             BlocConsumer<AddQuestionCubit, AddQuestionState>(
               listener: (context, state) {
                 if (state is AddQuestionSuccess) {
@@ -252,18 +218,9 @@ class _MakeQuizViewBodyState extends State<MakeQuizViewBody> {
                               errorCherryToast(
                                   context, "حدث خطاء", "ادخل جميع الاختيارات");
                             } else {
-                              questionList.add(
-                                QuestionModel(
-                                    question: questionController.text,
-                                    quizId: widget.quizId,
-                                    option1: answer1Controller.text,
-                                    option2: answer2Controller.text,
-                                    option3: answer3Controller.text,
-                                    option4: answer4Controller.text,
-                                    correctAnswer: answer),
-                              );
+                             
                               context.read<AddQuestionCubit>().addQuestion(
-                                    quizId: 23,
+                                    quizId: widget.quizId,
                                     content: questionController.text,
                                     option1: answer1Controller.text,
                                     option2: answer2Controller.text,
@@ -281,12 +238,11 @@ class _MakeQuizViewBodyState extends State<MakeQuizViewBody> {
             CustomButton(
                 text: "انهاء الاختبار",
                 onpressed: () {
-                  // quizList.add(
-                  //   QuizModel(
-                  //   questions: questionList,
-                  //   title: widget.titleQuiz,
-                  //   date: "2022-11-11",
-                  // ));
+                  Navigator.pushReplacementNamed(
+                    context,
+                    Routes.showAllQuizzesViewRoute,
+                    arguments: widget.quizId,
+                  );
                 }),
           ],
         ),

@@ -155,22 +155,17 @@ class CourseListViewItem extends StatelessWidget {
                     ],
                   ),
                   SizedBox(height: 6.h),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        course.addingTime ?? "null coming",
-                        style: Styles.textStyle14,
-                        textAlign: TextAlign.right,
-                      ),
-                      Text(
-                        course.level!,
-                        style: Styles.textStyle14,
-                        textAlign: TextAlign.right,
-                      ),
-                    ],
+                  Text(
+                    course.level!,
+                    style: Styles.textStyle14,
+                    textAlign: TextAlign.right,
                   ),
                   SizedBox(height: 6.h),
+                  Text(
+                    course.addingTime ?? "null coming",
+                    style: Styles.textStyle14,
+                    textAlign: TextAlign.right,
+                  ),
                 ],
               ),
             ),

@@ -17,4 +17,12 @@ abstract class AddQuizRepo {
     required String option4,
     required String correctAnswer,
   });
+
+  Future<Either<Failure, List<QuizModel>>> getAllQuizzes({
+    required int subjectId,
+  });
+
+  Future<Either<Failure, List<QuestionModel>>> getAllQuestions({
+    required int quizId,
+  });
 }

@@ -65,4 +65,48 @@ class AddQuizRepoImplement implements AddQuizRepo {
       return left(ServerFailure("حدث خطأ ما"));
     }
   }
+
+  @override
+  Future<Either<Failure, List<QuizModel>>> getAllQuizzes(
+      {required int subjectId}) async {
+    try {
+      var data = await apiServices.get(
+        endPoint: EndPoint.getAllGuizsBySubjectId(subjectId),
+      );
+
+      List<QuizModel> quizModelList = [];
+
+      for (var item in data) {
+        quizModelList.add(QuizModel.fromJson(item));
+      }
+
+      return right(quizModelList);
+    } on DioException catch (e) {
+      return left(ServerFailure.fromDioError(e));
+    } catch (e) {
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<QuestionModel>>> getAllQuestions(
+      {required int quizId}) async {
+    try {
+      var data = await apiServices.get(
+        endPoint: EndPoint.getAllQuestionsByQuizId(quizId),
+      );
+
+      List<QuestionModel> questionModelList = [];
+
+      for (var item in data) {
+        questionModelList.add(QuestionModel.fromJson(item));
+      }    
+
+      return right(questionModelList);
+    } on DioException catch (e) {
+      return left(ServerFailure.fromDioError(e));
+    } catch (e) {
+      return left(ServerFailure(e.toString()));
+    }
+  }
 }
