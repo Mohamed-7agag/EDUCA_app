@@ -14,12 +14,13 @@ enum MyOption { option1, option2, option3, option4 }
 
 class MakeQuizViewBody extends StatefulWidget {
   const MakeQuizViewBody(
-      {super.key, required this.titleQuiz, required this.quizId});
+      {super.key, required this.titleQuiz, required this.quizId, required this.subjectId});
 
   @override
   State<MakeQuizViewBody> createState() => _MakeQuizViewBodyState();
   final String titleQuiz;
   final int quizId;
+  final int subjectId;
 }
 
 class _MakeQuizViewBodyState extends State<MakeQuizViewBody> {
@@ -47,7 +48,11 @@ class _MakeQuizViewBodyState extends State<MakeQuizViewBody> {
                 InkWell(
                   onTap: () {
                     Navigator.pushNamed(context, Routes.showQuizViewRoute,
-                        arguments: widget.quizId);
+                        arguments: {
+                          'quizId': widget.quizId,
+                          'subjectId': widget.subjectId,
+                          'titleQuiz': widget.titleQuiz
+                        });
                   },
                   child: const Text(
                     " عرض الاختبار",
@@ -213,16 +218,7 @@ class _MakeQuizViewBodyState extends State<MakeQuizViewBody> {
                               errorCherryToast(
                                   context, "حدث خطاء", "ادخل جميع الاختيارات");
                             } else {
-                              // questionList.add(
-                              //   QuestionModel(
-                              //       question: questionController.text,
-                              //       quizId: widget.quizId,
-                              //       option1: answer1Controller.text,
-                              //       option2: answer2Controller.text,
-                              //       option3: answer3Controller.text,
-                              //       option4: answer4Controller.text,
-                              //       correctAnswer: answer),
-                              // );
+                             
                               context.read<AddQuestionCubit>().addQuestion(
                                     quizId: widget.quizId,
                                     content: questionController.text,

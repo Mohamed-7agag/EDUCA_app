@@ -7,8 +7,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ShowQuizView extends StatelessWidget {
-  const ShowQuizView({super.key, required this.quizId});
+  const ShowQuizView(
+      {super.key,
+      required this.quizId,
+      required this.subjectId,
+      required this.titleQuiz});
   final int quizId;
+  final int subjectId;
+  final String titleQuiz;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<GetAllQuestionCubit, GetAllQuestionState>(
@@ -51,7 +57,12 @@ class ShowQuizView extends StatelessWidget {
                 ],
               ),
             ),
-            body:  ShowQuizViewBody(allquestionList: state.questionModelList,),
+            body: ShowQuizViewBody(
+              allquestionList: state.questionModelList,
+              quizId: quizId,
+              subjectId: subjectId,
+              titleQuiz: titleQuiz,
+            ),
           );
         } else {
           return const Scaffold(

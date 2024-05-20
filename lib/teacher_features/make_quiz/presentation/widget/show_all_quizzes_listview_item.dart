@@ -15,7 +15,11 @@ class ShowAllQuizzesListViewItem extends StatelessWidget {
     return InkWell(
       onTap: () {
         Navigator.pushNamed(context, Routes.showQuizViewRoute,
-            arguments: quizModel.quizId);
+            arguments: {
+              "quizId": quizModel.quizId,
+              "subjectId": quizModel.subjectId , 
+              "titleQuiz": quizModel.description,
+            });
       },
       child: Directionality(
         textDirection: TextDirection.rtl,
@@ -33,7 +37,9 @@ class ShowAllQuizzesListViewItem extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               TextButton.icon(
-                onPressed: () {},
+                onPressed: () {
+                  
+                },
                 icon: const Icon(
                   Icons.edit_outlined,
                   color: kPrimaryColor,

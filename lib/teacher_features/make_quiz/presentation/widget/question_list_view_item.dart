@@ -57,7 +57,9 @@ class QuestionListViewItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  
+                },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(kPrimaryColor),
                 ),
@@ -70,7 +72,9 @@ class QuestionListViewItem extends StatelessWidget {
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(kPrimaryColor),
               ),
-              onPressed: () {},
+              onPressed: () {
+                
+              },
               child: const Text("حذف", style: TextStyle(color: Colors.white)),
             ),
           ],

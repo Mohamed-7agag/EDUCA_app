@@ -320,18 +320,21 @@ class AppRouter {
             child: MakeQuizView(
               titleQuiz: args["titleQuiz"],
               quizId: args["quizId"],
+              subjectId: args["subjectId"],
             ),
           ),
         );
       case Routes.showQuizViewRoute:
-        var args = settings.arguments as int;
+        var args = settings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
             create: (context) =>
                 GetAllQuestionCubit(getIt.get<AddQuizRepoImplement>())
-                  ..getAllQuestion(quizId: args),
+                  ..getAllQuestion(quizId: args["quizId"]),
             child: ShowQuizView(
-              quizId: args,
+              titleQuiz: args["titleQuiz"],
+              quizId: args["quizId"],
+              subjectId: args["subjectId"],
             ),
           ),
         );

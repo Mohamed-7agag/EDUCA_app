@@ -50,6 +50,7 @@ class ShowAllQuizzesListViewBuilder extends StatelessWidget {
                 arguments: {
                   "quizId": state.quizModel.quizId,
                   "titleQuiz": controller.text,
+                  "subjectId": subjectId
                 },
               );
             } else if (state is AddQuizFailure) {
