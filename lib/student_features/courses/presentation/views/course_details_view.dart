@@ -4,20 +4,14 @@ import 'package:flutter/material.dart';
 import '../widgets/course_details_view_body.dart';
 
 class CourseDetailsView extends StatelessWidget {
-  const CourseDetailsView(
-      {super.key, required this.subjectModel, this.isEnrolled});
+  const CourseDetailsView({super.key, required this.subjectModel});
   final SubjectModel subjectModel;
-  final bool? isEnrolled;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(
-          child: CourseDetailsViewBody(
-        subjectModel: subjectModel,
-        isEnrolled: isEnrolled,
-      )),
+      body: SafeArea(child: CourseDetailsViewBody(subjectModel: subjectModel)),
     );
   }
 }

@@ -1,4 +1,3 @@
-import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:field_training_app/Core/models/subject_model.dart';
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/routes.dart';
@@ -10,8 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyCoursesItem extends StatelessWidget {
   const MyCoursesItem(
-      {super.key, this.isFavourite = true, required this.subjectModel});
-  final bool? isFavourite;
+      {super.key, required this.subjectModel});
   final SubjectModel subjectModel;
 
   @override
@@ -21,7 +19,7 @@ class MyCoursesItem extends StatelessWidget {
         Navigator.pushNamed(
           context,
           Routes.courseDetailsViewRoute,
-          arguments: [subjectModel, true],
+          arguments: subjectModel,
         );
       },
       splashColor: kSplashColor,
@@ -60,42 +58,6 @@ class MyCoursesItem extends StatelessWidget {
                       fit: BoxFit.fitWidth,
                     ),
                   ),
-                  isFavourite == true
-                      ? Positioned(
-                          top: 4.h,
-                          left: 4.w,
-                          child: IconButton(
-                            onPressed: () {
-                              AwesomeDialog(
-                                context: context,
-                                dialogType: DialogType.infoReverse,
-                                animType: AnimType.topSlide,
-                                title: 'تنبيه',
-                                desc: 'هل تريد حذف هذا المادة الدراسية ؟',
-                                btnCancelOnPress: () {},
-                                btnOkOnPress: () {},
-                                btnOkText: 'نعم',
-                                btnCancelText: 'لا',
-                              ).show();
-                            },
-                            icon: Icon(
-                              Icons.delete,
-                              color: kPrimaryColor,
-                              size: 21.sp,
-                            ),
-                            style: ButtonStyle(
-                              backgroundColor:
-                                  const MaterialStatePropertyAll(Colors.white),
-                              shape: MaterialStatePropertyAll(
-                                RoundedRectangleBorder(
-                                  borderRadius: BorderRadiusDirectional.all(
-                                      Radius.circular(4.r)),
-                                ),
-                              ),
-                            ),
-                          ),
-                        )
-                      : const SizedBox.shrink(),
                 ],
               ),
             ),

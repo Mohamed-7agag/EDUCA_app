@@ -1,5 +1,6 @@
 import 'package:field_training_app/Core/api_services/end_points.dart';
 import 'package:field_training_app/Core/api_services/payment_api_services.dart';
+import 'package:field_training_app/Core/models/subject_model.dart';
 import 'package:field_training_app/Core/utils/app_services.dart';
 import 'package:field_training_app/cache/cache_helper.dart';
 import 'package:field_training_app/student_features/auth/data/repos/auth_repo_implement.dart';
@@ -255,7 +256,7 @@ class AppRouter {
           builder: (context) => const SearchOptionsView(),
         );
       case Routes.courseDetailsViewRoute:
-        var args = settings.arguments as List<dynamic>;
+        var args = settings.arguments as SubjectModel;
         return MaterialPageRoute(
           builder: (context) => MultiBlocProvider(
             providers: [
@@ -267,13 +268,10 @@ class AppRouter {
               BlocProvider(
                 create: (context) =>
                     EnrollmentCubit(getIt.get<EnrollmentRepoImplement>())
-                      ..allStudentsEnrolledInSpecSubject(args[0].id! as int),
+                      ..allStudentsEnrolledInSpecSubject(args.id!),
               ),
             ],
-            child: CourseDetailsView(
-              subjectModel: args[0],
-              isEnrolled: args[1],
-            ),
+            child: CourseDetailsView(subjectModel: args),
           ),
         );
       case Routes.termsViewRoute:
@@ -300,10 +298,9 @@ class AppRouter {
       case Routes.enrolledStudentDetailsRoute:
         var args = settings.arguments as StDto;
         return MaterialPageRoute(
-            builder: (context) =>  EnrolledStudentDetailsView(
-              stDto: args,
-              
-            ));
+            builder: (context) => EnrolledStudentDetailsView(
+                  stDto: args,
+                ));
 
       case Routes.quizViewRoute:
         var args = settings.arguments as int;

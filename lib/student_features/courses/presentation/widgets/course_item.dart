@@ -18,8 +18,11 @@ class CourseItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, Routes.courseDetailsViewRoute,
-            arguments: [subjectModel, false]);
+        Navigator.pushNamed(
+          context,
+          Routes.courseDetailsViewRoute,
+          arguments: subjectModel,
+        );
       },
       splashColor: kSplashColor,
       borderRadius: BorderRadius.circular(8.r),

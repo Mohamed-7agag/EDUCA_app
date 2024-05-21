@@ -17,10 +17,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CourseDetailsViewBody extends StatelessWidget {
-  const CourseDetailsViewBody(
-      {super.key, required this.subjectModel, this.isEnrolled = false});
+  const CourseDetailsViewBody({
+    super.key,
+    required this.subjectModel,
+  });
   final SubjectModel subjectModel;
-  final bool? isEnrolled;
 
   @override
   Widget build(BuildContext context) {
@@ -99,6 +100,7 @@ class CourseDetailsViewBody extends StatelessWidget {
                           width: 40,
                           height: 40,
                           errorIconSize: 23,
+                          loadingWidth: 20.w,
                         ),
                       ],
                     ),

@@ -28,7 +28,6 @@ class TeacherSubjectsViewBody extends StatelessWidget {
                       return Padding(
                         padding: const EdgeInsets.only(top: 14, bottom: 5),
                         child: MyCoursesItem(
-                          isFavourite: false,
                           subjectModel: state.subjectList[index],
                         ),
                       );
