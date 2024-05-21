@@ -48,7 +48,7 @@ class _VisaViewBodyState extends State<VisaViewBody> {
                     widget.subjectID,
                   );
               successCherryToast(
-                  context, 'عملية دفع ناجحة', 'تمت عملية الدفع بنجاح');
+                  context, 'عملية دفع ناجحة', 'تم تسجيل المادة بنجاح');
               return NavigationDecision.navigate;
             } else if (request.url.contains("success=false")) {
               errorCherryToast(context, 'حدث خطأ', 'فشلت عملية الدفع');
