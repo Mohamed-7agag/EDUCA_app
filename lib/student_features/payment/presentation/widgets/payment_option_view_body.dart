@@ -8,7 +8,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'payment_option_item.dart';
 
 class PaymentOptionViewBody extends StatelessWidget {
-  const PaymentOptionViewBody({super.key});
+  const PaymentOptionViewBody({super.key, required this.subjectID});
+  final int subjectID;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +37,7 @@ class PaymentOptionViewBody extends StatelessWidget {
               Navigator.pushReplacementNamed(
                 context,
                 Routes.visaViewRoute,
-                arguments: PaymentConstants.visaUrl,
+                arguments: [PaymentConstants.visaUrl,subjectID],
               );
             },
           ),
@@ -48,7 +49,7 @@ class PaymentOptionViewBody extends StatelessWidget {
               Navigator.pushReplacementNamed(
                 context,
                 Routes.visaViewRoute,
-                arguments: PaymentConstants.visaUrl2,
+                arguments: [PaymentConstants.visaUrl2,subjectID],
               );
             },
           ),

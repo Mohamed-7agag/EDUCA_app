@@ -239,7 +239,7 @@ class CourseDetailsViewBody extends StatelessWidget {
                         listener: (context, paymentState) {
                           if (paymentState is PaymentOrderIdSuccessState) {
                             Navigator.pushNamed(
-                                context, Routes.paymentOptionViewRoute);
+                                context, Routes.paymentOptionViewRoute,arguments: subjectModel.id!);
                           } else if (paymentState is PaymentOrderIdErrorState) {
                             errorCherryToast(
                                 context, "حدث خطا", "يرجي المحاولة مرة اخري");
@@ -282,7 +282,7 @@ class CourseDetailsViewBody extends StatelessWidget {
                   listener: (context, paymentState) {
                     if (paymentState is PaymentOrderIdSuccessState) {
                       Navigator.pushNamed(
-                          context, Routes.paymentOptionViewRoute);
+                          context, Routes.paymentOptionViewRoute,arguments: subjectModel.id!);
                     } else if (paymentState is PaymentOrderIdErrorState) {
                       errorCherryToast(
                           context, "حدث خطا", "يرجي المحاولة مرة اخري");

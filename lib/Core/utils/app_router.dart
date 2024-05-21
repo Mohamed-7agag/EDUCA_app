@@ -377,8 +377,9 @@ class AppRouter {
           ),
         );
       case Routes.paymentOptionViewRoute:
+        var args = settings.arguments as int;
         return MaterialPageRoute(
-          builder: (context) => const PaymentOptionView(),
+          builder: (context) => PaymentOptionView(subjectID: args),
         );
       case Routes.refCodeViewRoute:
         return MaterialPageRoute(
@@ -389,9 +390,16 @@ class AppRouter {
           ),
         );
       case Routes.visaViewRoute:
-        var args = settings.arguments as String;
+        var args = settings.arguments as List;
         return MaterialPageRoute(
-          builder: (context) => VisaView(url: args),
+          builder: (context) => BlocProvider(
+            create: (context) =>
+                EnrollmentCubit(getIt.get<EnrollmentRepoImplement>()),
+            child: VisaView(
+              url: args[0],
+              subjectID: args[1],
+            ),
+          ),
         );
       case Routes.teacherDetailsViewRoute:
         var args = settings.arguments as int;
