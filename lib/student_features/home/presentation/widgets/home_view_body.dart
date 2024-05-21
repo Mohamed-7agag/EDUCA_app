@@ -66,9 +66,9 @@ class HomeViewBody extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 20),
             child: Container(
-              padding: EdgeInsets.only(right: 20.w, left: 6.w),
+              padding: EdgeInsets.only(right: 20.w, left: 5.w),
               width: double.infinity,
-              height: 72.h,
+              height: 73,
               decoration: BoxDecoration(
                 color: kPrimaryColor,
                 borderRadius: BorderRadius.only(
@@ -83,7 +83,7 @@ class HomeViewBody extends StatelessWidget {
                     style: IconButton.styleFrom(
                         backgroundColor: Colors.white,
                         foregroundColor: kPrimaryColor,
-                        padding: const EdgeInsets.all(14)),
+                        padding: const EdgeInsets.all(13)),
                     onPressed: () {
                       Navigator.pushNamed(
                           context, Routes.searchOptionViewRoute);
@@ -115,7 +115,7 @@ class HomeViewBody extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(right: 20),
             child: SizedBox(
-              height: 230.h,
+              height: 242,
               child: BlocBuilder<HomeCubit, HomeState>(
                 builder: (context, state) {
                   if (state is HomeGetSubjectsSuccess) {
@@ -155,7 +155,7 @@ class HomeViewBody extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(right: 20),
             child: SizedBox(
-              height: 230.h,
+              height: 242,
               child: BlocBuilder<HomeCubit, HomeState>(
                 builder: (context, state) {
                   if (state is HomeGetSubjectsSuccess) {

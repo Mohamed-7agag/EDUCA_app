@@ -46,7 +46,7 @@ class MyCoursesItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SizedBox(
-              height: 100.h,
+              height: 110,
               child: Stack(
                 fit: StackFit.expand,
                 children: [
