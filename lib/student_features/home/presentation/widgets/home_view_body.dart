@@ -64,7 +64,7 @@ class HomeViewBody extends StatelessWidget {
           ),
           SizedBox(height: 20.h),
           Padding(
-            padding: const EdgeInsets.only(left: 20),
+            padding: const EdgeInsets.only(left: 35),
             child: Container(
               padding: EdgeInsets.only(right: 20.w, left: 5.w),
               width: double.infinity,

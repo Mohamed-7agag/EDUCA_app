@@ -31,7 +31,7 @@ class CourseDetailsViewBody extends StatelessWidget {
         Stack(
           children: [
             Container(
-              height: 230.h,
+              height: 220.h,
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(subjectImage(subjectModel.subjName!)),
@@ -40,7 +40,7 @@ class CourseDetailsViewBody extends StatelessWidget {
               ),
             ),
             Positioned(
-              bottom: -25.h,
+              bottom: -30.h,
               child: Container(
                 height: 55.h,
                 width: MediaQuery.of(context).size.width,
