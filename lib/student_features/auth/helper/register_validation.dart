@@ -53,10 +53,12 @@ void registerValidation(BuildContext context, String optionState) {
           errorCherryToast(context, "حدث خطأ", 'يرجي تحديد صف دراسي');
         }
       } else if (optionState == "معلم") {
-        CacheHelper.saveData(
-            key: passwordKey,
-            value: context.read<AuthCubit>().passwordController.text);
-        context.read<AuthCubit>().teacherRegister();
+        if (context.read<AuthCubit>().governorate != "أختر المحافظة" &&
+            context.read<AuthCubit>().governorate != "") {
+          context.read<AuthCubit>().teacherRegister();
+        } else {
+          errorCherryToast(context, "حدث خطأ", 'يرجي تحديد المحافظة');
+        }
       } else {
         errorCherryToast(context, "حدث خطأ", 'يرجي تحديد نوع المستخدم');
       }

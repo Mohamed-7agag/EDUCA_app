@@ -32,7 +32,7 @@ class LoginViewBody extends StatelessWidget {
           ),
         ),
         Expanded(
-          flex: 5,
+          flex: 6,
           child: Container(
             width: double.infinity,
             padding: const EdgeInsets.only(left: 20, right: 20, top: 25),
@@ -44,7 +44,7 @@ class LoginViewBody extends StatelessWidget {
                 BoxShadow(
                   color: kShadowColor,
                   blurRadius: 2,
-                  spreadRadius: 1.5,
+                  spreadRadius: 3,
                 ),
               ],
             ),
@@ -85,7 +85,7 @@ class LoginViewBody extends StatelessWidget {
                                         .read<PasswordVisibilityCubit>()
                                         .changeState();
                                   },
-                                  icon: state == true
+                                  icon: state == false
                                       ? const Icon(Icons.visibility_rounded,
                                           color: kPrimaryColor)
                                       : const Icon(Icons.visibility_off_rounded,
