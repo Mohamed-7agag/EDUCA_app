@@ -1,7 +1,6 @@
-// ignore_for_file: library_private_types_in_public_api
-
 import 'package:field_training_app/Core/api_services/end_points.dart';
 import 'package:field_training_app/Core/utils/constatnt.dart';
+import 'package:field_training_app/Core/utils/routes.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/pop_icon_button.dart';
 import 'package:field_training_app/cache/cache_helper.dart';
@@ -18,10 +17,10 @@ class VisaViewBody extends StatefulWidget {
   final int subjectID;
 
   @override
-  _VisaViewBodyState createState() => _VisaViewBodyState();
+  VisaViewBodyState createState() => VisaViewBodyState();
 }
 
-class _VisaViewBodyState extends State<VisaViewBody> {
+class VisaViewBodyState extends State<VisaViewBody> {
   late WebViewController _controller;
 
   @override
@@ -49,6 +48,10 @@ class _VisaViewBodyState extends State<VisaViewBody> {
                   );
               successCherryToast(
                   context, 'عملية دفع ناجحة', 'تم تسجيل المادة بنجاح');
+              Future.delayed(const Duration(seconds: 1), () {
+                Navigator.pushReplacementNamed(
+                    context, Routes.customBottomBarViewRoute);
+              });
               return NavigationDecision.navigate;
             } else if (request.url.contains("success=false")) {
               errorCherryToast(context, 'حدث خطأ', 'فشلت عملية الدفع');
