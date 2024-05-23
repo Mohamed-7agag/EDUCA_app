@@ -48,10 +48,7 @@ class VisaViewBodyState extends State<VisaViewBody> {
                   );
               successCherryToast(
                   context, 'عملية دفع ناجحة', 'تم تسجيل المادة بنجاح');
-              Future.delayed(const Duration(seconds: 1), () {
-                Navigator.pushReplacementNamed(
-                    context, Routes.customBottomBarViewRoute);
-              });
+             
               return NavigationDecision.navigate;
             } else if (request.url.contains("success=false")) {
               errorCherryToast(context, 'حدث خطأ', 'فشلت عملية الدفع');
