@@ -1,3 +1,4 @@
+import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views/widgets/course_lisview_item.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views_model/get_all_courses_cubit/get_all_courses_teacher_cubit.dart';
 
@@ -26,10 +27,7 @@ class CourseListViewBuider extends StatelessWidget {
         } else if (state is GetAllCoursesTeacherFailure) {
           return Center(child: Text(state.message));
         }
-        return const Center(
-            child: CircularProgressIndicator(
-          color: Colors.amber,
-        ));
+        return const CustomLoadingWidget();
       },
     );
   }

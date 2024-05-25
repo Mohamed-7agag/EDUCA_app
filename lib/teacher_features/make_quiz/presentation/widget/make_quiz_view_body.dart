@@ -3,6 +3,7 @@ import 'package:field_training_app/Core/utils/routes.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
+import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
 
 import 'package:field_training_app/teacher_features/make_quiz/presentation/views_model/add_question_cubit/add_question_cubit.dart';
 
@@ -201,7 +202,7 @@ class _MakeQuizViewBodyState extends State<MakeQuizViewBody> {
               },
               builder: (context, state) {
                 return state is AddQuestionLoading
-                    ? const Center(child: CircularProgressIndicator())
+                    ? const CustomLoadingWidget()
                     : Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 80.0),
                         child: CustomButton(

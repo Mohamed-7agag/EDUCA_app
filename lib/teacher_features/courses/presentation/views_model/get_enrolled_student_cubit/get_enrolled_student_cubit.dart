@@ -14,8 +14,8 @@ class GetEnrolledStudentCubit extends Cubit<GetEnrolledStudentState> {
     var result = await enrollmentRepo.allStudentsEnrolledInSpecSubject(
         subjectID: subjectID);
     result.fold((failure) {
-      emit(
-          GetEnrolledStudentFailure("the Subject Doesn't have Any Enrollment"));
+      emit(const GetEnrolledStudentFailure(
+          "the Subject Doesn't have Any Enrollment"));
     }, (enrolledStudentList) {
       emit(GetEnrolledStudentSuccess(enrolledStudentList));
     });

@@ -3,6 +3,7 @@ import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/routes.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
+import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
 import 'package:field_training_app/teacher_features/courses/data/models/course_model.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views_model/get_all_courses_cubit/get_all_courses_teacher_cubit.dart';
 import 'package:flutter/material.dart';
@@ -85,9 +86,7 @@ class CourseListViewItem extends StatelessWidget {
                           onPressed: () {
                             state is GetAllCoursesDeleteSubjectLoading
                                 ? const Center(
-                                    child: CircularProgressIndicator(
-                                      color: Colors.red,
-                                    ),
+                                    child:CustomLoadingWidget()
                                   )
                                 : AwesomeDialog(
                                     context: context,

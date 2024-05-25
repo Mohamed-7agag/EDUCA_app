@@ -1,6 +1,7 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/routes.dart';
 import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
+import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
 import 'package:field_training_app/teacher_features/make_quiz/presentation/views_model/add_quiz_cubit/add_quiz_cubit.dart';
 
 import 'package:field_training_app/teacher_features/make_quiz/presentation/widget/show_all_quizzes_listview_item.dart';
@@ -35,7 +36,7 @@ class ShowAllQuizzesListViewBuilder extends StatelessWidget {
                 return Text(state.errMessage);
               }
             } else {
-              return const Center(child: CircularProgressIndicator());
+              return const CustomLoadingWidget();
             }
           },
         ),
@@ -59,7 +60,7 @@ class ShowAllQuizzesListViewBuilder extends StatelessWidget {
           },
           builder: (context, state) {
             return state is AddQuizLoading
-                ? const Center(child: CircularProgressIndicator())
+                ? const CustomLoadingWidget()
                 : Padding(
                     padding:
                         const EdgeInsets.only(bottom: 24, right: 20, left: 20),
