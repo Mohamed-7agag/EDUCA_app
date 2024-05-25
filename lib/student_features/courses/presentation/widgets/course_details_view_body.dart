@@ -17,10 +17,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CourseDetailsViewBody extends StatelessWidget {
-  const CourseDetailsViewBody(
-      {super.key, required this.subjectModel, this.isEnrolled = false});
+  const CourseDetailsViewBody({
+    super.key,
+    required this.subjectModel,
+  });
   final SubjectModel subjectModel;
-  final bool? isEnrolled;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class CourseDetailsViewBody extends StatelessWidget {
         Stack(
           children: [
             Container(
-              height: 230.h,
+              height: 220.h,
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(subjectImage(subjectModel.subjName!)),
@@ -39,7 +40,7 @@ class CourseDetailsViewBody extends StatelessWidget {
               ),
             ),
             Positioned(
-              bottom: -25.h,
+              bottom: -30.h,
               child: Container(
                 height: 55.h,
                 width: MediaQuery.of(context).size.width,
@@ -99,6 +100,7 @@ class CourseDetailsViewBody extends StatelessWidget {
                           width: 40,
                           height: 40,
                           errorIconSize: 23,
+                          loadingWidth: 20.w,
                         ),
                       ],
                     ),
@@ -237,7 +239,7 @@ class CourseDetailsViewBody extends StatelessWidget {
                         listener: (context, paymentState) {
                           if (paymentState is PaymentOrderIdSuccessState) {
                             Navigator.pushNamed(
-                                context, Routes.paymentOptionViewRoute);
+                                context, Routes.paymentOptionViewRoute,arguments: subjectModel.id!);
                           } else if (paymentState is PaymentOrderIdErrorState) {
                             errorCherryToast(
                                 context, "حدث خطا", "يرجي المحاولة مرة اخري");
@@ -280,7 +282,7 @@ class CourseDetailsViewBody extends StatelessWidget {
                   listener: (context, paymentState) {
                     if (paymentState is PaymentOrderIdSuccessState) {
                       Navigator.pushNamed(
-                          context, Routes.paymentOptionViewRoute);
+                          context, Routes.paymentOptionViewRoute,arguments: subjectModel.id!);
                     } else if (paymentState is PaymentOrderIdErrorState) {
                       errorCherryToast(
                           context, "حدث خطا", "يرجي المحاولة مرة اخري");

@@ -1,6 +1,7 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/models/teacher_model.dart';
 import 'package:field_training_app/Core/utils/routes.dart';
+import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_cached_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -28,11 +29,11 @@ class TeacherSearchItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Text(
-                "${teacherSearchedModel.firstName} ${teacherSearchedModel.lastName}"),
+                "${teacherSearchedModel.firstName} ${teacherSearchedModel.lastName}",style: Styles.textStyle14,),
             SizedBox(width: 10.w),
             Container(
-                width: 40,
-                height: 40,
+                width: 38,
+                height: 38,
                 decoration: BoxDecoration(
                   color: kSplashColor,
                   borderRadius: BorderRadius.circular(100),

@@ -39,6 +39,7 @@ class TeacherDetailsViewBody extends StatelessWidget {
                       imageUrl: state.teacherModel.profileImageUrl ?? '',
                       width: 115,
                       height: 115,
+                      errorIconSize: 52,
                     ),
                   ],
                 ),

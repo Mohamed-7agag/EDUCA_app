@@ -25,7 +25,7 @@ class CustomCachedImage extends StatelessWidget {
         imageUrl: imageUrl,
         width: width ?? 110,
         height: height ?? 110,
-        fit: BoxFit.fill,
+        fit: BoxFit.contain,
         errorWidget: (context, url, error) {
           return Container(
             width: width ?? 110,

@@ -44,11 +44,11 @@ class RegisterViewBody extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 20.h),
+            SizedBox(height: 15.h),
             CustomUserImage(
               radius: 50.r,
               cameraSize: 20,
-              iconSize: 45,
+              iconSize: 50,
               right: 115.w,
               top: 70.h,
             ),
@@ -107,7 +107,7 @@ class RegisterViewBody extends StatelessWidget {
                                   .read<PasswordVisibilityCubit>()
                                   .changeState();
                             },
-                            icon: state == true
+                            icon: state == false
                                 ? const Icon(Icons.visibility_rounded,
                                     color: kPrimaryColor)
                                 : const Icon(Icons.visibility_off_rounded,

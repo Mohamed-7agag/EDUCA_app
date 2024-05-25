@@ -14,9 +14,13 @@ class SubjectSearchItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, Routes.courseDetailsViewRoute,
-            arguments: subjectSearchedModel);
+        Navigator.pushNamed(
+          context,
+          Routes.courseDetailsViewRoute,
+          arguments: subjectSearchedModel,
+        );
       },
+      borderRadius: BorderRadius.circular(10.r),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
         decoration: BoxDecoration(

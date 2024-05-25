@@ -58,14 +58,14 @@ class ChatGPTViewBody extends StatelessWidget {
                 child: TextField(
                   textAlign: TextAlign.right,
                   cursorColor: kPrimaryColor,
-                  keyboardType: TextInputType.multiline,
                   cursorRadius: Radius.circular(10.r),
                   cursorHeight: 30.h,
+                  maxLines: null,
                   controller: chatController,
                   decoration: const InputDecoration(
                     hintText: "ChatGPT تحدث مع",
                     contentPadding:
-                        EdgeInsets.symmetric(vertical: 16, horizontal: 14),
+                        EdgeInsets.symmetric(vertical: 15, horizontal: 14),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(50)),
                       borderSide: BorderSide(color: Colors.grey),
@@ -87,7 +87,7 @@ class ChatGPTViewBody extends StatelessWidget {
                     chatController.clear();
                   } else {
                     warningCherryToast(
-                        context, 'تحذير', "من فضلك قم بكتابة الرسالة");
+                        context, 'تحذير', "من فضلك قم بكتابة سوال");
                   }
                 },
                 icon: const Icon(Icons.send_rounded, color: Colors.white),
