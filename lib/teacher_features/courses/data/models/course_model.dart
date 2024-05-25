@@ -10,6 +10,7 @@ class CourseModel extends Equatable {
   final String? addingTime;
   final String? describtion;
   final int? pricePerHour;
+  final int? term;
 
   const CourseModel({
     this.id,
@@ -20,6 +21,7 @@ class CourseModel extends Equatable {
     this.addingTime,
     this.describtion,
     this.pricePerHour,
+    this.term,
   });
 
   factory CourseModel.fromJson(Map<String, dynamic> json) => CourseModel(
@@ -31,6 +33,7 @@ class CourseModel extends Equatable {
         addingTime: json[ApiKey.addingTime] as String?,
         describtion: json[ApiKey.describtion] as String?,
         pricePerHour: json[ApiKey.pricePerHour] as int?,
+        term: json[ApiKey.term] as int?,
       );
 
   Map<String, dynamic> toJson() => {
@@ -42,6 +45,7 @@ class CourseModel extends Equatable {
         ApiKey.addingTime: addingTime,
         ApiKey.describtion: describtion,
         ApiKey.pricePerHour: pricePerHour,
+        ApiKey.term: term,
       };
 
   @override
@@ -54,5 +58,6 @@ class CourseModel extends Equatable {
         addingTime,
         describtion,
         pricePerHour,
+        term,
       ];
 }

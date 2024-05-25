@@ -113,7 +113,13 @@ class HomeTeacherViewBody extends StatelessWidget {
                   ),
                 );
               } else if (state is GetAllCoursesTeacherFailure) {
-                return Text(state.message);
+                return Center(
+                  child: Text(
+                    "No courses available. Please add a course.",
+                    textDirection: TextDirection.rtl,
+                    style: Styles.textStyle14.copyWith(color: Colors.grey),
+                  ),
+                );
               } else {
                 return const CustomLoadingWidget();
               }

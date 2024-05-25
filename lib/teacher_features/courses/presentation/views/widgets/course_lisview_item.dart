@@ -85,9 +85,7 @@ class CourseListViewItem extends StatelessWidget {
                         child: IconButton(
                           onPressed: () {
                             state is GetAllCoursesDeleteSubjectLoading
-                                ? const Center(
-                                    child:CustomLoadingWidget()
-                                  )
+                                ? const Center(child: CustomLoadingWidget())
                                 : AwesomeDialog(
                                     context: context,
                                     dialogType: DialogType.infoReverse,
@@ -161,7 +159,9 @@ class CourseListViewItem extends StatelessWidget {
                   ),
                   SizedBox(height: 6.h),
                   Text(
-                    course.addingTime ?? "null coming",
+                    course.addingTime == null
+                        ? "null coming"
+                        : course.addingTime!.substring(0, 10),
                     style: Styles.textStyle14,
                     textAlign: TextAlign.right,
                   ),

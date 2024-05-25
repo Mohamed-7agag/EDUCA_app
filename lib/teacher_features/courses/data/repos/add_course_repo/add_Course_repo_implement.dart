@@ -19,17 +19,21 @@ class AddCourseRepoImplement implements AddCourseRepo {
       {required String subjectName,
       required int pricePerHour,
       required String level,
+      required int trem,
       required String describtion}) async {
     try {
       var data = await apiServices.post(
+        isFromData: true,
         endPoint: EndPoint.subject,
+        
         data: {
           ApiKey.teacherId: CacheHelper.getData(key: ApiKey.id),
           ApiKey.subjectName: subjectName,
           ApiKey.level: level,
           ApiKey.describtion: describtion,
           ApiKey.pricePerHour: pricePerHour,
-          ApiKey.addingTime: "2024-05-11T11:15:58.661"
+          ApiKey.addingTime: "2024-05-11T11:15:58.661",
+          ApiKey.term: 1,
         },
       );
 

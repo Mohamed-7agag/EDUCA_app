@@ -16,6 +16,7 @@ class AddCourseCubit extends Cubit<AddCourseState> {
   String subjName = '';
   String trem = '';
   int price = 0;
+  int term=1;
 
   Future<void> addCourse() async {
     emit(AddCourseLoading());
@@ -24,6 +25,7 @@ class AddCourseCubit extends Cubit<AddCourseState> {
       subjectName: subjName,
       pricePerHour: price,
       describtion: controller.text,
+      trem: term,
     );
     result.fold((failure) {
       emit(AddCourseFailure(errMessage: failure.errMessage));

@@ -25,11 +25,11 @@ class ShowAllQuizzesListViewItem extends StatelessWidget {
         child: ListTile(
           leading: const Icon(Icons.description_outlined),
           title: Text(quizModel.description ?? ""),
-          subtitle: const Row(
+          subtitle: Row(
             children: [
-              Text("10/10/2010"),
-              Spacer(),
-              Text('10 اسئلة'),
+              Text(quizModel.createdDate.toString().substring(0, 10)),
+              const Spacer(),
+              const Text('10 اسئلة'),
             ],
           ),
           trailing: Row(

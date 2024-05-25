@@ -99,6 +99,12 @@ class CreateClassViewBody extends StatelessWidget {
                             onSelected: (value) {
                               BlocProvider.of<DropDownListCubit>(context)
                                   .changeIndexDropDownListterm(value);
+                              
+                              if (value == "ألاول") {
+                                context.read<AddCourseCubit>().term = 1;
+                              } else {
+                                context.read<AddCourseCubit>().term = 2;
+                              }
                             },
                             listItemBuilder: const ['ألاول', 'الثاني'],
                           ),

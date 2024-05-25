@@ -76,7 +76,7 @@ class CourseDetailsTeacherViewBody extends StatelessWidget {
                       ),
                       SizedBox(height: 7.h),
                       Text(
-                        "الفصل الثاني",
+                        courseModel.term == 1 ? "الفصل الاول" : "الفصل الثاني",
                         style: Styles.textStyle16,
                       ),
                     ],

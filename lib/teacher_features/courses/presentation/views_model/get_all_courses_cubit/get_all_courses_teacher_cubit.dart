@@ -13,7 +13,7 @@ class GetAllCoursesTeacherCubit extends Cubit<GetAllCoursesTeacherState> {
 
   void getCourses({required int teacherId}) async {
     emit(GetAllCoursesTeacherLoading());
-    final result = await courseRepo.getCourses(teacherId: 8);
+    final result = await courseRepo.getCourses(teacherId: teacherId);
     result.fold((failure) {
       emit(GetAllCoursesTeacherFailure(failure.toString()));
     }, (courseList) {

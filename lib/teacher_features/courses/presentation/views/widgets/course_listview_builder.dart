@@ -1,3 +1,5 @@
+import 'package:field_training_app/Core/utils/routes.dart';
+import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views/widgets/course_lisview_item.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views_model/get_all_courses_cubit/get_all_courses_teacher_cubit.dart';
@@ -25,7 +27,26 @@ class CourseListViewBuider extends StatelessWidget {
             },
           );
         } else if (state is GetAllCoursesTeacherFailure) {
-          return Center(child: Text(state.message));
+          return InkWell(
+            onTap: () {
+              Navigator.of(context).pushReplacementNamed(Routes.createClassViewRoute);
+            },
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(Icons.subject_outlined, color: Colors.grey),
+                  const SizedBox(height: 16.0),
+                  Text(
+                    "No courses available \n  add new course",
+                    textDirection: TextDirection.rtl,
+                    textAlign: TextAlign.center,
+                    style: Styles.textStyle18.copyWith(color: Colors.grey),
+                  ),
+                ],
+              ),
+            ),
+          );
         }
         return const CustomLoadingWidget();
       },

@@ -90,6 +90,8 @@ class ApiKey {
   static String addingTime = "addingTime";
   static String subjectId = "subjectId";
 
+  static String term = "term";
+
   static String content = "content";
   static String correctAnswer = "correctAnswer";
   static String quizId = "quizId";

@@ -1,5 +1,3 @@
-import 'package:field_training_app/Core/utils/constatnt.dart';
-import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
 import 'package:field_training_app/teacher_features/make_quiz/presentation/views_model/cubit/get_all_question_cubit.dart';
 import 'package:field_training_app/teacher_features/make_quiz/presentation/widget/show_quiz_view_body.dart';
@@ -40,28 +38,31 @@ class ShowQuizView extends StatelessWidget {
           );
         } else if (state is GetAllQuestionSuccess) {
           return Scaffold(
-            appBar: AppBar(
-              automaticallyImplyLeading: false,
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    '${state.questionModelList.length} سؤال',
-                    style: Styles.textStyle18.copyWith(color: kPrimaryColor),
-                    textDirection: TextDirection.rtl,
-                  ),
-                  const Text(
-                    'الاختبار',
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                  ),
-                ],
+            // appBar: AppBar(
+            //   automaticallyImplyLeading: false,
+            //   title: Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //     children: [
+            //       Text(
+            //         '${state.questionModelList.length} سؤال',
+            //         style: Styles.textStyle18.copyWith(color: kPrimaryColor),
+            //         textDirection: TextDirection.rtl,
+            //       ),
+            //       Text(
+            //         titleQuiz,
+            //         style: const TextStyle(
+            //             fontSize: 25, fontWeight: FontWeight.bold),
+            //       ),
+            //     ],
+            //   ),
+            // ),
+            body: SafeArea(
+              child: ShowQuizViewBody(
+                allquestionList: state.questionModelList,
+                quizId: quizId,
+                subjectId: subjectId,
+                titleQuiz: titleQuiz,
               ),
-            ),
-            body: ShowQuizViewBody(
-              allquestionList: state.questionModelList,
-              quizId: quizId,
-              subjectId: subjectId,
-              titleQuiz: titleQuiz,
             ),
           );
         } else {

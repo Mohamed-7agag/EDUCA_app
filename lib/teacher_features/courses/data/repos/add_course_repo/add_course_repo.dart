@@ -8,6 +8,7 @@ abstract class AddCourseRepo {
     required int pricePerHour,
     required String level,
     required String describtion,
+    required int trem,
   });
 
   Future<Either<Failure, CourseModel>> updateCourse({
