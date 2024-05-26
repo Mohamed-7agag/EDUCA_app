@@ -75,7 +75,7 @@ class ShowAllQuizzesListViewBuilder extends StatelessWidget {
                         SizedBox(height: 10),
                         Center(
                           child: Text(
-                            ' لهذه المادة لا يوجد اختبارات  \nاضف اختبار ',
+                            '   لا يوجد اختبارات لهذه المادة \nاضف اختبار ',
                             textAlign: TextAlign.center,
                             style: TextStyle(fontSize: 24),
                           ),
