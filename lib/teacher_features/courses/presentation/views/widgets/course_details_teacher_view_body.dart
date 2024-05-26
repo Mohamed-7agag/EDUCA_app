@@ -1,15 +1,10 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
-import 'package:field_training_app/student_features/courses/presentation/widgets/course_item.dart';
 import 'package:field_training_app/teacher_features/courses/data/models/course_model.dart';
-import 'package:field_training_app/teacher_features/courses/presentation/views_model/show_sub_classes_cubit.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:field_training_app/teacher_features/courses/presentation/views/widgets/classes_and_subclasses_listview.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../Core/utils/routes.dart';
@@ -257,66 +252,6 @@ class CourseDetailsTeacherViewBody extends StatelessWidget {
   }
 }
 
-class ClassesAndSubClassesListViews extends StatelessWidget {
-  const ClassesAndSubClassesListViews({
-    super.key,
-  });
 
-  @override
-  Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ShowSubClassesCubit(),
-      child: SliverList(
-        delegate: SliverChildBuilderDelegate(
-          (context, index) {
-            return BlocBuilder<ShowSubClassesCubit, Map<int, bool>>(
-              builder: (context, state) {
-                return ChapterItem(
-                  index: index,
-                  isExpanded: state[index] ?? false,
-                );
-              },
-            );
-          },
-        ),
-      ),
-    );
-  }
-}
 
-class ChapterItem extends StatelessWidget {
-  final int index;
-  final bool isExpanded;
 
-  ChapterItem({required this.index, required this.isExpanded});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ListTile(
-          title: Text("الفصل ${index + 1}"),
-          trailing:
-              isExpanded ? const Icon(Icons.remove) : const Icon(Icons.add),
-          onTap: () {
-            context.read<ShowSubClassesCubit>().toggleExpansion(index);
-          },
-        ),
-        if (isExpanded)
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 25,
-            ),
-            child: ListView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: 4,
-              itemBuilder: (context, subIndex) {
-                return ListTile(title: Text("الدرس ${subIndex + 1}"));
-              },
-            ),
-          )
-      ],
-    );
-  }
-}
