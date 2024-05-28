@@ -10,7 +10,7 @@ class CourseEditView extends StatelessWidget {
       appBar: AppBar(
         title: const Text(' Pdf view'),
       ),
-      body: SafeArea(child: const CourseEditViewBody()),
+      body: const SafeArea(child: CourseEditViewBody()),
     );
   }
 }

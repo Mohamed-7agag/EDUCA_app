@@ -8,7 +8,6 @@ const Color kBackgroundColor = Color(0xFFFAFAFA);
 const Color kShadowColor = Color(0x089E9E9E);
 
 const String introScreenKey = "introScreen";
-const String optionStateKey = "optionState";
 const String termsKey = "terms";
 const String passwordKey = "password";
 const String studentImageProfileKey = "studentImageProfile";

@@ -11,14 +11,14 @@ class CourseEditViewBody extends StatefulWidget {
 }
 
 class _CourseEditViewBodyState extends State<CourseEditViewBody> {
-   void openFile(PlatformFile file) {
+  void openFile(PlatformFile file) {
     OpenFile.open(file.path);
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: BoxConstraints(maxHeight: 500),
+      constraints: const BoxConstraints(maxHeight: 500),
       alignment: Alignment.center,
       padding: const EdgeInsets.all(32.0),
       child: Center(
@@ -35,7 +35,5 @@ class _CourseEditViewBodyState extends State<CourseEditViewBody> {
         ),
       ),
     );
-    
   }
-  
 }
