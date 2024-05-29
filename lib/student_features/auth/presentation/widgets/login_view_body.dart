@@ -110,8 +110,11 @@ class LoginViewBody extends StatelessWidget {
                             Navigator.pushReplacementNamed(
                                 context, Routes.customBottomBarViewRoute);
                           } else {
-                            Navigator.pushReplacementNamed(context,
-                                Routes.customBottomBarForTeacherViewRoute);
+                            CacheHelper.getData(key: termsKey) == false
+                                ? Navigator.pushReplacementNamed(
+                                    context, Routes.termsViewRoute)
+                                : Navigator.pushReplacementNamed(context,
+                                    Routes.customBottomBarForTeacherViewRoute);
                           }
                         } else if (state is AuthLoginFailure) {
                           errorCherryToast(
@@ -120,7 +123,7 @@ class LoginViewBody extends StatelessWidget {
                       },
                       builder: (context, state) {
                         return state is AuthLoginLoading
-                            ? const CustomLoadingWidget()
+                            ? CustomLoadingWidget(width: 50.w)
                             : CustomButton(
                                 text: "تسجيل",
                                 onpressed: () {

@@ -41,8 +41,8 @@ void bottomSheet(BuildContext context) {
                     color: kPrimaryColor,
                   ),
                   style: const ButtonStyle(
-                    backgroundColor: MaterialStatePropertyAll(kSplashColor),
-                    padding: MaterialStatePropertyAll(
+                    backgroundColor: WidgetStatePropertyAll(kSplashColor),
+                    padding: WidgetStatePropertyAll(
                       EdgeInsets.all(12),
                     ),
                   ),
@@ -72,8 +72,8 @@ void bottomSheet(BuildContext context) {
                     color: kPrimaryColor,
                   ),
                   style: const ButtonStyle(
-                    backgroundColor: MaterialStatePropertyAll(kSplashColor),
-                    padding: MaterialStatePropertyAll(
+                    backgroundColor: WidgetStatePropertyAll(kSplashColor),
+                    padding: WidgetStatePropertyAll(
                       EdgeInsets.all(12),
                     ),
                   ),

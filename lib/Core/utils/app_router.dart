@@ -6,7 +6,6 @@ import 'package:field_training_app/cache/cache_helper.dart';
 import 'package:field_training_app/student_features/auth/data/repos/auth_repo_implement.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/auth_cubit/auth_cubit.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/register_option_cubit.dart';
-import 'package:field_training_app/student_features/courses/presentation/view_model/favourite_courses_cubit.dart';
 import 'package:field_training_app/student_features/courses/presentation/views/course_details_view.dart';
 import 'package:field_training_app/student_features/enrollment/data/models/all_students_enrolled_in_spec_subject_model/st_dto.dart';
 import 'package:field_training_app/student_features/enrollment/data/repo/enrollment_repo_implement.dart';
@@ -153,9 +152,6 @@ class AppRouter {
               BlocProvider(
                 create: (context) =>
                     HomeCubit(getIt.get<HomeRepoImplement>())..getSubjects(),
-              ),
-              BlocProvider(
-                create: (context) => FavouriteCoursesCubit(),
               ),
             ],
             child: const CustomBottomBarView(),

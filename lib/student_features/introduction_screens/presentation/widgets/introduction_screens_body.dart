@@ -21,8 +21,8 @@ class IntroScreensBody extends StatelessWidget {
         style: Styles.textStyle16.copyWith(fontWeight: FontWeight.bold),
       ),
       doneStyle: const ButtonStyle(
-          foregroundColor: MaterialStatePropertyAll(Colors.white),
-          backgroundColor: MaterialStatePropertyAll(kPrimaryColor)),
+          foregroundColor: WidgetStatePropertyAll(Colors.white),
+          backgroundColor: WidgetStatePropertyAll(kPrimaryColor)),
       onDone: () {
         CacheHelper.saveData(key: introScreenKey, value: true);
         Navigator.pushNamedAndRemoveUntil(
@@ -30,8 +30,8 @@ class IntroScreensBody extends StatelessWidget {
       },
       showNextButton: true,
       nextStyle: const ButtonStyle(
-          foregroundColor: MaterialStatePropertyAll(Colors.white),
-          backgroundColor: MaterialStatePropertyAll(kPrimaryColor)),
+          foregroundColor: WidgetStatePropertyAll(Colors.white),
+          backgroundColor: WidgetStatePropertyAll(kPrimaryColor)),
       next: Text(
         "التالي",
         style: Styles.textStyle16.copyWith(fontWeight: FontWeight.bold),
