@@ -28,7 +28,7 @@ class MyCoursesViewBody extends StatelessWidget {
             );
           } else if (state is EnrolledSubjectsFailure) {
             return const CustomFailureWidget(
-                errMessage: 'حدث خطأ أثناء تحميل المواد الدراسية');
+                errMessage: 'لا يوجد مواد دراسية');
           }
           return const CustomLoadingWidget();
         },

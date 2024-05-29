@@ -1,4 +1,5 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:field_training_app/Core/api_services/end_points.dart';
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/Core/widgets/custom_failure_widget.dart';
@@ -148,6 +149,9 @@ class ProfileViewBody extends StatelessWidget {
                           desc: 'هل تريد تسجيل الخروج؟',
                           btnCancelOnPress: () {},
                           btnOkOnPress: () {
+                            CacheHelper.removeData(key: ApiKey.token);
+                            CacheHelper.removeData(key: ApiKey.id);
+                            CacheHelper.removeData(key: ApiKey.role);
                             Navigator.pushNamedAndRemoveUntil(context,
                                 Routes.loginViewRoute, (route) => false);
                           },
@@ -163,7 +167,7 @@ class ProfileViewBody extends StatelessWidget {
             return const CustomFailureWidget(
                 errMessage: 'للأسف حدث خطأ ما , حاول مرة أخرى');
           }
-          return const CustomLoadingWidget(width: 70);
+          return const CustomLoadingWidget();
         },
       ),
     );

@@ -20,7 +20,7 @@ class EnrollmentCubit extends Cubit<EnrollmentState> {
     });
   }
 
-  Future<void> allStudentEnrolledSubjectsModel(int studentID) async {
+  Future<void> allStudentEnrolledSubjects(int studentID) async {
     emit(EnrolledSubjectsLoading());
     final result = await enrollmentRepoImplement.allStudentEnrolledSubjects(
         studentID: studentID);

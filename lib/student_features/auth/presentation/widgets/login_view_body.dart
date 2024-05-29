@@ -123,7 +123,7 @@ class LoginViewBody extends StatelessWidget {
                       },
                       builder: (context, state) {
                         return state is AuthLoginLoading
-                            ? CustomLoadingWidget(width: 50.w)
+                            ? const CustomLoadingWidget()
                             : CustomButton(
                                 text: "تسجيل",
                                 onpressed: () {

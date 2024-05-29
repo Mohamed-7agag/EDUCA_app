@@ -62,7 +62,6 @@ import 'package:field_training_app/student_features/search/presentation/views/se
 import '../../student_features/auth/presentation/view_model/change_profile_image.dart';
 import '../../student_features/bottom_bar/presentation/view_model/bottom_bar_cubit.dart';
 import '../../student_features/chat_gpt/presentation/view_model/chat_cubit.dart';
-import '../../student_features/notification/presentation/views/notification_view.dart';
 import '../../student_features/profile/presentation/view_model/cubit/student_profile_cubit.dart';
 import '../../student_features/profile/presentation/views/profile_select_class_edit_view.dart';
 import '../../student_features/profile/presentation/views/profile_view.dart';
@@ -138,7 +137,7 @@ class AppRouter {
               BlocProvider(
                 create: (context) =>
                     EnrollmentCubit(getIt.get<EnrollmentRepoImplement>())
-                      ..allStudentEnrolledSubjectsModel(
+                      ..allStudentEnrolledSubjects(
                           CacheHelper.getData(key: ApiKey.id)),
               ),
               BlocProvider(
@@ -228,10 +227,7 @@ class AppRouter {
             child: ProfileSelectClassEditView(value: args),
           ),
         );
-      case Routes.notificationViewRoute:
-        return MaterialPageRoute(
-          builder: (context) => const NotificationView(),
-        );
+     
       case Routes.searchViewRoute:
         var args = settings.arguments as String;
         return MaterialPageRoute(

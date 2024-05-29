@@ -306,7 +306,7 @@ class RegisterViewBody extends StatelessWidget {
                                 },
                                 builder: (context, state) {
                                   return state is AuthRegisterLoading
-                                      ? CustomLoadingWidget(width: 50.w)
+                                      ? const CustomLoadingWidget()
                                       : CustomButton(
                                           text: "أنشاء",
                                           onpressed: () {

@@ -10,7 +10,7 @@ class CustomLoadingWidget extends StatelessWidget {
     return Center(
       child: LottieBuilder.asset(
         'assets/animation/loading.json',
-        width: width ?? 56.w,
+        width: width ?? 50.w,
       ),
     );
   }
