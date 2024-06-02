@@ -40,6 +40,7 @@ class AuthCubit extends Cubit<AuthState> {
       }, (loginModel) {
         CacheHelper.saveData(key: ApiKey.token, value: loginModel.token);
         CacheHelper.saveData(key: ApiKey.id, value: loginModel.id);
+        CacheHelper.saveData(key: ApiKey.role, value: loginModel.role);
         emit(AuthLoginSuccess());
       });
     }

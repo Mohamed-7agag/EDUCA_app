@@ -4,7 +4,6 @@ import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
 import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
 import 'package:field_training_app/Core/widgets/pop_icon_button.dart';
-import 'package:field_training_app/cache/cache_helper.dart';
 import 'package:field_training_app/student_features/auth/helper/register_validation.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/auth_cubit/auth_cubit.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/governorate_cubit.dart';
@@ -289,11 +288,6 @@ class RegisterViewBody extends StatelessWidget {
                               child: BlocConsumer<AuthCubit, AuthState>(
                                 listener: (context, state) {
                                   if (state is AuthRegisterSuccess) {
-                                    CacheHelper.saveData(
-                                      key: optionStateKey,
-                                      value: optionState,
-                                    );
-
                                     successCherryToast(
                                       context,
                                       "عملية ناجحة",

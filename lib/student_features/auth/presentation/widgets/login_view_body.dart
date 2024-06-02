@@ -1,3 +1,4 @@
+import 'package:field_training_app/Core/api_services/end_points.dart';
 import 'package:field_training_app/cache/cache_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -104,13 +105,16 @@ class LoginViewBody extends StatelessWidget {
                     child: BlocConsumer<AuthCubit, AuthState>(
                       listener: (context, state) {
                         if (state is AuthLoginSuccess) {
-                          if (CacheHelper.getData(key: optionStateKey) ==
-                              "معلم") {
-                            Navigator.pushReplacementNamed(context,
-                                Routes.customBottomBarForTeacherViewRoute);
-                          } else {
+                          if (CacheHelper.getData(key: ApiKey.role) ==
+                              "Student") {
                             Navigator.pushReplacementNamed(
                                 context, Routes.customBottomBarViewRoute);
+                          } else {
+                            CacheHelper.getData(key: termsKey) == false
+                                ? Navigator.pushReplacementNamed(
+                                    context, Routes.termsViewRoute)
+                                : Navigator.pushReplacementNamed(context,
+                                    Routes.customBottomBarForTeacherViewRoute);
                           }
                         } else if (state is AuthLoginFailure) {
                           errorCherryToast(

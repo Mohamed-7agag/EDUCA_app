@@ -41,6 +41,7 @@ class ProfileUserImage extends StatelessWidget {
                   imageUrl: image ?? '',
                   width: 115,
                   height: 115,
+                  errorIconSize: 60,
                 ),
         ),
       ],

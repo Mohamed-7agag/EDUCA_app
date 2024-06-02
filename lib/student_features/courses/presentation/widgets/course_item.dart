@@ -5,10 +5,8 @@ import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/utils/subject_image.dart';
 import 'package:field_training_app/Core/widgets/custom_cached_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../view_model/favourite_courses_cubit.dart';
 
 class CourseItem extends StatelessWidget {
   const CourseItem({super.key, required this.subjectModel});
@@ -45,52 +43,14 @@ class CourseItem extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Stack(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(8.r),
-                    topRight: Radius.circular(8.r),
-                  ),
-                  child: Image.asset(
-                    subjectImage(subjectModel.subjName!),
-                  ),
-                ),
-                Positioned(
-                  top: 6.h,
-                  left: 6.w,
-                  child: BlocBuilder<FavouriteCoursesCubit, bool>(
-                    builder: (context, state) {
-                      return InkWell(
-                        onTap: () {
-                          // todo add this course object to favourite
-                          BlocProvider.of<FavouriteCoursesCubit>(context)
-                              .changeState();
-                        },
-                        borderRadius: BorderRadius.circular(5.r),
-                        splashColor: kSplashColor,
-                        child: Container(
-                          padding: const EdgeInsets.all(5),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.rectangle,
-                            color: Colors.white,
-                            borderRadius: BorderRadiusDirectional.all(
-                              Radius.circular(5.r),
-                            ),
-                          ),
-                          child: Icon(
-                            state == false
-                                ? Icons.favorite_border
-                                : Icons.favorite,
-                            color: kPrimaryColor,
-                            size: 20.sp,
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-              ],
+            ClipRRect(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(8.r),
+                topRight: Radius.circular(8.r),
+              ),
+              child: Image.asset(
+                subjectImage(subjectModel.subjName!),
+              ),
             ),
             Padding(
               padding: EdgeInsets.only(left: 10.w, top: 10.h, bottom: 4.h),

@@ -1,5 +1,6 @@
 import 'package:field_training_app/Core/api_services/end_points.dart';
 import 'package:field_training_app/Core/utils/constatnt.dart';
+import 'package:field_training_app/Core/utils/routes.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/pop_icon_button.dart';
 import 'package:field_training_app/cache/cache_helper.dart';
@@ -47,6 +48,9 @@ class VisaViewBodyState extends State<VisaViewBody> {
                   );
               successCherryToast(
                   context, 'عملية دفع ناجحة', 'تم تسجيل المادة بنجاح');
+              Navigator.pushNamedAndRemoveUntil(
+                  context, Routes.customBottomBarViewRoute, (route) => false);
+
               return NavigationDecision.navigate;
             } else if (request.url.contains("success=false")) {
               errorCherryToast(context, 'حدث خطأ', 'فشلت عملية الدفع');

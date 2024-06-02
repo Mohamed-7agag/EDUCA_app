@@ -58,17 +58,17 @@ class SearchRepoImplement implements SearchRepo {
   }
 
   @override
-  Future<Either<Failure, List<TeacherModel>>> getSearchByTeachersInGovernate(
-      String teacherName, String governate) async {
+  Future<Either<Failure, List<SubjectModel>>> getSearchByTeachersInGovernate(
+      String subjectName, String governate) async {
     try {
       var data = await apiServices.get(
-        endPoint: EndPoint.searchByTeachersInGovernate(teacherName, governate),
+        endPoint: EndPoint.searchByTeachersInGovernate(subjectName, governate),
       );
 
-      List<TeacherModel> searchedList = [];
-      if (data.first.containsKey('email')) {
+      List<SubjectModel> searchedList = [];
+      if (data.first.containsKey('subjName')) {
         for (var item in data) {
-          searchedList.add(TeacherModel.fromJson(item));
+          searchedList.add(SubjectModel.fromJson(item));
         }
       }
       return right(searchedList);

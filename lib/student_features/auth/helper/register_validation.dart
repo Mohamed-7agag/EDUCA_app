@@ -55,6 +55,9 @@ void registerValidation(BuildContext context, String optionState) {
       } else if (optionState == "معلم") {
         if (context.read<AuthCubit>().governorate != "أختر المحافظة" &&
             context.read<AuthCubit>().governorate != "") {
+          CacheHelper.saveData(
+              key: passwordKey,
+              value: context.read<AuthCubit>().passwordController.text);
           context.read<AuthCubit>().teacherRegister();
         } else {
           errorCherryToast(context, "حدث خطأ", 'يرجي تحديد المحافظة');

@@ -6,7 +6,6 @@ import 'package:field_training_app/cache/cache_helper.dart';
 import 'package:field_training_app/student_features/auth/data/repos/auth_repo_implement.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/auth_cubit/auth_cubit.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/register_option_cubit.dart';
-import 'package:field_training_app/student_features/courses/presentation/view_model/favourite_courses_cubit.dart';
 import 'package:field_training_app/student_features/courses/presentation/views/course_details_view.dart';
 import 'package:field_training_app/student_features/enrollment/data/models/all_students_enrolled_in_spec_subject_model/st_dto.dart';
 import 'package:field_training_app/student_features/enrollment/data/repo/enrollment_repo_implement.dart';
@@ -34,7 +33,6 @@ import 'package:field_training_app/teacher_features/courses/presentation/views/c
 import 'package:field_training_app/teacher_features/courses/presentation/views/course_details_teacher_view.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views/enrolled_student_details_view.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views/enrolled_students_view.dart';
-import 'package:field_training_app/teacher_features/courses/presentation/views/widgets/course_edit_view_body.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views_model/add_course_cubit/add_course_cubit.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views_model/get_all_courses_cubit/get_all_courses_teacher_cubit.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views_model/get_enrolled_student_cubit/get_enrolled_student_cubit.dart';
@@ -64,7 +62,6 @@ import 'package:field_training_app/student_features/search/presentation/views/se
 import '../../student_features/auth/presentation/view_model/change_profile_image.dart';
 import '../../student_features/bottom_bar/presentation/view_model/bottom_bar_cubit.dart';
 import '../../student_features/chat_gpt/presentation/view_model/chat_cubit.dart';
-import '../../student_features/notification/presentation/views/notification_view.dart';
 import '../../student_features/profile/presentation/view_model/cubit/student_profile_cubit.dart';
 import '../../student_features/profile/presentation/views/profile_select_class_edit_view.dart';
 import '../../student_features/profile/presentation/views/profile_view.dart';
@@ -140,7 +137,7 @@ class AppRouter {
               BlocProvider(
                 create: (context) =>
                     EnrollmentCubit(getIt.get<EnrollmentRepoImplement>())
-                      ..allStudentEnrolledSubjectsModel(
+                      ..allStudentEnrolledSubjects(
                           CacheHelper.getData(key: ApiKey.id)),
               ),
               BlocProvider(
@@ -154,9 +151,6 @@ class AppRouter {
               BlocProvider(
                 create: (context) =>
                     HomeCubit(getIt.get<HomeRepoImplement>())..getSubjects(),
-              ),
-              BlocProvider(
-                create: (context) => FavouriteCoursesCubit(),
               ),
             ],
             child: const CustomBottomBarView(),
@@ -233,10 +227,7 @@ class AppRouter {
             child: ProfileSelectClassEditView(value: args),
           ),
         );
-      case Routes.notificationViewRoute:
-        return MaterialPageRoute(
-          builder: (context) => const NotificationView(),
-        );
+     
       case Routes.searchViewRoute:
         var args = settings.arguments as String;
         return MaterialPageRoute(

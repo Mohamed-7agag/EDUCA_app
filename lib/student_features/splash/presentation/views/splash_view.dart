@@ -32,7 +32,7 @@ class _SplashViewState extends State<SplashView> {
         context,
         CacheHelper.getData(key: introScreenKey) == true
             ? CacheHelper.getData(key: ApiKey.id) != null
-                ? CacheHelper.getData(key: optionStateKey) == "طالب"
+                ? CacheHelper.getData(key: ApiKey.role) == "Student"
                     ? Routes.customBottomBarViewRoute
                     : CacheHelper.getData(key: termsKey) == true
                         ? Routes.customBottomBarForTeacherViewRoute

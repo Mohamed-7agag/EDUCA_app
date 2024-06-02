@@ -1,7 +1,6 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:open_file/open_file.dart';
-import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class CourseEditViewBody extends StatefulWidget {
   const CourseEditViewBody({super.key});
@@ -11,7 +10,7 @@ class CourseEditViewBody extends StatefulWidget {
 }
 
 class _CourseEditViewBodyState extends State<CourseEditViewBody> {
-   void openFile(PlatformFile file) {
+  void openFile(PlatformFile file) {
     OpenFile.open(file.path);
   }
 
@@ -19,6 +18,7 @@ class _CourseEditViewBodyState extends State<CourseEditViewBody> {
   Widget build(BuildContext context) {
     return Container(
       constraints:const BoxConstraints(maxHeight: 500),
+    
       alignment: Alignment.center,
       padding: const EdgeInsets.all(32.0),
       child: Center(
@@ -35,7 +35,5 @@ class _CourseEditViewBodyState extends State<CourseEditViewBody> {
         ),
       ),
     );
-    
   }
-  
 }

@@ -113,8 +113,8 @@ class CourseListViewItem extends StatelessWidget {
                           ),
                           style: ButtonStyle(
                             backgroundColor:
-                                const MaterialStatePropertyAll(Colors.white),
-                            shape: MaterialStatePropertyAll(
+                                const WidgetStatePropertyAll(Colors.white),
+                            shape: WidgetStatePropertyAll(
                               RoundedRectangleBorder(
                                 borderRadius: BorderRadiusDirectional.all(
                                     Radius.circular(4.r)),

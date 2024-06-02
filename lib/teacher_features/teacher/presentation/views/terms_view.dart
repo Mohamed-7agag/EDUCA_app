@@ -18,7 +18,7 @@ class TermsView extends StatelessWidget {
       ),
       body: ScrollbarTheme(
         data: const ScrollbarThemeData(
-            thumbColor: MaterialStatePropertyAll(kPrimaryColor)),
+            thumbColor: WidgetStatePropertyAll(kPrimaryColor)),
         child: SingleChildScrollView(
           controller: _scrollController,
           child: Padding(

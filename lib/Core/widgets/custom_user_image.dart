@@ -65,7 +65,7 @@ class CustomUserImage extends StatelessWidget {
                   size: cameraSize,
                 ),
                 style: const ButtonStyle(
-                  backgroundColor: MaterialStatePropertyAll(
+                  backgroundColor: WidgetStatePropertyAll(
                     kPrimaryColor,
                   ),
                 ),

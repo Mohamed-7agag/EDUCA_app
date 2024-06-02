@@ -9,6 +9,6 @@ abstract class SearchRepo {
       String? teacherName);
   Future<Either<Failure, List<SubjectModel>>> getSearchBySubjectName(
       String? subjectName);
-  Future<Either<Failure, List<TeacherModel>>> getSearchByTeachersInGovernate(
-      String teacherName, String governate);
+  Future<Either<Failure, List<SubjectModel>>> getSearchByTeachersInGovernate(
+      String subjectName, String governate);
 }

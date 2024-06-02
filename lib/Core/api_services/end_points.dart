@@ -69,6 +69,7 @@ class ApiKey {
   static String description = "description";
   static String token = "token";
   static String id = "id";
+  static String role = "role";
   //? for login and register
   static String firstName = "firstName";
   static String lastName = "lastName";
