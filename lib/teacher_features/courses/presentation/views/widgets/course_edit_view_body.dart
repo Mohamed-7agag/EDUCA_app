@@ -18,7 +18,7 @@ class _CourseEditViewBodyState extends State<CourseEditViewBody> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: BoxConstraints(maxHeight: 500),
+      constraints:const BoxConstraints(maxHeight: 500),
       alignment: Alignment.center,
       padding: const EdgeInsets.all(32.0),
       child: Center(
