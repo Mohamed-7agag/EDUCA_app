@@ -1,6 +1,4 @@
-import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
-import 'package:field_training_app/cache/cache_helper.dart';
 import 'package:field_training_app/student_features/auth/presentation/view_model/auth_cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -45,9 +43,6 @@ void registerValidation(BuildContext context, String optionState) {
       if (optionState == 'طالب') {
         if (context.read<AuthCubit>().studentLevel != "أختر الصف الدراسي" &&
             context.read<AuthCubit>().studentLevel != "") {
-          CacheHelper.saveData(
-              key: passwordKey,
-              value: context.read<AuthCubit>().passwordController.text);
           context.read<AuthCubit>().studentRegister();
         } else {
           errorCherryToast(context, "حدث خطأ", 'يرجي تحديد صف دراسي');
@@ -55,9 +50,6 @@ void registerValidation(BuildContext context, String optionState) {
       } else if (optionState == "معلم") {
         if (context.read<AuthCubit>().governorate != "أختر المحافظة" &&
             context.read<AuthCubit>().governorate != "") {
-          CacheHelper.saveData(
-              key: passwordKey,
-              value: context.read<AuthCubit>().passwordController.text);
           context.read<AuthCubit>().teacherRegister();
         } else {
           errorCherryToast(context, "حدث خطأ", 'يرجي تحديد المحافظة');

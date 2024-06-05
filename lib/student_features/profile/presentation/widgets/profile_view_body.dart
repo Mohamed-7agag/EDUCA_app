@@ -45,7 +45,7 @@ class ProfileViewBody extends StatelessWidget {
                     cameraSize: 22,
                     image: state.studentModel.profileImageUrl,
                   ),
-                  SizedBox(height: 16.h),
+                  SizedBox(height: 14.h),
                   Text(
                       "${state.studentModel.firstName} ${state.studentModel.lastName}",
                       style: Styles.textStyle24
@@ -105,7 +105,7 @@ class ProfileViewBody extends StatelessWidget {
                       Navigator.pushNamed(context, Routes.profileEditViewRoute,
                           arguments: {
                             "parameter": "password",
-                            "value": CacheHelper.getData(key: passwordKey),
+                            "value": '',
                           });
                     },
                   ),

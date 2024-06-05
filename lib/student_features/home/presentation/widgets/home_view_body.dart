@@ -3,6 +3,7 @@ import 'package:field_training_app/Core/utils/routes.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_failure_widget.dart';
 import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
+import 'package:field_training_app/cache/cache_helper.dart';
 import 'package:field_training_app/student_features/home/presentation/view_model/cubit/home_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -41,11 +42,11 @@ class HomeViewBody extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(bottom: 8),
                       child: Image.asset("assets/images/welcome2.png",
-                          width: 31.w),
+                          width: 30.w),
                     ),
                     SizedBox(width: 10.h),
                     Text(
-                      "مرحبا بك",
+                      "مرحبا, ${CacheHelper.getData(key: studentFirstName)}",
                       textDirection: TextDirection.rtl,
                       style: Styles.textStyle22,
                     ),

@@ -14,7 +14,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../../Core/utils/routes.dart';
-import '../../../../Core/widgets/custom_user_image.dart';
 import '../view_model/password_visibility_cubit.dart';
 import '../view_model/register_option_cubit.dart';
 import 'class_option_values.dart';
@@ -43,15 +42,7 @@ class RegisterViewBody extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 15.h),
-            CustomUserImage(
-              radius: 50.r,
-              cameraSize: 20,
-              iconSize: 50,
-              right: 115.w,
-              top: 70.h,
-            ),
-            SizedBox(height: 40.h),
+            SizedBox(height: 60.h),
             Form(
               key: context.read<AuthCubit>().formKey,
               child: Column(
@@ -280,7 +271,7 @@ class RegisterViewBody extends StatelessWidget {
                                       )
                                     : const SizedBox.shrink(),
                             optionState == ""
-                                ? SizedBox(height: 10.h)
+                                ? SizedBox(height: 70.h)
                                 : SizedBox(height: 35.h),
                             Padding(
                               padding:
