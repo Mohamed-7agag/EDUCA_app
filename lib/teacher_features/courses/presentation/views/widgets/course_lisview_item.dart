@@ -106,6 +106,7 @@ class CourseListViewItem extends StatelessWidget {
                                     btnCancelText: 'لا',
                                   ).show();
                           },
+                          
                           icon: Icon(
                             Icons.delete,
                             color: kPrimaryColor,

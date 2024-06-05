@@ -18,28 +18,29 @@ class ChapterItem extends StatelessWidget {
           trailing:
               isExpanded ? const Icon(Icons.remove) : const Icon(Icons.add),
           onTap: () {
+            // navgaite
             context.read<ShowSubClassesCubit>().toggleExpansion(index);
           },
         ),
-        if (isExpanded)
-          InkWell(
-            onTap: () {
-              Navigator.pushNamed(context, Routes.courseEditViewRoute);
-            },
-            child: Padding(
-              padding: const EdgeInsets.only(
-                left: 25,
-              ),
-              child: ListView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: 4,
-                itemBuilder: (context, subIndex) {
-                  return ListTile(title: Text("الدرس ${subIndex + 1}"));
-                },
-              ),
-            ),
-          )
+        // if (isExpanded)
+        //   InkWell(
+        //     onTap: () {
+        //       Navigator.pushNamed(context, Routes.courseEditViewRoute);
+        //     },
+        //     child: Padding(
+        //       padding: const EdgeInsets.only(
+        //         left: 25,
+        //       ),
+        //       child: ListView.builder(
+        //         physics: const NeverScrollableScrollPhysics(),
+        //         shrinkWrap: true,
+        //         itemCount: 4,
+        //         itemBuilder: (context, subIndex) {
+        //           return ListTile(title: Text("الدرس ${subIndex + 1}"));
+        //         },
+        //       ),
+        //     ),
+        //   )
       ],
     );
   }
