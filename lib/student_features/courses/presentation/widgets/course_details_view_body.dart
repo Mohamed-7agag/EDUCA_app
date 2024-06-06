@@ -63,49 +63,32 @@ class CourseDetailsViewBody extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.favorite_border_outlined,
-                      size: 25,
-                      color: kPrimaryColor,
+              InkWell(
+                onTap: () {
+                  Navigator.pushNamed(
+                    context,
+                    Routes.teacherDetailsViewRoute,
+                    arguments: subjectModel.teacherId,
+                  );
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      subjectModel.teacherName!,
+                      style: Styles.textStyle16
+                          .copyWith(fontWeight: FontWeight.w600),
                     ),
-                    style: IconButton.styleFrom(
-                      padding: EdgeInsets.all(10.r),
-                      backgroundColor: kSplashColor,
+                    SizedBox(width: 10.w),
+                    CustomCachedImage(
+                      imageUrl: subjectModel.profileImageUrl ?? '',
+                      width: 40,
+                      height: 40,
+                      errorIconSize: 23,
+                      loadingWidth: 20.w,
                     ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(
-                        context,
-                        Routes.teacherDetailsViewRoute,
-                        arguments: subjectModel.teacherId,
-                      );
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(
-                          subjectModel.teacherName!,
-                          style: Styles.textStyle16
-                              .copyWith(fontWeight: FontWeight.w600),
-                        ),
-                        SizedBox(width: 10.w),
-                        CustomCachedImage(
-                          imageUrl: subjectModel.profileImageUrl ?? '',
-                          width: 40,
-                          height: 40,
-                          errorIconSize: 23,
-                          loadingWidth: 20.w,
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
               SizedBox(
                 height: 30.h,
@@ -119,8 +102,8 @@ class CourseDetailsViewBody extends StatelessWidget {
                         SizedBox(width: 10.w),
                         Text(
                           ' : تاريخ الأنشاء',
-                          style:
-                              Styles.textStyle12.copyWith(color: Colors.grey),
+                          style: Styles.textStyle12
+                              .copyWith(color: Colors.grey.shade700),
                         ),
                       ],
                     )
@@ -128,59 +111,97 @@ class CourseDetailsViewBody extends StatelessWidget {
               subjectModel.addingTime != null
                   ? SizedBox(height: 22.h)
                   : const SizedBox.shrink(),
-              Text(
-                "المادة الدراسية : ",
-                style: Styles.textStyle12.copyWith(color: Colors.grey),
-                textDirection: TextDirection.rtl,
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: kSplashDarkerColor,
+                  borderRadius: BorderRadius.circular(8.r),
+                ),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            '${subjectModel.level!} / ${subjectModel.term == 1 ? 'الترم الأول' : 'الترم الثاني'}',
+                            textAlign: TextAlign.center,
+                            style: Styles.textStyle14
+                                .copyWith(color: kPrimaryColor),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 80.h,
+                          child: VerticalDivider(
+                            color: kPrimaryColor,
+                            width: 30.w,
+                            thickness: 1.5,
+                            indent: 10,
+                            endIndent: 10,
+                          ),
+                        ),
+                        Expanded(
+                          child: Text(
+                            subjectModel.subjName!,
+                            textAlign: TextAlign.center,
+                            style: Styles.textStyle18
+                                .copyWith(color: kPrimaryColor),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Expanded(
+                          child: Column(
+                            children: [
+                              const Text("عدد الاختبارات"),
+                              SizedBox(height: 12.h),
+                              Text(
+                                '3',
+                                style: Styles.textStyle18.copyWith(
+                                  color: kPrimaryColor,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 80.h,
+                          child: VerticalDivider(
+                            color: kPrimaryColor,
+                            width: 30.w,
+                            thickness: 1.5,
+                            indent: 10,
+                            endIndent: 10,
+                          ),
+                        ),
+                        Expanded(
+                          child: Column(
+                            children: [
+                              const Text("سعر الحصة"),
+                              SizedBox(height: 12.h),
+                              Text(
+                                "${subjectModel.pricePerHour} جنية",
+                                style: Styles.textStyle16.copyWith(
+                                  color: kPrimaryColor,
+                                ),
+                                textDirection: TextDirection.rtl,
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-              SizedBox(height: 7.h),
-              Text(
-                subjectModel.subjName!,
-                style: Styles.textStyle16,
-              ),
-              SizedBox(height: 22.h),
-              Wrap(
-                spacing: 70.w,
-                alignment: WrapAlignment.end,
-                verticalDirection: VerticalDirection.up,
-                runSpacing: 20.h,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text(
-                        "الفصل الدراسي  : ",
-                        style: Styles.textStyle12.copyWith(color: Colors.grey),
-                        textDirection: TextDirection.rtl,
-                      ),
-                      SizedBox(height: 7.h),
-                      Text(
-                        subjectModel.term == 1 ? 'الترم الأول' : 'الترم الثاني',
-                        style: Styles.textStyle16,
-                      ),
-                    ],
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text(
-                        "الصف الدراسي  : ",
-                        style: Styles.textStyle12.copyWith(color: Colors.grey),
-                        textDirection: TextDirection.rtl,
-                      ),
-                      SizedBox(height: 7.h),
-                      Text(
-                        subjectModel.level!,
-                        style: Styles.textStyle16,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              SizedBox(height: 22.h),
+              SizedBox(height: 25.h),
               Text(
                 "وصف المادة : ",
-                style: Styles.textStyle12.copyWith(color: Colors.grey),
+                style: Styles.textStyle12.copyWith(color: Colors.grey.shade700),
                 textDirection: TextDirection.rtl,
               ),
               SizedBox(height: 7.h),
@@ -190,38 +211,6 @@ class CourseDetailsViewBody extends StatelessWidget {
                 textDirection: TextDirection.rtl,
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
-              ),
-              SizedBox(height: 25.h),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "3",
-                    style: Styles.textStyle16.copyWith(color: kPrimaryColor),
-                    textDirection: TextDirection.rtl,
-                  ),
-                  Text(
-                    "عدد الاختبارات لهذه المادة :  ",
-                    style: Styles.textStyle12.copyWith(color: Colors.grey),
-                    textDirection: TextDirection.rtl,
-                  ),
-                ],
-              ),
-              SizedBox(height: 20.h),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "${subjectModel.pricePerHour} جنية",
-                    style: Styles.textStyle16.copyWith(color: kPrimaryColor),
-                    textDirection: TextDirection.rtl,
-                  ),
-                  Text(
-                    "سعر الحصة : ",
-                    style: Styles.textStyle12.copyWith(color: Colors.grey),
-                    textDirection: TextDirection.rtl,
-                  ),
-                ],
               ),
             ],
           ),
@@ -239,7 +228,8 @@ class CourseDetailsViewBody extends StatelessWidget {
                         listener: (context, paymentState) {
                           if (paymentState is PaymentOrderIdSuccessState) {
                             Navigator.pushNamed(
-                                context, Routes.paymentOptionViewRoute,arguments: subjectModel.id!);
+                                context, Routes.paymentOptionViewRoute,
+                                arguments: subjectModel.id!);
                           } else if (paymentState is PaymentOrderIdErrorState) {
                             errorCherryToast(
                                 context, "حدث خطا", "يرجي المحاولة مرة اخري");
@@ -249,7 +239,7 @@ class CourseDetailsViewBody extends StatelessWidget {
                           return paymentState is PaymentOrderIdLoadingState
                               ? const CustomLoadingWidget()
                               : CustomButton(
-                                  text: "تسجيل المادة",
+                                  text: "شراء المادة (400 جنية)",
                                   onpressed: () {
                                     context
                                         .read<PaymentCubit>()
@@ -268,21 +258,33 @@ class CourseDetailsViewBody extends StatelessWidget {
                                   });
                         },
                       )
-                    : CustomButton(
-                        text: 'عرض الاختبارات',
-                        onpressed: () {
-                          Navigator.pushNamed(
-                            context,
-                            Routes.quizzesListViewRoute,
-                            arguments: subjectModel.id!,
-                          );
-                        });
+                    : Row(
+                        children: [
+                          Expanded(
+                            child: CustomButton(
+                                text: 'الاختبارات',
+                                onpressed: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    Routes.quizzesListViewRoute,
+                                    arguments: subjectModel.id!,
+                                  );
+                                }),
+                          ),
+                          SizedBox(width: 12.w),
+                          Expanded(
+                            child:
+                                CustomButton(text: 'الدروس', onpressed: () {}),
+                          ),
+                        ],
+                      );
               } else if (state is AllStudentsEnrolledInSpecSubjectFailure) {
                 return BlocConsumer<PaymentCubit, PaymentState>(
                   listener: (context, paymentState) {
                     if (paymentState is PaymentOrderIdSuccessState) {
                       Navigator.pushNamed(
-                          context, Routes.paymentOptionViewRoute,arguments: subjectModel.id!);
+                          context, Routes.paymentOptionViewRoute,
+                          arguments: subjectModel.id!);
                     } else if (paymentState is PaymentOrderIdErrorState) {
                       errorCherryToast(
                           context, "حدث خطا", "يرجي المحاولة مرة اخري");
@@ -292,7 +294,7 @@ class CourseDetailsViewBody extends StatelessWidget {
                     return paymentState is PaymentOrderIdLoadingState
                         ? const CustomLoadingWidget()
                         : CustomButton(
-                            text: "تسجيل المادة",
+                            text: "شراء المادة (400 جنية)",
                             onpressed: () {
                               context
                                   .read<PaymentCubit>()
