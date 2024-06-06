@@ -415,8 +415,9 @@ class AppRouter {
           ),
         );
       case Routes.courseEditViewRoute:
+        var args = settings.arguments as int;
         return MaterialPageRoute(
-          builder: (context) => const CourseEditView(),
+          builder: (context) =>  CourseEditView(subjectId: args,),
         );
       default:
         return MaterialPageRoute(

@@ -4,6 +4,7 @@ class EndPoint {
   static String studentRegister = "studentaccount/register";
   static String teacherRegister = "teacheraccount/register";
   static String subject = "subject";
+  static String chapters = "chapters";
   static String quiz = "quiz";
   static String questions = "questions";
   static String getStudentById(int id) {
@@ -61,6 +62,10 @@ class EndPoint {
 
   static String getAllQuestionsByQuizId(int id) {
     return "questions/byquiz/$id";
+  }
+
+  static String uploadFile(int chapterId) {
+    return "chapters/$chapterId/upload";
   }
 }
 

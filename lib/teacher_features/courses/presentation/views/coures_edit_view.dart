@@ -2,15 +2,15 @@ import 'package:field_training_app/teacher_features/courses/presentation/views/w
 import 'package:flutter/material.dart';
 
 class CourseEditView extends StatelessWidget {
-  const CourseEditView({super.key});
-
+  const CourseEditView({super.key, required this.subjectId});
+  final int subjectId;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(' Pdf view'),
+        title: const Text(' Edit Course'),
       ),
-      body: const SafeArea(child: CourseEditViewBody()),
+      body:  SafeArea(child: CourseEditViewBody(subjectId: subjectId,)),
     );
   }
 }

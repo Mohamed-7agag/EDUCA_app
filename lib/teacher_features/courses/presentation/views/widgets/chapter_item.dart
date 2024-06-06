@@ -19,6 +19,7 @@ class ChapterItem extends StatelessWidget {
               isExpanded ? const Icon(Icons.remove) : const Icon(Icons.add),
           onTap: () {
             // navgaite
+            Navigator.pushNamed(context, Routes.courseEditViewRoute);
             context.read<ShowSubClassesCubit>().toggleExpansion(index);
           },
         ),

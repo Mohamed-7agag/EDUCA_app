@@ -245,13 +245,13 @@ class CourseDetailsTeacherViewBody extends StatelessWidget {
         ),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-          child: CustomButton(text: "تعديل المادة", onpressed: () {}),
+          child: CustomButton(
+              text: "تعديل المادة",
+              onpressed: () {
+                Navigator.pushNamed(context, Routes.courseEditViewRoute,arguments: courseModel.subjectId);
+              }),
         )
       ],
     );
   }
 }
-
-
-
-
