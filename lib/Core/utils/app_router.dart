@@ -28,12 +28,15 @@ import 'package:field_training_app/student_features/teacher_details_and_subjects
 import 'package:field_training_app/student_features/teacher_details_and_subjects/presentation/views/teacher_subjects_view.dart';
 import 'package:field_training_app/teacher_features/courses/data/models/course_model.dart';
 import 'package:field_training_app/teacher_features/courses/data/repos/add_course_repo/add_Course_repo_implement.dart';
+import 'package:field_training_app/teacher_features/courses/data/repos/chapter_files_repo/chaoter_files_repo.dart';
+import 'package:field_training_app/teacher_features/courses/data/repos/chapter_files_repo/chapter_files_repo_implement.dart';
 import 'package:field_training_app/teacher_features/courses/data/repos/course_repo/course_repo_implement.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views/coures_edit_view.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views/course_details_teacher_view.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views/enrolled_student_details_view.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views/enrolled_students_view.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views_model/add_course_cubit/add_course_cubit.dart';
+import 'package:field_training_app/teacher_features/courses/presentation/views_model/get_all_chapters_cubit/get_all_chapters_cubit.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views_model/get_all_courses_cubit/get_all_courses_teacher_cubit.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views_model/get_enrolled_student_cubit/get_enrolled_student_cubit.dart';
 import 'package:field_training_app/teacher_features/make_quiz/data/repos/add_quiz_repo/add_quzi_repo_impelement.dart';
@@ -227,7 +230,7 @@ class AppRouter {
             child: ProfileSelectClassEditView(value: args),
           ),
         );
-     
+
       case Routes.searchViewRoute:
         var args = settings.arguments as String;
         return MaterialPageRoute(
@@ -274,8 +277,11 @@ class AppRouter {
       case Routes.courseDetailsTeacherViewRoute:
         var args = settings.arguments as CourseModel;
         return MaterialPageRoute(
-          builder: (context) => CourseDetailsTeacherView(
-            courseModel: args,
+          builder: (context) => BlocProvider(
+            create: (context) => GetAllChaptersCubit(getIt.get<ChapterFilesRepoImplement>())..getChapters(subjectId: args.subjectId!),
+            child: CourseDetailsTeacherView(
+              courseModel: args,
+            ),
           ),
         );
       case Routes.enrolledStudentsViewRoute:
@@ -417,7 +423,9 @@ class AppRouter {
       case Routes.courseEditViewRoute:
         var args = settings.arguments as int;
         return MaterialPageRoute(
-          builder: (context) =>  CourseEditView(subjectId: args,),
+          builder: (context) => CourseEditView(
+            subjectId: args,
+          ),
         );
       default:
         return MaterialPageRoute(

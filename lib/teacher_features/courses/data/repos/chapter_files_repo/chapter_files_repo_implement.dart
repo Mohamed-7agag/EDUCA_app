@@ -8,8 +8,8 @@ import 'package:field_training_app/Core/api_services/api_service.dart';
 import 'package:field_training_app/Core/api_services/end_points.dart';
 import 'package:field_training_app/Core/api_services/failure.dart';
 import 'package:field_training_app/teacher_features/courses/data/models/chapter_model.dart';
+import 'package:field_training_app/teacher_features/courses/data/models/file_model.dart';
 import 'package:field_training_app/teacher_features/courses/data/repos/chapter_files_repo/chaoter_files_repo.dart';
-import 'package:file_picker/src/platform_file.dart';
 
 class ChapterFilesRepoImplement implements ChapterFilesRepo {
   final ApiServices apiServices;
@@ -43,10 +43,9 @@ class ChapterFilesRepoImplement implements ChapterFilesRepo {
 
   @override
   Future<Either<Failure, String>> uploadFile(
-      {required int chapterId, required File file}) async{
-    
+      {required int chapterId, required File file}) async {
     try {
-       await apiServices.post(
+      await apiServices.post(
         isFromData: true,
         endPoint: EndPoint.uploadFile(chapterId),
         data: {
@@ -54,7 +53,6 @@ class ChapterFilesRepoImplement implements ChapterFilesRepo {
         },
       );
 
-  
       return right("sucess");
     } catch (e) {
       if (e is DioException) {
@@ -62,12 +60,43 @@ class ChapterFilesRepoImplement implements ChapterFilesRepo {
       }
       return left(ServerFailure("حدث خطأ ما"));
     }
-    
   }
 
   @override
-  Future<Either<Failure, List<PlatformFile>>> getFiles({required int chapterId}) {
-    
-    throw UnimplementedError();
+  Future<Either<Failure, List<FileModel>>> getFiles({required int chapterId})async {
+   try {
+      var data = await apiServices.get(
+        endPoint: EndPoint.getChapterFiles(chapterId)
+      );
+      List<FileModel> filemodel = [];
+      for (var item in data) {
+        filemodel.add(FileModel.fromJson(item));
+      }
+      return right(filemodel);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+  
+  @override
+  Future<Either<Failure, List<ChapterModel>>> getAllChapters({required int subjectId}) async{
+   try {
+      var data = await apiServices.get(
+        endPoint: EndPoint.getAllChaptersBySubjectId(subjectId)
+      );
+      List<ChapterModel> chaptermodel = [];
+      for (var item in data) {
+        chaptermodel.add(ChapterModel.fromJson(item));
+      }
+      return right(chaptermodel);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
   }
 }

@@ -67,6 +67,15 @@ class EndPoint {
   static String uploadFile(int chapterId) {
     return "chapters/$chapterId/upload";
   }
+
+  static String getChapterFiles(int chapterId) {
+    return "chapters/$chapterId/files";
+  }
+
+  static String getAllChaptersBySubjectId(int subjectId) {
+    return "chapters/bysubject/$subjectId";
+  }
+  
 }
 
 class ApiKey {
@@ -106,4 +115,9 @@ class ApiKey {
   static String option3 = "option3";
   static String option4 = "option4";
   static String createdDate = "createdDate";
+  static String chapterId = "chapterId";
+
+  static String fileName = "fileName";
+  static String contentType = "contentType";
+  static String fileContent = "fileContent";
 }

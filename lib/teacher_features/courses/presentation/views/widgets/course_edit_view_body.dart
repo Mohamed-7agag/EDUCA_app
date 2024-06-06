@@ -16,7 +16,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:open_file/open_file.dart';
 
-List<PlatformFile> fileslsit = [];
+
 
 class CourseEditViewBody extends StatefulWidget {
   const CourseEditViewBody({super.key, required this.subjectId});
@@ -26,10 +26,6 @@ class CourseEditViewBody extends StatefulWidget {
 }
 
 class _CourseEditViewBodyState extends State<CourseEditViewBody> {
-  void openFile(PlatformFile file) {
-    OpenFile.open(file.path);
-  }
-
   TextEditingController controller = TextEditingController();
 
   @override
@@ -108,9 +104,7 @@ class _CourseEditViewBodyState extends State<CourseEditViewBody> {
                         .copyWith(fontWeight: FontWeight.bold),
                   ),
                 ),
-                MediaListView(
-                  files: fileslsit,
-                ),
+                MediaListView(),
                 SliverToBoxAdapter(child: SizedBox(height: 2000.h)),
               ],
             ),
@@ -239,9 +233,3 @@ class _CourseEditViewBodyState extends State<CourseEditViewBody> {
     );
   }
 }
-
-
-
-
-
-

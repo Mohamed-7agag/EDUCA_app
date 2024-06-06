@@ -1,0 +1,22 @@
+import 'package:bloc/bloc.dart';
+import 'package:equatable/equatable.dart';
+import 'package:field_training_app/teacher_features/courses/data/models/chapter_model.dart';
+import 'package:field_training_app/teacher_features/courses/data/repos/chapter_files_repo/chaoter_files_repo.dart';
+
+part 'get_all_chapters_state.dart';
+
+class GetAllChaptersCubit extends Cubit<GetAllChaptersState> {
+  GetAllChaptersCubit(this.chapterFilesRepo) : super(GetAllChaptersInitial());
+
+  ChapterFilesRepo chapterFilesRepo;
+
+  void getChapters({required int subjectId}) async {
+    emit(GetAllChaptersLoading());
+    final result = await chapterFilesRepo.getAllChapters(subjectId: subjectId);
+    result.fold((failure) {
+      emit(GetAllChaptersFailure(failure.toString()));
+    }, (chaptersList) {
+      emit(GetAllChaptersSuccess(chaptersList));
+    });
+  }
+}
