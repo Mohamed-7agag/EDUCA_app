@@ -63,11 +63,11 @@ class ChapterFilesRepoImplement implements ChapterFilesRepo {
   }
 
   @override
-  Future<Either<Failure, List<FileModel>>> getFiles({required int chapterId})async {
-   try {
-      var data = await apiServices.get(
-        endPoint: EndPoint.getChapterFiles(chapterId)
-      );
+  Future<Either<Failure, List<FileModel>>> getFiles(
+      {required int chapterId}) async {
+    try {
+      var data =
+          await apiServices.get(endPoint: EndPoint.getChapterFiles(chapterId));
       List<FileModel> filemodel = [];
       for (var item in data) {
         filemodel.add(FileModel.fromJson(item));
@@ -80,16 +80,18 @@ class ChapterFilesRepoImplement implements ChapterFilesRepo {
       return left(ServerFailure(e.toString()));
     }
   }
-  
+
   @override
-  Future<Either<Failure, List<ChapterModel>>> getAllChapters({required int subjectId}) async{
-   try {
+  Future<Either<Failure, List<ChapterModel>>> getAllChapters(
+      {required int subjectId}) async {
+    try {
       var data = await apiServices.get(
-        endPoint: EndPoint.getAllChaptersBySubjectId(subjectId)
-      );
+          endPoint: EndPoint.getAllChaptersBySubjectId(subjectId));
       List<ChapterModel> chaptermodel = [];
+      
       for (var item in data) {
         chaptermodel.add(ChapterModel.fromJson(item));
+      
       }
       return right(chaptermodel);
     } catch (e) {

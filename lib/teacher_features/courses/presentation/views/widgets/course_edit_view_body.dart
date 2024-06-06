@@ -10,17 +10,17 @@ import 'package:field_training_app/teacher_features/courses/data/repos/chapter_f
 import 'package:field_training_app/teacher_features/courses/presentation/views/widgets/media_lis_view.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views_model/add_chapter_cubit/add_chapter_cubit.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views_model/upload_file_cubit/upload_file_cubit.dart';
+import 'package:field_training_app/teacher_features/teacher/presentation/views_model/cubit/drop_down_list_cubit.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:open_file/open_file.dart';
-
-
 
 class CourseEditViewBody extends StatefulWidget {
-  const CourseEditViewBody({super.key, required this.subjectId});
+  const CourseEditViewBody(
+      {super.key, required this.subjectId, required this.chaptersN});
   final int subjectId;
+  final List<String> chaptersN;
   @override
   State<CourseEditViewBody> createState() => _CourseEditViewBodyState();
 }
@@ -54,38 +54,47 @@ class _CourseEditViewBodyState extends State<CourseEditViewBody> {
                       borderRadius: BorderRadius.circular(4.r),
                       border: Border.all(color: Colors.black12),
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        PopupMenuButton(
-                            color: Colors.white,
-                            icon: const Icon(
-                              Icons.expand_more,
-                              color: Colors.black,
-                              size: 32,
-                            ),
-                            onSelected: (value) {},
-                            itemBuilder: (BuildContext bc) {
-                              return ["1", "2", "3", "4", "5"]
-                                  .map((String item) {
-                                return PopupMenuItem<String>(
-                                  value: item,
-                                  child: Text(item),
-                                );
-                              }).toList();
-                            }),
-                        //
-                        SizedBox(width: 5.w),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 12.0),
-                          child: Text(
-                            "الدرس 1",
-                            textDirection: TextDirection.rtl,
-                            style: Styles.textStyle14
-                                .copyWith(color: Colors.black),
-                          ),
-                        ),
-                      ],
+                    child: BlocProvider(
+                      create: (context) => DropDownListCubit(),
+                      child: BlocBuilder<DropDownListCubit, String>(
+                        builder: (context, state) {
+                          return Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              PopupMenuButton(
+                                  color: Colors.white,
+                                  icon: const Icon(
+                                    Icons.expand_more,
+                                    color: Colors.black,
+                                    size: 32,
+                                  ),
+                                  onSelected: (value) {
+                                    BlocProvider.of<DropDownListCubit>(context)
+                                        .changeIndexDropDownListChapter(value);
+                                  },
+                                  itemBuilder: (BuildContext bc) {
+                                    return widget.chaptersN.map((String item) {
+                                      return PopupMenuItem<String>(
+                                        value: item,
+                                        child: Text(item),
+                                      );
+                                    }).toList();
+                                  }),
+                              //
+                              SizedBox(width: 5.w),
+                              Padding(
+                                padding: const EdgeInsets.only(right: 12.0),
+                                child: Text(
+                                  state,
+                                  textDirection: TextDirection.rtl,
+                                  style: Styles.textStyle14
+                                      .copyWith(color: Colors.black),
+                                ),
+                              ),
+                            ],
+                          );
+                        },
+                      ),
                     ),
                   ),
                 ),
@@ -104,7 +113,7 @@ class _CourseEditViewBodyState extends State<CourseEditViewBody> {
                         .copyWith(fontWeight: FontWeight.bold),
                   ),
                 ),
-                MediaListView(),
+                const MediaListView(),
                 SliverToBoxAdapter(child: SizedBox(height: 2000.h)),
               ],
             ),

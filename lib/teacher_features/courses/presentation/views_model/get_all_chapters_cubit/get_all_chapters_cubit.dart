@@ -10,12 +10,17 @@ class GetAllChaptersCubit extends Cubit<GetAllChaptersState> {
 
   ChapterFilesRepo chapterFilesRepo;
 
+  List<String> chapterNames = [];
+
   void getChapters({required int subjectId}) async {
     emit(GetAllChaptersLoading());
     final result = await chapterFilesRepo.getAllChapters(subjectId: subjectId);
     result.fold((failure) {
       emit(GetAllChaptersFailure(failure.toString()));
     }, (chaptersList) {
+      for (var item in chaptersList) {
+        chapterNames.add(item.name!);
+      }
       emit(GetAllChaptersSuccess(chaptersList));
     });
   }

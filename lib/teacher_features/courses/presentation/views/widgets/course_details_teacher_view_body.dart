@@ -1,10 +1,13 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
+import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
 import 'package:field_training_app/teacher_features/courses/data/models/course_model.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views/widgets/classes_and_subclasses_listview.dart';
+import 'package:field_training_app/teacher_features/courses/presentation/views_model/get_all_chapters_cubit/get_all_chapters_cubit.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../Core/utils/routes.dart';
@@ -238,7 +241,30 @@ class CourseDetailsTeacherViewBody extends StatelessWidget {
                   ),
                 ),
               ),
-              const ClassesAndSubClassesListViews(),
+              BlocBuilder<GetAllChaptersCubit, GetAllChaptersState>(
+                builder: (context, state) {
+                  if (state is GetAllChaptersFailure) {
+                    return SliverToBoxAdapter(
+                      child: Center(
+                        child: Text(
+                          state.message,
+                          style: const TextStyle(
+                            fontSize: 25,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    );
+                  } else if (state is GetAllChaptersSuccess) {
+                    return ClassesAndSubClassesListViews(
+                      chaptersList: state.chaptersList,
+                    );
+                  } else {
+                    return const SliverToBoxAdapter(
+                        child: CustomLoadingWidget());
+                  }
+                },
+              ),
               SliverToBoxAdapter(child: SizedBox(height: 10.h)),
             ],
           ),
@@ -248,7 +274,11 @@ class CourseDetailsTeacherViewBody extends StatelessWidget {
           child: CustomButton(
               text: "تعديل المادة",
               onpressed: () {
-                Navigator.pushNamed(context, Routes.courseEditViewRoute,arguments: courseModel.subjectId);
+                Navigator.pushNamed(context, Routes.courseEditViewRoute,
+                    arguments: {
+                      "subjectId": courseModel.subjectId,
+                      "chaptersN": context.read<GetAllChaptersCubit>().chapterNames
+                    });
               }),
         )
       ],
