@@ -112,12 +112,6 @@ class _ProfileEditViewState extends State<ProfileEditView> {
                                     studentLevel: null,
                                     image: null,
                                   );
-
-                              widget.parameter == "password"
-                                  ? CacheHelper.saveData(
-                                      key: passwordKey,
-                                      value: controller.text.trim())
-                                  : null;
                             }
                           });
                 },

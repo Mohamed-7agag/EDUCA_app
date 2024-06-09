@@ -16,7 +16,7 @@ class StudentModel extends Equatable {
     this.lastName,
     this.email,
     this.phone,
-    this.userName
+    this.userName,
     this.studentLevel,
     this.profileImageUrl,
   });

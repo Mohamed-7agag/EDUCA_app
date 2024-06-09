@@ -40,9 +40,9 @@ class ProfileViewBody extends StatelessWidget {
                   SizedBox(height: 22.h),
                   ProfileUserImage(
                     iconSize: 45,
-                    right: 112.w,
-                    top: 70.h,
-                    cameraSize: 22,
+                    right: 105.w,
+                    top: 80.h,
+                    cameraSize: 21,
                     image: state.studentModel.profileImageUrl,
                   ),
                   SizedBox(height: 14.h),

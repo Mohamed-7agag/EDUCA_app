@@ -6,8 +6,8 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../../../Core/utils/constatnt.dart';
 import '../../../../Core/utils/styles.dart';
-import '../../../auth/presentation/view_model/auth_cubit/auth_cubit.dart';
 import '../../../auth/presentation/view_model/change_profile_image.dart';
+import '../view_model/cubit/student_profile_cubit.dart';
 
 void bottomSheet(BuildContext context) {
   showModalBottomSheet<void>(
@@ -16,7 +16,7 @@ void bottomSheet(BuildContext context) {
       return Container(
         alignment: Alignment.center,
         padding: const EdgeInsets.only(top: 40),
-        height: 200.h,
+        height: 190.h,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
@@ -28,7 +28,9 @@ void bottomSheet(BuildContext context) {
                     final pickedFile =
                         await picker.pickImage(source: ImageSource.camera);
                     if (pickedFile != null) {
-                      context.read<AuthCubit>().image = pickedFile;
+                      context
+                          .read<StudentProfileCubit>()
+                          .updateStudentData(image: pickedFile);
                       context
                           .read<ChangeRegisterImageCubit>()
                           .changeImage(pickedFile);
@@ -59,11 +61,14 @@ void bottomSheet(BuildContext context) {
                     final pickedFile =
                         await picker.pickImage(source: ImageSource.gallery);
                     if (pickedFile != null) {
-                      context.read<AuthCubit>().image = pickedFile;
+                      context
+                          .read<StudentProfileCubit>()
+                          .updateStudentData(image: pickedFile);
                       context
                           .read<ChangeRegisterImageCubit>()
                           .changeImage(pickedFile);
                       Navigator.of(context).pop();
+
                     }
                   },
                   icon: const Icon(
