@@ -4,6 +4,7 @@ class EndPoint {
   static String studentRegister = "studentaccount/register";
   static String teacherRegister = "teacheraccount/register";
   static String subject = "subject";
+  static String chapters = "chapters";
   static String quiz = "quiz";
   static String questions = "questions";
   static String getStudentById(int id) {
@@ -62,6 +63,19 @@ class EndPoint {
   static String getAllQuestionsByQuizId(int id) {
     return "questions/byquiz/$id";
   }
+
+  static String uploadFile(int chapterId) {
+    return "chapters/$chapterId/upload";
+  }
+
+  static String getChapterFiles(int chapterId) {
+    return "chapters/$chapterId/files";
+  }
+
+  static String getAllChaptersBySubjectId(int subjectId) {
+    return "chapters/bysubject/$subjectId";
+  }
+  
 }
 
 class ApiKey {
@@ -101,4 +115,9 @@ class ApiKey {
   static String option3 = "option3";
   static String option4 = "option4";
   static String createdDate = "createdDate";
+  static String chapterId = "chapterId";
+
+  static String fileName = "fileName";
+  static String contentType = "contentType";
+  static String fileContent = "fileContent";
 }
