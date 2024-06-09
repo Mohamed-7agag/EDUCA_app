@@ -423,8 +423,11 @@ class AppRouter {
        var args = settings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(
           builder: (context) => CourseEditView(
+            namech: args["namech"],
+            chapterId: args["chapterId"],
+            chapterIndx: args["chapterIndx"],
             subjectId: args["subjectId"],
-            chaptersN: args["chaptersN"],//////////
+            chaptersN: args["chaptersN"],
           
           ),
         );

@@ -274,11 +274,13 @@ class CourseDetailsTeacherViewBody extends StatelessWidget {
           child: CustomButton(
               text: "تعديل المادة",
               onpressed: () {
-                Navigator.pushNamed(context, Routes.courseEditViewRoute,
-                    arguments: {
-                      "subjectId": courseModel.subjectId,
-                      "chaptersN": context.read<GetAllChaptersCubit>().chapterNames
-                    });
+                // Navigator.pushNamed(context, Routes.courseEditViewRoute,
+                //     arguments: {
+                //       "subjectId": courseModel.subjectId,
+                //       "chaptersN": context.read<GetAllChaptersCubit>().chapterNames,
+                //       "chapterIndx": context.read<GetAllChaptersCubit>().chapterIndx,
+                //       "chapterId": 1
+                //     });
               }),
         )
       ],
