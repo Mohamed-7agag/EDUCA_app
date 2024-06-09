@@ -91,9 +91,9 @@ class ProfileViewBody extends StatelessWidget {
                   SizedBox(height: 27.h),
                   ProfileItem(
                     isEdit: false,
-                    title: "البريد الالكتروني",
-                    value: state.studentModel.email ?? '',
-                    iconData: Icons.email,
+                    title: "أسم المستخدم",
+                    value: state.studentModel.userName ?? '',
+                    iconData: Icons.person,
                     onpressed: () {},
                   ),
                   SizedBox(height: 27.h),
