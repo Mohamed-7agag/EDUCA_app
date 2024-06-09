@@ -30,6 +30,7 @@ class _ProfileSelectClassEditViewState
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        
         backgroundColor: kPrimaryColor,
         title: CustomPopIconButton(backgroundColor: Colors.white70,radius: 18.r),
         actions: [

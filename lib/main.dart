@@ -1,5 +1,6 @@
 import 'package:field_training_app/Core/utils/app_router.dart';
 import 'package:field_training_app/Core/utils/app_services.dart';
+import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/cache/cache_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -27,9 +28,11 @@ class MyApp extends StatelessWidget {
           textDirection: TextDirection.rtl,
           child: MaterialApp(
             theme: ThemeData.light().copyWith(
-                textTheme: GoogleFonts.tajawalTextTheme(
-              ThemeData.light().textTheme,
-            )),
+              textTheme: GoogleFonts.tajawalTextTheme(
+                ThemeData.light().textTheme,
+              ),
+              splashColor: kSplashColor,
+            ),
             builder: (context, child) {
               return MediaQuery(
                 data: MediaQuery.of(context)

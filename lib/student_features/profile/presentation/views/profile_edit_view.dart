@@ -37,7 +37,8 @@ class _ProfileEditViewState extends State<ProfileEditView> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: kPrimaryColor,
-        title:  CustomPopIconButton(backgroundColor: Colors.white70,radius: 18.r),
+        title:
+            CustomPopIconButton(backgroundColor: Colors.white70, radius: 18.r),
         actions: [
           Text("تعديل البيانات",
               style: Styles.textStyle18.copyWith(color: Colors.white)),
