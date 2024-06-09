@@ -11,14 +11,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MediaListView extends StatelessWidget {
   const MediaListView({
-    super.key,
+    super.key, required this.chapterId,
   });
+  final int chapterId;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => GetFilesCubit(getIt<ChapterFilesRepoImplement>())
-        ..getFiles(chapterId: 1),
+        ..getFiles(chapterId: chapterId
+        ),
       child: BlocBuilder<GetFilesCubit, GetFilesState>(
         builder: (context, state) {
           if (state is GetFilesFailure) {

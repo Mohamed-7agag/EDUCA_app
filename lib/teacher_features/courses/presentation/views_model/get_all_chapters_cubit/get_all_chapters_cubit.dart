@@ -11,6 +11,7 @@ class GetAllChaptersCubit extends Cubit<GetAllChaptersState> {
   ChapterFilesRepo chapterFilesRepo;
 
   List<String> chapterNames = [];
+  Map<String, int> chapterIndx = {};
 
   void getChapters({required int subjectId}) async {
     emit(GetAllChaptersLoading());
@@ -20,6 +21,7 @@ class GetAllChaptersCubit extends Cubit<GetAllChaptersState> {
     }, (chaptersList) {
       for (var item in chaptersList) {
         chapterNames.add(item.name!);
+        chapterIndx[item.name!] = item.id!;
       }
       emit(GetAllChaptersSuccess(chaptersList));
     });

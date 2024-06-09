@@ -1,6 +1,7 @@
 import 'package:field_training_app/Core/utils/routes.dart';
 import 'package:field_training_app/teacher_features/courses/data/models/chapter_model.dart';
-import 'package:field_training_app/teacher_features/courses/presentation/views_model/show_sub_classes_cubit.dart';
+import 'package:field_training_app/teacher_features/courses/presentation/views_model/get_all_chapters_cubit/get_all_chapters_cubit.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -26,9 +27,16 @@ class ChapterItem extends StatelessWidget {
           trailing:
               isExpanded ? const Icon(Icons.remove) : const Icon(Icons.add),
           onTap: () {
-            // navgaite
-            Navigator.pushNamed(context, Routes.courseEditViewRoute);
-            context.read<ShowSubClassesCubit>().toggleExpansion(index);
+             Navigator.pushNamed(context, Routes.courseEditViewRoute,
+                    arguments: {
+                      "subjectId": chapterModel.subjectId,
+                      "chaptersN": context.read<GetAllChaptersCubit>().chapterNames,
+                      "chapterIndx": context.read<GetAllChaptersCubit>().chapterIndx,
+                      "chapterId": chapterModel.id,
+                      "namech":chapterModel.name
+                    });
+           
+            // context.read<ShowSubClassesCubit>().toggleExpansion(index);
           },
         ),
         // if (isExpanded)
