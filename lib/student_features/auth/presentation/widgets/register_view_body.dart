@@ -208,53 +208,72 @@ class RegisterViewBody extends StatelessWidget {
                                                 GovernorateSelectCubit, String>(
                                               builder:
                                                   (context, governateState) {
-                                                return DropdownButton(
-                                                  borderRadius:
-                                                      BorderRadius.circular(6),
-                                                  underline: Container(
-                                                      height: 1,
-                                                      color: Colors.grey),
-                                                  icon: const Icon(
-                                                      Icons.arrow_drop_down,
-                                                      color: kPrimaryColor,
-                                                      size: 30),
-                                                  alignment:
-                                                      Alignment.centerRight,
-                                                  style: Styles.textStyle16
-                                                      .copyWith(
-                                                          color: Colors.black),
-                                                  elevation: 1,
-                                                  hint: Text(
-                                                    governateState,
-                                                    style: GoogleFonts.tajawal(
-                                                        fontSize: 13.sp),
+                                                return Container(
+                                                  padding: const EdgeInsets
+                                                      .symmetric(vertical: 3),
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            6),
+                                                    border: Border.all(
+                                                        color: kPrimaryColor),
                                                   ),
-                                                  onChanged: (val) {
-                                                    context
-                                                        .read<
-                                                            GovernorateSelectCubit>()
-                                                        .changeState(
-                                                            val.toString());
-                                                    context
-                                                            .read<AuthCubit>()
-                                                            .governorate =
-                                                        val.toString();
-                                                  },
-                                                  isExpanded: true,
-                                                  items: governorates.map<
-                                                      DropdownMenuItem<String>>(
-                                                    (String value) {
-                                                      return DropdownMenuItem<
-                                                          String>(
-                                                        alignment: Alignment
-                                                            .centerRight,
-                                                        value: value,
-                                                        child: Text(value,
-                                                            style: GoogleFonts
-                                                                .tajawal()),
-                                                      );
+                                                  child: DropdownButton(
+                                                    padding: const EdgeInsets
+                                                        .symmetric(
+                                                        horizontal: 10),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            6),
+                                                    underline: Container(
+                                                        color:
+                                                            Colors.transparent),
+                                                    icon: const Icon(
+                                                        Icons
+                                                            .keyboard_arrow_down_rounded,
+                                                        color: kPrimaryColor,
+                                                        size: 30),
+                                                    alignment:
+                                                        Alignment.centerRight,
+                                                    style: Styles.textStyle16
+                                                        .copyWith(
+                                                            color:
+                                                                Colors.black),
+                                                    elevation: 1,
+                                                    hint: Text(
+                                                      governateState,
+                                                      style:
+                                                          GoogleFonts.tajawal(
+                                                              fontSize: 13.sp),
+                                                    ),
+                                                    onChanged: (val) {
+                                                      context
+                                                          .read<
+                                                              GovernorateSelectCubit>()
+                                                          .changeState(
+                                                              val.toString());
+                                                      context
+                                                              .read<AuthCubit>()
+                                                              .governorate =
+                                                          val.toString();
                                                     },
-                                                  ).toList(),
+                                                    isExpanded: true,
+                                                    items: governorates.map<
+                                                        DropdownMenuItem<
+                                                            String>>(
+                                                      (String value) {
+                                                        return DropdownMenuItem<
+                                                            String>(
+                                                          alignment: Alignment
+                                                              .centerRight,
+                                                          value: value,
+                                                          child: Text(value,
+                                                              style: GoogleFonts
+                                                                  .tajawal()),
+                                                        );
+                                                      },
+                                                    ).toList(),
+                                                  ),
                                                 );
                                               },
                                             ),

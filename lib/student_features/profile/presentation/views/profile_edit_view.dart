@@ -5,7 +5,6 @@ import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
 import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
 import 'package:field_training_app/Core/widgets/pop_icon_button.dart';
-import 'package:field_training_app/cache/cache_helper.dart';
 import 'package:field_training_app/student_features/profile/presentation/view_model/cubit/student_profile_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -38,7 +37,7 @@ class _ProfileEditViewState extends State<ProfileEditView> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: kPrimaryColor,
-        title: const CustomPopIconButton(backgroundColor: Colors.white70),
+        title:  CustomPopIconButton(backgroundColor: Colors.white70,radius: 18.r),
         actions: [
           Text("تعديل البيانات",
               style: Styles.textStyle18.copyWith(color: Colors.white)),

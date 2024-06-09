@@ -31,7 +31,7 @@ class _ProfileSelectClassEditViewState
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: kPrimaryColor,
-        title: const CustomPopIconButton(backgroundColor: Colors.white70),
+        title: CustomPopIconButton(backgroundColor: Colors.white70,radius: 18.r),
         actions: [
           Text("تعديل الصف الدراسي",
               style: Styles.textStyle18.copyWith(color: Colors.white)),
@@ -48,34 +48,41 @@ class _ProfileSelectClassEditViewState
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               SizedBox(height: 10.h),
-              DropdownButton(
-                borderRadius: BorderRadius.circular(6),
-                padding: EdgeInsets.symmetric(horizontal: 10.w),
-                underline: Container(height: 1.5, color: kPrimaryColor),
-                icon: const Icon(Icons.arrow_drop_down,
-                    color: kPrimaryColor, size: 30),
-                alignment: Alignment.centerRight,
-                style: Styles.textStyle18.copyWith(color: Colors.black),
-                elevation: 1,
-                hint: Text(
-                  widget.value,
-                  style: Styles.textStyle16,
+              Container(
+                padding: const EdgeInsets.symmetric(vertical: 3),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(6),
+                  border: Border.all(color: kPrimaryColor),
                 ),
-                onChanged: (val) {
-                  setState(() {
-                    widget.value = val.toString();
-                  });
-                },
-                isExpanded: true,
-                items: classOptionsValues.map<DropdownMenuItem<String>>(
-                  (String value) {
-                    return DropdownMenuItem<String>(
-                      alignment: Alignment.centerRight,
-                      value: value,
-                      child: Text(value),
-                    );
+                child: DropdownButton(
+                  borderRadius: BorderRadius.circular(6),
+                  padding: EdgeInsets.symmetric(horizontal: 10.w),
+                  underline: Container(color: Colors.transparent),
+                  icon: const Icon(Icons.keyboard_arrow_down_rounded,
+                      color: kPrimaryColor, size: 30),
+                  alignment: Alignment.centerRight,
+                  style: Styles.textStyle18.copyWith(color: Colors.black),
+                  elevation: 1,
+                  hint: Text(
+                    widget.value,
+                    style: Styles.textStyle16,
+                  ),
+                  onChanged: (val) {
+                    setState(() {
+                      widget.value = val.toString();
+                    });
                   },
-                ).toList(),
+                  isExpanded: true,
+                  items: classOptionsValues.map<DropdownMenuItem<String>>(
+                    (String value) {
+                      return DropdownMenuItem<String>(
+                        alignment: Alignment.centerRight,
+                        value: value,
+                        child: Text(value),
+                      );
+                    },
+                  ).toList(),
+                ),
               ),
               SizedBox(height: 60.h),
               BlocConsumer<StudentProfileCubit, StudentProfileState>(

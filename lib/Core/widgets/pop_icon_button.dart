@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomPopIconButton extends StatelessWidget {
-  const CustomPopIconButton({super.key, this.backgroundColor});
+  const CustomPopIconButton({super.key, this.backgroundColor, this.radius});
   final Color? backgroundColor;
+  final double? radius;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class CustomPopIconButton extends StatelessWidget {
       style: IconButton.styleFrom(
           backgroundColor: backgroundColor ?? kSplashDarkerColor,
           padding: const EdgeInsets.only(left: 8),
-          fixedSize: Size.fromRadius(20.r)),
+          fixedSize: Size.fromRadius(radius ?? 20.r)),
     );
   }
 }

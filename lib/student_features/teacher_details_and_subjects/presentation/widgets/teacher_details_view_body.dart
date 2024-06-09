@@ -1,7 +1,6 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/routes.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
-import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/Core/widgets/custom_cached_image.dart';
 import 'package:field_training_app/Core/widgets/custom_failure_widget.dart';
 import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
@@ -32,6 +31,7 @@ class TeacherDetailsViewBody extends StatelessWidget {
                     CustomPopIconButton(),
                   ],
                 ),
+                SizedBox(height: 10.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -64,7 +64,7 @@ class TeacherDetailsViewBody extends StatelessWidget {
                 SizedBox(height: 28.h),
                 TeacherDetailsItem(
                   title: state.teacherModel.address!,
-                  icon: Icons.location_city_rounded,
+                  icon: Icons.apartment,
                 ),
                 SizedBox(height: 28.h),
                 TeacherDetailsItem(
@@ -94,17 +94,6 @@ class TeacherDetailsViewBody extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                ),
-                SizedBox(height: 16.h),
-                CustomButton(
-                  text: 'الرجوع للصفحة الرئيسية',
-                  textStyle: Styles.textStyle18.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-                  onpressed: () {
-                    Navigator.pushNamedAndRemoveUntil(context,
-                        Routes.customBottomBarViewRoute, (route) => false);
-                  },
                 ),
                 SizedBox(height: 20.h),
               ],
