@@ -79,7 +79,6 @@ class EndPoint {
   static String updateCourseWithTeacherId(int id) {
     return "subject/$id";
   }
-  
 }
 
 class ApiKey {

@@ -41,7 +41,7 @@ final class AddCourseUpdateSuccess extends GetAllCoursesTeacherState {}
 final class AddCourseUpdateLoading extends GetAllCoursesTeacherState {}
 
 final class AddCourseUpdateFailure extends GetAllCoursesTeacherState {
-  final String errMessage;  
+  final String errMessage;
 
   const AddCourseUpdateFailure({required this.errMessage});
 }

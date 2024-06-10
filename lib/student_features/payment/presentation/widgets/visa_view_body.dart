@@ -1,12 +1,8 @@
 import 'package:field_training_app/Core/api_services/end_points.dart';
-import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/routes.dart';
-import 'package:field_training_app/Core/utils/styles.dart';
-import 'package:field_training_app/Core/widgets/pop_icon_button.dart';
 import 'package:field_training_app/cache/cache_helper.dart';
 import 'package:field_training_app/student_features/enrollment/presentation/view_model/cubit/enrollment_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:flutter/material.dart';
 import '../../../../Core/widgets/custom_cherry_toast.dart';
@@ -65,22 +61,8 @@ class VisaViewBodyState extends State<VisaViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: kPrimaryColor,
-        title: const CustomPopIconButton(backgroundColor: Colors.white70),
-        actions: [
-          Text("الدفع الألكتروني",
-              style: Styles.textStyle18.copyWith(color: Colors.white)),
-          SizedBox(width: 14.w),
-        ],
-        elevation: 0,
-        automaticallyImplyLeading: false,
-        toolbarHeight: 60,
-      ),
-      body: WebViewWidget(
-        controller: _controller,
-      ),
+    return WebViewWidget(
+      controller: _controller,
     );
   }
 }

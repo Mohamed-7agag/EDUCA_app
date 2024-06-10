@@ -39,6 +39,4 @@ class AddCourseCubit extends Cubit<AddCourseState> {
       emit(AddCourseSuccess());
     });
   }
-
-  
 }

@@ -219,7 +219,7 @@ class CourseDetailsViewBody extends StatelessWidget {
           ),
         ),
         Expanded(child: SizedBox(height: 10.h)),
-        subjectModel.isOnilne == false
+        subjectModel.isOnilne == true
             ? const SizedBox.shrink()
             : Padding(
                 padding: const EdgeInsets.all(20),
@@ -288,7 +288,8 @@ class CourseDetailsViewBody extends StatelessWidget {
                                       text: 'الدروس',
                                       onpressed: () {
                                         Navigator.pushNamed(context,
-                                            Routes.lessonsListViewRoute,arguments: subjectModel.id!);
+                                            Routes.lessonsListViewRoute,
+                                            arguments: subjectModel.id!);
                                       }),
                                 ),
                               ],

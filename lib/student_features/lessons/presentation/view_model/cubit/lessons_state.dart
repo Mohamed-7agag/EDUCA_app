@@ -22,3 +22,17 @@ final class LessonsFailure extends LessonsState {
 
   const LessonsFailure({required this.errMessage});
 }
+
+final class LessonItemsLoading extends LessonsState {}
+
+final class LessonItemsSuccess extends LessonsState {
+  final List<LessonItemModel> lessonItems;
+
+  const LessonItemsSuccess({required this.lessonItems});
+}
+
+final class LessonItemsFailure extends LessonsState {
+  final String errMessage;
+
+  const LessonItemsFailure({required this.errMessage});
+}

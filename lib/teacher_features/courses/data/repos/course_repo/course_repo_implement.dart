@@ -75,14 +75,12 @@ class CourseRepoImplement implements CourseRepo {
           ApiKey.isActive: courseModel.isActive ?? "",
           ApiKey.addingTime: courseModel.addingTime ?? "",
           "Describtion": courseModel.describtion ?? "",
-          ApiKey.isOnline:  true,
+          ApiKey.isOnline: true,
         },
       );
-    
-      return right(response);
 
+      return right(response);
     } catch (e) {
-      
       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));
       }

@@ -97,7 +97,7 @@ class ProfileTeacherViewBody extends StatelessWidget {
                           context, Routes.teacherProfileEditViewRoute,
                           arguments: {
                             "parameter": "password",
-                            "value":"",
+                            "value": "",
                           });
                     },
                   ),
