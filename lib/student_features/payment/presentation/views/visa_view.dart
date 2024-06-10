@@ -10,7 +10,10 @@ class VisaView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: VisaViewBody(url: url,subjectID: subjectID,),
+      body: VisaViewBody(
+        url: url,
+        subjectID: subjectID,
+      ),
     );
   }
 }

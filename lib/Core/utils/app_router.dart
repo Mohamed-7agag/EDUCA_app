@@ -12,6 +12,9 @@ import 'package:field_training_app/student_features/enrollment/data/repo/enrollm
 import 'package:field_training_app/student_features/enrollment/presentation/view_model/cubit/enrollment_cubit.dart';
 import 'package:field_training_app/student_features/home/data/repo/home_repo_implement.dart';
 import 'package:field_training_app/student_features/home/presentation/view_model/cubit/home_cubit.dart';
+import 'package:field_training_app/student_features/lessons/data/repo/lessons_repo_implement.dart';
+import 'package:field_training_app/student_features/lessons/presentation/view_model/cubit/lessons_cubit.dart';
+import 'package:field_training_app/student_features/lessons/presentation/views/lessons_list_view.dart';
 import 'package:field_training_app/student_features/payment/presentation/view_model/payment_cubit/payment_cubit.dart';
 import 'package:field_training_app/student_features/payment/presentation/views/payment_option_view.dart';
 import 'package:field_training_app/student_features/payment/presentation/views/ref_code_view.dart';
@@ -63,6 +66,7 @@ import 'package:field_training_app/student_features/profile/presentation/views/p
 import 'package:field_training_app/student_features/search/presentation/views/search_view.dart';
 
 import '../../student_features/auth/presentation/view_model/change_profile_image.dart';
+import '../../student_features/auth/presentation/view_model/governorate_cubit.dart';
 import '../../student_features/bottom_bar/presentation/view_model/bottom_bar_cubit.dart';
 import '../../student_features/chat_gpt/presentation/view_model/chat_cubit.dart';
 import '../../student_features/profile/presentation/view_model/cubit/student_profile_cubit.dart';
@@ -243,6 +247,9 @@ class AppRouter {
               BlocProvider(
                 create: (context) => OptionCubit(),
               ),
+              BlocProvider(
+                create: (context) => GovernorateSelectCubit(),
+              ),
             ],
             child: SearchView(searchType: args),
           ),
@@ -327,7 +334,7 @@ class AppRouter {
                 create: (context) => SelectAnswerCubit(),
               ),
             ],
-            child: const QuizView(),
+            child: QuizView(quizID: args),
           ),
         );
       case Routes.quizzesListViewRoute:
@@ -345,6 +352,7 @@ class AppRouter {
           builder: (context) => QuizResultView(
             numberOfQuestions: args[0],
             numberOfCorrectAnswers: args[1],
+            quizID: args[2],
           ),
         );
       case Routes.createQuizViewRoute:
@@ -439,6 +447,7 @@ class AppRouter {
             chapterIndx: args["chapterIndx"],
             subjectId: args["subjectId"],
             chaptersN: args["chaptersN"],
+          
           ),
         );
       default:

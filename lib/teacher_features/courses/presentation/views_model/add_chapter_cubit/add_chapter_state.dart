@@ -18,7 +18,7 @@ final class AddChapterSuccess extends AddChapterState {
 }
 
 final class AddChapterFailure extends AddChapterState {
-  final String message;  
+  final String message;
 
   const AddChapterFailure({required this.message});
 }

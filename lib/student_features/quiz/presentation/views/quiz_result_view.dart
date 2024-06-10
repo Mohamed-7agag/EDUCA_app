@@ -6,9 +6,11 @@ class QuizResultView extends StatelessWidget {
   const QuizResultView(
       {super.key,
       required this.numberOfQuestions,
-      required this.numberOfCorrectAnswers});
+      required this.numberOfCorrectAnswers,
+      required this.quizID});
   final int numberOfQuestions;
   final int numberOfCorrectAnswers;
+  final int quizID;
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +20,7 @@ class QuizResultView extends StatelessWidget {
           child: QuizResultViewBody(
         numberOfQuestions: numberOfQuestions,
         numberOfCorrectAnswers: numberOfCorrectAnswers,
+        quizID: quizID,
       )),
     );
   }

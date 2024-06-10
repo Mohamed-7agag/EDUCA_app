@@ -16,8 +16,8 @@ import '../../../../Core/utils/routes.dart';
 import 'question_and_answers.dart';
 
 class QuizViewBody extends StatelessWidget {
-  QuizViewBody({super.key});
-
+  QuizViewBody({super.key, required this.quizID});
+  final int quizID;
   final PageController _controller = PageController();
 
   @override
@@ -111,7 +111,11 @@ class QuizViewBody extends StatelessWidget {
                           Navigator.pushReplacementNamed(
                             context,
                             Routes.quizResultViewRoute,
-                            arguments: [state.questionList.length, quizResult],
+                            arguments: [
+                              state.questionList.length,
+                              quizResult,
+                              quizID
+                            ],
                           );
                           correctAnswersList.clear();
                           studentAnswersList.clear();

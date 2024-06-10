@@ -29,7 +29,9 @@ class TeacherSearchItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Text(
-                "${teacherSearchedModel.firstName} ${teacherSearchedModel.lastName}",style: Styles.textStyle14,),
+              "${teacherSearchedModel.firstName} ${teacherSearchedModel.lastName}",
+              style: Styles.textStyle14,
+            ),
             SizedBox(width: 10.w),
             Container(
                 width: 38,

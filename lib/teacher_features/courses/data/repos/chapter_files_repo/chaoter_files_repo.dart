@@ -13,7 +13,7 @@ abstract class ChapterFilesRepo {
 
   Future<Either<Failure, String>> uploadFile({
     required int chapterId,
-    required File file,   
+    required File file,
   });
 
   Future<Either<Failure, List<FileModel>>> getFiles({
@@ -21,8 +21,6 @@ abstract class ChapterFilesRepo {
   });
 
   Future<Either<Failure, List<ChapterModel>>> getAllChapters({
-    required int subjectId, 
+    required int subjectId,
   });
-  
-
 }

@@ -20,10 +20,8 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.4
-  flutter_local_notifications: ^17.0.0
   flutter_screenutil: ^5.9.0
   flutter_svg: ^2.0.9
-  font_awesome_flutter: ^10.7.0
   get_it: ^7.6.7
   google_fonts: ^6.1.0
   google_generative_ai: ^0.4.0

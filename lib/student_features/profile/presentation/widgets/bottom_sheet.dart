@@ -69,7 +69,6 @@ void bottomSheet(BuildContext context) {
                           .read<ChangeRegisterImageCubit>()
                           .changeImage(pickedFile);
                       Navigator.of(context).pop();
-
                     }
                   },
                   icon: const Icon(

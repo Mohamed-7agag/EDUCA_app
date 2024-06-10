@@ -10,6 +10,10 @@ class SubjectModel extends Equatable {
   final String? profileImageUrl;
   final int? teacherId;
   final int? term;
+  final int? quizCount;
+  final int? totalPrice;
+  final bool? isActive;
+  final bool? isOnilne;
   final String? addingTime;
 
   const SubjectModel({
@@ -22,6 +26,10 @@ class SubjectModel extends Equatable {
     this.profileImageUrl,
     this.teacherId,
     this.term,
+    this.quizCount,
+    this.totalPrice,
+    this.isActive,
+    this.isOnilne,
     this.addingTime,
   });
 
@@ -36,6 +44,10 @@ class SubjectModel extends Equatable {
       profileImageUrl: json['profileImageUrl'] as String?,
       teacherId: json['teacherId'] as int?,
       term: json['term'] as int?,
+      quizCount: json['quizCount'] as int?,
+      totalPrice: json['totalPrice'] as int?,
+      isActive: json['isActive'] as bool?,
+      isOnilne: json['isOnilne'] as bool?,
       addingTime: json['addingTime'] as String?,
     );
   }
@@ -50,6 +62,10 @@ class SubjectModel extends Equatable {
         'profileImageUrl': profileImageUrl,
         'teacherId': teacherId,
         'term': term,
+        'quizCount': quizCount,
+        'totalPrice': totalPrice,
+        'isActive': isActive,
+        'isOnilne': isOnilne,
         'addingTime': addingTime,
       };
 
@@ -65,6 +81,10 @@ class SubjectModel extends Equatable {
       profileImageUrl,
       teacherId,
       term,
+      quizCount,
+      totalPrice,
+      isActive,
+      isOnilne,
       addingTime,
     ];
   }

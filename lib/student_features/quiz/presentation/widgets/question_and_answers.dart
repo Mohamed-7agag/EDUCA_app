@@ -7,7 +7,10 @@ import 'quiz_answer_item.dart';
 
 class QuestionAndAnswer extends StatelessWidget {
   const QuestionAndAnswer(
-      {super.key, required this.questionIndex, required this.answers, required this.questionModel});
+      {super.key,
+      required this.questionIndex,
+      required this.answers,
+      required this.questionModel});
 
   final int questionIndex;
   final QuestionModel questionModel;

@@ -111,7 +111,7 @@ class ApiKey {
 
   static String isActive = "isActive";
   static String isOnline = "isOnline";
-  
+
   static String tolalPrice = "totalPrice";
 
   static String term = "term";

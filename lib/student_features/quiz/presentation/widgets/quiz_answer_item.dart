@@ -30,13 +30,15 @@ class QuizAnswerItem extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 16.h),
             width: double.infinity,
             decoration: BoxDecoration(
-              border: state[questionIndex] == answer
-                  ? Border.all(color: kPrimaryColor, width: 1.3)
-                  : Border.all(color: Colors.grey[400]!),
-              borderRadius: state[questionIndex] == answer
-                  ? BorderRadius.circular(8.r)
-                  : BorderRadius.circular(6.r),
-            ),
+                border: state[questionIndex] == answer
+                    ? Border.all(color: kPrimaryColor, width: 1.3)
+                    : Border.all(color: Colors.grey[400]!),
+                borderRadius: state[questionIndex] == answer
+                    ? BorderRadius.circular(8.r)
+                    : BorderRadius.circular(6.r),
+                color: state[questionIndex] == answer
+                    ? kSplashDarkerColor
+                    : Colors.white),
             child: Text(
               answer,
               style: Styles.textStyle16.copyWith(

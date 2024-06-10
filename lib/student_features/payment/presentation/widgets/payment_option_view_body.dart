@@ -37,7 +37,7 @@ class PaymentOptionViewBody extends StatelessWidget {
               Navigator.pushReplacementNamed(
                 context,
                 Routes.visaViewRoute,
-                arguments: [PaymentConstants.visaUrl,subjectID],
+                arguments: [PaymentConstants.visaUrl, subjectID],
               );
             },
           ),
@@ -49,7 +49,7 @@ class PaymentOptionViewBody extends StatelessWidget {
               Navigator.pushReplacementNamed(
                 context,
                 Routes.visaViewRoute,
-                arguments: [PaymentConstants.visaUrl2,subjectID],
+                arguments: [PaymentConstants.visaUrl2, subjectID],
               );
             },
           ),

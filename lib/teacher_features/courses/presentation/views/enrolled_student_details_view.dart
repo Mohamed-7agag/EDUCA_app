@@ -8,8 +8,10 @@ class EnrolledStudentDetailsView extends StatelessWidget {
   final StDto stDto;
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      body: EnrolledStudentDetailsViewBody(stDto: stDto,),
+    return Scaffold(
+      body: EnrolledStudentDetailsViewBody(
+        stDto: stDto,
+      ),
     );
   }
 }

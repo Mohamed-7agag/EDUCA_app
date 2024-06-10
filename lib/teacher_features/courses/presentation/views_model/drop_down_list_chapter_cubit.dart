@@ -27,7 +27,6 @@ class DropDownListChapterCubit extends Cubit<String> {
         },
       );
     }
-
     emit(ch);
   }
 }

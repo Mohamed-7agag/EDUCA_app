@@ -160,7 +160,7 @@ class CourseDetailsViewBody extends StatelessWidget {
                               const Text("عدد الاختبارات"),
                               SizedBox(height: 12.h),
                               Text(
-                                '3',
+                                '${subjectModel.quizCount}',
                                 style: Styles.textStyle18.copyWith(
                                   color: kPrimaryColor,
                                 ),
@@ -206,7 +206,10 @@ class CourseDetailsViewBody extends StatelessWidget {
               ),
               SizedBox(height: 7.h),
               Text(
-                subjectModel.describtion!,
+                subjectModel.describtion == null ||
+                        subjectModel.describtion == ''
+                    ? 'لا يوجد وصف للمادة'
+                    : subjectModel.describtion!,
                 style: Styles.textStyle14,
                 textDirection: TextDirection.rtl,
                 maxLines: 3,
@@ -216,15 +219,83 @@ class CourseDetailsViewBody extends StatelessWidget {
           ),
         ),
         Expanded(child: SizedBox(height: 10.h)),
-        Padding(
-          padding: const EdgeInsets.all(20),
-          child: BlocBuilder<EnrollmentCubit, EnrollmentState>(
-            builder: (context, state) {
-              if (state is AllStudentsEnrolledInSpecSubjectSuccess) {
-                bool enrolled = state.studentsList.any((element) =>
-                    element.studentId == CacheHelper.getData(key: ApiKey.id));
-                return enrolled == false
-                    ? BlocConsumer<PaymentCubit, PaymentState>(
+        subjectModel.isOnilne == false
+            ? const SizedBox.shrink()
+            : Padding(
+                padding: const EdgeInsets.all(20),
+                child: BlocBuilder<EnrollmentCubit, EnrollmentState>(
+                  builder: (context, state) {
+                    if (state is AllStudentsEnrolledInSpecSubjectSuccess) {
+                      bool enrolled = state.studentsList.any((element) =>
+                          element.studentId ==
+                          CacheHelper.getData(key: ApiKey.id));
+                      return enrolled == false
+                          ? BlocConsumer<PaymentCubit, PaymentState>(
+                              listener: (context, paymentState) {
+                                if (paymentState
+                                    is PaymentOrderIdSuccessState) {
+                                  Navigator.pushNamed(
+                                      context, Routes.paymentOptionViewRoute,
+                                      arguments: subjectModel.id!);
+                                } else if (paymentState
+                                    is PaymentOrderIdErrorState) {
+                                  errorCherryToast(context, "حدث خطا",
+                                      "يرجي المحاولة مرة اخري");
+                                }
+                              },
+                              builder: (context, paymentState) {
+                                return paymentState
+                                        is PaymentOrderIdLoadingState
+                                    ? const CustomLoadingWidget()
+                                    : CustomButton(
+                                        text:
+                                            "شراء المادة (${subjectModel.totalPrice} جنية)",
+                                        onpressed: () {
+                                          context
+                                              .read<PaymentCubit>()
+                                              .getOrderRegistrationID(
+                                                price: subjectModel
+                                                    .pricePerHour!
+                                                    .toString(),
+                                                firstName: CacheHelper.getData(
+                                                    key: studentFirstName),
+                                                lastName: CacheHelper.getData(
+                                                    key: studentLastName),
+                                                email: CacheHelper.getData(
+                                                    key: studentEmail),
+                                                phone: CacheHelper.getData(
+                                                    key: studentPhone),
+                                              );
+                                        });
+                              },
+                            )
+                          : Row(
+                              children: [
+                                Expanded(
+                                  child: CustomButton(
+                                      text: 'الاختبارات',
+                                      onpressed: () {
+                                        Navigator.pushNamed(
+                                          context,
+                                          Routes.quizzesListViewRoute,
+                                          arguments: subjectModel.id!,
+                                        );
+                                      }),
+                                ),
+                                SizedBox(width: 12.w),
+                                Expanded(
+                                  child: CustomButton(
+                                      text: 'الدروس',
+                                      onpressed: () {
+                                        Navigator.pushNamed(context,
+                                            Routes.lessonsListViewRoute,arguments: subjectModel.id!);
+                                      }),
+                                ),
+                              ],
+                            );
+                    } else if (state
+                        is AllStudentsEnrolledInSpecSubjectFailure) {
+                      return BlocConsumer<PaymentCubit, PaymentState>(
                         listener: (context, paymentState) {
                           if (paymentState is PaymentOrderIdSuccessState) {
                             Navigator.pushNamed(
@@ -239,7 +310,8 @@ class CourseDetailsViewBody extends StatelessWidget {
                           return paymentState is PaymentOrderIdLoadingState
                               ? const CustomLoadingWidget()
                               : CustomButton(
-                                  text: "شراء المادة (400 جنية)",
+                                  text:
+                                      "شراء المادة (${subjectModel.totalPrice} جنية)",
                                   onpressed: () {
                                     context
                                         .read<PaymentCubit>()
@@ -257,67 +329,12 @@ class CourseDetailsViewBody extends StatelessWidget {
                                         );
                                   });
                         },
-                      )
-                    : Row(
-                        children: [
-                          Expanded(
-                            child: CustomButton(
-                                text: 'الاختبارات',
-                                onpressed: () {
-                                  Navigator.pushNamed(
-                                    context,
-                                    Routes.quizzesListViewRoute,
-                                    arguments: subjectModel.id!,
-                                  );
-                                }),
-                          ),
-                          SizedBox(width: 12.w),
-                          Expanded(
-                            child:
-                                CustomButton(text: 'الدروس', onpressed: () {}),
-                          ),
-                        ],
                       );
-              } else if (state is AllStudentsEnrolledInSpecSubjectFailure) {
-                return BlocConsumer<PaymentCubit, PaymentState>(
-                  listener: (context, paymentState) {
-                    if (paymentState is PaymentOrderIdSuccessState) {
-                      Navigator.pushNamed(
-                          context, Routes.paymentOptionViewRoute,
-                          arguments: subjectModel.id!);
-                    } else if (paymentState is PaymentOrderIdErrorState) {
-                      errorCherryToast(
-                          context, "حدث خطا", "يرجي المحاولة مرة اخري");
                     }
+                    return const CustomLoadingWidget();
                   },
-                  builder: (context, paymentState) {
-                    return paymentState is PaymentOrderIdLoadingState
-                        ? const CustomLoadingWidget()
-                        : CustomButton(
-                            text: "شراء المادة (400 جنية)",
-                            onpressed: () {
-                              context
-                                  .read<PaymentCubit>()
-                                  .getOrderRegistrationID(
-                                    price:
-                                        subjectModel.pricePerHour!.toString(),
-                                    firstName: CacheHelper.getData(
-                                        key: studentFirstName),
-                                    lastName: CacheHelper.getData(
-                                        key: studentLastName),
-                                    email:
-                                        CacheHelper.getData(key: studentEmail),
-                                    phone:
-                                        CacheHelper.getData(key: studentPhone),
-                                  );
-                            });
-                  },
-                );
-              }
-              return const CustomLoadingWidget();
-            },
-          ),
-        ),
+                ),
+              ),
       ],
     );
   }

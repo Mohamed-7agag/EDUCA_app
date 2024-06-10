@@ -7,7 +7,7 @@ class LoginModel extends Equatable {
   final String? role;
   final String? expiration;
 
-  const LoginModel({this.id, this.token, this.expiration,this.role});
+  const LoginModel({this.id, this.token, this.expiration, this.role});
 
   factory LoginModel.fromJson(Map<String, dynamic> json) => LoginModel(
         id: json[ApiKey.id] as int?,

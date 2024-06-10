@@ -1,4 +1,3 @@
-
 import 'package:equatable/equatable.dart';
 import 'package:field_training_app/Core/api_services/end_points.dart';
 
