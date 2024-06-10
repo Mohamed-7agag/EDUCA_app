@@ -77,7 +77,7 @@ class _ProfileEditViewState extends State<ProfileEditView> {
                     successCherryToast(
                         context, "عملية ناجحة", "تم تعديل بياناتك");
 
-                    Navigator.pushNamed(
+                    Navigator.pushReplacementNamed(
                         context, Routes.customBottomBarViewRoute);
                   } else if (state is StudentProfileUpdateFailure) {
                     errorCherryToast(context, "حدث خطأ", state.errMessage);

@@ -15,7 +15,7 @@ abstract class TeacherProfileRepo {
     String? phone,
     String? password,
     String? address,
-    String governorate,
+    String? governorate,
     XFile? image,
   });
 }

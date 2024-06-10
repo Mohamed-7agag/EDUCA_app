@@ -31,7 +31,7 @@ class TeacherModel extends Equatable {
         email: json['email'] as String?,
         phone: json['phone'] as String?,
         address: json['address'] as String?,
-        governorate: json['Governorate'] as String?,
+        governorate: json['governorate'] as String?,
         profileImageUrl: json['profileImageUrl'] as String?,
       );
 

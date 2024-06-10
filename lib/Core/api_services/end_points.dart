@@ -75,6 +75,10 @@ class EndPoint {
   static String getAllChaptersBySubjectId(int subjectId) {
     return "chapters/bysubject/$subjectId";
   }
+
+  static String updateCourseWithTeacherId(int id) {
+    return "subject/$id";
+  }
   
 }
 

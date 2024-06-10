@@ -1,10 +1,15 @@
+import 'package:field_training_app/Core/utils/app_services.dart';
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
+import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
 import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
 import 'package:field_training_app/teacher_features/courses/data/models/course_model.dart';
+import 'package:field_training_app/teacher_features/courses/data/repos/course_repo/course_repo_implement.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views/widgets/classes_and_subclasses_listview.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views_model/get_all_chapters_cubit/get_all_chapters_cubit.dart';
+import 'package:field_training_app/teacher_features/courses/presentation/views_model/get_all_courses_cubit/get_all_courses_teacher_cubit.dart';
+import 'package:field_training_app/teacher_features/courses/presentation/views_model/swith_select_cubit.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,10 +17,26 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../Core/utils/routes.dart';
 
-class CourseDetailsTeacherViewBody extends StatelessWidget {
+class CourseDetailsTeacherViewBody extends StatefulWidget {
   const CourseDetailsTeacherViewBody({super.key, required this.courseModel});
 
   final CourseModel courseModel;
+
+  @override
+  State<CourseDetailsTeacherViewBody> createState() =>
+      _CourseDetailsTeacherViewBodyState();
+}
+
+class _CourseDetailsTeacherViewBodyState
+    extends State<CourseDetailsTeacherViewBody> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    print("isactive--------------------------------");
+    print(widget.courseModel.isActive);
+    context.read<SwithSelectCubit>().state != widget.courseModel.isActive;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +52,7 @@ class CourseDetailsTeacherViewBody extends StatelessWidget {
                 pinned: true,
                 title: Center(
                   child: Text(
-                    '${courseModel.subjectName} - ${courseModel.level}',
+                    '${widget.courseModel.subjectName} - ${widget.courseModel.level}',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.black,
@@ -68,25 +89,74 @@ class CourseDetailsTeacherViewBody extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      SizedBox(
-                        height: 30.h,
-                      ),
-                      courseModel.addingTime != null
-                          ? Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Text(courseModel.addingTime!.substring(0, 10),
-                                    style: Styles.textStyle14),
-                                SizedBox(width: 10.w),
-                                Text(
-                                  ' : تاريخ الأنشاء',
-                                  style: Styles.textStyle12
-                                      .copyWith(color: Colors.grey.shade700),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          BlocBuilder<SwithSelectCubit, bool>(
+                            builder: (context, stateswitc) {
+                              return BlocProvider(
+                                create: (context) => GetAllCoursesTeacherCubit(
+                                    getIt<CourseRepoImplement>()),
+                                child: BlocConsumer<GetAllCoursesTeacherCubit,
+                                    GetAllCoursesTeacherState>(
+                                  listener: (context, state) {
+                                    if (state is AddCourseUpdateSuccess) {
+                                      successCherryToast(context, "تم",
+                                          "تم تعديل الدورة بنجاح");
+                                    } else if (state
+                                        is AddCourseUpdateFailure) {
+                                      errorCherryToast(
+                                          context, "خطأ", state.errMessage);
+                                    }
+                                  },
+                                  builder: (context, state) {
+                                    return state is AddCourseUpdateLoading
+                                        ? const CustomLoadingWidget()
+                                        : Switch(
+                                            value: stateswitc,
+                                            focusColor: kPrimaryColor,
+                                            activeColor: kPrimaryColor,
+                                            onChanged: (value) {
+                                              context
+                                                  .read<SwithSelectCubit>()
+                                                  .toggle();
+                                              context
+                                                  .read<
+                                                      GetAllCoursesTeacherCubit>()
+                                                  .updateCourse(
+                                                      courseModel:
+                                                          widget.courseModel);
+                                              print("---------------------");
+                                              print(context
+                                                  .read<SwithSelectCubit>()
+                                                  .state);
+                                            },
+                                          );
+                                  },
                                 ),
-                              ],
-                            )
-                          : const SizedBox.shrink(),
-                      courseModel.addingTime != null
+                              );
+                            },
+                          ),
+                          widget.courseModel.addingTime != null
+                              ? Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Text(
+                                        widget.courseModel.addingTime!
+                                            .substring(0, 10),
+                                        style: Styles.textStyle14),
+                                    SizedBox(width: 10.w),
+                                    Text(
+                                      ' : تاريخ الأنشاء',
+                                      style: Styles.textStyle12.copyWith(
+                                          color: Colors.grey.shade700),
+                                    ),
+                                  ],
+                                )
+                              : const SizedBox.shrink(),
+                        ],
+                      ),
+                      widget.courseModel.addingTime != null
                           ? SizedBox(height: 22.h)
                           : const SizedBox.shrink(),
                       Container(
@@ -104,7 +174,7 @@ class CourseDetailsTeacherViewBody extends StatelessWidget {
                               children: [
                                 Expanded(
                                   child: Text(
-                                    '${courseModel.level!} / ${courseModel.term == 1 ? 'الترم الأول' : 'الترم الثاني'}',
+                                    '${widget.courseModel.level!} / ${widget.courseModel.term == 1 ? 'الترم الأول' : 'الترم الثاني'}',
                                     textAlign: TextAlign.center,
                                     style: Styles.textStyle14
                                         .copyWith(color: kPrimaryColor),
@@ -122,7 +192,7 @@ class CourseDetailsTeacherViewBody extends StatelessWidget {
                                 ),
                                 Expanded(
                                   child: Text(
-                                    courseModel.subjectName!,
+                                    widget.courseModel.subjectName!,
                                     textAlign: TextAlign.center,
                                     style: Styles.textStyle18
                                         .copyWith(color: kPrimaryColor),
@@ -163,7 +233,7 @@ class CourseDetailsTeacherViewBody extends StatelessWidget {
                                       const Text("سعر الحصة"),
                                       SizedBox(height: 12.h),
                                       Text(
-                                        "${courseModel.pricePerHour} جنية",
+                                        "${widget.courseModel.pricePerHour} جنية",
                                         style: Styles.textStyle16.copyWith(
                                           color: kPrimaryColor,
                                         ),
@@ -186,7 +256,7 @@ class CourseDetailsTeacherViewBody extends StatelessWidget {
                               onpressed: () {
                                 Navigator.of(context).pushNamed(
                                     Routes.showAllQuizzesViewRoute,
-                                    arguments: courseModel.subjectId);
+                                    arguments: widget.courseModel.subjectId);
                               },
                               backroundcolor: kBackgroundColor,
                               textStyle: Styles.textStyle20.copyWith(
@@ -205,7 +275,7 @@ class CourseDetailsTeacherViewBody extends StatelessWidget {
                             onpressed: () {
                               Navigator.pushNamed(
                                   context, Routes.enrolledStudentsViewRoute,
-                                  arguments: courseModel.subjectId);
+                                  arguments: widget.courseModel.subjectId);
                             },
                             backroundcolor: kBackgroundColor,
                             textStyle: Styles.textStyle20.copyWith(
@@ -237,7 +307,7 @@ class CourseDetailsTeacherViewBody extends StatelessWidget {
                       child: Center(
                         child: Text(
                           'لا يوجد دروس , اضف درس',
-                          style: const TextStyle(
+                          style:  TextStyle(
                             fontSize: 25,
                           ),
                           textAlign: TextAlign.center,
@@ -266,21 +336,18 @@ class CourseDetailsTeacherViewBody extends StatelessWidget {
                 if (context.read<GetAllChaptersCubit>().chapterNames.isEmpty) {
                   Navigator.pushNamed(context, Routes.courseEditViewRoute,
                       arguments: {
-                       "subjectId": courseModel.subjectId,
+                        "subjectId": widget.courseModel.subjectId,
                         "chaptersN":
                             context.read<GetAllChaptersCubit>().chapterNames,
                         "chapterIndx":
                             context.read<GetAllChaptersCubit>().chapterIndx,
-                           
                         "chapterId": -1,
-                            
-                        "namech":"empty"
-                           
+                        "namech": "empty"
                       });
                 } else {
                   Navigator.pushNamed(context, Routes.courseEditViewRoute,
                       arguments: {
-                        "subjectId": courseModel.subjectId,
+                        "subjectId": widget.courseModel.subjectId,
                         "chaptersN":
                             context.read<GetAllChaptersCubit>().chapterNames,
                         "chapterIndx":

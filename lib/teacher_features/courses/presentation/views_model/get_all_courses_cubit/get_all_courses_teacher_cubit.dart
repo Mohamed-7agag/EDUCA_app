@@ -31,4 +31,16 @@ class GetAllCoursesTeacherCubit extends Cubit<GetAllCoursesTeacherState> {
       emit(GetAllCoursesDeleteSubjectSuccess());
     });
   }
+
+  Future<void> updateCourse({required CourseModel courseModel}) async {
+    emit(AddCourseUpdateLoading());
+    var result = await courseRepo.updateCourse(
+      courseModel: courseModel,
+    );
+    result.fold((failure) {
+      emit(AddCourseUpdateFailure(errMessage: failure.errMessage));
+    }, (courseModel) {
+      emit(AddCourseUpdateSuccess());
+    });
+  }
 }

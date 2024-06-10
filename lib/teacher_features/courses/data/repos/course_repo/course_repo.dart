@@ -10,4 +10,10 @@ abstract class CourseRepo {
   Future<Either<Failure, String>> deleteCourse({
     required int subjectId,
   });
+
+  Future<Either<Failure, String>> updateCourse({
+    required CourseModel courseModel,
+  });
+
+
 }

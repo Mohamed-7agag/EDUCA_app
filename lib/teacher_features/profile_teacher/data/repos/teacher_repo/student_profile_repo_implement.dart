@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:field_training_app/Core/api_services/api_service.dart';
 import 'package:field_training_app/Core/api_services/end_points.dart';
 import 'package:field_training_app/Core/api_services/failure.dart';
+import 'package:field_training_app/student_features/auth/helper/upload_image_to_api.dart';
 import 'package:field_training_app/teacher_features/profile_teacher/data/models/teacher_model.dart';
 import 'package:field_training_app/teacher_features/profile_teacher/data/repos/teacher_repo/student_profile_repo.dart';
 import 'package:image_picker/image_picker.dart';
@@ -48,7 +49,7 @@ class TeacherProfileRepoImplement implements TeacherProfileRepo {
           ApiKey.phone: phone != null ? "+2$phone" : "",
           ApiKey.address: address ?? "",
           ApiKey.governorate: governorate ?? "",
-          ApiKey.image: image ?? "",
+          ApiKey.image: image != null ? await uploadImageToApi(image) : "",
         },
       );
       return response != ""

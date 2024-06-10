@@ -38,6 +38,7 @@ import 'package:field_training_app/teacher_features/courses/presentation/views_m
 import 'package:field_training_app/teacher_features/courses/presentation/views_model/get_all_chapters_cubit/get_all_chapters_cubit.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views_model/get_all_courses_cubit/get_all_courses_teacher_cubit.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views_model/get_enrolled_student_cubit/get_enrolled_student_cubit.dart';
+import 'package:field_training_app/teacher_features/courses/presentation/views_model/swith_select_cubit.dart';
 import 'package:field_training_app/teacher_features/make_quiz/data/repos/add_quiz_repo/add_quzi_repo_impelement.dart';
 import 'package:field_training_app/teacher_features/make_quiz/presentation/views/make_quiz_view.dart';
 import 'package:field_training_app/teacher_features/make_quiz/presentation/views/show_all_quizzes_view.dart';
@@ -276,8 +277,18 @@ class AppRouter {
       case Routes.courseDetailsTeacherViewRoute:
         var args = settings.arguments as CourseModel;
         return MaterialPageRoute(
-          builder: (context) => BlocProvider(
-            create: (context) => GetAllChaptersCubit(getIt.get<ChapterFilesRepoImplement>())..getChapters(subjectId: args.subjectId!),
+          builder: (context) => MultiBlocProvider(
+            providers: [
+              
+              BlocProvider(
+                create: (context) =>
+                    GetAllChaptersCubit(getIt.get<ChapterFilesRepoImplement>())
+                      ..getChapters(subjectId: args.subjectId!),
+              ),
+              BlocProvider(
+                create: (context) => SwithSelectCubit(),
+              ),
+            ],
             child: CourseDetailsTeacherView(
               courseModel: args,
             ),
@@ -420,7 +431,7 @@ class AppRouter {
           ),
         );
       case Routes.courseEditViewRoute:
-       var args = settings.arguments as Map<String, dynamic>;
+        var args = settings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(
           builder: (context) => CourseEditView(
             namech: args["namech"],
@@ -428,7 +439,6 @@ class AppRouter {
             chapterIndx: args["chapterIndx"],
             subjectId: args["subjectId"],
             chaptersN: args["chaptersN"],
-          
           ),
         );
       default:

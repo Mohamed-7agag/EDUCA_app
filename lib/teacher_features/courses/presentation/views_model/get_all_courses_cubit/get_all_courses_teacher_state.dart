@@ -35,3 +35,13 @@ final class GetAllCoursesDeleteSubjectFailure
 
   const GetAllCoursesDeleteSubjectFailure(this.message);
 }
+
+final class AddCourseUpdateSuccess extends GetAllCoursesTeacherState {}
+
+final class AddCourseUpdateLoading extends GetAllCoursesTeacherState {}
+
+final class AddCourseUpdateFailure extends GetAllCoursesTeacherState {
+  final String errMessage;  
+
+  const AddCourseUpdateFailure({required this.errMessage});
+}

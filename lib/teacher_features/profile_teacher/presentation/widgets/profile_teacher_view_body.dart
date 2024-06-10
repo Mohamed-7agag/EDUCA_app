@@ -4,6 +4,7 @@ import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/Core/widgets/custom_failure_widget.dart';
 import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
 import 'package:field_training_app/Core/widgets/custom_user_image.dart';
+import 'package:field_training_app/Core/widgets/profile_user_image.dart';
 import 'package:field_training_app/cache/cache_helper.dart';
 
 import 'package:field_training_app/student_features/profile/presentation/widgets/custom_profile_edit_name.dart';
@@ -31,12 +32,12 @@ class ProfileTeacherViewBody extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   SizedBox(height: 22.h),
-                  CustomUserImage(
-                    radius: 52.r,
+                  ProfileUserImage(
                     iconSize: 45,
-                    right: 112.w,
-                    top: 70.h,
-                    cameraSize: 20,
+                    right: 105.w,
+                    top: 80.h,
+                    cameraSize: 21,
+                    image: state.teacherModel.profileImageUrl,
                   ),
                   SizedBox(height: 25.h),
                   Text(
@@ -81,15 +82,14 @@ class ProfileTeacherViewBody extends StatelessWidget {
                       ),
                     ],
                   ),
-                  //
-                  // SizedBox(height: 27.h),
-                  // ProfileItem(
-                  //   isEdit: false,
-                  //   title: "البريد الالكتروني",
-                  //   value: state.teacherModel.email ?? '',
-                  //   iconData: Icons.email,
-                  //   onpressed: () {},
-                  // ),
+                  SizedBox(height: 27.h),
+                  ProfileItem(
+                    isEdit: false,
+                    title: "أسم المستخدم",
+                    value: state.teacherModel.userName ?? '',
+                    iconData: Icons.person,
+                    onpressed: () {},
+                  ),
                   SizedBox(height: 27.h),
                   ProfileItem(
                     title: "كلمة المرور",
@@ -100,7 +100,7 @@ class ProfileTeacherViewBody extends StatelessWidget {
                           context, Routes.teacherProfileEditViewRoute,
                           arguments: {
                             "parameter": "password",
-                            "value": CacheHelper.getData(key: passwordKey),
+                            "value":"",
                           });
                     },
                   ),
@@ -148,7 +148,6 @@ class ProfileTeacherViewBody extends StatelessWidget {
                           });
                     },
                   ),
-
                   SizedBox(height: 30.h),
                   CustomButton(
                       text: "تسجيل الخروج",

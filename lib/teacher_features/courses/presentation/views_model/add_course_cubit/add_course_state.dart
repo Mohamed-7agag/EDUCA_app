@@ -18,3 +18,4 @@ final class AddCourseFailure extends AddCourseState {
 
   const AddCourseFailure({required this.errMessage});
 }
+
