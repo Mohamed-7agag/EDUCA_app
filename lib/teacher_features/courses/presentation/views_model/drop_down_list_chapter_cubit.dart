@@ -13,12 +13,7 @@ class DropDownListChapterCubit extends Cubit<String> {
     List<String>? chaptersN,
     Map<String, int>? chapterIndx,
     int? chapterId,
-<<<<<<< HEAD
-    }
-  ) {
-=======
   }) {
->>>>>>> 201625ed018c2adc6452a5fa26e87cc3342ea7bd
     if (ispusing) {
       Navigator.pushReplacementNamed(
         context!,
@@ -32,7 +27,6 @@ class DropDownListChapterCubit extends Cubit<String> {
         },
       );
     }
-
     emit(ch);
   }
 }
