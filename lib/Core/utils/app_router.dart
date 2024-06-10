@@ -467,6 +467,7 @@ class AppRouter {
             child: const LessonDetailsView(),
           ),
         );
+      
       default:
         return MaterialPageRoute(
           builder: (context) {

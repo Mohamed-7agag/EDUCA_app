@@ -16,19 +16,20 @@ class LessonsRepoImplement implements LessonsRepo {
   Future<Either<Failure, List<LessonsModel>>> getLessons(
       {required int subjectID}) async {
     try {
-      final response = await apiServices.get(
+      var response = await apiServices.get(
         endPoint: EndPoint.getAllChaptersBySubjectId(subjectID),
       );
       List<LessonsModel> lessons = [];
       for (var element in response) {
         lessons.add(LessonsModel.fromJson(element));
       }
+
       return right(lessons);
-    } on Exception catch (e) {
+    } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));
       }
-      return left(ServerFailure('لا يوجد دروس'));
+      return left(ServerFailure('لا توجد دروس'));
     }
   }
 
@@ -36,7 +37,7 @@ class LessonsRepoImplement implements LessonsRepo {
   Future<Either<Failure, List<LessonItemModel>>> getLessonsItems(
       {required int lessonID}) async {
     try {
-      final response = await apiServices.get(
+      var response = await apiServices.get(
         endPoint: EndPoint.getChapterFiles(lessonID),
       );
       List<LessonItemModel> lessonItems = [];
@@ -44,11 +45,11 @@ class LessonsRepoImplement implements LessonsRepo {
         lessonItems.add(LessonItemModel.fromJson(element));
       }
       return right(lessonItems);
-    } on Exception catch (e) {
+    } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));
       }
-      return left(ServerFailure('لا يوجد بيانات'));
+      return left(ServerFailure('لا توجد بيانات'));
     }
   }
 }

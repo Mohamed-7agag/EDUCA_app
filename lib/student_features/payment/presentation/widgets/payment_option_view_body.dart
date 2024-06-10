@@ -1,7 +1,5 @@
 import 'package:field_training_app/Core/utils/payment_constants.dart';
 import 'package:field_training_app/Core/utils/routes.dart';
-import 'package:field_training_app/Core/utils/styles.dart';
-import 'package:field_training_app/Core/widgets/pop_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -18,18 +16,7 @@ class PaymentOptionViewBody extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         children: [
-          SizedBox(height: 15.h),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const CustomPopIconButton(),
-              Text(
-                "أختر طريقة الدفع",
-                style: Styles.textStyle20,
-              ),
-            ],
-          ),
-          SizedBox(height: 30.h),
+          SizedBox(height: 20.h),
           PaymentOptionItem(
             text: "فيزا (الشكل البسيط)",
             image: "assets/images/visa.png",

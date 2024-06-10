@@ -13,7 +13,7 @@ class LessonsCubit extends Cubit<LessonsState> {
 
   Future<void> getLessons({required int subjectID}) async {
     emit(LessonsLoading());
-    final result = await lessonsRepo.getLessons(subjectID: subjectID);
+    var result = await lessonsRepo.getLessons(subjectID: subjectID);
     result.fold((failure) {
       emit(LessonsFailure(errMessage: failure.errMessage));
     }, (lessons) {
@@ -23,7 +23,7 @@ class LessonsCubit extends Cubit<LessonsState> {
 
   Future<void> getLessonItems({required int lessonID}) async {
     emit(LessonItemsLoading());
-    final result = await lessonsRepo.getLessonsItems(lessonID: lessonID);
+    var result = await lessonsRepo.getLessonsItems(lessonID: lessonID);
     result.fold((failure) {
       emit(LessonItemsFailure(errMessage: failure.errMessage));
     }, (lessonItems) {

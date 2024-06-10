@@ -34,8 +34,11 @@ class _ProfileSelectClassEditViewState
         title:
             CustomPopIconButton(backgroundColor: Colors.white70, radius: 18.r),
         actions: [
-          Text("تعديل الصف الدراسي",
-              style: Styles.textStyle18.copyWith(color: Colors.white)),
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: Text("تعديل الصف الدراسي",
+                style: Styles.textStyle18.copyWith(color: Colors.white)),
+          ),
           SizedBox(width: 14.w),
         ],
         elevation: 0,
