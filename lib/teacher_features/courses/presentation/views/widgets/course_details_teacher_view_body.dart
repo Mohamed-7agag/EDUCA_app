@@ -266,16 +266,13 @@ class CourseDetailsTeacherViewBody extends StatelessWidget {
                 if (context.read<GetAllChaptersCubit>().chapterNames.isEmpty) {
                   Navigator.pushNamed(context, Routes.courseEditViewRoute,
                       arguments: {
-                       "subjectId": courseModel.subjectId,
+                        "subjectId": courseModel.subjectId,
                         "chaptersN":
                             context.read<GetAllChaptersCubit>().chapterNames,
                         "chapterIndx":
                             context.read<GetAllChaptersCubit>().chapterIndx,
-                           
                         "chapterId": -1,
-                            
-                        "namech":"empty"
-                           
+                        "namech": "empty"
                       });
                 } else {
                   Navigator.pushNamed(context, Routes.courseEditViewRoute,

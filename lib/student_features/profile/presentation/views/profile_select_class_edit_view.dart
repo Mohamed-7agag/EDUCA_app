@@ -30,9 +30,9 @@ class _ProfileSelectClassEditViewState
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        
         backgroundColor: kPrimaryColor,
-        title: CustomPopIconButton(backgroundColor: Colors.white70,radius: 18.r),
+        title:
+            CustomPopIconButton(backgroundColor: Colors.white70, radius: 18.r),
         actions: [
           Text("تعديل الصف الدراسي",
               style: Styles.textStyle18.copyWith(color: Colors.white)),

@@ -111,7 +111,11 @@ class QuizViewBody extends StatelessWidget {
                           Navigator.pushReplacementNamed(
                             context,
                             Routes.quizResultViewRoute,
-                            arguments: [state.questionList.length, quizResult,quizID],
+                            arguments: [
+                              state.questionList.length,
+                              quizResult,
+                              quizID
+                            ],
                           );
                           correctAnswersList.clear();
                           studentAnswersList.clear();

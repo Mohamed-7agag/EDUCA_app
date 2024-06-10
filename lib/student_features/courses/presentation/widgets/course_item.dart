@@ -7,7 +7,6 @@ import 'package:field_training_app/Core/widgets/custom_cached_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
 class CourseItem extends StatelessWidget {
   const CourseItem({super.key, required this.subjectModel});
   final SubjectModel subjectModel;

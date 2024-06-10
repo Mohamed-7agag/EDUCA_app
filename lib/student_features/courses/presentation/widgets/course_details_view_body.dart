@@ -285,7 +285,11 @@ class CourseDetailsViewBody extends StatelessWidget {
                                 SizedBox(width: 12.w),
                                 Expanded(
                                   child: CustomButton(
-                                      text: 'الدروس', onpressed: () {}),
+                                      text: 'الدروس',
+                                      onpressed: () {
+                                        Navigator.pushNamed(context,
+                                            Routes.lessonsListViewRoute,arguments: subjectModel.id!);
+                                      }),
                                 ),
                               ],
                             );

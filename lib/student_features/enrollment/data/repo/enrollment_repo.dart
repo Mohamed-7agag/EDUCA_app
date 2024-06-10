@@ -11,7 +11,7 @@ abstract class EnrollmentRepo {
 
   Future<Either<Failure, List<AllStudentEnrolledSubjectsModel>>>
       allStudentEnrolledSubjects({required int studentID});
-      
+
   Future<Either<Failure, SubjectModel>> getSubjectByID(
       {required int subjectID});
   Future<Either<Failure, List<AllStudentsEnrolledInSpecSubjectModel>>>

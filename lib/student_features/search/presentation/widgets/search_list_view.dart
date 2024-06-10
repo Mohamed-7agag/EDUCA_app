@@ -31,7 +31,7 @@ class SearchListView extends StatelessWidget {
                         : Padding(
                             padding: const EdgeInsets.only(bottom: 12),
                             child: SubjectSearchItem(
-                              subjectSearchedModel: state.searchedList[index] ,
+                              subjectSearchedModel: state.searchedList[index],
                             ),
                           );
                   },

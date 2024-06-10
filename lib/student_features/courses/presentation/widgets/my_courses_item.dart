@@ -8,8 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyCoursesItem extends StatelessWidget {
-  const MyCoursesItem(
-      {super.key, required this.subjectModel});
+  const MyCoursesItem({super.key, required this.subjectModel});
   final SubjectModel subjectModel;
 
   @override

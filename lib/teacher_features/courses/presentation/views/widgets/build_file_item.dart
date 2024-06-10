@@ -1,12 +1,10 @@
-
 import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/teacher_features/courses/data/models/file_model.dart';
 
 import 'package:flutter/material.dart';
 
-
 class BuildFileItem extends StatelessWidget {
- const BuildFileItem({super.key, required this.file});
+  const BuildFileItem({super.key, required this.file});
 
   final FileModel file;
 

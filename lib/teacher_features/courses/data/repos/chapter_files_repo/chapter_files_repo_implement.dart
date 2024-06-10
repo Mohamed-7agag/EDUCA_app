@@ -88,10 +88,9 @@ class ChapterFilesRepoImplement implements ChapterFilesRepo {
       var data = await apiServices.get(
           endPoint: EndPoint.getAllChaptersBySubjectId(subjectId));
       List<ChapterModel> chaptermodel = [];
-      
+
       for (var item in data) {
         chaptermodel.add(ChapterModel.fromJson(item));
-      
       }
       return right(chaptermodel);
     } catch (e) {

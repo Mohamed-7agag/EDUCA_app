@@ -12,7 +12,6 @@ abstract class AddCourseRepo {
     required bool isOnline,
     required bool isActive,
     required int totalPrice,
-
   });
 
   Future<Either<Failure, CourseModel>> updateCourse({

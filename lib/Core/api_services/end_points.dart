@@ -75,7 +75,6 @@ class EndPoint {
   static String getAllChaptersBySubjectId(int subjectId) {
     return "chapters/bysubject/$subjectId";
   }
-  
 }
 
 class ApiKey {
@@ -107,7 +106,7 @@ class ApiKey {
 
   static String isActive = "isActive";
   static String isOnline = "isOnline";
-  
+
   static String tolalPrice = "totalPrice";
 
   static String term = "term";

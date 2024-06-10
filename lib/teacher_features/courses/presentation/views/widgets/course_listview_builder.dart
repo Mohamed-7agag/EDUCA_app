@@ -29,7 +29,8 @@ class CourseListViewBuider extends StatelessWidget {
         } else if (state is GetAllCoursesTeacherFailure) {
           return InkWell(
             onTap: () {
-              Navigator.of(context).pushReplacementNamed(Routes.createClassViewRoute);
+              Navigator.of(context)
+                  .pushReplacementNamed(Routes.createClassViewRoute);
             },
             child: Center(
               child: Column(

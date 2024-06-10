@@ -19,7 +19,7 @@ class AddCourseCubit extends Cubit<AddCourseState> {
   String subjName = '';
   String trem = '';
   int price = 0;
-  int term=1;
+  int term = 1;
 
   Future<void> addCourse() async {
     emit(AddCourseLoading());
