@@ -7,7 +7,7 @@ import 'package:field_training_app/teacher_features/profile_teacher/data/models/
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../../data/repos/teacher_repo/student_profile_repo.dart';
-part 'student_profile_state.dart';
+part 'teacher_profile_state.dart';
 
 class TeacherProfileCubit extends Cubit<TeacherProfileState> {
   TeacherProfileCubit(this.teacherProfileRepo) : super(TeacherProfileInitial());

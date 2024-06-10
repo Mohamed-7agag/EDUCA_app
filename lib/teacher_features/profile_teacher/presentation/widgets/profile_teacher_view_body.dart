@@ -6,7 +6,7 @@ import 'package:field_training_app/Core/widgets/profile_user_image.dart';
 
 import 'package:field_training_app/student_features/profile/presentation/widgets/custom_profile_edit_name.dart';
 import 'package:field_training_app/student_features/profile/presentation/widgets/profile_item.dart';
-import 'package:field_training_app/teacher_features/profile_teacher/presentation/view_model/cubit/student_profile_cubit.dart';
+import 'package:field_training_app/teacher_features/profile_teacher/presentation/view_model/cubit/teacher_profile_cubit.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
