@@ -40,8 +40,11 @@ class _ProfileEditViewState extends State<ProfileEditView> {
         title:
             CustomPopIconButton(backgroundColor: Colors.white70, radius: 18.r),
         actions: [
-          Text("تعديل البيانات",
-              style: Styles.textStyle18.copyWith(color: Colors.white)),
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: Text("تعديل البيانات",
+                style: Styles.textStyle18.copyWith(color: Colors.white)),
+          ),
           SizedBox(width: 14.w),
         ],
         elevation: 0,

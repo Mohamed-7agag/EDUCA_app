@@ -23,11 +23,13 @@ class QuizRepoImplement implements QuizRepo {
         quizzes.add(QuizModel.fromJson(element));
       }
       return right(quizzes);
-    } on Exception catch (e) {
+    } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));
       }
-      return left(ServerFailure(e.toString()));
+      return left(
+        ServerFailure(e.toString()),
+      );
     }
   }
 
@@ -43,11 +45,13 @@ class QuizRepoImplement implements QuizRepo {
         questionList.add(QuestionModel.fromJson(element));
       }
       return right(questionList);
-    } on Exception catch (e) {
+    } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));
       }
-      return left(ServerFailure(e.toString()));
+      return left(
+        ServerFailure(e.toString()),
+      );
     }
   }
 }
