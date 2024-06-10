@@ -1,8 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:field_training_app/Core/utils/app_services.dart';
 import 'package:field_training_app/Core/utils/constatnt.dart';
-import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
-
+import 'package:field_training_app/Core/utils/routes.dart';
+import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
 import 'package:field_training_app/teacher_features/make_quiz/data/repos/add_quiz_repo/add_quzi_repo_impelement.dart';
 import 'package:field_training_app/teacher_features/make_quiz/presentation/views_model/add_question_cubit/add_question_cubit.dart';
 import 'package:field_training_app/teacher_features/make_quiz/presentation/widget/custom_answers_question.dart';
@@ -75,23 +75,30 @@ class QuestionListViewItem extends StatelessWidget {
             BlocProvider(
               create: (context) =>
                   AddQuestionCubit(getIt<AddQuizRepoImplement>()),
-              child: BlocBuilder<AddQuestionCubit, AddQuestionState>(
-                builder: (context, state) {
+              child: BlocConsumer<AddQuestionCubit, AddQuestionState>(
+                listener: (context, state) {
                   if (state is DeleteQuestionSuccess) {
-                    return ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all(kPrimaryColor),
-                      ),
-                      onPressed: () {
-                        BlocProvider.of<AddQuestionCubit>(context)
-                            .deleteQuestion(questionId: questionModel.quizId);
-                      },
-                      child: const Text("حذف",
-                          style: TextStyle(color: Colors.white)),
-                    );
+                    successCherryToast(context, 'تم حذف السؤال بنجاح', 'تم');
+                    Navigator.pushReplacementNamed(
+                        context, Routes.showQuizViewRoute,
+                        arguments: questionModel.quizId);
                   } else {
-                    return const CustomLoadingWidget();
+                    errorCherryToast(context, 'حدث خطا', 'خطا');
+                   
                   }
+                },
+                builder: (context, state) {
+                  return ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: WidgetStateProperty.all(kPrimaryColor),
+                    ),
+                    onPressed: () {
+                      BlocProvider.of<AddQuestionCubit>(context)
+                          .deleteQuestion(questionId: questionModel.quizId);
+                    },
+                    child: const Text("حذف",
+                        style: TextStyle(color: Colors.white)),
+                  );
                 },
               ),
             ),
