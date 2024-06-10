@@ -7,6 +7,7 @@ class DropDownListCubit extends Cubit<String> {
   String price = "اختر السعر";
   String term = "اختر الترم";
   
+  
 
   void changeIndexDropDownListLevel(String ch) {
     lev = ch;

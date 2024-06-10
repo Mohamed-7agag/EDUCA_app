@@ -105,6 +105,11 @@ class ApiKey {
   static String addingTime = "addingTime";
   static String subjectId = "subjectId";
 
+  static String isActive = "isActive";
+  static String isOnline = "isOnline";
+  
+  static String tolalPrice = "totalPrice";
+
   static String term = "term";
 
   static String content = "content";

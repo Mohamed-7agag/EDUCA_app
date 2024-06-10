@@ -68,165 +68,154 @@ class CourseDetailsTeacherViewBody extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Text(
-                        "المادة الدراسية : ",
-                        style: Styles.textStyle12.copyWith(color: Colors.grey),
-                        textDirection: TextDirection.rtl,
+                      SizedBox(
+                        height: 30.h,
                       ),
-                      SizedBox(height: 7.h),
-                      Text(
-                        courseModel.subjectName!,
-                        style: Styles.textStyle16,
-                      ),
-                      SizedBox(height: 22.h),
-                      Wrap(
-                        spacing: 70.w,
-                        alignment: WrapAlignment.end,
-                        verticalDirection: VerticalDirection.up,
-                        runSpacing: 20.h,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Text(
-                                "الفصل الدراسي  : ",
-                                style: Styles.textStyle12
-                                    .copyWith(color: Colors.grey),
-                                textDirection: TextDirection.rtl,
-                              ),
-                              SizedBox(height: 7.h),
-                              Text(
-                                courseModel.term == 1
-                                    ? "الفصل الاول"
-                                    : "الفصل الثاني",
-                                style: Styles.textStyle16,
-                              ),
-                            ],
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Text(
-                                "الصف الدراسي  : ",
-                                style: Styles.textStyle12
-                                    .copyWith(color: Colors.grey),
-                                textDirection: TextDirection.rtl,
-                              ),
-                              SizedBox(height: 7.h),
-                              Text(
-                                courseModel.level!,
-                                style: Styles.textStyle16,
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 22.h),
-                      Text(
-                        "وصف المادة : ",
-                        style: Styles.textStyle12.copyWith(color: Colors.grey),
-                        textDirection: TextDirection.rtl,
-                      ),
-                      SizedBox(height: 7.h),
-                      Text(
-                        courseModel.describtion!,
-                        style: Styles.textStyle14,
-                        textDirection: TextDirection.rtl,
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      SizedBox(height: 25.h),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "${courseModel.pricePerHour} جنية",
-                            style: Styles.textStyle16
-                                .copyWith(color: kPrimaryColor),
-                            textDirection: TextDirection.rtl,
-                          ),
-                          Text(
-                            "سعر الحصة : ",
-                            style:
-                                Styles.textStyle12.copyWith(color: Colors.grey),
-                            textDirection: TextDirection.rtl,
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 20.h),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            width: 65.w,
-                            padding: const EdgeInsets.only(
-                                left: 6, right: 10, top: 6, bottom: 6),
-                            decoration: const BoxDecoration(
-                                color: kSplashDarkerColor,
-                                borderRadius: BorderRadiusDirectional.all(
-                                    Radius.circular(5))),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      courseModel.addingTime != null
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                InkWell(
-                                  onTap: () {
-                                    Navigator.of(context).pushNamed(
-                                        Routes.showAllQuizzesViewRoute,
-                                        arguments: courseModel.subjectId);
-                                  },
-                                  splashColor: kSplashColor,
-                                  borderRadius: BorderRadius.circular(6),
-                                  child: const Icon(
-                                    Icons.add,
-                                    color: kPrimaryColor,
+                                Text(courseModel.addingTime!.substring(0, 10),
+                                    style: Styles.textStyle14),
+                                SizedBox(width: 10.w),
+                                Text(
+                                  ' : تاريخ الأنشاء',
+                                  style: Styles.textStyle12
+                                      .copyWith(color: Colors.grey.shade700),
+                                ),
+                              ],
+                            )
+                          : const SizedBox.shrink(),
+                      courseModel.addingTime != null
+                          ? SizedBox(height: 22.h)
+                          : const SizedBox.shrink(),
+                      Container(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 10.w, vertical: 10.h),
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: kSplashDarkerColor,
+                          borderRadius: BorderRadius.circular(8.r),
+                        ),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    '${courseModel.level!} / ${courseModel.term == 1 ? 'الترم الأول' : 'الترم الثاني'}',
+                                    textAlign: TextAlign.center,
+                                    style: Styles.textStyle14
+                                        .copyWith(color: kPrimaryColor),
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 5),
-                                  child: Text("6", style: Styles.textStyle16),
+                                SizedBox(
+                                  height: 80.h,
+                                  child: VerticalDivider(
+                                    color: kPrimaryColor,
+                                    width: 30.w,
+                                    thickness: 1.5,
+                                    indent: 10,
+                                    endIndent: 10,
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Text(
+                                    courseModel.subjectName!,
+                                    textAlign: TextAlign.center,
+                                    style: Styles.textStyle18
+                                        .copyWith(color: kPrimaryColor),
+                                  ),
                                 ),
                               ],
                             ),
-                          ),
-                          Text(
-                            "عدد الاختبارات لهذه المادة :  ",
-                            style:
-                                Styles.textStyle12.copyWith(color: Colors.grey),
-                            textDirection: TextDirection.rtl,
-                          ),
-                        ],
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Expanded(
+                                  child: Column(
+                                    children: [
+                                      const Text("عدد الطلاب"),
+                                      SizedBox(height: 12.h),
+                                      Text(
+                                        '3',
+                                        style: Styles.textStyle18.copyWith(
+                                          color: kPrimaryColor,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 80.h,
+                                  child: VerticalDivider(
+                                    color: kPrimaryColor,
+                                    width: 30.w,
+                                    thickness: 1.5,
+                                    indent: 10,
+                                    endIndent: 10,
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Column(
+                                    children: [
+                                      const Text("سعر الحصة"),
+                                      SizedBox(height: 12.h),
+                                      Text(
+                                        "${courseModel.pricePerHour} جنية",
+                                        style: Styles.textStyle16.copyWith(
+                                          color: kPrimaryColor,
+                                        ),
+                                        textDirection: TextDirection.rtl,
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
-                      SizedBox(height: 25.h),
+                      SizedBox(height: 20.h),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          InkWell(
-                            onTap: () {
+                          Expanded(
+                            child: CustomButton(
+                              text: 'الاختبارات',
+                              onpressed: () {
+                                Navigator.of(context).pushNamed(
+                                    Routes.showAllQuizzesViewRoute,
+                                    arguments: courseModel.subjectId);
+                              },
+                              backroundcolor: kBackgroundColor,
+                              textStyle: Styles.textStyle20.copyWith(
+                                  color: kPrimaryColor,
+                                  fontWeight: FontWeight.bold),
+                              rectangleBorder: RoundedRectangleBorder(
+                                side: const BorderSide(color: kPrimaryColor),
+                                borderRadius: BorderRadius.circular(6.r),
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 10.w),
+                          Expanded(
+                              child: CustomButton(
+                            text: 'الطلاب',
+                            onpressed: () {
                               Navigator.pushNamed(
                                   context, Routes.enrolledStudentsViewRoute,
                                   arguments: courseModel.subjectId);
                             },
-                            child: Text(
-                              "عرض",
-                              style: Styles.textStyle14
-                                  .copyWith(color: kPrimaryColor),
-                              textDirection: TextDirection.rtl,
+                            backroundcolor: kBackgroundColor,
+                            textStyle: Styles.textStyle20.copyWith(
+                                color: kPrimaryColor,
+                                fontWeight: FontWeight.bold),
+                            rectangleBorder: RoundedRectangleBorder(
+                              side: const BorderSide(color: kPrimaryColor),
+                              borderRadius: BorderRadius.circular(6.r),
                             ),
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                "22",
-                                style: Styles.textStyle16,
-                              ),
-                              Text(
-                                "عدد الطلاب المسجلين المادة :   ",
-                                style: Styles.textStyle12
-                                    .copyWith(color: Colors.grey),
-                                textDirection: TextDirection.rtl,
-                              ),
-                            ],
-                          ),
+                          )),
                         ],
                       ),
                       SizedBox(height: 25.h),
@@ -244,10 +233,10 @@ class CourseDetailsTeacherViewBody extends StatelessWidget {
               BlocBuilder<GetAllChaptersCubit, GetAllChaptersState>(
                 builder: (context, state) {
                   if (state is GetAllChaptersFailure) {
-                    return SliverToBoxAdapter(
+                    return const SliverToBoxAdapter(
                       child: Center(
                         child: Text(
-                          state.message,
+                          'لا يوجد دروس , اضف درس',
                           style: const TextStyle(
                             fontSize: 25,
                           ),
@@ -274,13 +263,37 @@ class CourseDetailsTeacherViewBody extends StatelessWidget {
           child: CustomButton(
               text: "تعديل المادة",
               onpressed: () {
-                // Navigator.pushNamed(context, Routes.courseEditViewRoute,
-                //     arguments: {
-                //       "subjectId": courseModel.subjectId,
-                //       "chaptersN": context.read<GetAllChaptersCubit>().chapterNames,
-                //       "chapterIndx": context.read<GetAllChaptersCubit>().chapterIndx,
-                //       "chapterId": 1
-                //     });
+                if (context.read<GetAllChaptersCubit>().chapterNames.isEmpty) {
+                  Navigator.pushNamed(context, Routes.courseEditViewRoute,
+                      arguments: {
+                       "subjectId": courseModel.subjectId,
+                        "chaptersN":
+                            context.read<GetAllChaptersCubit>().chapterNames,
+                        "chapterIndx":
+                            context.read<GetAllChaptersCubit>().chapterIndx,
+                           
+                        "chapterId": -1,
+                            
+                        "namech":"empty"
+                           
+                      });
+                } else {
+                  Navigator.pushNamed(context, Routes.courseEditViewRoute,
+                      arguments: {
+                        "subjectId": courseModel.subjectId,
+                        "chaptersN":
+                            context.read<GetAllChaptersCubit>().chapterNames,
+                        "chapterIndx":
+                            context.read<GetAllChaptersCubit>().chapterIndx,
+                        "chapterId":
+                            context.read<GetAllChaptersCubit>().chapterIndx[
+                                context
+                                    .read<GetAllChaptersCubit>()
+                                    .chapterNames[0]],
+                        "namech":
+                            context.read<GetAllChaptersCubit>().chapterNames[0],
+                      });
+                }
               }),
         )
       ],

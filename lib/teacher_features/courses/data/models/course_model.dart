@@ -11,6 +11,9 @@ class CourseModel extends Equatable {
   final String? describtion;
   final int? pricePerHour;
   final int? term;
+  final int? tolalPrice;
+  final bool? isActive;
+  final bool? isOnline;
 
   const CourseModel({
     this.id,
@@ -22,19 +25,27 @@ class CourseModel extends Equatable {
     this.describtion,
     this.pricePerHour,
     this.term,
+    this.isActive,
+    this.isOnline,
+    this.tolalPrice,
   });
 
-  factory CourseModel.fromJson(Map<String, dynamic> json) => CourseModel(
-        id: json[ApiKey.id] as int?,
-        teacherId: json[ApiKey.teacherId] as int?,
-        subjectId: json[ApiKey.subjectId] as int?,
-        level: json[ApiKey.level] as String?,
-        subjectName: json[ApiKey.subjectName] as String?,
-        addingTime: json[ApiKey.addingTime] as String?,
-        describtion: json[ApiKey.describtion] as String?,
-        pricePerHour: json[ApiKey.pricePerHour] as int?,
-        term: json[ApiKey.term] as int?,
-      );
+  factory CourseModel.fromJson(Map<String, dynamic> json) {
+    return CourseModel(
+      id: json[ApiKey.id] as int?,
+      teacherId: json[ApiKey.teacherId] as int?,
+      subjectId: json[ApiKey.subjectId] as int?,
+      level: json[ApiKey.level] as String?,
+      subjectName: json[ApiKey.subjectName] as String?,
+      addingTime: json[ApiKey.addingTime] as String?,
+      describtion: json[ApiKey.describtion] as String?,
+      pricePerHour: json[ApiKey.pricePerHour] as int?,
+      term: json[ApiKey.term] as int?,
+      isActive: json[ApiKey.isActive] as bool?,
+      isOnline: json[ApiKey.isOnline] as bool?,
+      tolalPrice: json[ApiKey.tolalPrice] as int?,
+    );
+  }
 
   Map<String, dynamic> toJson() => {
         ApiKey.id: id,
@@ -46,6 +57,9 @@ class CourseModel extends Equatable {
         ApiKey.describtion: describtion,
         ApiKey.pricePerHour: pricePerHour,
         ApiKey.term: term,
+        ApiKey.isActive: isActive,
+        ApiKey.isOnline: isOnline,
+        ApiKey.tolalPrice: tolalPrice,
       };
 
   @override
@@ -59,5 +73,8 @@ class CourseModel extends Equatable {
         describtion,
         pricePerHour,
         term,
+        isActive,
+        isOnline,
+        tolalPrice,
       ];
 }

@@ -15,17 +15,19 @@ class AddCourseRepoImplement implements AddCourseRepo {
 
   AddCourseRepoImplement({required this.apiServices});
   @override
-  Future<Either<Failure, CourseModel>> addCourse(
-      {required String subjectName,
-      required int pricePerHour,
-      required String level,
-      required int trem,
-      required String describtion}) async {
+  Future<Either<Failure, CourseModel>> addCourse({
+    required String subjectName,
+    required int pricePerHour,
+    required String level,
+    required int trem,
+    required bool isOnline,
+    required bool isActive,
+    required int totalPrice,
+    required String describtion,
+  }) async {
     try {
       var data = await apiServices.post(
-        isFromData: true,
         endPoint: EndPoint.subject,
-        
         data: {
           ApiKey.teacherId: CacheHelper.getData(key: ApiKey.id),
           ApiKey.subjectName: subjectName,
@@ -33,7 +35,10 @@ class AddCourseRepoImplement implements AddCourseRepo {
           ApiKey.describtion: describtion,
           ApiKey.pricePerHour: pricePerHour,
           ApiKey.addingTime: "2024-05-11T11:15:58.661",
-          ApiKey.term: 1,
+          ApiKey.term: trem,
+          ApiKey.isActive: isActive,
+          ApiKey.isOnline: isOnline,
+          ApiKey.tolalPrice: totalPrice,
         },
       );
 
