@@ -6,7 +6,7 @@ import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
 import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
 import 'package:field_training_app/cache/cache_helper.dart';
 
-import 'package:field_training_app/teacher_features/profile_teacher/presentation/view_model/cubit/student_profile_cubit.dart';
+import 'package:field_training_app/teacher_features/profile_teacher/presentation/view_model/cubit/teacher_profile_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

@@ -1,10 +1,10 @@
 import 'package:field_training_app/Core/widgets/custom_cached_image.dart';
 import 'package:flutter/material.dart';
-import '../../student_features/profile/presentation/widgets/teacher_bottom_sheet.dart';
+import '../../student_features/profile/presentation/widgets/bottom_sheet.dart';
 import '../utils/constatnt.dart';
 
-class ProfileUserImage extends StatelessWidget {
-  const ProfileUserImage({
+class ProfileTeacherImage extends StatelessWidget {
+  const ProfileTeacherImage({
     super.key,
     required this.iconSize,
     required this.right,
@@ -53,7 +53,7 @@ class ProfileUserImage extends StatelessWidget {
           top: top,
           child: IconButton(
             onPressed: () {
-              teacherBottomSheet(context);
+              bottomSheet(context);
             },
             icon: Icon(
               Icons.add_a_photo_outlined,
