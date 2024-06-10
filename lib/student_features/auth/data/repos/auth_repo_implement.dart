@@ -5,8 +5,6 @@ import 'package:dio/dio.dart';
 import 'package:field_training_app/Core/api_services/api_service.dart';
 import 'package:field_training_app/Core/api_services/end_points.dart';
 import 'package:field_training_app/student_features/auth/data/repos/auth_repo.dart';
-import 'package:field_training_app/student_features/auth/helper/upload_image_to_api.dart';
-import 'package:image_picker/image_picker.dart';
 
 import '../../../../Core/api_services/failure.dart';
 import '../models/login_model.dart';
@@ -45,7 +43,6 @@ class AuthRepoImplement implements AuthRepo {
     required String password,
     required String phone,
     required String studentLevel,
-    required XFile image,
   }) async {
     try {
       var response = await apiServices.post(
@@ -59,7 +56,6 @@ class AuthRepoImplement implements AuthRepo {
           ApiKey.password: password,
           ApiKey.phone: "+2$phone",
           ApiKey.studentLevel: studentLevel,
-          ApiKey.image: await uploadImageToApi(image),
         },
       );
       return response == null
@@ -83,7 +79,6 @@ class AuthRepoImplement implements AuthRepo {
     required String password,
     required String phone,
     required String address,
-    required XFile image,
     required String governorate,
   }) async {
     try {
@@ -99,7 +94,6 @@ class AuthRepoImplement implements AuthRepo {
           ApiKey.phone: "+2$phone",
           ApiKey.address: address,
           ApiKey.governorate: governorate,
-          ApiKey.image: await uploadImageToApi(image),
         },
       );
       return response == null

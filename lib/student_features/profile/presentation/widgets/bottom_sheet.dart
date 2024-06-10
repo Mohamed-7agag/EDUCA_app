@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
-import 'package:field_training_app/teacher_features/profile_teacher/presentation/view_model/cubit/student_profile_cubit.dart';
+import 'package:field_training_app/Core/utils/routes.dart';
+import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,7 +8,6 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../../../Core/utils/constatnt.dart';
 import '../../../../Core/utils/styles.dart';
-import '../../../auth/presentation/view_model/change_profile_image.dart';
 import '../view_model/cubit/student_profile_cubit.dart';
 
 void bottomSheet(BuildContext context) {
@@ -32,10 +32,11 @@ void bottomSheet(BuildContext context) {
                       context
                           .read<StudentProfileCubit>()
                           .updateStudentData(image: pickedFile);
-                      context
-                          .read<ChangeRegisterImageCubit>()
-                          .changeImage(pickedFile);
                       Navigator.of(context).pop();
+                      Navigator.pushReplacementNamed(
+                          context, Routes.customBottomBarViewRoute);
+                      successCherryToast(context, 'تم تغيير الصورة',
+                          'قم باعادة تشغيل البرنامج لعرض التحديثات');
                     }
                   },
                   icon: const Icon(
@@ -63,12 +64,13 @@ void bottomSheet(BuildContext context) {
                         await picker.pickImage(source: ImageSource.gallery);
                     if (pickedFile != null) {
                       context
-                          .read<TeacherProfileCubit>()
-                          .updateTeacherData(image: pickedFile);
-                      context
-                          .read<ChangeRegisterImageCubit>()
-                          .changeImage(pickedFile);
+                          .read<StudentProfileCubit>()
+                          .updateStudentData(image: pickedFile);
                       Navigator.of(context).pop();
+                      Navigator.pushReplacementNamed(
+                          context, Routes.customBottomBarViewRoute);
+                      successCherryToast(context, 'تم تغيير الصورة',
+                          'قم باعادة تشغيل البرنامج لعرض التحديثات');
                     }
                   },
                   icon: const Icon(

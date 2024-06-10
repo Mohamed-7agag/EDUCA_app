@@ -1,3 +1,4 @@
+import 'package:field_training_app/Core/utils/routes.dart';
 import 'package:field_training_app/Core/widgets/custom_cached_image.dart';
 import 'package:flutter/material.dart';
 import '../../student_features/profile/presentation/widgets/bottom_sheet.dart';
@@ -25,9 +26,12 @@ class ProfileUserImage extends StatelessWidget {
       alignment: Alignment.center,
       children: [
         Container(
+          width: 120,
+          height: 120,
           padding: const EdgeInsets.all(2.5),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(200),
+            color: kSplashDarkerColor,
             border: image != null
                 ? Border.all(color: kPrimaryColor, width: 2)
                 : null,

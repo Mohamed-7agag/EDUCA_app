@@ -154,46 +154,61 @@ class RegisterViewBody extends StatelessWidget {
                                     child:
                                         BlocBuilder<StudentLevelCubit, String>(
                                       builder: (context, studentLevelState) {
-                                        return DropdownButton(
-                                          borderRadius:
-                                              BorderRadius.circular(6),
-                                          underline: Container(
-                                              height: 1, color: Colors.grey),
-                                          icon: const Icon(
-                                              Icons.arrow_drop_down,
-                                              color: kPrimaryColor,
-                                              size: 30),
-                                          alignment: Alignment.centerRight,
-                                          style: Styles.textStyle16
-                                              .copyWith(color: Colors.black),
-                                          elevation: 1,
-                                          hint: Text(
-                                            studentLevelState,
-                                            style: GoogleFonts.tajawal(
-                                                fontSize: 13.sp),
+                                        return Container(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 3),
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(6),
+                                            border: Border.all(
+                                                color: kPrimaryColor),
                                           ),
-                                          onChanged: (val) {
-                                            context
-                                                .read<StudentLevelCubit>()
-                                                .changeState(val.toString());
-                                            context
-                                                .read<AuthCubit>()
-                                                .studentLevel = val.toString();
-                                          },
-                                          isExpanded: true,
-                                          items: classOptionsValues
-                                              .map<DropdownMenuItem<String>>(
-                                            (String value) {
-                                              return DropdownMenuItem<String>(
-                                                alignment:
-                                                    Alignment.centerRight,
-                                                value: value,
-                                                child: Text(value,
-                                                    style:
-                                                        GoogleFonts.tajawal()),
-                                              );
+                                          child: DropdownButton(
+                                            borderRadius:
+                                                BorderRadius.circular(6),
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 10),
+                                            underline: Container(
+                                                height: 1,
+                                                color: Colors.transparent),
+                                            icon: const Icon(
+                                                Icons
+                                                    .keyboard_arrow_down_rounded,
+                                                color: kPrimaryColor,
+                                                size: 30),
+                                            alignment: Alignment.centerRight,
+                                            style: Styles.textStyle16
+                                                .copyWith(color: Colors.black),
+                                            elevation: 1,
+                                            hint: Text(
+                                              studentLevelState,
+                                              style: GoogleFonts.tajawal(
+                                                  fontSize: 13.sp),
+                                            ),
+                                            onChanged: (val) {
+                                              context
+                                                  .read<StudentLevelCubit>()
+                                                  .changeState(val.toString());
+                                              context
+                                                      .read<AuthCubit>()
+                                                      .studentLevel =
+                                                  val.toString();
                                             },
-                                          ).toList(),
+                                            isExpanded: true,
+                                            items: classOptionsValues
+                                                .map<DropdownMenuItem<String>>(
+                                              (String value) {
+                                                return DropdownMenuItem<String>(
+                                                  alignment:
+                                                      Alignment.centerRight,
+                                                  value: value,
+                                                  child: Text(value,
+                                                      style: GoogleFonts
+                                                          .tajawal()),
+                                                );
+                                              },
+                                            ).toList(),
+                                          ),
                                         );
                                       },
                                     ),
