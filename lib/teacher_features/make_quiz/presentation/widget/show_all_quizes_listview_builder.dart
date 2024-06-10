@@ -43,7 +43,9 @@ class ShowAllQuizzesListViewBuilder extends StatelessWidget {
                       backgroundColor: Colors.white,
                       foregroundColor: kPrimaryColor,
                       padding: const EdgeInsets.all(13)),
-                  onPressed: () {},
+                  onPressed: () {
+                    print("subjectId in show-----------: $subjectId");
+                  },
                   icon: const Icon(
                     Icons.list_alt_outlined,
                     size: 38,
@@ -103,15 +105,16 @@ class ShowAllQuizzesListViewBuilder extends StatelessWidget {
         BlocConsumer<AddQuizCubit, AddQuizState>(
           listener: (context, state) {
             if (state is AddQuizSuccess) {
+              print("subjectId in show-----------: $subjectId");
               successCherryToast(
                   context, 'تمت العملية بنجاح', 'تم اضافة الاختبار بنجاح');
               Navigator.of(context).pop();
-              Navigator.of(context).pushNamed(
+              Navigator.of(context).pushReplacementNamed(
                 Routes.createQuizViewRoute,
                 arguments: {
                   "quizId": state.quizModel.id,
                   "titleQuiz": controller.text,
-                  "subjectId": subjectId
+                  "subjectId": subjectId,
                 },
               );
             } else if (state is AddQuizFailure) {

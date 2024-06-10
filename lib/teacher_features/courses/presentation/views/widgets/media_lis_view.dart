@@ -20,7 +20,10 @@ class MediaListView extends StatelessWidget {
     return BlocProvider(
       create: (context) => GetFilesCubit(getIt<ChapterFilesRepoImplement>())
         ..getFiles(chapterId: chapterId),
-      child: BlocBuilder<GetFilesCubit, GetFilesState>(
+      child: BlocConsumer<GetFilesCubit, GetFilesState>(
+        listener: (context, state) {
+         
+        },
         builder: (context, state) {
           if (state is GetFilesFailure) {
             return SliverToBoxAdapter(

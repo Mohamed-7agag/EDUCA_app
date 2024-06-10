@@ -34,7 +34,8 @@ class _CourseDetailsTeacherViewBodyState
     // TODO: implement initState
     print("isactive--------------------------------");
     print(widget.courseModel.isActive);
-    context.read<SwithSelectCubit>().state != widget.courseModel.isActive;
+    context.read<SwithSelectCubit>().isactive = widget.courseModel.isActive!;
+    print(context.read<SwithSelectCubit>().isactive);
     super.initState();
   }
 
@@ -113,7 +114,7 @@ class _CourseDetailsTeacherViewBodyState
                                     return state is AddCourseUpdateLoading
                                         ? const CustomLoadingWidget()
                                         : Switch(
-                                            value: stateswitc,
+                                            value: context.read<SwithSelectCubit>().isactive,
                                             focusColor: kPrimaryColor,
                                             activeColor: kPrimaryColor,
                                             onChanged: (value) {
@@ -126,10 +127,8 @@ class _CourseDetailsTeacherViewBodyState
                                                   .updateCourse(
                                                       courseModel:
                                                           widget.courseModel);
-                                              print("---------------------");
-                                              print(context
-                                                  .read<SwithSelectCubit>()
-                                                  .state);
+                                             
+                                             
                                             },
                                           );
                                   },
