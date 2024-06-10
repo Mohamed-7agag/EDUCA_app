@@ -28,8 +28,8 @@ class HomeTeacherViewBody extends StatelessWidget {
                   children: [
                     IconButton(
                       onPressed: () {
-                        Navigator.pushNamed(
-                            context, Routes.notificationViewRoute);
+                        // Navigator.pushNamed(
+                        //     context, Routes.notificationViewRoute);
                       },
                       icon: const Icon(
                         Icons.notifications_outlined,
@@ -42,7 +42,7 @@ class HomeTeacherViewBody extends StatelessWidget {
                     SizedBox(width: 8.w),
                     IconButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, Routes.searchViewRoute);
+                      //  Navigator.pushNamed(context, Routes.searchViewRoute);
                       },
                       icon: const Icon(
                         Icons.search_rounded,

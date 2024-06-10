@@ -57,7 +57,7 @@ class CourseRepoImplement implements CourseRepo {
     // print("courseModel: ${courseModel.describtion}");
     // print("courseModel: ${courseModel.pricePerHour}");
     // print("courseModel: ${courseModel.teacherId}");
-    // print("courseModel: ${courseModel.isActive}");
+    print("courseModel: ${courseModel.isActive}");
     // print("courseModel: ${courseModel.addingTime}");
     // print("courseModel: ${courseModel.isOnline}");
     try {
@@ -72,7 +72,7 @@ class CourseRepoImplement implements CourseRepo {
           ApiKey.subjectId: courseModel.subjectId ?? "",
           ApiKey.pricePerHour: courseModel.pricePerHour ?? "",
           ApiKey.teacherId: courseModel.teacherId ?? "",
-          ApiKey.isActive: courseModel.isActive ?? "",
+          ApiKey.isActive: courseModel.isActive == true ? false : true,
           ApiKey.addingTime: courseModel.addingTime ?? "",
           "Describtion": courseModel.describtion ?? "",
           ApiKey.isOnline: true,

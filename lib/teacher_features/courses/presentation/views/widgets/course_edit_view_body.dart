@@ -320,6 +320,16 @@ class _CourseEditViewBodyState extends State<CourseEditViewBody> {
                               "عملية ناجحة",
                               "تم انشاء المادة بنجاح",
                             );
+                            Navigator.pushReplacementNamed(
+                                context, Routes.courseEditViewRoute,
+                                arguments: {
+                                  "namech": widget.namech,
+                                  "subjectId": widget.subjectId,
+                                  "chaptersN": widget.chaptersN,
+                                  "chapterIndx": widget.chapterIndex,
+                                  "chapterId": widget.chapterId
+                                }
+                                );
                           } else if (state is UploadFileFailure) {
                             errorCherryToast(context, "حدث خطأ", state.message);
                           }
