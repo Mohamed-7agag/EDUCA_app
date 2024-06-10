@@ -79,6 +79,19 @@ class EndPoint {
   static String updateCourseWithTeacherId(int id) {
     return "subject/$id";
   }
+
+  static String deleteChapter(int chapterId) {
+    return "chapters/$chapterId";
+  }
+
+  static String deleteQuiz(int quizId) {
+    return "quiz/$quizId";
+    
+  }
+
+  static String deleteQuestion(int questionId) {
+    return "questions/$questionId";
+  }
 }
 
 class ApiKey {

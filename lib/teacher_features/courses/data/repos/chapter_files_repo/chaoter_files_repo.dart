@@ -11,6 +11,10 @@ abstract class ChapterFilesRepo {
     required int subjectId,
   });
 
+  Future<Either<Failure, String>> deleteChapter({
+    required int chapterId,
+  });
+
   Future<Either<Failure, String>> uploadFile({
     required int chapterId,
     required File file,

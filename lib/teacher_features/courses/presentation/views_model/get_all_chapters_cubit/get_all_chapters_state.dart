@@ -22,3 +22,17 @@ final class GetAllChaptersFailure extends GetAllChaptersState {
 
   const GetAllChaptersFailure(this.message);
 }
+
+
+final class DeleteChapterLoading extends  GetAllChaptersState{}
+
+final class DeleteChapterSuccess extends GetAllChaptersState {
+  
+}
+
+final class DeleteChapterFailure extends GetAllChaptersState {
+
+  final String message;
+
+  const DeleteChapterFailure({required this.message});
+}

@@ -22,3 +22,5 @@ final class AddChapterFailure extends AddChapterState {
 
   const AddChapterFailure({required this.message});
 }
+
+

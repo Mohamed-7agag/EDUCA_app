@@ -109,4 +109,25 @@ class AddQuizRepoImplement implements AddQuizRepo {
       return left(ServerFailure(e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, String>> deleteQuiz({required int quizId}) async {
+    try {
+      await apiServices.delete(EndPoint.deleteQuiz(quizId));
+      return right('success deleted');
+    } on DioException catch (e) {
+      return Left(ServerFailure.fromDioError(e));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> deleteQuestion({required int questionId})async {
+    
+    try {
+      await apiServices.delete(EndPoint.deleteQuestion(questionId));
+      return right('success deleted');
+    } on DioException catch (e) {
+      return Left(ServerFailure.fromDioError(e));
+    }
+  }
 }

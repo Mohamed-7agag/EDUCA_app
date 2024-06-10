@@ -35,4 +35,14 @@ class AddQuestionCubit extends Cubit<AddQuestionState> {
       emit(AddQuestionSuccess(questionModel: questionmodel));
     });
   }
+
+  Future<void>deleteQuestion({required int questionId}) async {
+    emit(DeleteQuestionLoading());
+    var result = await addQuizRepo.deleteQuestion(questionId: questionId);
+    result.fold((failure) {
+      emit(DeleteQuestionFailure(message: failure.errMessage));
+    }, (message) {
+      emit(DeleteQuestionSuccess());
+    });
+  }
 }

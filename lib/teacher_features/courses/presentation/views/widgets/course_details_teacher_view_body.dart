@@ -127,7 +127,7 @@ class _CourseDetailsTeacherViewBodyState
                                                   .updateCourse(
                                                       courseModel:
                                                           widget.courseModel);
-                                              print("---------------------");
+                                             
                                               print(context
                                                   .read<SwithSelectCubit>()
                                                   .state);

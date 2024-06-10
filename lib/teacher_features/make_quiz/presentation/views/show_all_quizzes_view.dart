@@ -6,7 +6,6 @@ class ShowAllQuizzesView extends StatelessWidget {
   final int subjectId;
   @override
   Widget build(BuildContext context) {
-    print("subjectId in show-----------: $subjectId");
     return Scaffold(
       body: SafeArea(
           child: ShowAllQuizzesViewBody(

@@ -21,4 +21,6 @@ class AddChapterCubit extends Cubit<AddChapterState> {
       emit(AddChapterSuccess(chapterModel: chapterModel));
     });
   }
+
+  
 }

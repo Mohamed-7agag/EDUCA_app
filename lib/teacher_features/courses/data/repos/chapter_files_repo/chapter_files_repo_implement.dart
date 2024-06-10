@@ -100,4 +100,16 @@ class ChapterFilesRepoImplement implements ChapterFilesRepo {
       return left(ServerFailure(e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, String>> deleteChapter({
+    required int chapterId,
+  }) async {
+    try {
+      await apiServices.delete(EndPoint.deleteChapter(chapterId));
+      return right("success deleted");
+    } on DioException catch (e) {
+      return Left(ServerFailure.fromDioError(e));
+    }
+  }
 }

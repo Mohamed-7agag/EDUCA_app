@@ -32,3 +32,18 @@ final class GetAllQuizFailure extends AddQuizState {
   final String errMessage;
   const GetAllQuizFailure({required this.errMessage});
 }
+
+
+
+final class DeleteQuizLoading extends  AddQuizState{}
+
+final class DeleteQuizSuccess extends AddQuizState {
+  
+}
+
+final class DeleteQuizFailure extends AddQuizState {
+
+  final String message;
+
+  const DeleteQuizFailure({required this.message});
+}

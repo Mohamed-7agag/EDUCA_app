@@ -1,3 +1,4 @@
+import 'package:field_training_app/Core/utils/routes.dart';
 import 'package:field_training_app/teacher_features/make_quiz/presentation/widget/make_quiz_view_body.dart';
 import 'package:flutter/material.dart';
 
@@ -14,13 +15,23 @@ class MakeQuizView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-          child: MakeQuizViewBody(
-        subjectId: subjectId,
-        titleQuiz: titleQuiz,
-        quizId: quizId,
-      )),
+    return WillPopScope(
+      onWillPop: () {
+        Navigator.pushReplacementNamed(
+          context,
+          Routes.showAllQuizzesViewRoute,
+          arguments: subjectId,
+        );
+        return Future.value(false);
+      },
+      child: Scaffold(
+        body: SafeArea(
+            child: MakeQuizViewBody(
+          subjectId: subjectId,
+          titleQuiz: titleQuiz,
+          quizId: quizId,
+        )),
+      ),
     );
   }
 }

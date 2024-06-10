@@ -14,6 +14,7 @@ import 'package:field_training_app/teacher_features/courses/data/repos/chapter_f
 import 'package:field_training_app/teacher_features/courses/presentation/views/widgets/media_lis_view.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views_model/add_chapter_cubit/add_chapter_cubit.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views_model/drop_down_list_chapter_cubit.dart';
+import 'package:field_training_app/teacher_features/courses/presentation/views_model/get_all_chapters_cubit/get_all_chapters_cubit.dart';
 
 import 'package:field_training_app/teacher_features/courses/presentation/views_model/upload_file_cubit/upload_file_cubit.dart';
 import 'package:file_picker/file_picker.dart';
@@ -61,27 +62,25 @@ class _CourseEditViewBodyState extends State<CourseEditViewBody> {
             child: BlocConsumer<AddChapterCubit, AddChapterState>(
               listener: (context, state) {
                 if (state is AddChapterSuccess) {
-                  successCherryToast(
-                      context, "تم الاضافة بنجاح", "تمت العملية بنجاح");
+                  successCherryToast(context, "تم الاضافة بنجاح",
+                      "${state.chapterModel.name}");
                   // Navigator.of(context).pop();
+                  // Navigator.pushReplacementNamed(
+                  //     context, Routes.courseDetailsTeacherViewRoute,
+                  //     arguments: widget.subjectId);
+                  print(
+                      "name:------------------------- ${state.chapterModel.name}");
                   Navigator.pushReplacementNamed(
-                      context, Routes.courseDetailsTeacherViewRoute,
-                      arguments: widget.subjectId);
-                  // Navigator.pushNamed(context, Routes.courseEditViewRoute,
-                  //     arguments: {
-                  //       "subjectId": widget.subjectId,
-                  //       "chaptersN":
-                  //           context.read<GetAllChaptersCubit>().chapterNames,
-                  //       "chapterIndx":
-                  //           context.read<GetAllChaptersCubit>().chapterIndx,
-                  //       "chapterId":
-                  //           context.read<GetAllChaptersCubit>().chapterIndx[
-                  //               context
-                  //                   .read<GetAllChaptersCubit>()
-                  //                   .chapterNames[0]],
-                  //       "namech":
-                  //           context.read<GetAllChaptersCubit>().chapterNames[0],
-                  //     });
+                      context, Routes.courseEditViewRoute,
+                      arguments: {
+                        "subjectId": widget.subjectId,
+                        "chaptersN":
+                            context.read<GetAllChaptersCubit>().chapterNames,
+                        "chapterIndx":
+                            context.read<GetAllChaptersCubit>().chapterIndx,
+                        "chapterId": state.chapterModel.id,
+                        "namech": state.chapterModel.name,
+                      });
                 }
               },
               builder: (context, state) {
@@ -103,7 +102,7 @@ class _CourseEditViewBodyState extends State<CourseEditViewBody> {
                               if (controller.text.isEmpty) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
-                                    content: Text("يجب عليك ادخال اسم الدرس"),
+                                    content: Text("يجب عليك ادخال اسم الملف"),
                                   ),
                                 );
                               } else {
@@ -243,8 +242,21 @@ class _CourseEditViewBodyState extends State<CourseEditViewBody> {
                             successCherryToast(
                               context,
                               "عملية ناجحة",
-                              "تم انشاء المادة بنجاح",
+                              "${state.chapterModel.name}",
                             );
+                            Navigator.pushReplacementNamed(
+                                context, Routes.courseEditViewRoute,
+                                arguments: {
+                                  "subjectId": widget.subjectId,
+                                  "chaptersN": context
+                                      .read<GetAllChaptersCubit>()
+                                      .chapterNames,  
+                                  "chapterIndx": context
+                                      .read<GetAllChaptersCubit>()
+                                      .chapterIndx,
+                                  "chapterId": state.chapterModel.id,
+                                  "namech": state.chapterModel.name,
+                                });
                           } else if (state is AddChapterFailure) {
                             errorCherryToast(context, "حدث خطأ", state.message);
                           }
@@ -328,8 +340,7 @@ class _CourseEditViewBodyState extends State<CourseEditViewBody> {
                                   "chaptersN": widget.chaptersN,
                                   "chapterIndx": widget.chapterIndex,
                                   "chapterId": widget.chapterId
-                                }
-                                );
+                                });
                           } else if (state is UploadFileFailure) {
                             errorCherryToast(context, "حدث خطأ", state.message);
                           }

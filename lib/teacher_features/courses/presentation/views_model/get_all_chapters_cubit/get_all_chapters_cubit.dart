@@ -27,4 +27,16 @@ class GetAllChaptersCubit extends Cubit<GetAllChaptersState> {
       emit(GetAllChaptersSuccess(chaptersList));
     });
   }
+
+  deleteChapter({
+    required int chapterId,
+  }) async {
+    emit(DeleteChapterLoading());
+    var result = await chapterFilesRepo.deleteChapter(chapterId: chapterId);
+    result.fold((failure) {
+      emit(DeleteChapterFailure(message: failure.errMessage));
+    }, (chapterModel) {
+      emit(DeleteChapterSuccess());
+    });
+  }
 }

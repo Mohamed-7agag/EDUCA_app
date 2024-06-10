@@ -29,6 +29,7 @@ class ChapterItem extends StatelessWidget {
           leading:
               isExpanded ? const Icon(Icons.remove) : const Icon(Icons.edit),
           onTap: () {
+            
             Navigator.pushNamed(context, Routes.courseEditViewRoute,
                 arguments: {
                   "subjectId": chapterModel.subjectId,

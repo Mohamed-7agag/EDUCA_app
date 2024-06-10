@@ -25,4 +25,12 @@ abstract class AddQuizRepo {
   Future<Either<Failure, List<QuestionModel>>> getAllQuestions({
     required int quizId,
   });
+
+  Future<Either<Failure, String>> deleteQuiz({
+    required int quizId,
+  });
+
+  Future<Either<Failure, String>> deleteQuestion({
+    required int questionId,
+  });
 }

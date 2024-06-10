@@ -5,6 +5,7 @@ import 'package:field_training_app/Core/api_services/end_points.dart';
 class QuestionModel {
   String question;
   int quizId;
+  int id;
   String option1;
   String option2;
   String option3;
@@ -12,6 +13,7 @@ class QuestionModel {
   String correctAnswer;
   QuestionModel({
     required this.question,
+    required this.id,
     required this.quizId,
     required this.option1,
     required this.option2,
@@ -23,6 +25,7 @@ class QuestionModel {
   factory QuestionModel.fromJson(Map<String, dynamic> json) {
     return QuestionModel(
       question: json[ApiKey.content] as String,
+      id: json[ApiKey.id] as int,
       option1: json[ApiKey.option1] as String,
       option2: json[ApiKey.option2] as String,
       option3: json[ApiKey.option3] as String,
@@ -38,6 +41,7 @@ class QuestionModel {
       ApiKey.option1: option1,
       ApiKey.option2: option2,
       ApiKey.option3: option3,
+      ApiKey.id: id,
       ApiKey.quizId: quizId,
       ApiKey.option4: option4,
       ApiKey.correctAnswer: correctAnswer,
@@ -48,6 +52,7 @@ class QuestionModel {
         question,
         option1,
         option2,
+        id,
         option3,
         quizId,
         option4,

@@ -34,4 +34,14 @@ class AddQuizCubit extends Cubit<AddQuizState> {
       emit(GetAllQuizSuccess(quizModelList: quizModelList));
     });
   }
+
+  Future<void> deleteQuiz({required int quizId}) async {
+    emit(DeleteQuizLoading());
+    var result = await addQuizRepo.deleteQuiz(quizId: quizId);
+    result.fold((failure) {
+      emit(DeleteQuizFailure(message: failure.errMessage));
+    }, (message) {
+      emit(DeleteQuizSuccess());
+    });
+  }
 }

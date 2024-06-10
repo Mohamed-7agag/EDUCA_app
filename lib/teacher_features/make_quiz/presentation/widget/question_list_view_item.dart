@@ -1,9 +1,15 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:field_training_app/Core/utils/app_services.dart';
 import 'package:field_training_app/Core/utils/constatnt.dart';
+import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
+
+import 'package:field_training_app/teacher_features/make_quiz/data/repos/add_quiz_repo/add_quzi_repo_impelement.dart';
+import 'package:field_training_app/teacher_features/make_quiz/presentation/views_model/add_question_cubit/add_question_cubit.dart';
 import 'package:field_training_app/teacher_features/make_quiz/presentation/widget/custom_answers_question.dart';
 import 'package:flutter/material.dart';
 
 import 'package:field_training_app/Core/models/question_model.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 // ignore: must_be_immutable
@@ -66,12 +72,28 @@ class QuestionListViewItem extends StatelessWidget {
                   style: TextStyle(color: Colors.white),
                 )),
             const SizedBox(width: 15),
-            ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor: WidgetStateProperty.all(kPrimaryColor),
+            BlocProvider(
+              create: (context) =>
+                  AddQuestionCubit(getIt<AddQuizRepoImplement>()),
+              child: BlocBuilder<AddQuestionCubit, AddQuestionState>(
+                builder: (context, state) {
+                  if (state is DeleteQuestionSuccess) {
+                    return ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: WidgetStateProperty.all(kPrimaryColor),
+                      ),
+                      onPressed: () {
+                        BlocProvider.of<AddQuestionCubit>(context)
+                            .deleteQuestion(questionId: questionModel.quizId);
+                      },
+                      child: const Text("حذف",
+                          style: TextStyle(color: Colors.white)),
+                    );
+                  } else {
+                    return const CustomLoadingWidget();
+                  }
+                },
               ),
-              onPressed: () {},
-              child: const Text("حذف", style: TextStyle(color: Colors.white)),
             ),
           ],
         ),

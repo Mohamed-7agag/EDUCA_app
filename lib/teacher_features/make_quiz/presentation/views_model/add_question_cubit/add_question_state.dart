@@ -20,3 +20,17 @@ final class AddQuestionFailure extends AddQuestionState {
   final String errMessage;
   const AddQuestionFailure({required this.errMessage});
 }
+
+
+final class DeleteQuestionLoading extends  AddQuestionState{}
+
+final class DeleteQuestionSuccess extends AddQuestionState {
+  
+}
+
+final class DeleteQuestionFailure extends AddQuestionState {  
+
+  final String message;
+
+  const DeleteQuestionFailure({required this.message});
+}

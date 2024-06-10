@@ -30,7 +30,7 @@ class LessonDetailsViewBody extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   child: LessonDetailItem(
                     type: fileTypeDetect(
-                        contentType: state.lessonItems[index].contentType!),
+                    contentType: state.lessonItems[index].contentType!),
                     name: state.lessonItems[index].fileName!,
                     ontap: () {
                       convertToPDF(
