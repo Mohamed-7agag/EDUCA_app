@@ -445,7 +445,7 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
             create: (context) => LessonsCubit(
-                getIt.get<LessonsRepoImplement>()..getLessons(subjectID: args)),
+                getIt.get<LessonsRepoImplement>())..getLessons(subjectID: args),
             child: const LessonsListView(),
           ),
         );

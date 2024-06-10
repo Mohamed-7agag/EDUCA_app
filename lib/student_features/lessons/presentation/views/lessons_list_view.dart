@@ -3,6 +3,7 @@ import 'package:field_training_app/Core/widgets/custom_failure_widget.dart';
 import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
 import 'package:field_training_app/Core/widgets/pop_icon_button.dart';
 import 'package:field_training_app/student_features/lessons/presentation/view_model/cubit/lessons_cubit.dart';
+import 'package:field_training_app/student_features/lessons/presentation/views/lesson_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -39,25 +40,11 @@ class LessonsListView extends StatelessWidget {
                       itemCount: state.lessons.length,
                       itemBuilder: (BuildContext context, int index) {
                         return Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 7),
-                          child: InkWell(
-                            onTap: () {},
-                            borderRadius: BorderRadius.circular(6.r),
-                            splashColor: kSplashColor,
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12, vertical: 8),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(6.r),
-                                border: Border.all(color: Colors.grey[400]!),
-                              ),
-                              child: Text(
-                                state.lessons[index].name!,
-                                style: Styles.textStyle18,
-                              ),
-                            ),
-                          ),
-                        );
+                            padding: const EdgeInsets.symmetric(vertical: 8),
+                            child: LessonItem(
+                                name: state.lessons[index].name!,
+                                index: index,
+                                onTap: () {}));
                       },
                     )
                   : const Center(child: Text('لا يوجد دروس'));
