@@ -22,20 +22,23 @@ class ChapterItem extends StatelessWidget {
     return Column(
       children: [
         ListTile(
-          
-          title: Text(chapterModel.name ?? "الدرس ${index + 1}"),
-          trailing:
-              isExpanded ? const Icon(Icons.remove) : const Icon(Icons.add),
+          title: Text(
+            chapterModel.name ?? "الدرس ${index + 1}",
+            textDirection: TextDirection.rtl,
+          ),
+          leading:
+              isExpanded ? const Icon(Icons.remove) : const Icon(Icons.edit),
           onTap: () {
-             Navigator.pushNamed(context, Routes.courseEditViewRoute,
-                    arguments: {
-                      "subjectId": chapterModel.subjectId,
-                      "chaptersN": context.read<GetAllChaptersCubit>().chapterNames,
-                      "chapterIndx": context.read<GetAllChaptersCubit>().chapterIndx,
-                      "chapterId": chapterModel.id,
-                      "namech":chapterModel.name
-                    });
-           
+            Navigator.pushNamed(context, Routes.courseEditViewRoute,
+                arguments: {
+                  "subjectId": chapterModel.subjectId,
+                  "chaptersN": context.read<GetAllChaptersCubit>().chapterNames,
+                  "chapterIndx":
+                      context.read<GetAllChaptersCubit>().chapterIndx,
+                  "chapterId": chapterModel.id,
+                  "namech": chapterModel.name
+                });
+
             // context.read<ShowSubClassesCubit>().toggleExpansion(index);
           },
         ),

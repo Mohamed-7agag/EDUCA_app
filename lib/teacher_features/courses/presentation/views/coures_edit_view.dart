@@ -9,17 +9,26 @@ class CourseEditView extends StatelessWidget {
       required this.subjectId,
       required this.chaptersN,
       required this.chapterIndx,
-      required this.chapterId, required this.namech});
+      required this.chapterId,
+      required this.namech});
   final int subjectId;
   final List<String> chaptersN;
   final Map<String, int> chapterIndx;
   final int chapterId;
   final String namech;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(' Edit Course'),
+        title: const Text('تعديل المادة'),
+        centerTitle: true,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.arrow_back_ios),
+        ),
       ),
       body: SafeArea(
           child: BlocProvider(

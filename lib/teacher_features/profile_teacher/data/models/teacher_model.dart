@@ -8,10 +8,12 @@ class TeacherModel extends Equatable {
   final String? phone;
   final String? address;
   final String? governorate;
+  final String? userName;
   final String? profileImageUrl;
 
   const TeacherModel({
     this.id,
+    this.userName,
     this.firstName,
     this.lastName,
     this.email,
@@ -23,6 +25,7 @@ class TeacherModel extends Equatable {
 
   factory TeacherModel.fromJson(Map<String, dynamic> json) => TeacherModel(
         id: json['id'] as int?,
+        userName: json['userName'] as String?,
         firstName: json['firstName'] as String?,
         lastName: json['lastName'] as String?,
         email: json['email'] as String?,
@@ -37,6 +40,7 @@ class TeacherModel extends Equatable {
         'firstName': firstName,
         'lastName': lastName,
         'email': email,
+        'userName': userName,
         'phone': phone,
         'address': address,
         'governorate': governorate,
@@ -50,6 +54,7 @@ class TeacherModel extends Equatable {
       firstName,
       lastName,
       email,
+      userName,
       phone,
       address,
       governorate,

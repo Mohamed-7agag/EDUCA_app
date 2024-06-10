@@ -9,6 +9,10 @@ abstract class AddCourseRepo {
     required String level,
     required String describtion,
     required int trem,
+    required bool isOnline,
+    required bool isActive,
+    required int totalPrice,
+
   });
 
   Future<Either<Failure, CourseModel>> updateCourse({
