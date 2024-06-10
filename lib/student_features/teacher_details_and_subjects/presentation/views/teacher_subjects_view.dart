@@ -15,7 +15,8 @@ class TeacherSubjectsView extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: kPrimaryColor,
-        title: const CustomPopIconButton(backgroundColor: Colors.white70),
+        title:
+            CustomPopIconButton(backgroundColor: Colors.white70, radius: 18.r),
         actions: [
           Text('المواد الدراسية',
               style: Styles.textStyle18.copyWith(color: Colors.white)),

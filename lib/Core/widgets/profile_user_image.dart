@@ -1,5 +1,6 @@
 import 'package:field_training_app/Core/widgets/custom_cached_image.dart';
 import 'package:flutter/material.dart';
+import '../../student_features/profile/presentation/widgets/bottom_sheet.dart';
 import '../utils/constatnt.dart';
 
 class ProfileUserImage extends StatelessWidget {
@@ -43,6 +44,23 @@ class ProfileUserImage extends StatelessWidget {
                   height: 115,
                   errorIconSize: 60,
                 ),
+        ),
+        Positioned(
+          right: right,
+          top: top,
+          child: IconButton(
+            onPressed: () {
+              bottomSheet(context);
+            },
+            icon: Icon(
+              Icons.add_a_photo_outlined,
+              size: cameraSize,
+              color: Colors.white,
+            ),
+            style: IconButton.styleFrom(
+              backgroundColor: kPrimaryColor,
+            ),
+          ),
         ),
       ],
     );
