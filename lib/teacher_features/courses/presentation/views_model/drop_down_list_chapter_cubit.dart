@@ -16,7 +16,6 @@ class DropDownListChapterCubit extends Cubit<String> {
     int? chapterId,
     }
   ) {
-    print(ch);
     if (ispusing) {
       Navigator.pushReplacementNamed(
       context!,

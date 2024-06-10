@@ -16,33 +16,38 @@ class SearchViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: BlocProvider(
-        create: (context) => GovernorateSelectCubit(),
-        child: BlocBuilder<GovernorateSelectCubit, String>(
-          builder: (context, governateState) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                SizedBox(height: 20.h),
-                SearchTextFormField(
-                  searchType: searchType,
-                  governateState: governateState,
-                ),
-                searchType == "governate"
-                    ? SizedBox(height: 16.h)
-                    : const SizedBox.shrink(),
-                searchType == "governate"
-                    ? DropdownButton(
+      child: BlocBuilder<GovernorateSelectCubit, String>(
+        builder: (context, governateState) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              SizedBox(height: 20.h),
+              SearchTextFormField(
+                searchType: searchType,
+                governateState: governateState,
+              ),
+              searchType == "governate"
+                  ? SizedBox(height: 16.h)
+                  : const SizedBox.shrink(),
+              searchType == "governate"
+                  ? Container(
+                      padding: const EdgeInsets.symmetric(vertical: 3),
+                      decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(6),
-                        underline: Container(height: 1, color: Colors.grey),
-                        icon: const Icon(Icons.arrow_drop_down,
+                        border: Border.all(color: kPrimaryColor),
+                      ),
+                      child: DropdownButton(
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        borderRadius: BorderRadius.circular(6),
+                        underline: Container(color: Colors.transparent),
+                        icon: const Icon(Icons.keyboard_arrow_down_rounded,
                             color: kPrimaryColor, size: 30),
                         alignment: Alignment.centerRight,
                         style: Styles.textStyle16.copyWith(color: Colors.black),
                         elevation: 1,
                         hint: Text(
                           governateState,
-                          style: GoogleFonts.tajawal(fontSize: 13.sp),
+                          style: GoogleFonts.tajawal(fontSize: 14.sp),
                         ),
                         onChanged: (val) {
                           context
@@ -59,21 +64,21 @@ class SearchViewBody extends StatelessWidget {
                             );
                           },
                         ).toList(),
-                      )
-                    : const SizedBox.shrink(),
-                SizedBox(height: 25.h),
-                Text(
-                  "نتائج البحث",
-                  style: Styles.textStyle14,
-                ),
-                SizedBox(height: 20.h),
-                Expanded(
-                  child: SearchListView(searchType: searchType),
-                ),
-              ],
-            );
-          },
-        ),
+                      ),
+                    )
+                  : const SizedBox.shrink(),
+              SizedBox(height: 25.h),
+              Text(
+                "نتائج البحث",
+                style: Styles.textStyle14,
+              ),
+              SizedBox(height: 20.h),
+              Expanded(
+                child: SearchListView(searchType: searchType),
+              ),
+            ],
+          );
+        },
       ),
     );
   }

@@ -12,10 +12,12 @@ class QuizResultViewBody extends StatelessWidget {
   const QuizResultViewBody(
       {super.key,
       required this.numberOfQuestions,
-      required this.numberOfCorrectAnswers});
+      required this.numberOfCorrectAnswers,
+      required this.quizID});
 
   final int numberOfQuestions;
   final int numberOfCorrectAnswers;
+  final int quizID;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -73,9 +75,10 @@ class QuizResultViewBody extends StatelessWidget {
           ),
           Expanded(child: SizedBox(height: 30.h)),
           CustomButton(
-              text: "الصفحة الرئيسية",
+              text: "اعادة الاختبار مرة اخرى",
               onpressed: () {
-                Navigator.pushNamed(context, Routes.customBottomBarViewRoute);
+                Navigator.pushReplacementNamed(context, Routes.quizViewRoute,
+                    arguments: quizID);
               }),
           SizedBox(height: 20.h),
         ],

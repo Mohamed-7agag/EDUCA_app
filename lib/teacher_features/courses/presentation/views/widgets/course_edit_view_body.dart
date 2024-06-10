@@ -13,7 +13,6 @@ import 'package:field_training_app/teacher_features/courses/presentation/views/w
 import 'package:field_training_app/teacher_features/courses/presentation/views_model/add_chapter_cubit/add_chapter_cubit.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views_model/drop_down_list_chapter_cubit.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views_model/upload_file_cubit/upload_file_cubit.dart';
-import 'package:field_training_app/teacher_features/teacher/presentation/views_model/cubit/drop_down_list_cubit.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

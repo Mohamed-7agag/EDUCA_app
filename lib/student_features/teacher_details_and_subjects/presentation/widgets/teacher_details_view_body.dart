@@ -5,12 +5,12 @@ import 'package:field_training_app/Core/widgets/custom_cached_image.dart';
 import 'package:field_training_app/Core/widgets/custom_failure_widget.dart';
 import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
 import 'package:field_training_app/Core/widgets/pop_icon_button.dart';
+import 'package:field_training_app/student_features/profile/presentation/widgets/profile_item.dart';
 import 'package:field_training_app/student_features/teacher_details_and_subjects/presentation/view_model/cubit/teacher_details_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'teacher_details_item.dart';
 
 class TeacherDetailsViewBody extends StatelessWidget {
   const TeacherDetailsViewBody({super.key});
@@ -57,20 +57,29 @@ class TeacherDetailsViewBody extends StatelessWidget {
                   style: Styles.textStyle16,
                 ),
                 SizedBox(height: 40.h),
-                TeacherDetailsItem(
-                  title: state.teacherModel.governorate!,
-                  icon: Icons.location_on_outlined,
+                ProfileItem(
+                  title: 'المحافظة',
+                  value: state.teacherModel.governorate!,
+                  onpressed: () {},
+                  iconData: Icons.location_on_outlined,
+                  isEdit: false,
                 ),
-                SizedBox(height: 28.h),
-                TeacherDetailsItem(
-                  title: state.teacherModel.address!,
-                  icon: Icons.apartment,
+                SizedBox(height: 25.h),
+                ProfileItem(
+                  title: 'العنوان',
+                  value: state.teacherModel.address!,
+                  onpressed: () {},
+                  iconData: Icons.apartment,
+                  isEdit: false,
                 ),
-                SizedBox(height: 28.h),
-                TeacherDetailsItem(
-                  title: state.teacherModel.phone!
+                SizedBox(height: 25.h),
+                ProfileItem(
+                  title: 'رقم الهاتف',
+                  value: state.teacherModel.phone!
                       .substring(2, state.teacherModel.phone!.length),
-                  icon: Icons.phone_android_rounded,
+                  onpressed: () {},
+                  iconData: Icons.phone_android_rounded,
+                  isEdit: false,
                 ),
                 Expanded(child: SizedBox(height: 30.h)),
                 ElevatedButton(

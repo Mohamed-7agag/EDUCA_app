@@ -52,9 +52,10 @@ class SubjectSearchItem extends StatelessWidget {
             SizedBox(height: 14.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Text("${subjectSearchedModel.level}",
-                    style: Styles.textStyle12),
+                Text("${subjectSearchedModel.level} / ${subjectSearchedModel.term == 1 ? "الأول" : "الثاني"}",
+                    style: Styles.textStyle10),
                 Text("${subjectSearchedModel.subjName}",
                     style: Styles.textStyle16),
               ],

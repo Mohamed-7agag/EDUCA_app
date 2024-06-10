@@ -62,6 +62,7 @@ import 'package:field_training_app/student_features/profile/presentation/views/p
 import 'package:field_training_app/student_features/search/presentation/views/search_view.dart';
 
 import '../../student_features/auth/presentation/view_model/change_profile_image.dart';
+import '../../student_features/auth/presentation/view_model/governorate_cubit.dart';
 import '../../student_features/bottom_bar/presentation/view_model/bottom_bar_cubit.dart';
 import '../../student_features/chat_gpt/presentation/view_model/chat_cubit.dart';
 import '../../student_features/profile/presentation/view_model/cubit/student_profile_cubit.dart';
@@ -242,6 +243,9 @@ class AppRouter {
               BlocProvider(
                 create: (context) => OptionCubit(),
               ),
+              BlocProvider(
+                create: (context) => GovernorateSelectCubit(),
+              ),
             ],
             child: SearchView(searchType: args),
           ),
@@ -277,7 +281,9 @@ class AppRouter {
         var args = settings.arguments as CourseModel;
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
-            create: (context) => GetAllChaptersCubit(getIt.get<ChapterFilesRepoImplement>())..getChapters(subjectId: args.subjectId!),
+            create: (context) =>
+                GetAllChaptersCubit(getIt.get<ChapterFilesRepoImplement>())
+                  ..getChapters(subjectId: args.subjectId!),
             child: CourseDetailsTeacherView(
               courseModel: args,
             ),
@@ -316,7 +322,7 @@ class AppRouter {
                 create: (context) => SelectAnswerCubit(),
               ),
             ],
-            child: const QuizView(),
+            child: QuizView(quizID: args),
           ),
         );
       case Routes.quizzesListViewRoute:
@@ -334,6 +340,7 @@ class AppRouter {
           builder: (context) => QuizResultView(
             numberOfQuestions: args[0],
             numberOfCorrectAnswers: args[1],
+            quizID: args[2],
           ),
         );
       case Routes.createQuizViewRoute:
@@ -420,7 +427,7 @@ class AppRouter {
           ),
         );
       case Routes.courseEditViewRoute:
-       var args = settings.arguments as Map<String, dynamic>;
+        var args = settings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(
           builder: (context) => CourseEditView(
             namech: args["namech"],
@@ -428,7 +435,6 @@ class AppRouter {
             chapterIndx: args["chapterIndx"],
             subjectId: args["subjectId"],
             chaptersN: args["chaptersN"],
-          
           ),
         );
       default:
