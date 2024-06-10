@@ -18,7 +18,7 @@ class LessonDetailsView extends StatelessWidget {
         title:
             CustomPopIconButton(backgroundColor: Colors.white70, radius: 18.r),
         actions: [
-          Text("التفاصيل",
+          Text("محتوي الدرس",
               style: Styles.textStyle18.copyWith(color: Colors.white)),
           SizedBox(width: 14.w),
         ],

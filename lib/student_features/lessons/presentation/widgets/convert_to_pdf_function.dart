@@ -9,19 +9,14 @@ Future<void> convertToPDF(
   List<int> bytes = base64.decode(base64Content);
 
   // Get the application documents directory
-  Directory directory = await getApplicationDocumentsDirectory();
+  final directory = await getExternalStorageDirectory();
 
   // Create a file to save the PDF content
-  File file = File('${directory.path}/$fileName');
+  File file = File('${directory!.path}/$fileName');
 
   // Write the bytes to the file
   await file.writeAsBytes(bytes);
-  print(file.path);
 
   // Open the PDF file
-  OpenFile.open(file.path).then((result) {
-    print('OpenFile result: ${result.message}');
-  }).catchError((error) {
-    print('OpenFile error: $error');
-  });
+  OpenFile.open(file.path).then((result) {}).catchError((error) {});
 }

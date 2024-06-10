@@ -28,13 +28,14 @@ class LessonsRepoImplement implements LessonsRepo {
       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));
       }
-      return left(ServerFailure(e.toString()));
+      return left(ServerFailure('لا يوجد دروس'));
     }
   }
 
   @override
-  Future<Either<Failure, List<LessonItemModel>>> getLessonsItems({required int lessonID}) async{
-     try {
+  Future<Either<Failure, List<LessonItemModel>>> getLessonsItems(
+      {required int lessonID}) async {
+    try {
       final response = await apiServices.get(
         endPoint: EndPoint.getChapterFiles(lessonID),
       );
@@ -47,7 +48,7 @@ class LessonsRepoImplement implements LessonsRepo {
       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));
       }
-      return left(ServerFailure(e.toString()));
+      return left(ServerFailure('لا يوجد بيانات'));
     }
   }
 }

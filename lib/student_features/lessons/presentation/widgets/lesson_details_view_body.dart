@@ -1,24 +1,15 @@
-import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/Core/widgets/custom_failure_widget.dart';
 import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
 import 'package:field_training_app/student_features/lessons/presentation/view_model/cubit/lessons_cubit.dart';
 import 'package:field_training_app/student_features/lessons/presentation/widgets/convert_to_pdf_function.dart';
-import 'package:permission_handler/permission_handler.dart';
+import 'package:field_training_app/student_features/lessons/presentation/widgets/detect_file_type_function.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'lesson_detail_item.dart';
+
 class LessonDetailsViewBody extends StatelessWidget {
   const LessonDetailsViewBody({super.key});
-
-  Future<bool> requestPermissions() async {
-    final statuses = await [
-      Permission.storage,
-      Permission.manageExternalStorage,
-    ].request();
-
-    return statuses[Permission.storage]!.isGranted &&
-        statuses[Permission.manageExternalStorage]!.isGranted;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,25 +18,28 @@ class LessonDetailsViewBody extends StatelessWidget {
       child: BlocBuilder<LessonsCubit, LessonsState>(
         builder: (context, state) {
           if (state is LessonItemsSuccess) {
-            return Column(
-              children: [
-                Text(state.lessonItems[3].contentType!),
-                CustomButton(
-                    text: 'تحميل',
-                    onpressed: () async {
-                      if (!await requestPermissions()) {
-                        try {
-                          await convertToPDF(
-                              base64Content: state.lessonItems[3].fileContent!,
-                              fileName: state.lessonItems[3].fileName!);
-                        } catch (e) {
-                          print('Error: $e');
-                        }
-                      } else {
-                        print('Permission denied');
-                      }
-                    }),
-              ],
+            return state.lessonItems.isEmpty ? const Center(child: Text('لا يوجد بيانات')) : GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 0,
+                crossAxisSpacing: 16,
+              ),
+              itemCount: state.lessonItems.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: LessonDetailItem(
+                    type: fileTypeDetect(
+                        contentType: state.lessonItems[index].contentType!),
+                    name: state.lessonItems[index].fileName!,
+                    ontap: () {
+                      convertToPDF(
+                          base64Content: state.lessonItems[index].fileContent!,
+                          fileName: state.lessonItems[index].fileName!);
+                    },
+                  ),
+                );
+              },
             );
           } else if (state is LessonItemsFailure) {
             return CustomFailureWidget(errMessage: state.errMessage);
