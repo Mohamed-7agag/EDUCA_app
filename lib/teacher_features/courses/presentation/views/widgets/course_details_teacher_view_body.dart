@@ -31,9 +31,6 @@ class _CourseDetailsTeacherViewBodyState
     extends State<CourseDetailsTeacherViewBody> {
   @override
   void initState() {
-    // TODO: implement initState
-    print("isactive--------------------------------");
-    print(widget.courseModel.isActive);
     context.read<SwithSelectCubit>().state != widget.courseModel.isActive;
     super.initState();
   }
@@ -126,10 +123,6 @@ class _CourseDetailsTeacherViewBodyState
                                                   .updateCourse(
                                                       courseModel:
                                                           widget.courseModel);
-                                              print("---------------------");
-                                              print(context
-                                                  .read<SwithSelectCubit>()
-                                                  .state);
                                             },
                                           );
                                   },
@@ -307,7 +300,7 @@ class _CourseDetailsTeacherViewBodyState
                       child: Center(
                         child: Text(
                           'لا يوجد دروس , اضف درس',
-                          style:  TextStyle(
+                          style: TextStyle(
                             fontSize: 25,
                           ),
                           textAlign: TextAlign.center,
