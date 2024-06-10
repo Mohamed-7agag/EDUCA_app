@@ -23,7 +23,7 @@ class GetAllChaptersCubit extends Cubit<GetAllChaptersState> {
         chapterNames.add(item.name!);
         chapterIndx[item.name!] = item.id!;
       }
-      
+
       emit(GetAllChaptersSuccess(chaptersList));
     });
   }

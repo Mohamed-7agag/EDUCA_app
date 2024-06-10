@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:field_training_app/Core/api_services/api_service.dart';
 import 'package:field_training_app/Core/api_services/end_points.dart';
 import 'package:field_training_app/Core/api_services/failure.dart';
+import 'package:field_training_app/student_features/lessons/data/models/lesson_item_model.dart';
 
 import '../models/lessons_model.dart';
 import 'lessons_repo.dart';
@@ -27,7 +28,27 @@ class LessonsRepoImplement implements LessonsRepo {
       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));
       }
-      return left(ServerFailure(e.toString()));
+      return left(ServerFailure('لا يوجد دروس'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<LessonItemModel>>> getLessonsItems(
+      {required int lessonID}) async {
+    try {
+      final response = await apiServices.get(
+        endPoint: EndPoint.getChapterFiles(lessonID),
+      );
+      List<LessonItemModel> lessonItems = [];
+      for (var element in response) {
+        lessonItems.add(LessonItemModel.fromJson(element));
+      }
+      return right(lessonItems);
+    } on Exception catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
+      }
+      return left(ServerFailure('لا يوجد بيانات'));
     }
   }
 }

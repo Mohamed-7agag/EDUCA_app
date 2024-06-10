@@ -14,6 +14,4 @@ abstract class CourseRepo {
   Future<Either<Failure, String>> updateCourse({
     required CourseModel courseModel,
   });
-
-
 }

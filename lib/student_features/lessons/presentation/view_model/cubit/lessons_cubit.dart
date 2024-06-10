@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:field_training_app/student_features/lessons/data/models/lesson_item_model.dart';
 import 'package:field_training_app/student_features/lessons/data/repo/lessons_repo.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,6 +18,16 @@ class LessonsCubit extends Cubit<LessonsState> {
       emit(LessonsFailure(errMessage: failure.errMessage));
     }, (lessons) {
       emit(LessonsSuccess(lessons: lessons));
+    });
+  }
+
+  Future<void> getLessonItems({required int lessonID}) async {
+    emit(LessonItemsLoading());
+    final result = await lessonsRepo.getLessonsItems(lessonID: lessonID);
+    result.fold((failure) {
+      emit(LessonItemsFailure(errMessage: failure.errMessage));
+    }, (lessonItems) {
+      emit(LessonItemsSuccess(lessonItems: lessonItems));
     });
   }
 }

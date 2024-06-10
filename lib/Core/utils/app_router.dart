@@ -14,6 +14,7 @@ import 'package:field_training_app/student_features/home/data/repo/home_repo_imp
 import 'package:field_training_app/student_features/home/presentation/view_model/cubit/home_cubit.dart';
 import 'package:field_training_app/student_features/lessons/data/repo/lessons_repo_implement.dart';
 import 'package:field_training_app/student_features/lessons/presentation/view_model/cubit/lessons_cubit.dart';
+import 'package:field_training_app/student_features/lessons/presentation/views/lesson_details_view.dart';
 import 'package:field_training_app/student_features/lessons/presentation/views/lessons_list_view.dart';
 import 'package:field_training_app/student_features/payment/presentation/view_model/payment_cubit/payment_cubit.dart';
 import 'package:field_training_app/student_features/payment/presentation/views/payment_option_view.dart';
@@ -286,7 +287,6 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (context) => MultiBlocProvider(
             providers: [
-              
               BlocProvider(
                 create: (context) =>
                     GetAllChaptersCubit(getIt.get<ChapterFilesRepoImplement>())
@@ -447,7 +447,24 @@ class AppRouter {
             chapterIndx: args["chapterIndx"],
             subjectId: args["subjectId"],
             chaptersN: args["chaptersN"],
-          
+          ),
+        );
+      case Routes.lessonsListViewRoute:
+        var args = settings.arguments as int;
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => LessonsCubit(getIt.get<LessonsRepoImplement>())
+              ..getLessons(subjectID: args),
+            child: const LessonsListView(),
+          ),
+        );
+      case Routes.lessonDetailsViewRoute:
+        var args = settings.arguments as int;
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => LessonsCubit(getIt.get<LessonsRepoImplement>())
+              ..getLessonItems(lessonID: args),
+            child: const LessonDetailsView(),
           ),
         );
       default:

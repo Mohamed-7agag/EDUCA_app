@@ -38,7 +38,6 @@ class TeacherProfileCubit extends Cubit<TeacherProfileState> {
   }) async {
     emit(TeacherProfileUpdateLoading());
     var result = await teacherProfileRepo.updateTeacherData(
-      
       endPoint: EndPoint.getTeacherById(CacheHelper.getData(key: ApiKey.id)),
       firstName: firstName,
       lastName: lastName,

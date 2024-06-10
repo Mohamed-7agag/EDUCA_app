@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:field_training_app/teacher_features/courses/data/models/course_model.dart';
 import 'package:field_training_app/teacher_features/courses/data/repos/add_course_repo/add_course_repo.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -40,6 +39,4 @@ class AddCourseCubit extends Cubit<AddCourseState> {
       emit(AddCourseSuccess());
     });
   }
-
-  
 }

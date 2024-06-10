@@ -1,4 +1,5 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
+import 'package:field_training_app/Core/utils/routes.dart';
 import 'package:field_training_app/Core/widgets/custom_failure_widget.dart';
 import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
 import 'package:field_training_app/Core/widgets/pop_icon_button.dart';
@@ -44,7 +45,13 @@ class LessonsListView extends StatelessWidget {
                             child: LessonItem(
                                 name: state.lessons[index].name!,
                                 index: index,
-                                onTap: () {}));
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    Routes.lessonDetailsViewRoute,
+                                    arguments: state.lessons[index].id,
+                                  );
+                                }));
                       },
                     )
                   : const Center(child: Text('لا يوجد دروس'));
