@@ -12,6 +12,7 @@ class GetAllChaptersCubit extends Cubit<GetAllChaptersState> {
 
   List<String> chapterNames = [];
   Map<String, int> chapterIndx = {};
+  List<ChapterModel> chapterList = [];
 
   void getChapters({required int subjectId}) async {
     emit(GetAllChaptersLoading());
@@ -23,7 +24,7 @@ class GetAllChaptersCubit extends Cubit<GetAllChaptersState> {
         chapterNames.add(item.name!);
         chapterIndx[item.name!] = item.id!;
       }
-
+      chaptersList = chaptersList;
       emit(GetAllChaptersSuccess(chaptersList));
     });
   }

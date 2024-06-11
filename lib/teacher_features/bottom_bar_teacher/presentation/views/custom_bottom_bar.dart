@@ -22,39 +22,40 @@ class CustomBottomBarForTeacherView extends StatelessWidget {
               border: Border(
                   top: BorderSide(color: Colors.grey.shade200, width: 0.6)),
             ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-              child: GNav(
-                gap: 8,
-                selectedIndex: state,
-                tabBackgroundColor: kSplashColor,
-                activeColor: kPrimaryColor,
-                padding: const EdgeInsets.only(
-                    left: 20, right: 20, top: 12, bottom: 12),
-                onTabChange: (value) {
-                  BlocProvider.of<BottomBarCubit>(context)
-                      .changeBottomBarIndex(value);
-                },
-                tabs: const [
-                  GButton(
-                    icon: Icons.account_circle_outlined,
-                    iconSize: 27,
-                    text: "أنا",
-                  ),
-                  GButton(
-                    icon: Icons.chat_outlined,
-                    iconSize: 27,
-                    text: "ChatGPT",
-                  ),
-                  GButton(
-                    icon: Icons.beenhere_outlined,
-                    text: "كورساتي",
-                  ),
-                  GButton(
-                    icon: Icons.home_outlined,
-                    text: "الرئيسية",
-                  ),
-                ],
+            child: SafeArea(
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                child: GNav(
+                  gap: 8,
+                  selectedIndex: state,
+                  tabBackgroundColor: kSplashColor,
+                  activeColor: kPrimaryColor,
+                  padding: const EdgeInsets.only(
+                      left: 18, right: 16, top: 12, bottom: 12),
+                  onTabChange: (value) {
+                    BlocProvider.of<BottomBarCubit>(context)
+                        .changeBottomBarIndex(value);
+                  },
+                  tabs: const [
+                    GButton(
+                      icon: Icons.account_circle_outlined,
+                      text: "أنا",
+                    ),
+                    GButton(
+                      icon: Icons.chat_outlined,
+                      text: "ChatGPT",
+                    ),
+                    GButton(
+                      icon: Icons.beenhere_outlined,
+                      text: "موادي ",
+                    ),
+                    GButton(
+                      icon: Icons.home_outlined,
+                      text: "الرئيسية",
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

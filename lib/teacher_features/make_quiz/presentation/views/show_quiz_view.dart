@@ -1,4 +1,7 @@
+import 'package:field_training_app/Core/utils/constatnt.dart';
+import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
+import 'package:field_training_app/Core/widgets/pop_icon_button.dart';
 import 'package:field_training_app/teacher_features/make_quiz/presentation/views_model/cubit/get_all_question_cubit.dart';
 import 'package:field_training_app/teacher_features/make_quiz/presentation/widget/show_quiz_view_body.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +24,7 @@ class ShowQuizView extends StatelessWidget {
           return Scaffold(
             appBar: AppBar(
               automaticallyImplyLeading: false,
+              backgroundColor: kPrimaryColor,
               title: const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -38,24 +42,25 @@ class ShowQuizView extends StatelessWidget {
           );
         } else if (state is GetAllQuestionSuccess) {
           return Scaffold(
-            // appBar: AppBar(
-            //   automaticallyImplyLeading: false,
-            //   title: Row(
-            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //     children: [
-            //       Text(
-            //         '${state.questionModelList.length} سؤال',
-            //         style: Styles.textStyle18.copyWith(color: kPrimaryColor),
-            //         textDirection: TextDirection.rtl,
-            //       ),
-            //       Text(
-            //         titleQuiz,
-            //         style: const TextStyle(
-            //             fontSize: 25, fontWeight: FontWeight.bold),
-            //       ),
-            //     ],
-            //   ),
-            // ),
+            appBar: AppBar(
+              centerTitle: true,
+              title: Text(
+                titleQuiz,
+                style: Styles.textStyle20
+                    .copyWith(color: Colors.white, fontWeight: FontWeight.bold),
+                textDirection: TextDirection.rtl,
+              ),
+              backgroundColor: kPrimaryColor,
+              leading: IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon:const CustomPopIconButton(
+                  backgroundColor: Colors.white70,
+                  radius: 18,
+                ),
+              ),
+            ),
             body: SafeArea(
               child: ShowQuizViewBody(
                 allquestionList: state.questionModelList,

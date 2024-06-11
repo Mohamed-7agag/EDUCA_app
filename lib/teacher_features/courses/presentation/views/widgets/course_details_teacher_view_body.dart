@@ -4,6 +4,7 @@ import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
 import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
+import 'package:field_training_app/Core/widgets/pop_icon_button.dart';
 import 'package:field_training_app/teacher_features/courses/data/models/course_model.dart';
 import 'package:field_training_app/teacher_features/courses/data/repos/course_repo/course_repo_implement.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views/widgets/classes_and_subclasses_listview.dart';
@@ -50,24 +51,24 @@ class _CourseDetailsTeacherViewBodyState
                 backgroundColor: Colors.white,
                 expandedHeight: 230.h,
                 pinned: true,
-                title: Center(
-                  child: Text(
-                    '${widget.courseModel.subjectName} - ${widget.courseModel.level}',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
+                // title: Center(
+                //   child: Text(
+                //     '${widget.courseModel.subjectName} - ${widget.courseModel.level}',
+                //     textAlign: TextAlign.center,
+                //     style: TextStyle(
+                //       color: Colors.black,
+                //       fontSize: 16.sp,
+                //       fontWeight: FontWeight.bold,
+                //     ),
+                //   ),
+                // ),
                 leading: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.arrow_back_ios,
-                    color: Colors.black,
-                  ),
-                ),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: CustomPopIconButton(
+                      backgroundColor: Colors.white70,
+                    )),
                 flexibleSpace: FlexibleSpaceBar(
                     background: Container(
                   decoration: const BoxDecoration(

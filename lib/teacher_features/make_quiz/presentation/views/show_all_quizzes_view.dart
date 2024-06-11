@@ -1,5 +1,6 @@
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
+import 'package:field_training_app/Core/widgets/pop_icon_button.dart';
 import 'package:field_training_app/teacher_features/make_quiz/presentation/widget/show_all_quizzes_view_body.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +22,10 @@ class ShowAllQuizzesView extends StatelessWidget {
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: const Icon(Icons.arrow_back_ios),
+          icon: const CustomPopIconButton(
+            backgroundColor: Colors.white70,
+            radius: 18,
+          ),
         ),
       ),
       body: SafeArea(
