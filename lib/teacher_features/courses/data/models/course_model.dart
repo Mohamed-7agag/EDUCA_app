@@ -14,9 +14,11 @@ class CourseModel extends Equatable {
   final int? tolalPrice;
   final bool? isActive;
   final bool? isOnline;
+  final int? studentCount;
 
   const CourseModel({
     this.id,
+    this.studentCount,
     this.teacherId,
     this.subjectId,
     this.level,
@@ -36,6 +38,7 @@ class CourseModel extends Equatable {
       teacherId: json[ApiKey.teacherId] as int?,
       subjectId: json[ApiKey.subjectId] as int?,
       level: json[ApiKey.level] as String?,
+      studentCount: json["studentCount"] as int?,
       subjectName: json[ApiKey.subjectName] as String?,
       addingTime: json[ApiKey.addingTime] as String?,
       describtion: json[ApiKey.describtion] as String?,
@@ -57,6 +60,7 @@ class CourseModel extends Equatable {
         ApiKey.describtion: describtion,
         ApiKey.pricePerHour: pricePerHour,
         ApiKey.term: term,
+        "studentCount": studentCount,
         ApiKey.isActive: isActive,
         ApiKey.isOnline: isOnline,
         ApiKey.tolalPrice: tolalPrice,
@@ -74,6 +78,7 @@ class CourseModel extends Equatable {
         pricePerHour,
         term,
         isActive,
+        studentCount,
         isOnline,
         tolalPrice,
       ];

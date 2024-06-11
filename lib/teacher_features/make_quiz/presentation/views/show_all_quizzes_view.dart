@@ -1,3 +1,5 @@
+import 'package:field_training_app/Core/utils/constatnt.dart';
+import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/teacher_features/make_quiz/presentation/widget/show_all_quizzes_view_body.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +9,21 @@ class ShowAllQuizzesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "الاختبارات",
+          style: Styles.textStyle20
+              .copyWith(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+        centerTitle: true,
+        backgroundColor: kPrimaryColor,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.arrow_back_ios),
+        ),
+      ),
       body: SafeArea(
           child: ShowAllQuizzesViewBody(
         subjectId: subjectId,

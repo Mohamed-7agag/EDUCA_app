@@ -241,8 +241,6 @@ class _MakeQuizViewBodyState extends State<MakeQuizViewBody> {
             CustomButton(
                 text: "انهاء الاختبار",
                 onpressed: () {
-                  print(
-                      "in finsh--------------------------------${widget.subjectId}");
                   Navigator.pushReplacementNamed(
                     context,
                     Routes.showAllQuizzesViewRoute,

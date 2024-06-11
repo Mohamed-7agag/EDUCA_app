@@ -11,10 +11,12 @@ class ProfileUserImage extends StatelessWidget {
     required this.top,
     required this.cameraSize,
     this.image,
+    this.isEdit = true,
   });
   final double iconSize;
   final double right;
   final double top;
+  final bool isEdit;
   final double cameraSize;
   final String? image;
 
@@ -48,23 +50,24 @@ class ProfileUserImage extends StatelessWidget {
                   errorIconSize: 60,
                 ),
         ),
-        Positioned(
-          right: right,
-          top: top,
-          child: IconButton(
-            onPressed: () {
-              teacherBottomSheet(context);
-            },
-            icon: Icon(
-              Icons.add_a_photo_outlined,
-              size: cameraSize,
-              color: Colors.white,
-            ),
-            style: IconButton.styleFrom(
-              backgroundColor: kPrimaryColor,
+        if (isEdit)
+          Positioned(
+            right: right,
+            top: top,
+            child: IconButton(
+              onPressed: () {
+                teacherBottomSheet(context);
+              },
+              icon: Icon(
+                Icons.add_a_photo_outlined,
+                size: cameraSize,
+                color: Colors.white,
+              ),
+              style: IconButton.styleFrom(
+                backgroundColor: kPrimaryColor,
+              ),
             ),
           ),
-        ),
       ],
     );
   }

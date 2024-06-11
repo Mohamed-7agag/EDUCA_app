@@ -57,7 +57,7 @@ class CourseRepoImplement implements CourseRepo {
     // print("courseModel: ${courseModel.describtion}");
     // print("courseModel: ${courseModel.pricePerHour}");
     // print("courseModel: ${courseModel.teacherId}");
-    print("courseModel: ${courseModel.isActive}");
+   // print("courseModel: ${courseModel.isActive}");
     // print("courseModel: ${courseModel.addingTime}");
     // print("courseModel: ${courseModel.isOnline}");
     try {

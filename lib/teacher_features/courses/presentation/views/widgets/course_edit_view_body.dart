@@ -63,13 +63,12 @@ class _CourseEditViewBodyState extends State<CourseEditViewBody> {
               listener: (context, state) {
                 if (state is AddChapterSuccess) {
                   successCherryToast(context, "تم الاضافة بنجاح",
-                      "${state.chapterModel.name}");
+                      "تمت عملية الاضافة بنجاح");
                   // Navigator.of(context).pop();
                   // Navigator.pushReplacementNamed(
                   //     context, Routes.courseDetailsTeacherViewRoute,
                   //     arguments: widget.subjectId);
-                  print(
-                      "name:------------------------- ${state.chapterModel.name}");
+
                   Navigator.pushReplacementNamed(
                       context, Routes.courseEditViewRoute,
                       arguments: {
@@ -250,7 +249,7 @@ class _CourseEditViewBodyState extends State<CourseEditViewBody> {
                                   "subjectId": widget.subjectId,
                                   "chaptersN": context
                                       .read<GetAllChaptersCubit>()
-                                      .chapterNames,  
+                                      .chapterNames,
                                   "chapterIndx": context
                                       .read<GetAllChaptersCubit>()
                                       .chapterIndx,

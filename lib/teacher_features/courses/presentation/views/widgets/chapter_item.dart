@@ -1,3 +1,4 @@
+import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/routes.dart';
 import 'package:field_training_app/teacher_features/courses/data/models/chapter_model.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views_model/get_all_chapters_cubit/get_all_chapters_cubit.dart';
@@ -26,10 +27,13 @@ class ChapterItem extends StatelessWidget {
             chapterModel.name ?? "الدرس ${index + 1}",
             textDirection: TextDirection.rtl,
           ),
-          leading:
-              isExpanded ? const Icon(Icons.remove) : const Icon(Icons.edit),
+          leading: isExpanded
+              ? const Icon(Icons.remove)
+              : const Icon(
+                  Icons.edit,
+                  color: kPrimaryColor,
+                ),
           onTap: () {
-            
             Navigator.pushNamed(context, Routes.courseEditViewRoute,
                 arguments: {
                   "subjectId": chapterModel.subjectId,

@@ -34,7 +34,7 @@ void teacherBottomSheet(BuildContext context) {
                           .updateTeacherData(image: pickedFile);
                       Navigator.of(context).pop();
                       Navigator.pushReplacementNamed(
-                          context, Routes.customBottomBarViewRoute);
+                          context, Routes.customBottomBarForTeacherViewRoute);
                       successCherryToast(context, 'تم تغيير الصورة',
                           'قم باعادة تشغيل البرنامج لعرض التحديثات');
                     }
@@ -68,7 +68,7 @@ void teacherBottomSheet(BuildContext context) {
                           .updateTeacherData(image: pickedFile);
                       Navigator.of(context).pop();
                       Navigator.pushReplacementNamed(
-                          context, Routes.customBottomBarViewRoute);
+                          context, Routes.customBottomBarForTeacherViewRoute);
                       successCherryToast(context, 'تم تغيير الصورة',
                           'قم باعادة تشغيل البرنامج لعرض التحديثات');
                     }

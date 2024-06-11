@@ -31,13 +31,12 @@ class _CourseDetailsTeacherViewBodyState
     extends State<CourseDetailsTeacherViewBody> {
   @override
   void initState() {
-    // TODO: implement initState
-    print("isactive--------------------------------");
-  
     context.read<SwithSelectCubit>().isactive = widget.courseModel.isActive!;
-    
+
     super.initState();
   }
+
+  TextEditingController controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -114,7 +113,9 @@ class _CourseDetailsTeacherViewBodyState
                                     return state is AddCourseUpdateLoading
                                         ? const CustomLoadingWidget()
                                         : Switch(
-                                            value: context.read<SwithSelectCubit>().isactive,
+                                            value: context
+                                                .read<SwithSelectCubit>()
+                                                .isactive,
                                             focusColor: kPrimaryColor,
                                             activeColor: kPrimaryColor,
                                             onChanged: (value) {
@@ -127,10 +128,6 @@ class _CourseDetailsTeacherViewBodyState
                                                   .updateCourse(
                                                       courseModel:
                                                           widget.courseModel);
-                                             
-                                              print(context
-                                                  .read<SwithSelectCubit>()
-                                                  .state);
                                             },
                                           );
                                   },
@@ -210,7 +207,8 @@ class _CourseDetailsTeacherViewBodyState
                                       const Text("عدد الطلاب"),
                                       SizedBox(height: 12.h),
                                       Text(
-                                        '3',
+                                        widget.courseModel.studentCount
+                                            .toString(),
                                         style: Styles.textStyle18.copyWith(
                                           color: kPrimaryColor,
                                         ),
@@ -246,6 +244,129 @@ class _CourseDetailsTeacherViewBodyState
                               ],
                             ),
                           ],
+                        ),
+                      ),
+                      SizedBox(height: 20.h),
+                      BlocProvider(
+                        create: (context) => GetAllCoursesTeacherCubit(
+                            getIt<CourseRepoImplement>()),
+                        child: BlocConsumer<GetAllCoursesTeacherCubit,
+                            GetAllCoursesTeacherState>(
+                          listener: (context, state) {
+                            if (state is AddCourseUpdateSuccess) {
+                              successCherryToast(
+                                  context, "تم", "تم تعديل الدورة بنجاح");
+                              Navigator.pop(context);
+                              Navigator.pop(context);
+                            } else if (state is AddCourseUpdateFailure) {
+                              errorCherryToast(
+                                  context, "خطأ", state.errMessage);
+                            }
+                          },
+                          builder: (context, state) {
+                            return state is AddCourseUpdateLoading
+                                ? const CustomLoadingWidget()
+                                : Container(
+                                    decoration: BoxDecoration(
+                                      //   border: Border.all(color: ),
+                                      borderRadius: BorderRadius.circular(8.r),
+                                    ),
+                                    child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          IconButton(
+                                            onPressed: () {
+                                              showDialog(
+                                                context: context,
+                                                builder: (_) => AlertDialog(
+                                                  title:
+                                                      const Text("تعديل السعر"),
+                                                  content: TextField(
+                                                    keyboardType:
+                                                        TextInputType.number,
+                                                    decoration:
+                                                        const InputDecoration(
+                                                      labelText:
+                                                          "ادخل السعر الجديد",
+                                                    ),
+                                                    controller: controller,
+                                                  ),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () {
+                                                        if (controller
+                                                            .text.isEmpty) {
+                                                          ScaffoldMessenger.of(
+                                                                  context)
+                                                              .showSnackBar(
+                                                            const SnackBar(
+                                                              content: Text(
+                                                                  "يجب عليك ادخال السعر الجديد "),
+                                                            ),
+                                                          );
+                                                        } else {
+                                                          context
+                                                              .read<
+                                                                  GetAllCoursesTeacherCubit>()
+                                                              .updateCourse(
+                                                                  courseModel:
+                                                                      CourseModel(
+                                                                pricePerHour: widget
+                                                                    .courseModel
+                                                                    .pricePerHour,
+                                                                id: widget
+                                                                    .courseModel
+                                                                    .id,
+                                                                tolalPrice:
+                                                                    int.parse(
+                                                                        controller
+                                                                            .text),
+                                                                studentCount: widget
+                                                                    .courseModel
+                                                                    .studentCount,
+                                                                level: widget
+                                                                    .courseModel
+                                                                    .level,
+                                                                term: widget
+                                                                    .courseModel
+                                                                    .term,
+                                                                subjectName: widget
+                                                                    .courseModel
+                                                                    .subjectName,
+                                                                subjectId: widget
+                                                                    .courseModel
+                                                                    .subjectId,
+                                                                isActive: widget
+                                                                    .courseModel
+                                                                    .isActive,
+                                                                isOnline: widget
+                                                                    .courseModel
+                                                                    .isOnline,
+                                                                describtion: widget
+                                                                    .courseModel
+                                                                    .describtion,
+                                                              ));
+                                                        }
+                                                      },
+                                                      child:
+                                                          const Text("اضافة"),
+                                                    ),
+                                                  ],
+                                                ),
+                                              );
+                                            },
+                                            icon: const Icon(
+                                              Icons.edit,
+                                              color: kPrimaryColor,
+                                            ),
+                                          ),
+                                          Text(
+                                              " ${widget.courseModel.tolalPrice} : سعر الكورس",
+                                              style: Styles.textStyle16),
+                                        ]),
+                                  );
+                          },
                         ),
                       ),
                       SizedBox(height: 20.h),

@@ -1,3 +1,5 @@
+import 'package:field_training_app/Core/utils/constatnt.dart';
+import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views/widgets/course_edit_view_body.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views_model/drop_down_list_chapter_cubit.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +23,12 @@ class CourseEditView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('تعديل المادة'),
+        backgroundColor: kPrimaryColor,
+        title: Text(
+          'تعديل المادة',
+          style: Styles.textStyle20
+              .copyWith(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
         leading: IconButton(
           onPressed: () {

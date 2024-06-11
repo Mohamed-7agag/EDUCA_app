@@ -1,7 +1,6 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:field_training_app/Core/utils/routes.dart';
 import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
-import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
 import 'package:field_training_app/teacher_features/courses/data/models/chapter_model.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views/widgets/chapter_item.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views_model/get_all_chapters_cubit/get_all_chapters_cubit.dart';
