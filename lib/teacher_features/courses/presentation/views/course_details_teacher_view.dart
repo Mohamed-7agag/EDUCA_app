@@ -12,14 +12,18 @@ class CourseDetailsTeacherView extends StatelessWidget {
     // ignore: deprecated_member_use
     return WillPopScope(
       onWillPop: () {
-        Navigator.pushReplacementNamed(context, Routes.customBottomBarForTeacherViewRoute,
-            );
+        Navigator.pushReplacementNamed(
+          context,
+          Routes.customBottomBarForTeacherViewRoute,
+        );
         return Future.value(false);
       },
       child: Scaffold(
         backgroundColor: Colors.white,
-        body: CourseDetailsTeacherViewBody(
-          courseModel: courseModel,
+        body: SafeArea(
+          child: CourseDetailsTeacherViewBody(
+            courseModel: courseModel,
+          ),
         ),
       ),
     );
