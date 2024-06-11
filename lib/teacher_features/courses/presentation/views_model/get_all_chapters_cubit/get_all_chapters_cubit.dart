@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:field_training_app/teacher_features/courses/data/models/chapter_model.dart';
 import 'package:field_training_app/teacher_features/courses/data/repos/chapter_files_repo/chaoter_files_repo.dart';
+import 'package:field_training_app/teacher_features/courses/data/repos/chapter_files_repo/chapter_files_repo_implement.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'get_all_chapters_state.dart';
@@ -8,7 +9,7 @@ part 'get_all_chapters_state.dart';
 class GetAllChaptersCubit extends Cubit<GetAllChaptersState> {
   GetAllChaptersCubit(this.chapterFilesRepo) : super(GetAllChaptersInitial());
 
-  ChapterFilesRepo chapterFilesRepo;
+  ChapterFilesRepoImplement chapterFilesRepo;
 
   List<String> chapterNames = [];
   Map<String, int> chapterIndx = {};
