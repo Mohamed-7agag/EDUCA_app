@@ -1,7 +1,11 @@
+import 'package:field_training_app/Core/utils/app_services.dart';
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
+import 'package:field_training_app/teacher_features/courses/data/repos/chapter_files_repo/chapter_files_repo_implement.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views/widgets/course_edit_view_body.dart';
+import 'package:field_training_app/teacher_features/courses/presentation/views_model/add_chapter_cubit/add_chapter_cubit.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views_model/drop_down_list_chapter_cubit.dart';
+import 'package:field_training_app/teacher_features/courses/presentation/views_model/get_all_chapters_cubit/get_all_chapters_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -38,8 +42,16 @@ class CourseEditView extends StatelessWidget {
         ),
       ),
       body: SafeArea(
-          child: BlocProvider(
-        create: (context) => DropDownListChapterCubit(),
+          child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => DropDownListChapterCubit(),
+          ),
+          BlocProvider(
+            create: (context) => GetAllChaptersCubit(getIt.get<ChapterFilesRepoImplement>()),
+          ),
+         
+        ],
         child: CourseEditViewBody(
           namech: namech,
           chapterId: chapterId,

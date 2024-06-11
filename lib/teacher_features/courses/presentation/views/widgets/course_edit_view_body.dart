@@ -56,80 +56,77 @@ class _CourseEditViewBodyState extends State<CourseEditViewBody> {
   @override
   Widget build(BuildContext context) {
     return widget.chapterId == -1
-        ? BlocProvider(
-            create: (context) =>
-                AddChapterCubit(getIt<ChapterFilesRepoImplement>()),
-            child: BlocConsumer<AddChapterCubit, AddChapterState>(
-              listener: (context, state) {
-                if (state is AddChapterSuccess) {
-                  successCherryToast(context, "تم الاضافة بنجاح",
-                      "تمت عملية الاضافة بنجاح");
-                  // Navigator.of(context).pop();
-                  // Navigator.pushReplacementNamed(
-                  //     context, Routes.courseDetailsTeacherViewRoute,
-                  //     arguments: widget.subjectId);
+        ? BlocConsumer<AddChapterCubit, AddChapterState>(
+            listener: (context, state) {
+              if (state is AddChapterSuccess) {
+                successCherryToast(
+                    context, "تم الاضافة بنجاح", "تمت عملية الاضافة بنجاح");
+                // Navigator.of(context).pop();
+                // Navigator.pushReplacementNamed(
+                //     context, Routes.courseDetailsTeacherViewRoute,
+                //     arguments: widget.subjectId);
 
-                  Navigator.pushReplacementNamed(
-                      context, Routes.courseEditViewRoute,
-                      arguments: {
-                        "subjectId": widget.subjectId,
-                        "chaptersN":
-                            context.read<GetAllChaptersCubit>().chapterNames,
-                        "chapterIndx":
-                            context.read<GetAllChaptersCubit>().chapterIndx,
-                        "chapterId": state.chapterModel.id,
-                        "namech": state.chapterModel.name,
-                      });
-                }
-              },
-              builder: (context, state) {
-                return InkWell(
-                  onTap: () {
-                    showDialog(
-                      context: context,
-                      builder: (_) => AlertDialog(
-                        title: const Text("اضافة درس جديد"),
-                        content: TextField(
-                          decoration: const InputDecoration(
-                            labelText: "اسم الدرس",
-                          ),
-                          controller: controller,
+                Navigator.pushReplacementNamed(
+                    context, Routes.courseEditViewRoute,
+                    arguments: {
+                      "subjectId": widget.subjectId,
+                      "chaptersN":
+                          context.read<GetAllChaptersCubit>().chapterNames,
+                      "chapterIndx":
+                          context.read<GetAllChaptersCubit>().chapterIndx,
+                      "chapterId": state.chapterModel.id,
+                      "namech": state.chapterModel.name,
+                    });
+              }
+            },
+            builder: (context, state) {
+              return InkWell(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (_) => AlertDialog(
+                      title: const Text("اضافة درس جديد"),
+                      content: TextField(
+                        decoration: const InputDecoration(
+                          labelText: "اسم الدرس",
                         ),
-                        actions: [
-                          TextButton(
-                            onPressed: () {
-                              if (controller.text.isEmpty) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                    content: Text("يجب عليك ادخال اسم الملف"),
-                                  ),
-                                );
-                              } else {
-                                BlocProvider.of<AddChapterCubit>(context)
-                                    .addChapter(
-                                        name: controller.text,
-                                        subjectId: widget.subjectId);
-                                Navigator.pop(context);
-                                controller.clear();
-                              }
-                            },
-                            child: const Text("اضافة"),
-                          ),
-                        ],
+                        controller: controller,
                       ),
-                    );
-                  },
-                  child: Center(
-                    child: Text(
-                      'لا يوجد درس \n, اضغط لا الدرس ',
-                      textDirection: TextDirection.rtl,
-                      style: Styles.textStyle18
-                          .copyWith(fontWeight: FontWeight.bold),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            if (controller.text.isEmpty) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text("يجب عليك ادخال اسم الملف"),
+                                ),
+                              );
+                            } else {
+                              BlocProvider.of<AddChapterCubit>(context)
+                                  .addChapter(
+                                      name: controller.text,
+                                      subjectId: widget.subjectId);
+                              Navigator.pop(context);
+                              controller.clear();
+                            }
+                          },
+                          child: const Text("اضافة"),
+                        ),
+                      ],
                     ),
+                  );
+                },
+                child: Center(
+                  child: Text(
+                    'لا يوجد درس \n, اضغط لا الدرس ',
+                    textDirection: TextDirection.rtl,
+                    style: Styles.textStyle18
+                        .copyWith(fontWeight: FontWeight.bold),
                   ),
-                );
-              },
-            ))
+                ),
+              );
+            },
+          )
         : Container(
             padding: const EdgeInsets.all(32.0),
             child: Column(
@@ -231,11 +228,11 @@ class _CourseEditViewBodyState extends State<CourseEditViewBody> {
                 ),
                 Row(
                   children: [
-                    BlocProvider(
-                      create: (context) =>
-                          AddChapterCubit(getIt<ChapterFilesRepoImplement>()),
-                      child: Expanded(
-                          child: BlocConsumer<AddChapterCubit, AddChapterState>(
+                    Expanded(
+                        child: BlocProvider(
+                      create: (context) => AddChapterCubit(
+                          getIt.get<ChapterFilesRepoImplement>()),
+                      child: BlocConsumer<AddChapterCubit, AddChapterState>(
                         listener: (context, state) {
                           if (state is AddChapterSuccess) {
                             successCherryToast(
@@ -243,19 +240,22 @@ class _CourseEditViewBodyState extends State<CourseEditViewBody> {
                               "عملية ناجحة",
                               "${state.chapterModel.name}",
                             );
-                            Navigator.pushReplacementNamed(
-                                context, Routes.courseEditViewRoute,
-                                arguments: {
-                                  "subjectId": widget.subjectId,
-                                  "chaptersN": context
-                                      .read<GetAllChaptersCubit>()
-                                      .chapterNames,
-                                  "chapterIndx": context
-                                      .read<GetAllChaptersCubit>()
-                                      .chapterIndx,
-                                  "chapterId": state.chapterModel.id,
-                                  "namech": state.chapterModel.name,
-                                });
+                            Navigator.pop(context);
+
+                           
+                            // Navigator.pushReplacementNamed(
+                            //     context, Routes.courseEditViewRoute,
+                            //     arguments: {
+                            //       "subjectId": widget.subjectId,
+                            //       "chaptersN": context
+                            //           .read<GetAllChaptersCubit>()
+                            //           .chapterNames,
+                            //       "chapterIndx": context
+                            //           .read<GetAllChaptersCubit>()
+                            //           .chapterIndx,
+                            //       "chapterId": state.chapterModel.id,
+                            //       "namech": state.chapterModel.name,
+                            //     });
                           } else if (state is AddChapterFailure) {
                             errorCherryToast(context, "حدث خطأ", state.message);
                           }
@@ -316,8 +316,8 @@ class _CourseEditViewBodyState extends State<CourseEditViewBody> {
                                   ),
                                 );
                         },
-                      )),
-                    ),
+                      ),
+                    )),
                     SizedBox(width: 10.w),
                     BlocProvider(
                       create: (context) =>
@@ -331,6 +331,7 @@ class _CourseEditViewBodyState extends State<CourseEditViewBody> {
                               "عملية ناجحة",
                               "تم انشاء المادة بنجاح",
                             );
+
                             Navigator.pushReplacementNamed(
                                 context, Routes.courseEditViewRoute,
                                 arguments: {
