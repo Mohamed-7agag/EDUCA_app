@@ -2,7 +2,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/Core/widgets/custom_failure_widget.dart';
 import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
-import 'package:field_training_app/Core/widgets/profile_user_image.dart';
+import 'package:field_training_app/Core/widgets/profile_teacher_image.dart';
 
 import 'package:field_training_app/student_features/profile/presentation/widgets/custom_profile_edit_name.dart';
 import 'package:field_training_app/student_features/profile/presentation/widgets/profile_item.dart';
@@ -29,7 +29,7 @@ class ProfileTeacherViewBody extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   SizedBox(height: 22.h),
-                  ProfileUserImage(
+                  ProfileTeacherImage(
                     iconSize: 45,
                     right: 105.w,
                     top: 80.h,

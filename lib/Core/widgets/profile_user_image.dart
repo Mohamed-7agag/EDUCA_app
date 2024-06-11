@@ -27,8 +27,8 @@ class ProfileUserImage extends StatelessWidget {
       alignment: Alignment.center,
       children: [
         Container(
-          width: 120,
-          height: 120,
+          width: 115,
+          height: 115,
           padding: const EdgeInsets.all(2.5),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(200),
