@@ -125,12 +125,14 @@ class HomeViewBody extends StatelessWidget {
                       reverse: true,
                       itemCount: (state.subjectList.length / 2).ceil(),
                       itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: CourseItem(
-                            subjectModel: state.subjectList[index],
-                          ),
-                        );
+                        return state.subjectList[index].isActive == true
+                            ? Padding(
+                                padding: const EdgeInsets.only(left: 10),
+                                child: CourseItem(
+                                  subjectModel: state.subjectList[index],
+                                ),
+                              )
+                            : const SizedBox.shrink();
                       },
                     );
                   } else if (state is HomeGetSubjectsFailure) {
@@ -166,13 +168,19 @@ class HomeViewBody extends StatelessWidget {
                       itemCount: state.subjectList.length -
                           (state.subjectList.length / 2).ceil(),
                       itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: CourseItem(
-                            subjectModel: state.subjectList[index +
-                                ((state.subjectList.length / 2).ceil())],
-                          ),
-                        );
+                        return state
+                                    .subjectList[index +
+                                        ((state.subjectList.length / 2).ceil())]
+                                    .isActive ==
+                                true
+                            ? Padding(
+                                padding: const EdgeInsets.only(left: 10),
+                                child: CourseItem(
+                                  subjectModel: state.subjectList[index +
+                                      ((state.subjectList.length / 2).ceil())],
+                                ),
+                              )
+                            : const SizedBox.shrink();
                       },
                     );
                   } else if (state is HomeGetSubjectsFailure) {

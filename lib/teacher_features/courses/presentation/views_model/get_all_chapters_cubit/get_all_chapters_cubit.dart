@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:field_training_app/teacher_features/courses/data/models/chapter_model.dart';
-import 'package:field_training_app/teacher_features/courses/data/repos/chapter_files_repo/chaoter_files_repo.dart';
 import 'package:field_training_app/teacher_features/courses/data/repos/chapter_files_repo/chapter_files_repo_implement.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
