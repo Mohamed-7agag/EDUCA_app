@@ -15,7 +15,13 @@ class HomeCubit extends Cubit<HomeState> {
     result.fold((failure) {
       emit(HomeGetSubjectsFailure(errMessage: failure.errMessage));
     }, (subjectList) {
-      emit(HomeGetSubjectsSuccess(subjectList: subjectList));
+      List<SubjectModel> newList = [];
+      for (var element in subjectList) {
+        if (element.isActive == true) {
+          newList.add(element);
+        }
+      }
+      emit(HomeGetSubjectsSuccess(subjectList: newList));
     });
   }
 }
