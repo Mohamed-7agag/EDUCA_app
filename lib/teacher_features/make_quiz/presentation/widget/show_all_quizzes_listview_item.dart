@@ -43,7 +43,7 @@ class ShowAllQuizzesListViewItem extends StatelessWidget {
           trailing: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              TextButton.icon(
+              IconButton(
                 onPressed: () {
                   Navigator.pushNamed(context, Routes.showQuizViewRoute,
                       arguments: {
@@ -56,10 +56,6 @@ class ShowAllQuizzesListViewItem extends StatelessWidget {
                   Icons.edit_outlined,
                   color: kPrimaryColor,
                 ),
-                label: const Text(
-                  'تعديل',
-                  style: TextStyle(color: Colors.black),
-                ),
               ),
               BlocConsumer<AddQuizCubit, AddQuizState>(
                 listener: (context, state) {
@@ -69,14 +65,14 @@ class ShowAllQuizzesListViewItem extends StatelessWidget {
                         context, Routes.showAllQuizzesViewRoute,
                         arguments: quizModel.subjectId);
                   } else {
-                    errorCherryToast(context, 'حدث خطا', 'خطا');
+                    // errorCherryToast(context, 'حدث خطا', 'خطا');
                     Navigator.pushReplacementNamed(
                         context, Routes.showAllQuizzesViewRoute,
                         arguments: quizModel.subjectId);
                   }
                 },
                 builder: (context, state) {
-                  return TextButton.icon(
+                  return IconButton(
                     onPressed: () {
                       context
                           .read<AddQuizCubit>()
@@ -86,8 +82,6 @@ class ShowAllQuizzesListViewItem extends StatelessWidget {
                       Icons.delete_outlined,
                       color: kPrimaryColor,
                     ),
-                    label: const Text('حذف',
-                        style: TextStyle(color: Colors.black)),
                   );
                 },
               ),

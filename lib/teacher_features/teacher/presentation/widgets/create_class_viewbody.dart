@@ -137,31 +137,39 @@ class CreateClassViewBody extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 35.h),
-                    Text(
-                      "سعر الكورس كامل",
-                      textDirection: TextDirection.rtl,
-                      style: Styles.textStyle14
-                          .copyWith(fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(height: 10.h),
-                    TextField(
-                      controller: context.read<AddCourseCubit>().totalPrice,
-                      cursorColor: kPrimaryColor,
-                      keyboardType: TextInputType.number,
-                      textAlign: TextAlign.right,
-                      decoration: InputDecoration(
-                        hintText: "ادخل السعر",
-                        hintStyle:
-                            Styles.textStyle14.copyWith(color: kPrimaryColor),
-                        filled: true,
-                        fillColor: kSplashColor,
-                        enabledBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: kSplashColor),
-                            borderRadius: BorderRadius.all(Radius.circular(6))),
-                        focusedBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: kPrimaryColor),
-                            borderRadius: BorderRadius.all(Radius.circular(6))),
-                      ),
+                    
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(
+                          "سعر الكورس كامل",
+                          textDirection: TextDirection.rtl,
+                          style: Styles.textStyle14
+                              .copyWith(fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(height: 10.h),
+                        TextField(
+                          controller: context.read<AddCourseCubit>().totalPrice,
+                          cursorColor: kPrimaryColor,
+                          keyboardType: TextInputType.number,
+                          textAlign: TextAlign.right,
+                          decoration: InputDecoration(
+                            hintText: "ادخل السعر",
+                            hintStyle: Styles.textStyle14
+                                .copyWith(color: kPrimaryColor),
+                            filled: true,
+                            fillColor: kSplashColor,
+                            enabledBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(color: kSplashColor),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(6))),
+                            focusedBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(color: kPrimaryColor),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(6))),
+                          ),
+                        ),
+                      ],
                     ),
                     SizedBox(height: 30.h),
                     BlocConsumer<AddCourseCubit, AddCourseState>(

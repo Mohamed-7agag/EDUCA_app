@@ -2,6 +2,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/routes.dart';
 import 'package:field_training_app/Core/utils/styles.dart';
+import 'package:field_training_app/Core/utils/subject_image.dart';
 import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
 import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
 import 'package:field_training_app/teacher_features/courses/data/models/course_model.dart';
@@ -54,76 +55,9 @@ class CourseListViewItem extends StatelessWidget {
                       topRight: Radius.circular(10.r),
                     ),
                     child: Image.asset(
-                      "assets/images/english.png",
+                      subjectImage(course.subjectName!),
                       fit: BoxFit.fitWidth,
                     ),
-                  ),
-                  BlocConsumer<GetAllCoursesTeacherCubit,
-                      GetAllCoursesTeacherState>(
-                    listener: (context, state) {
-                      if (state is GetAllCoursesDeleteSubjectSuccess) {
-                        successCherryToast(
-                          context,
-                          "عملية ناجحة",
-                          "تم حذف المادة الدراسية بنجاح",
-                        );
-
-                        Navigator.pushReplacementNamed(
-                            context, Routes.customBottomBarForTeacherViewRoute);
-                      } else if (state is GetAllCoursesDeleteSubjectFailure) {
-                        errorCherryToast(
-                          context,
-                          "حدث خطأ",
-                          state.message,
-                        );
-                      }
-                    },
-                    builder: (context, state) {
-                      return Positioned(
-                        top: 4.h,
-                        left: 4.w,
-                        child: IconButton(
-                          onPressed: () {
-                            state is GetAllCoursesDeleteSubjectLoading
-                                ? const Center(child: CustomLoadingWidget())
-                                : AwesomeDialog(
-                                    context: context,
-                                    dialogType: DialogType.infoReverse,
-                                    animType: AnimType.topSlide,
-                                    title: 'تنبيه',
-                                    desc: 'هل تريد حذف هذا المادة الدراسية ؟',
-                                    btnCancelOnPress: () {},
-                                    btnOkOnPress: () {
-                                      context
-                                          .read<GetAllCoursesTeacherCubit>()
-                                          .deleteCourse(subjectId: 8);
-                                      Navigator.pushReplacementNamed(
-                                          context,
-                                          Routes
-                                              .customBottomBarForTeacherViewRoute);
-                                    },
-                                    btnOkText: 'نعم',
-                                    btnCancelText: 'لا',
-                                  ).show();
-                          },
-                          icon: Icon(
-                            Icons.delete,
-                            color: kPrimaryColor,
-                            size: 21.sp,
-                          ),
-                          style: ButtonStyle(
-                            backgroundColor:
-                                const WidgetStatePropertyAll(Colors.white),
-                            shape: WidgetStatePropertyAll(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadiusDirectional.all(
-                                    Radius.circular(4.r)),
-                              ),
-                            ),
-                          ),
-                        ),
-                      );
-                    },
                   ),
                 ],
               ),
@@ -145,7 +79,7 @@ class CourseListViewItem extends StatelessWidget {
                       ),
                       SizedBox(width: 5.w),
                       Icon(
-                        Icons.import_contacts_rounded,
+                        Icons.menu_book_rounded,
                         color: kPrimaryColor,
                         size: 18.sp,
                       ),
@@ -153,9 +87,10 @@ class CourseListViewItem extends StatelessWidget {
                   ),
                   SizedBox(height: 6.h),
                   Text(
-                    course.level!,
-                    style: Styles.textStyle14,
-                    textAlign: TextAlign.right,
+                    "${course.level} / ${course.term == 1 ? 'الترم الأول' : 'الترم الثاني'}",
+                    style: Styles.textStyle12,
+                    textDirection: TextDirection.rtl,
+                    overflow: TextOverflow.ellipsis,
                   ),
                   SizedBox(height: 6.h),
                   Text(

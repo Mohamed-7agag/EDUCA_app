@@ -8,12 +8,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ChapterItem extends StatelessWidget {
   final int index;
-  final bool isExpanded;
+ 
 
   const ChapterItem(
       {super.key,
       required this.index,
-      required this.isExpanded,
+      
       required this.chapterModel});
 
   final ChapterModel chapterModel;
@@ -27,9 +27,7 @@ class ChapterItem extends StatelessWidget {
             chapterModel.name ?? "الدرس ${index + 1}",
             textDirection: TextDirection.rtl,
           ),
-          leading: isExpanded
-              ? const Icon(Icons.remove)
-              : const Icon(
+          leading: const Icon(
                   Icons.edit,
                   color: kPrimaryColor,
                 ),

@@ -18,63 +18,53 @@ class ClassesAndSubClassesListViews extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ShowSubClassesCubit(),
-      child: SliverList(
-        delegate: SliverChildBuilderDelegate(
-          childCount: chaptersList.length,
-          (context, index) {
-            return BlocBuilder<ShowSubClassesCubit, Map<int, bool>>(
-              builder: (context, statee) {
-                return BlocConsumer<GetAllChaptersCubit, GetAllChaptersState>(
-                  listener: (context, state) {
-                    if (state is DeleteChapterSuccess) {
-                      successCherryToast(context, 'تم حذف الفصل بنجاح', 'تم');
-                     // chaptersList.removeAt(index);
-                      Navigator.pushReplacementNamed(
-                        context,
-                        Routes.courseDetailsTeacherViewRoute,
-                        arguments: chaptersList[index].subjectId,
-                      );
-                    } else if (state is DeleteChapterFailure) {
-                      errorCherryToast(context, 'حدث خطا', 'خطا');
-                    }
-                  },
-                  builder: (context, state) {
-                    return InkWell(
-                      onLongPress: () {
-                        AwesomeDialog(
-                          context: context,
-                          dialogType: DialogType.infoReverse,
-                          animType: AnimType.topSlide,
-                          title: 'تنبيه',
-                          desc: 'هل تريد حذف هذا الفصل  ؟',
-                          btnCancelOnPress: () {
-                            Navigator.pop(context);
-                          },
-                          btnOkOnPress: () {
-                            // BlocProvider.of<GetAllChaptersCubit>(context)
-                            //     .deleteChapter(
-                            //         chapterId: chaptersList[index].id!);
-                            chaptersList.removeAt(index);
-                            
-                          },
-                          btnOkText: 'نعم',
-                          btnCancelText: 'لا',
-                        ).show();
-                      },
-                      child: ChapterItem(
-                        index: index,
-                        chapterModel: chaptersList[index],
-                        isExpanded: statee[index] ?? false,
-                      ),
-                    );
-                  },
-                );
-              },
-            );
-          },
-        ),
+    return SliverList(
+      delegate: SliverChildBuilderDelegate(
+        childCount: chaptersList.length,
+        (context, index) {
+          return BlocConsumer<GetAllChaptersCubit, GetAllChaptersState>(
+            listener: (context, state) {
+              if (state is DeleteChapterSuccess) {
+                successCherryToast(context, 'تم حذف الفصل بنجاح', 'تم');
+                Navigator.pop(context);
+                // Navigator.pushReplacementNamed(
+                //   context,
+                //   Routes.courseDetailsTeacherViewRoute,
+                //   arguments: chaptersList[index].subjectId,
+                // );
+              } else if (state is DeleteChapterFailure) {
+                Navigator.pop(context);
+                errorCherryToast(context, 'حدث خطا', 'خطا');
+              }
+            },
+            builder: (context, state) {
+              return InkWell(
+                onLongPress: () {
+                  AwesomeDialog(
+                    context: context,
+                    dialogType: DialogType.infoReverse,
+                    animType: AnimType.topSlide,
+                    title: 'تنبيه',
+                    desc: 'هل تريد حذف هذا الفصل  ؟',
+                    btnCancelOnPress: () {
+                      Navigator.pop(context);
+                    },
+                    btnOkOnPress: () {
+                      BlocProvider.of<GetAllChaptersCubit>(context)
+                          .deleteChapter(chapterId: chaptersList[index].id!);
+                    },
+                    btnOkText: 'نعم',
+                    btnCancelText: 'لا',
+                  ).show();
+                },
+                child: ChapterItem(
+                  index: index,
+                  chapterModel: chaptersList[index],
+                ),
+              );
+            },
+          );
+        },
       ),
     );
   }

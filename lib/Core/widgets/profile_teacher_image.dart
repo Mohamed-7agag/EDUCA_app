@@ -1,4 +1,5 @@
 import 'package:field_training_app/Core/widgets/custom_cached_image.dart';
+import 'package:field_training_app/student_features/profile/presentation/widgets/teacher_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import '../../student_features/profile/presentation/widgets/bottom_sheet.dart';
 import '../utils/constatnt.dart';
@@ -25,8 +26,8 @@ class ProfileTeacherImage extends StatelessWidget {
       alignment: Alignment.center,
       children: [
         Container(
-          width: 120,
-          height: 120,
+          width: 115,
+          height: 115,
           padding: const EdgeInsets.all(2.5),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(200),
@@ -53,7 +54,7 @@ class ProfileTeacherImage extends StatelessWidget {
           top: top,
           child: IconButton(
             onPressed: () {
-              bottomSheet(context);
+              teacherBottomSheet(context);
             },
             icon: Icon(
               Icons.add_a_photo_outlined,
