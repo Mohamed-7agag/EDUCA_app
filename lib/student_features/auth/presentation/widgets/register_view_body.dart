@@ -42,7 +42,7 @@ class RegisterViewBody extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 60.h),
+            SizedBox(height: 65.h),
             Form(
               key: context.read<AuthCubit>().formKey,
               child: Column(

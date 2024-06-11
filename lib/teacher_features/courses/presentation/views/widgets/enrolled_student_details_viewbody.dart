@@ -26,7 +26,7 @@ class EnrolledStudentDetailsViewBody extends StatelessWidget {
               right: 112.w,
               top: 70.h,
               cameraSize: 22,
-              image: stDto.profileImageUrl ?? null,
+              image: stDto.profileImageUrl,
               isEdit: false,
             ),
             SizedBox(height: 16.h),

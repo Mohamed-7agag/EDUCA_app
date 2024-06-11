@@ -1,6 +1,4 @@
-import 'package:field_training_app/Core/utils/constatnt.dart';
 import 'package:field_training_app/Core/utils/routes.dart';
-import 'package:field_training_app/Core/utils/styles.dart';
 import 'package:field_training_app/Core/widgets/custom_button.dart';
 import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
 import 'package:field_training_app/Core/widgets/custom_loading_widget.dart';
