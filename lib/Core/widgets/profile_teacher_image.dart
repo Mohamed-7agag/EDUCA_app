@@ -1,7 +1,6 @@
 import 'package:field_training_app/Core/widgets/custom_cached_image.dart';
 import 'package:field_training_app/student_features/profile/presentation/widgets/teacher_bottom_sheet.dart';
 import 'package:flutter/material.dart';
-import '../../student_features/profile/presentation/widgets/teacher_bottom_sheet.dart';
 import '../utils/constatnt.dart';
 
 class ProfileTeacherImage extends StatelessWidget {

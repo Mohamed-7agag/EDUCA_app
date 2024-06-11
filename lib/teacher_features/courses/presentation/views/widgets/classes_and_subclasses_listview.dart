@@ -1,10 +1,8 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:field_training_app/Core/utils/routes.dart';
 import 'package:field_training_app/Core/widgets/custom_cherry_toast.dart';
 import 'package:field_training_app/teacher_features/courses/data/models/chapter_model.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views/widgets/chapter_item.dart';
 import 'package:field_training_app/teacher_features/courses/presentation/views_model/get_all_chapters_cubit/get_all_chapters_cubit.dart';
-import 'package:field_training_app/teacher_features/courses/presentation/views_model/show_sub_classes_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
