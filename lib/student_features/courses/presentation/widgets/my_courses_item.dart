@@ -24,7 +24,6 @@ class MyCoursesItem extends StatelessWidget {
       splashColor: kSplashColor,
       borderRadius: BorderRadius.circular(8.r),
       child: Container(
-        width: 230.w,
         decoration: BoxDecoration(
           color: Colors.white,
           boxShadow: const [
