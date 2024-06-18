@@ -13,7 +13,7 @@ import 'package:field_training_app/teacher_features/courses/data/repos/add_cours
 import 'package:field_training_app/teacher_features/courses/data/repos/chapter_files_repo/chapter_files_repo_implement.dart';
 import 'package:field_training_app/teacher_features/courses/data/repos/course_repo/course_repo_implement.dart';
 import 'package:field_training_app/teacher_features/make_quiz/data/repos/add_quiz_repo/add_quzi_repo_impelement.dart';
-import 'package:field_training_app/teacher_features/profile_teacher/data/repos/teacher_repo/student_profile_repo_implement.dart';
+import 'package:field_training_app/teacher_features/profile_teacher/data/repos/teacher_repo/teacher_profile_repo_implement.dart';
 import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.instance;

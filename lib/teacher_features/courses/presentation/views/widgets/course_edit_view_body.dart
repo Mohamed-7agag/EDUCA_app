@@ -63,10 +63,7 @@ class _CourseEditViewBodyState extends State<CourseEditViewBody> {
                 if (state is AddChapterSuccess) {
                   successCherryToast(
                       context, "تم الاضافة بنجاح", "تمت عملية الاضافة بنجاح");
-                  // Navigator.of(context).pop();
-                  // Navigator.pushReplacementNamed(
-                  //     context, Routes.courseDetailsTeacherViewRoute,
-                  //     arguments: widget.subjectId);
+                
 
                   Navigator.pushReplacementNamed(
                       context, Routes.courseEditViewRoute,
@@ -245,19 +242,7 @@ class _CourseEditViewBodyState extends State<CourseEditViewBody> {
                             );
                             Navigator.pop(context);
 
-                            // Navigator.pushReplacementNamed(
-                            //     context, Routes.courseEditViewRoute,
-                            //     arguments: {
-                            //       "subjectId": widget.subjectId,
-                            //       "chaptersN": context
-                            //           .read<GetAllChaptersCubit>()
-                            //           .chapterNames,
-                            //       "chapterIndx": context
-                            //           .read<GetAllChaptersCubit>()
-                            //           .chapterIndx,
-                            //       "chapterId": state.chapterModel.id,
-                            //       "namech": state.chapterModel.name,
-                            //     });
+                          
                           } else if (state is AddChapterFailure) {
                             errorCherryToast(context, "حدث خطأ", state.message);
                           }
