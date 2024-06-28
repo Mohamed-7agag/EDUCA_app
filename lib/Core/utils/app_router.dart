@@ -50,7 +50,7 @@ import 'package:field_training_app/teacher_features/make_quiz/presentation/views
 import 'package:field_training_app/teacher_features/make_quiz/presentation/views_model/add_quiz_cubit/add_quiz_cubit.dart';
 import 'package:field_training_app/teacher_features/make_quiz/presentation/views_model/add_question_cubit/add_question_cubit.dart';
 import 'package:field_training_app/teacher_features/make_quiz/presentation/views_model/cubit/get_all_question_cubit.dart';
-import 'package:field_training_app/teacher_features/profile_teacher/data/repos/teacher_repo/student_profile_repo_implement.dart';
+import 'package:field_training_app/teacher_features/profile_teacher/data/repos/teacher_repo/teacher_profile_repo_implement.dart';
 import 'package:field_training_app/teacher_features/profile_teacher/presentation/view_model/cubit/teacher_profile_cubit.dart';
 import 'package:field_training_app/teacher_features/teacher/presentation/views/create_class.dart';
 import 'package:field_training_app/teacher_features/teacher/presentation/views/terms_view.dart';
@@ -467,7 +467,7 @@ class AppRouter {
             child: const LessonDetailsView(),
           ),
         );
-      
+
       default:
         return MaterialPageRoute(
           builder: (context) {

@@ -10,15 +10,10 @@ class CourseDetailsTeacherView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // ignore: deprecated_member_use
-    return WillPopScope(
-      onWillPop: () {
-        Navigator.pushReplacementNamed(context, Routes.customBottomBarForTeacherViewRoute,
-            );
-        return Future.value(false);
-      },
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        body: CourseDetailsTeacherViewBody(
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: CourseDetailsTeacherViewBody(
           courseModel: courseModel,
         ),
       ),

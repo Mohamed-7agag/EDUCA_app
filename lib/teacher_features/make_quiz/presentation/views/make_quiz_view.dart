@@ -27,7 +27,7 @@ class MakeQuizView extends StatelessWidget {
       },
       child: Scaffold(
         body: SafeArea(
-            child: MakeQuizViewBody(
+          child: MakeQuizViewBody(
           subjectId: subjectId,
           titleQuiz: titleQuiz,
           quizId: quizId,

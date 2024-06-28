@@ -1,18 +1,18 @@
 import 'package:equatable/equatable.dart';
 import 'package:field_training_app/Core/models/quiz_model.dart';
-import 'package:field_training_app/teacher_features/make_quiz/data/repos/add_quiz_repo/add_quiz_repo.dart';
+import 'package:field_training_app/teacher_features/make_quiz/data/repos/add_quiz_repo/add_quzi_repo_impelement.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'add_quiz_state.dart';
 
 class AddQuizCubit extends Cubit<AddQuizState> {
-  AddQuizCubit(this.addQuizRepo) : super(AddQuizInitial());
+  AddQuizCubit(this.addQuizRepoImplement) : super(AddQuizInitial());
 
-  final AddQuizRepo addQuizRepo;
+  final AddQuizRepoImplement addQuizRepoImplement;
 
   Future<void> addQuiz({required String title, required int subjectId}) async {
     emit(AddQuizLoading());
-    var result = await addQuizRepo.addQuiz(
+    var result = await addQuizRepoImplement.addQuiz(
       description: title,
       subjectId: subjectId,
     );
@@ -25,7 +25,7 @@ class AddQuizCubit extends Cubit<AddQuizState> {
 
   Future<void> getAllQuiz({required int subjectId}) async {
     emit(GetAllQuizLoading());
-    var result = await addQuizRepo.getAllQuizzes(
+    var result = await addQuizRepoImplement.getAllQuizzes(
       subjectId: subjectId,
     );
     result.fold((failure) {
@@ -37,7 +37,7 @@ class AddQuizCubit extends Cubit<AddQuizState> {
 
   Future<void> deleteQuiz({required int quizId}) async {
     emit(DeleteQuizLoading());
-    var result = await addQuizRepo.deleteQuiz(quizId: quizId);
+    var result = await addQuizRepoImplement.deleteQuiz(quizId: quizId);
     result.fold((failure) {
       emit(DeleteQuizFailure(message: failure.errMessage));
     }, (message) {
