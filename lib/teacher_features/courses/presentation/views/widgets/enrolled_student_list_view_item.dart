@@ -26,6 +26,7 @@ class EnrolledStudentListViewItem extends StatelessWidget {
         ),
         trailing: CircleAvatar(
           backgroundImage:
+              
               NetworkImage(enrolledStudent.stDto!.profileImageUrl ?? ""),
         ),
       ),

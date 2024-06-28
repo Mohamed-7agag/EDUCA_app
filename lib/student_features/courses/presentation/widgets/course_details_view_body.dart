@@ -219,7 +219,7 @@ class CourseDetailsViewBody extends StatelessWidget {
           ),
         ),
         Expanded(child: SizedBox(height: 10.h)),
-        subjectModel.isOnilne == true
+        subjectModel.id! % 2 == 0
             ? const SizedBox.shrink()
             : Padding(
                 padding: const EdgeInsets.all(20),

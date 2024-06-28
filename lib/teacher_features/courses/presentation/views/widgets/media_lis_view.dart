@@ -7,7 +7,6 @@ import 'package:field_training_app/student_features/lessons/presentation/widgets
 import 'package:field_training_app/teacher_features/courses/data/repos/chapter_files_repo/chapter_files_repo_implement.dart';
 
 import 'package:field_training_app/teacher_features/courses/presentation/views_model/get_file_cubit/get_files_cubit.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
